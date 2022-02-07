@@ -1,10 +1,15 @@
 //query selector variables go here 👇
 var bodyBackground = document.querySelector('body');
-var inputWrapper01 = document.querySelector('#id1');
-var inputWrapper02 = document.querySelector('#id2');
-var inputWrapper03 = document.querySelector('#id3');
-var inputWrapper04 = document.querySelector('#id4');
-var inputWrapper05 = document.querySelector('#id5');
+var inputWrapper0 = document.querySelector('#id0');
+var inputWrapper1 = document.querySelector('#id1');
+var inputWrapper2 = document.querySelector('#id2');
+var inputWrapper3 = document.querySelector('#id3');
+var inputWrapper4 = document.querySelector('#id4');
+var inputWrapper5 = document.querySelector('#id5');
+var inputWrapper6 = document.querySelector('#id6');
+var inputWrapper7 = document.querySelector('#id7');
+var inputWrapper8 = document.querySelector('#id8');
+var inputWrapper9 = document.querySelector('#id9');
 // var inputWrapper = document.querySelector("[id^='id']");
 
 //global variables go here 👇
@@ -21,12 +26,13 @@ window.addEventListener("keydown", function(event) { //https://developer.mozilla
   // console.log(event.keyCode, event.code)
   let key = event.key,
   keyCode = event.keyCode;
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && currentInput.length === 5) {
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5 || currentInput.length === 10)) {
 
   // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
     // Do something with `,` key
     // alert('enter');
-    evaluateString(currentInput);
+    evaluateString();
+    // console.log('enter=', currentInput)
   }
   if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
     // Do something with `,` key
@@ -41,93 +47,116 @@ window.addEventListener("keydown", function(event) { //https://developer.mozilla
   }, false);
 
 // window.addEventListener("keydown", function (event) { alert('a okooo enter'); console.log(event.keyCode)  } );
-inputWrapper01.addEventListener('input', moveInput1);
-inputWrapper02.addEventListener('input', moveInput2);
-inputWrapper03.addEventListener('input', moveInput3);
-inputWrapper04.addEventListener('input', moveInput4);
-inputWrapper05.addEventListener('input', moveInput5);
+inputWrapper0.addEventListener('input', moveInput0);
+inputWrapper1.addEventListener('input', moveInput1);
+inputWrapper2.addEventListener('input', moveInput2);
+inputWrapper3.addEventListener('input', moveInput3);
+inputWrapper4.addEventListener('input', moveInput4);
+inputWrapper5.addEventListener('input', moveInput5);
+inputWrapper6.addEventListener('input', moveInput6);
+inputWrapper7.addEventListener('input', moveInput7);
+inputWrapper8.addEventListener('input', moveInput8);
+inputWrapper9.addEventListener('input', moveInput9);
 
 //functions and event handlers go here 👇
 
-// function moveInput(currentField, nextField) {
-//   // console.log('a')
-//   console.log("inputWrapper=",inputWrapper01)
-//   console.log("current field=",currentField,"nextfield=",nextField)
-//   if (currentField.value.length = currentField.maxLength) {
-//     document.getElementById(nextField).focus()
-//     document.getElementById(nextField).value = ""
-//   }
-// }
-
 function deleteCharacter() {
   var currentLength = currentInput.length;
-  if (!document.getElementById('id5').disabled) {
-    document.getElementById('id' + (currentLength)).value = "";
-    document.getElementById('id' + (currentLength)).focus();
-    document.getElementById('id' + (currentLength)).setAttribute("data-status", "")
-    // console.log('delete=', currentInput);
+  if (!document.getElementById('id4').disabled) {
+    document.getElementById('id' + (currentLength - 1)).value = "";
+    document.getElementById('id' + (currentLength - 1)).focus();
+    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", "")
     currentInput.pop();
-    // console.log('delete2=', currentInput)
   }
 }
 
 function loadTasks() {
-  document.getElementById('id1').focus()
+  document.getElementById('id0').focus()
 }
 
-function moveInput1(event) {
+function moveInput0(event) {
   // console.log('1')
-  document.getElementById('id2').focus()
-  document.getElementById('id2').value = ""
+  document.getElementById('id1').focus()
+  document.getElementById('id1').value = ""
 
-  const idValue = '1';
+  const idValue = '0';
   createInputString(idValue);
   // createTileColor(event, idValue);
   flipGradientGreen();
 }
 
-function moveInput2(event) {
+function moveInput1(event) {
   // console.log('2')
+  document.getElementById('id2').focus()
+  document.getElementById('id2').value = "" 
+
+  const idValue = '1';
+  createInputString(idValue);
+  // createTileColor(event, idValue);
+  flipGradientPink();
+}
+
+function moveInput2(event) {
+  // console.log('3')
   document.getElementById('id3').focus()
   document.getElementById('id3').value = "" 
 
   const idValue = '2';
   createInputString(idValue);
   // createTileColor(event, idValue);
-  flipGradientPink();
+  flipGradientGreen();
 }
 
 function moveInput3(event) {
-  // console.log('3')
+  // console.log('4')
   document.getElementById('id4').focus()
   document.getElementById('id4').value = "" 
 
   const idValue = '3';
   createInputString(idValue);
   // createTileColor(event, idValue);
-  flipGradientGreen();
-}
-
-function moveInput4(event) {
-  // console.log('4')
-  document.getElementById('id5').focus()
-  document.getElementById('id5').value = "" 
-
-  const idValue = '4';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
   flipGradientPink();
 }
 
-function moveInput5(event) {
-  // console.log('5');
-  // document.getElementById('id6').focus();
-  // document.getElementById('id1').value = "";
-
-  const idValue = '5';
+function moveInput4(event) {
+  const idValue = '4';
   createInputString(idValue);
   // createTileColor(event, idValue);
   flipGradientGreen();
+}
+
+function moveInput5(event) {
+  document.getElementById('id6').focus()
+  const idValue = '5';
+  createInputString(idValue);
+  flipGradientPink();
+}
+
+function moveInput6(event) {
+  document.getElementById('id7').focus()
+  const idValue = '6';
+  createInputString(idValue);
+  flipGradientGreen();
+}
+
+function moveInput7(event) {
+  document.getElementById('id8').focus()
+  const idValue = '7';
+  createInputString(idValue);
+  flipGradientPink();
+}
+
+function moveInput8(event) {
+  document.getElementById('id9').focus()
+  const idValue = '8';
+  createInputString(idValue);
+  flipGradientGreen();
+}
+
+function moveInput9(event) {
+  const idValue = '9';
+  createInputString(idValue);
+  flipGradientPink();
 }
 
 function createInputString(idValue) {
@@ -139,55 +168,46 @@ function createInputString(idValue) {
   // }
 }
 
-function evaluateString(currentInput) {
-  // console.log(event.target.id.charAt());
-  // myString = event.target.id
-  // const stringLength = myString.length; // this will be 16
-  // // const currentPosition = myString.charAt(stringLength - 1);
-  const currentPosition = event.target.id.charAt(event.target.id.length - 1);
-  // console.log('id' + (currentPosition * 1 + 1))
-  // console.log('lastChar: ', myString.charAt(stringLength - 1));
+function evaluateString() {
 
-  document.getElementById('id' + (currentPosition * 1 + 1)).focus();
-  var test = ['P','L','A','C','E']
+  let currentPosition = 0;
+  if (event.target.id.length > 3) {
+    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
+  } else {
+    currentPosition = event.target.id.charAt(event.target.id.length - 1);
+  }
 
+  var solution = ['P','L','A','C','E']
+
+  startPosition = currentPosition * 1 - 4
+  endPosition = currentPosition * 1
+  
+  // for (let x = startPosition; x < endPosition + 1; x++) {
   for (let x = 0; x < 5; x++) {
-    console.log(currentInput[x])
-    document.getElementById('id' + (x+1)).disabled = 'disabled'
-    if (test.includes(currentInput[x])) {
-      console.log('true')
+    // document.getElementById('id' + (x + 1)).disabled = 'disabled'
+    console.log('match=', x, startPosition, endPosition, currentInput[x], solution[x])
+    if (solution.includes(currentInput[x])) {
       // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
-      document.getElementById('id' + (x+1)).setAttribute("data-status", "match")
+      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "match")
     } else {
       // document.getElementById('id' + (x+1)).style.backgroundColor = 'grey'
-      document.getElementById('id' + (x+1)).setAttribute("data-status", "nomatch")
+      document.getElementById('id' + (x)).setAttribute("data-status", "nomatch")
     }
   }
 
+  // for (let x = startPosition; x < endPosition + 1; x++) {
   for (let x = 0; x < 5; x++) {
-    console.log(currentInput[x])
-    if (currentInput[x] === test[x]) {
-      console.log('true')
+    if (currentInput[x] === solution[x]) {
       // document.getElementById('id' + (x+1)).style.backgroundColor = 'green'
-      document.getElementById('id' + (x+1)).setAttribute("data-status", "exact_match")
-    } 
+      // document.getElementById('id' + (x)).setAttribute("data-status", "exact_match")
+      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "exact_match")
+    }
+    console.log('exact_match=', x, startPosition, endPosition, currentInput[x], solution[x])
   }
 
+  document.getElementById('id' + (currentPosition * 1 + 1)).focus();
+  currentInput = [];
 }
-
-// function createTileColor(event, idValue) {
-//   console.log('event=', event)
-//   console.log('id=', event.target.id)
-
-//   if (document.getElementById('id' + idValue).value.toUpperCase() === 'A') {   // if (document.getElementById(event.target.id).value.toUpperCase() === 'A') {
-//     // event.target.setAttribute("data-status", "match"); 
-//     document.getElementById('id' + idValue).setAttribute("data-status", "match");                       // inputWrapper01.setAttribute("data-status", "match");
-//   } else {
-//     // event.target.setAttribute("data-status", "nomatch");                        // inputWrapper01.setAttribute("data-status", "nomatch");
-//     document.getElementById('id' + idValue).setAttribute("data-status", "nomatch");  
-//                                                                                 // document.getElementById('id01').style.backgroundColor = 'white'
-//   }
-// }
 
 function flipGradientPink() {
   bodyBackground.classList.remove('green-gradient');
