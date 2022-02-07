@@ -121,7 +121,7 @@ function moveInput4(event) {
 
 function moveInput5(event) {
   // console.log('5');
-  document.getElementById('id6').focus();
+  // document.getElementById('id6').focus();
   // document.getElementById('id1').value = "";
 
   const idValue = '5';
@@ -140,6 +140,15 @@ function createInputString(idValue) {
 }
 
 function evaluateString(currentInput) {
+  // console.log(event.target.id.charAt());
+  // myString = event.target.id
+  // const stringLength = myString.length; // this will be 16
+  // // const currentPosition = myString.charAt(stringLength - 1);
+  const currentPosition = event.target.id.charAt(event.target.id.length - 1);
+  // console.log('id' + (currentPosition * 1 + 1))
+  // console.log('lastChar: ', myString.charAt(stringLength - 1));
+
+  document.getElementById('id' + (currentPosition * 1 + 1)).focus();
   var test = ['P','L','A','C','E']
 
   for (let x = 0; x < 5; x++) {
