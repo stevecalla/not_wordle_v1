@@ -10,6 +10,12 @@ var inputWrapper6 = document.querySelector('#id6');
 var inputWrapper7 = document.querySelector('#id7');
 var inputWrapper8 = document.querySelector('#id8');
 var inputWrapper9 = document.querySelector('#id9');
+var inputWrapper10 = document.querySelector('#id10');
+var inputWrapper11 = document.querySelector('#id11');
+var inputWrapper12 = document.querySelector('#id12');
+var inputWrapper13 = document.querySelector('#id13');
+var inputWrapper14 = document.querySelector('#id14');
+var inputWrapper15 = document.querySelector('#id15');
 // var inputWrapper = document.querySelector("[id^='id']");
 
 //global variables go here 👇
@@ -57,6 +63,12 @@ inputWrapper6.addEventListener('input', moveInput6);
 inputWrapper7.addEventListener('input', moveInput7);
 inputWrapper8.addEventListener('input', moveInput8);
 inputWrapper9.addEventListener('input', moveInput9);
+inputWrapper10.addEventListener('input', moveInput10);
+inputWrapper11.addEventListener('input', moveInput11);
+inputWrapper12.addEventListener('input', moveInput12);
+inputWrapper13.addEventListener('input', moveInput13);
+inputWrapper14.addEventListener('input', moveInput14);
+inputWrapper15.addEventListener('input', moveInput15);
 
 //functions and event handlers go here 👇
 
@@ -159,6 +171,46 @@ function moveInput9(event) {
   flipGradientPink();
 }
 
+function moveInput10(event) {
+  document.getElementById('id11').focus()
+  const idValue = '10';
+  createInputString(idValue);
+  flipGradientGreen();
+}
+
+function moveInput11(event) {
+  document.getElementById('id12').focus()
+  const idValue = '11';
+  createInputString(idValue);
+  flipGradientPink();
+}
+
+function moveInput12(event) {
+  document.getElementById('id13').focus()
+  const idValue = '12';
+  createInputString(idValue);
+  flipGradientGreen();
+}
+
+function moveInput13(event) {
+  document.getElementById('id14').focus()
+  const idValue = '13';
+  createInputString(idValue);
+  flipGradientPink();
+}
+
+function moveInput14(event) {
+  const idValue = '14';
+  createInputString(idValue);
+  flipGradientGreen();
+}
+
+function moveInput15(event) {
+  const idValue = '15';
+  createInputString(idValue);
+  flipGradientPink();
+}
+
 function createInputString(idValue) {
   currentInput.push(document.getElementById('id' + idValue).value.toUpperCase());
   console.log(currentInput);
@@ -191,7 +243,7 @@ function evaluateString() {
       document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "match")
     } else {
       // document.getElementById('id' + (x+1)).style.backgroundColor = 'grey'
-      document.getElementById('id' + (x)).setAttribute("data-status", "nomatch")
+      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "nomatch")
     }
   }
 
