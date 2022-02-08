@@ -1,84 +1,118 @@
+// add small list of words, select solution via randomize, spit into characters
+// window event for characters only
+// fix delete key
+// create tiles using innerhtml for loop
+
 //query selector variables go here 👇
-var bodyBackground = document.querySelector('body');
-var inputWrapper0 = document.querySelector('#id0');
-var inputWrapper1 = document.querySelector('#id1');
-var inputWrapper2 = document.querySelector('#id2');
-var inputWrapper3 = document.querySelector('#id3');
-var inputWrapper4 = document.querySelector('#id4');
-var inputWrapper5 = document.querySelector('#id5');
-var inputWrapper6 = document.querySelector('#id6');
-var inputWrapper7 = document.querySelector('#id7');
-var inputWrapper8 = document.querySelector('#id8');
-var inputWrapper9 = document.querySelector('#id9');
-var inputWrapper10 = document.querySelector('#id10');
-var inputWrapper11 = document.querySelector('#id11');
-var inputWrapper12 = document.querySelector('#id12');
-var inputWrapper13 = document.querySelector('#id13');
-var inputWrapper14 = document.querySelector('#id14');
-var inputWrapper15 = document.querySelector('#id15');
+// var bodyBackground = document.querySelector('body');
+// var inputWrapper0 = document.querySelector('#id0');
+// var inputWrapper1 = document.querySelector('#id1');
+// var inputWrapper2 = document.querySelector('#id2');
+// var inputWrapper3 = document.querySelector('#id3');
+// var inputWrapper4 = document.querySelector('#id4');
+// var inputWrapper5 = document.querySelector('#id5');
+// var inputWrapper6 = document.querySelector('#id6');
+// var inputWrapper7 = document.querySelector('#id7');
+// var inputWrapper8 = document.querySelector('#id8');
+// var inputWrapper9 = document.querySelector('#id9');
+// var inputWrapper10 = document.querySelector('#id10');
+// var inputWrapper11 = document.querySelector('#id11');
+// var inputWrapper12 = document.querySelector('#id12');
+// var inputWrapper13 = document.querySelector('#id13');
+// var inputWrapper14 = document.querySelector('#id14');
+// var inputWrapper15 = document.querySelector('#id15');
 // var inputWrapper = document.querySelector("[id^='id']");
 
 //global variables go here 👇
 var currentInput = [];
+var allInput = [];
 
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
-// window.addEventListener("keydown", function (event) { if (13 == event.keyCode) { alert('a okooo enter'); console.log(event.keyCode) } });
-// window.addEventListener("keydown", function (event) { if (37 == event.keyCode) { alert('a okooo enter'); console.log(event.keyCode) } });
-// window.addEventListener("keydown", function (event) { if (8 == event.keyCode) { alert('a okooo enter'); console.log(event.keyCode)  } });
-// window.addEventListener("keydown", function (event) { KeyboardEvent: key='Enter' | code='Enter' { alert('a okooo enter'); console.log(event.keyCode) } });
-
+window.addEventListener('keydown', inputText);
 window.addEventListener("keydown", function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
   // console.log(event.keyCode, event.code)
   let key = event.key,
   keyCode = event.keyCode;
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5 || currentInput.length === 10)) {
 
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
   // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-    // Do something with `,` key
-    // alert('enter');
     evaluateString();
-    // console.log('enter=', currentInput)
   }
-  if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
-    // Do something with `,` key
+  if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
+  // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
     deleteCharacter();
-    // alert('backspace');
   }
-  if (key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
-    // Do something with `,` key
-    deleteCharacter();
-    // alert('arrow');
+
+  if (key && 'Tab' === key || keyCode && 9 === keyCode) {
+  // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
+    // alert('tab');
+    event.preventDefault();
   }
-  }, false);
+
+  // if (keyCode >=65 && keyCode <=90) {
+  //   let currentPosition = event.target.id.charAt(event.target.id.length - 1)
+  //   console.log(currentPosition);
+  //   console.log(allInput.length);
+
+  //   document.getElementById('id' + allInput.length).focus()
+  //   document.getElementById('id' + allInput.length).value = event.key;
+
+  //   // const idValue = currentInput.length;
+  //   // createInputString(idValue);
+  //   createInputString();
+  // }
+}, false);
+
+function inputText() {
+  let key = event.key,
+  keyCode = event.keyCode;
+
+  if ((keyCode >=65 && keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
+  let currentPosition = event.target.id.charAt(event.target.id.length - 1)
+  // console.log(currentPosition);
+  // console.log(allInput.length);
+
+  document.getElementById('id' + allInput.length).focus()
+  document.getElementById('id' + allInput.length).value = key;
+
+  // const idValue = currentInput.length;
+  // createInputString(idValue);
+  createInputString();
+  }
+}
+
 
 // window.addEventListener("keydown", function (event) { alert('a okooo enter'); console.log(event.keyCode)  } );
-inputWrapper0.addEventListener('input', moveInput0);
-inputWrapper1.addEventListener('input', moveInput1);
-inputWrapper2.addEventListener('input', moveInput2);
-inputWrapper3.addEventListener('input', moveInput3);
-inputWrapper4.addEventListener('input', moveInput4);
-inputWrapper5.addEventListener('input', moveInput5);
-inputWrapper6.addEventListener('input', moveInput6);
-inputWrapper7.addEventListener('input', moveInput7);
-inputWrapper8.addEventListener('input', moveInput8);
-inputWrapper9.addEventListener('input', moveInput9);
-inputWrapper10.addEventListener('input', moveInput10);
-inputWrapper11.addEventListener('input', moveInput11);
-inputWrapper12.addEventListener('input', moveInput12);
-inputWrapper13.addEventListener('input', moveInput13);
-inputWrapper14.addEventListener('input', moveInput14);
-inputWrapper15.addEventListener('input', moveInput15);
+// inputWrapper0.addEventListener('input', moveInput0);
+// inputWrapper1.addEventListener('input', moveInput1);
+// inputWrapper2.addEventListener('input', moveInput2);
+// inputWrapper3.addEventListener('input', moveInput3);
+// inputWrapper4.addEventListener('input', moveInput4);
+// inputWrapper5.addEventListener('input', moveInput5);
+// inputWrapper6.addEventListener('input', moveInput6);
+// inputWrapper7.addEventListener('input', moveInput7);
+// inputWrapper8.addEventListener('input', moveInput8);
+// inputWrapper9.addEventListener('input', moveInput9);
+// inputWrapper10.addEventListener('input', moveInput10);
+// inputWrapper11.addEventListener('input', moveInput11);
+// inputWrapper12.addEventListener('input', moveInput12);
+// inputWrapper13.addEventListener('input', moveInput13);
+// inputWrapper14.addEventListener('input', moveInput14);
+// inputWrapper15.addEventListener('input', moveInput15);
 
 //functions and event handlers go here 👇
 
 function deleteCharacter() {
-  var currentLength = currentInput.length;
-  if (!document.getElementById('id4').disabled) {
+  var currentLength = allInput.length;
+  console.log('alllength=', allInput.length)
+  if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
+    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
+    document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
     document.getElementById('id' + (currentLength - 1)).focus();
-    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", "")
     currentInput.pop();
+    allInput.pop();
   }
 }
 
@@ -86,133 +120,137 @@ function loadTasks() {
   document.getElementById('id0').focus()
 }
 
-function moveInput0(event) {
-  // console.log('1')
-  document.getElementById('id1').focus()
-  document.getElementById('id1').value = ""
+// function moveInput0(event) {
+//   // console.log('1')
+//   document.getElementById('id1').focus()
+//   document.getElementById('id1').value = ""
+// 
+//   const idValue = '0';
+//   createInputString(idValue);
+//   // createTileColor(event, idValue);
+//   flipGradientGreen();
+// }
 
-  const idValue = '0';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
-  flipGradientGreen();
-}
+// function moveInput1(event) {
+//   // console.log('2')
+//   document.getElementById('id2').focus()
+//   document.getElementById('id2').value = "" 
 
-function moveInput1(event) {
-  // console.log('2')
-  document.getElementById('id2').focus()
-  document.getElementById('id2').value = "" 
+//   const idValue = '1';
+//   createInputString(idValue);
+//   // createTileColor(event, idValue);
+//   flipGradientPink();
+// }
 
-  const idValue = '1';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
-  flipGradientPink();
-}
+// function moveInput2(event) {
+//   // console.log('3')
+//   document.getElementById('id3').focus()
+//   document.getElementById('id3').value = "" 
 
-function moveInput2(event) {
-  // console.log('3')
-  document.getElementById('id3').focus()
-  document.getElementById('id3').value = "" 
+//   const idValue = '2';
+//   createInputString(idValue);
+//   // createTileColor(event, idValue);
+//   flipGradientGreen();
+// }
 
-  const idValue = '2';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
-  flipGradientGreen();
-}
+// function moveInput3(event) {
+//   // console.log('4')
+//   document.getElementById('id4').focus()
+//   document.getElementById('id4').value = "" 
 
-function moveInput3(event) {
-  // console.log('4')
-  document.getElementById('id4').focus()
-  document.getElementById('id4').value = "" 
+//   const idValue = '3';
+//   createInputString(idValue);
+//   // createTileColor(event, idValue);
+//   flipGradientPink();
+// }
 
-  const idValue = '3';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
-  flipGradientPink();
-}
+// function moveInput4(event) {
+//   const idValue = '4';
+//   createInputString(idValue);
+//   // createTileColor(event, idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput4(event) {
-  const idValue = '4';
-  createInputString(idValue);
-  // createTileColor(event, idValue);
-  flipGradientGreen();
-}
+// function moveInput5(event) {
+//   document.getElementById('id6').focus()
+//   const idValue = '5';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput5(event) {
-  document.getElementById('id6').focus()
-  const idValue = '5';
-  createInputString(idValue);
-  flipGradientPink();
-}
+// function moveInput6(event) {
+//   document.getElementById('id7').focus()
+//   const idValue = '6';
+//   createInputString(idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput6(event) {
-  document.getElementById('id7').focus()
-  const idValue = '6';
-  createInputString(idValue);
-  flipGradientGreen();
-}
+// function moveInput7(event) {
+//   document.getElementById('id8').focus()
+//   const idValue = '7';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput7(event) {
-  document.getElementById('id8').focus()
-  const idValue = '7';
-  createInputString(idValue);
-  flipGradientPink();
-}
+// function moveInput8(event) {
+//   document.getElementById('id9').focus()
+//   const idValue = '8';
+//   createInputString(idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput8(event) {
-  document.getElementById('id9').focus()
-  const idValue = '8';
-  createInputString(idValue);
-  flipGradientGreen();
-}
+// function moveInput9(event) {
+//   const idValue = '9';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput9(event) {
-  const idValue = '9';
-  createInputString(idValue);
-  flipGradientPink();
-}
+// function moveInput10(event) {
+//   document.getElementById('id11').focus()
+//   const idValue = '10';
+//   createInputString(idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput10(event) {
-  document.getElementById('id11').focus()
-  const idValue = '10';
-  createInputString(idValue);
-  flipGradientGreen();
-}
+// function moveInput11(event) {
+//   document.getElementById('id12').focus()
+//   const idValue = '11';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput11(event) {
-  document.getElementById('id12').focus()
-  const idValue = '11';
-  createInputString(idValue);
-  flipGradientPink();
-}
+// function moveInput12(event) {
+//   document.getElementById('id13').focus()
+//   const idValue = '12';
+//   createInputString(idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput12(event) {
-  document.getElementById('id13').focus()
-  const idValue = '12';
-  createInputString(idValue);
-  flipGradientGreen();
-}
+// function moveInput13(event) {
+//   document.getElementById('id14').focus()
+//   const idValue = '13';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput13(event) {
-  document.getElementById('id14').focus()
-  const idValue = '13';
-  createInputString(idValue);
-  flipGradientPink();
-}
+// function moveInput14(event) {
+//   const idValue = '14';
+//   createInputString(idValue);
+//   flipGradientGreen();
+// }
 
-function moveInput14(event) {
-  const idValue = '14';
-  createInputString(idValue);
-  flipGradientGreen();
-}
+// function moveInput15(event) {
+//   const idValue = '15';
+//   createInputString(idValue);
+//   flipGradientPink();
+// }
 
-function moveInput15(event) {
-  const idValue = '15';
-  createInputString(idValue);
-  flipGradientPink();
-}
-
-function createInputString(idValue) {
-  currentInput.push(document.getElementById('id' + idValue).value.toUpperCase());
+// function createInputString(idValue) {
+function createInputString() {
+  // currentInput.push(document.getElementById('id' + idValue).value.toUpperCase());
+  // allInput.push(document.getElementById('id' + idValue).value.toUpperCase());
+  currentInput.push(event.key.toUpperCase());
+  allInput.push(event.key.toUpperCase());
   console.log(currentInput);
   // if (currentInput.length === 5) {
   //   console.log('length=', currentInput.length)
@@ -235,8 +273,11 @@ function evaluateString() {
   endPosition = currentPosition * 1
   
   // for (let x = startPosition; x < endPosition + 1; x++) {
+  
   for (let x = 0; x < 5; x++) {
-    // document.getElementById('id' + (x + 1)).disabled = 'disabled'
+
+    document.getElementById('id' + (allInput.length - x - 1)).disabled = 'disabled'
+
     console.log('match=', x, startPosition, endPosition, currentInput[x], solution[x])
     if (solution.includes(currentInput[x])) {
       // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
