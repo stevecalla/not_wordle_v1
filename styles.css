@@ -48,7 +48,7 @@ body {
   border-radius: 10px;
   /* height: 7rem; */
   /* flex-wrap: wrap; */
-  width: 300px;
+  /* width: 300px; */
 }
 
 input[id^='id'] {
