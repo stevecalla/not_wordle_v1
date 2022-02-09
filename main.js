@@ -252,6 +252,7 @@ function createSolution() {
   console.log('random=', randomNumber);
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
+  console.log(wordList.length);
 }
 
 function evaluateString() {
