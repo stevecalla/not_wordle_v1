@@ -50,6 +50,10 @@ window.addEventListener("keydown", function(event) { //https://developer.mozilla
     event.preventDefault();
   }
 
+  if (keyCode <65 || keyCode >90) {
+    event.preventDefault();
+  }
+
   // if (keyCode >=65 && keyCode <=90) {
   //   let currentPosition = event.target.id.charAt(event.target.id.length - 1)
   //   console.log(currentPosition);
@@ -117,7 +121,7 @@ function deleteCharacter() {
 }
 
 function loadTasks() {
-  document.getElementById('id0').focus()
+  document.getElementById('id0').focus();
 }
 
 // function moveInput0(event) {
