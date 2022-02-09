@@ -1,8 +1,3 @@
-// add small list of words, select solution via randomize, spit into characters
-// window event for characters only
-// fix delete key
-// create tiles using innerhtml for loop
-
 //query selector variables go here 👇
 // var bodyBackground = document.querySelector('body');
 // var inputWrapper0 = document.querySelector('#id0');
@@ -24,13 +19,15 @@
 // var inputWrapper = document.querySelector("[id^='id']");
 
 //global variables go here 👇
+var word = "";
 var currentInput = [];
 var allInput = [];
 
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
-window.addEventListener('keydown', inputText);
-window.addEventListener("keydown", function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
+document.addEventListener('keydown', createWord);
+document.addEventListener('keydown', inputText);
+document.addEventListener('keydown', function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
   // console.log(event.keyCode, event.code)
   let key = event.key,
   keyCode = event.keyCode;
@@ -43,48 +40,10 @@ window.addEventListener("keydown", function(event) { //https://developer.mozilla
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
     deleteCharacter();
   }
-
-  if (key && 'Tab' === key || keyCode && 9 === keyCode) {
-  // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-    // alert('tab');
-    event.preventDefault();
-  }
-
   if (keyCode <65 || keyCode >90) {
     event.preventDefault();
   }
-
-  // if (keyCode >=65 && keyCode <=90) {
-  //   let currentPosition = event.target.id.charAt(event.target.id.length - 1)
-  //   console.log(currentPosition);
-  //   console.log(allInput.length);
-
-  //   document.getElementById('id' + allInput.length).focus()
-  //   document.getElementById('id' + allInput.length).value = event.key;
-
-  //   // const idValue = currentInput.length;
-  //   // createInputString(idValue);
-  //   createInputString();
-  // }
 }, false);
-
-function inputText() {
-  let key = event.key,
-  keyCode = event.keyCode;
-
-  if ((keyCode >=65 && keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
-  let currentPosition = event.target.id.charAt(event.target.id.length - 1)
-  // console.log(currentPosition);
-  // console.log(allInput.length);
-
-  document.getElementById('id' + allInput.length).focus()
-  document.getElementById('id' + allInput.length).value = key;
-
-  // const idValue = currentInput.length;
-  // createInputString(idValue);
-  createInputString();
-  }
-}
 
 
 // window.addEventListener("keydown", function (event) { alert('a okooo enter'); console.log(event.keyCode)  } );
@@ -107,6 +66,31 @@ function inputText() {
 
 //functions and event handlers go here 👇
 
+function createWord(event) {
+  if (event.keyCode >=65 && event.keyCode <=90) {
+    word += event.key.toUpperCase();
+    console.log(word);
+    }
+}
+
+function inputText() {
+  let key = event.key;
+  keyCode = event.keyCode;
+
+  if ((keyCode >=65 && keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
+  let currentPosition = event.target.id.charAt(event.target.id.length - 1)
+  // console.log(currentPosition);
+  // console.log(allInput.length);
+
+  document.getElementById('id' + allInput.length).focus()
+  document.getElementById('id' + allInput.length).value = key;
+
+  // const idValue = currentInput.length;
+  // createInputString(idValue);
+  createInputString();
+  }
+}
+
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length)
@@ -122,6 +106,7 @@ function deleteCharacter() {
 
 function loadTasks() {
   document.getElementById('id0').focus();
+  createSolution();
 }
 
 // function moveInput0(event) {
@@ -262,6 +247,13 @@ function createInputString() {
   // }
 }
 
+function createSolution() {
+  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  console.log('random=', randomNumber);
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log(solution);
+}
+
 function evaluateString() {
 
   let currentPosition = 0;
@@ -271,7 +263,12 @@ function evaluateString() {
     currentPosition = event.target.id.charAt(event.target.id.length - 1);
   }
 
-  var solution = ['P','L','A','C','E']
+  // var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  // console.log('random=', randomNumber);
+  // var solution = Array.from(wordList[randomNumber].toUpperCase());
+
+  // console.log('solution2=', solution2)
+  // var solution = ['P','L','A','C','E']
 
   startPosition = currentPosition * 1 - 4
   endPosition = currentPosition * 1
