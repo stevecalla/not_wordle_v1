@@ -17,11 +17,26 @@
 // var inputWrapper14 = document.querySelector('#id14');
 // var inputWrapper15 = document.querySelector('#id15');
 // var inputWrapper = document.querySelector("[id^='id']");
+var displaySolution = document.querySelector("#solution");
+
+function loadTasks() {
+  document.getElementById('id0').focus();
+  createSolution();
+}
+
+function formatSolution() {
+  // console.log(displaySolution)
+  // displaySolution.innerText = solution;
+  for (let i = 0; i < solution.length; i++) {
+    displaySolution.innerText += solution[i];
+  }
+}
 
 //global variables go here 👇
 var word = "";
 var currentInput = [];
 var allInput = [];
+var solution = [];
 
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
@@ -102,11 +117,6 @@ function deleteCharacter() {
     currentInput.pop();
     allInput.pop();
   }
-}
-
-function loadTasks() {
-  document.getElementById('id0').focus();
-  createSolution();
 }
 
 // function moveInput0(event) {
@@ -253,6 +263,7 @@ function createSolution() {
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
   console.log(wordList.length);
+  formatSolution();
 }
 
 function evaluateString() {
