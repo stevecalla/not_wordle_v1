@@ -69,7 +69,7 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 function createWord(event) {
   if (event.keyCode >=65 && event.keyCode <=90) {
     word += event.key.toUpperCase();
-    console.log(word);
+    console.log(word);  
     }
 }
 
