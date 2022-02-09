@@ -17,11 +17,13 @@
 // var inputWrapper14 = document.querySelector('#id14');
 // var inputWrapper15 = document.querySelector('#id15');
 // var inputWrapper = document.querySelector("[id^='id']");
-var displaySolution = document.querySelector("#solution");
+var displaySolution = document.querySelector('#solution');
+var inputTiles = document.querySelector('#inputTiles');
 
 function loadTasks() {
-  document.getElementById('id0').focus();
   createSolution();
+  createTiles();
+  document.getElementById('id0').focus();
 }
 
 function formatSolution() {
@@ -29,6 +31,23 @@ function formatSolution() {
   // displaySolution.innerText = solution;
   for (let i = 0; i < solution.length; i++) {
     displaySolution.innerText += solution[i];
+  }
+}
+
+function createTiles() {
+  for (let i = 0; i < 30; i++) {
+    inputTiles.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
   }
 }
 
