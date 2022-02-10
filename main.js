@@ -170,7 +170,7 @@ function inputText() {
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length)
-  if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
+  if (document.getElementById('id' + (currentLength - 1)).disabled === false && currentLength > 0) {
     document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
     document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
