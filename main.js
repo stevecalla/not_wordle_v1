@@ -150,7 +150,7 @@ function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
 
-  if ((event.keycode >=65 && event.keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
   // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
   // console.log(currentPosition);
   // console.log(allInput.length);
