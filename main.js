@@ -1,24 +1,11 @@
 //query selector variables go here 👇
-// var bodyBackground = document.querySelector('body');
-// var inputWrapper0 = document.querySelector('#id0');
-// var inputWrapper1 = document.querySelector('#id1');
-// var inputWrapper2 = document.querySelector('#id2');
-// var inputWrapper3 = document.querySelector('#id3');
-// var inputWrapper4 = document.querySelector('#id4');
-// var inputWrapper5 = document.querySelector('#id5');
-// var inputWrapper6 = document.querySelector('#id6');
-// var inputWrapper7 = document.querySelector('#id7');
-// var inputWrapper8 = document.querySelector('#id8');
-// var inputWrapper9 = document.querySelector('#id9');
-// var inputWrapper10 = document.querySelector('#id10');
-// var inputWrapper11 = document.querySelector('#id11');
-// var inputWrapper12 = document.querySelector('#id12');
-// var inputWrapper13 = document.querySelector('#id13');
-// var inputWrapper14 = document.querySelector('#id14');
-// var inputWrapper15 = document.querySelector('#id15');
-// var inputWrapper = document.querySelector("[id^='id']");
 var displaySolution = document.querySelector('#solution');
-var inputTiles = document.querySelector('#inputTiles');
+var inputTilesRow1 = document.querySelector('#inputTilesRow1');
+var inputTilesRow2 = document.querySelector('#inputTilesRow2');
+var inputTilesRow3 = document.querySelector('#inputTilesRow3');
+var inputTilesRow4 = document.querySelector('#inputTilesRow4');
+var inputTilesRow5 = document.querySelector('#inputTilesRow5');
+var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
 function loadTasks() {
   createSolution();
@@ -35,8 +22,8 @@ function formatSolution() {
 }
 
 function createTiles() {
-  for (let i = 0; i < 30; i++) {
-    inputTiles.innerHTML +=
+  for (let i = 0; i < 5; i++) {
+    inputTilesRow1.innerHTML +=
     `   
       <div>
         <input type="text" 
@@ -49,6 +36,77 @@ function createTiles() {
       </div>
     `;
   }
+  for (let i = 5; i < 10; i++) {
+    inputTilesRow2.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 10; i < 15; i++) {
+    inputTilesRow3.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 15; i < 20; i++) {
+    inputTilesRow4.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 20; i < 25; i++) {
+    inputTilesRow5.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 25; i < 30; i++) {
+    inputTilesRow6.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  
 }
 
 //global variables go here 👇
@@ -78,25 +136,6 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
     event.preventDefault();
   }
 }, false);
-
-
-// window.addEventListener("keydown", function (event) { alert('a okooo enter'); console.log(event.keyCode)  } );
-// inputWrapper0.addEventListener('input', moveInput0);
-// inputWrapper1.addEventListener('input', moveInput1);
-// inputWrapper2.addEventListener('input', moveInput2);
-// inputWrapper3.addEventListener('input', moveInput3);
-// inputWrapper4.addEventListener('input', moveInput4);
-// inputWrapper5.addEventListener('input', moveInput5);
-// inputWrapper6.addEventListener('input', moveInput6);
-// inputWrapper7.addEventListener('input', moveInput7);
-// inputWrapper8.addEventListener('input', moveInput8);
-// inputWrapper9.addEventListener('input', moveInput9);
-// inputWrapper10.addEventListener('input', moveInput10);
-// inputWrapper11.addEventListener('input', moveInput11);
-// inputWrapper12.addEventListener('input', moveInput12);
-// inputWrapper13.addEventListener('input', moveInput13);
-// inputWrapper14.addEventListener('input', moveInput14);
-// inputWrapper15.addEventListener('input', moveInput15);
 
 //functions and event handlers go here 👇
 
@@ -137,131 +176,6 @@ function deleteCharacter() {
     allInput.pop();
   }
 }
-
-// function moveInput0(event) {
-//   // console.log('1')
-//   document.getElementById('id1').focus()
-//   document.getElementById('id1').value = ""
-// 
-//   const idValue = '0';
-//   createInputString(idValue);
-//   // createTileColor(event, idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput1(event) {
-//   // console.log('2')
-//   document.getElementById('id2').focus()
-//   document.getElementById('id2').value = "" 
-
-//   const idValue = '1';
-//   createInputString(idValue);
-//   // createTileColor(event, idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput2(event) {
-//   // console.log('3')
-//   document.getElementById('id3').focus()
-//   document.getElementById('id3').value = "" 
-
-//   const idValue = '2';
-//   createInputString(idValue);
-//   // createTileColor(event, idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput3(event) {
-//   // console.log('4')
-//   document.getElementById('id4').focus()
-//   document.getElementById('id4').value = "" 
-
-//   const idValue = '3';
-//   createInputString(idValue);
-//   // createTileColor(event, idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput4(event) {
-//   const idValue = '4';
-//   createInputString(idValue);
-//   // createTileColor(event, idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput5(event) {
-//   document.getElementById('id6').focus()
-//   const idValue = '5';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput6(event) {
-//   document.getElementById('id7').focus()
-//   const idValue = '6';
-//   createInputString(idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput7(event) {
-//   document.getElementById('id8').focus()
-//   const idValue = '7';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput8(event) {
-//   document.getElementById('id9').focus()
-//   const idValue = '8';
-//   createInputString(idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput9(event) {
-//   const idValue = '9';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput10(event) {
-//   document.getElementById('id11').focus()
-//   const idValue = '10';
-//   createInputString(idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput11(event) {
-//   document.getElementById('id12').focus()
-//   const idValue = '11';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput12(event) {
-//   document.getElementById('id13').focus()
-//   const idValue = '12';
-//   createInputString(idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput13(event) {
-//   document.getElementById('id14').focus()
-//   const idValue = '13';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
-
-// function moveInput14(event) {
-//   const idValue = '14';
-//   createInputString(idValue);
-//   flipGradientGreen();
-// }
-
-// function moveInput15(event) {
-//   const idValue = '15';
-//   createInputString(idValue);
-//   flipGradientPink();
-// }
 
 // function createInputString(idValue) {
 function createInputString() {
