@@ -170,7 +170,7 @@ function inputText() {
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length)
-  if (document.getElementById('id' + (currentLength - 1)).disabled === false && currentLength > 0) {
+  if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
     document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
     document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
@@ -247,7 +247,8 @@ function evaluateString() {
     console.log('exact_match=', x, startPosition, endPosition, currentInput[x], solution[x])
   }
 
-  if (document.getElementById('id' + (currentPosition * 1 + 1) < 30)) {
+  if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30)) {
+    console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)))
     document.getElementById('id' + (currentPosition * 1 + 1)).focus();
   }
   currentInput = [];
