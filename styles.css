@@ -18,6 +18,7 @@ body {
       #78a7c6, 
       #f7e4bf
   );
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
 
 .green-gradient {
@@ -40,7 +41,9 @@ body {
 
 .input-wrapper {
 /* .form-box { */
-  border: none;
+  /* border: none; */
+  border: solid;
+  border-color: red;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -84,6 +87,16 @@ input[data-status='match'] {
 input[data-status='nomatch'] {
   /* background-color: grey; */
   background-color: #787C7E;
+}
+
+@media screen and (max-width: 640px) { 
+  .input-wrapper {
+      border: solid;
+      border-color: blue;
+      width: 62%;
+      display: flex;
+      /* flex-basis: 20%; */
+    }
 }
 
 /* input:disabled,
