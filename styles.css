@@ -89,7 +89,7 @@ input[data-status='nomatch'] {
   background-color: #787C7E;
 }
 
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
   .input-wrapper {
       border: solid;
       border-color: blue;
@@ -98,7 +98,9 @@ input[data-status='nomatch'] {
     }
 
     input[id^='id'] {
-      font-size: 3rem;
+      height: 2rem;
+      width: 2rem;
+      font-size: 1rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
     } 
