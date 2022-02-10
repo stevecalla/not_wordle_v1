@@ -155,7 +155,7 @@ function inputText() {
   // console.log(currentPosition);
   // console.log(allInput.length);
 
-  document.getElementById('id' + allInput.length).focus()
+  document.getElementById('id' + (allInput.length)).focus()
   document.getElementById('id' + allInput.length).value = key;
 
   // const idValue = currentInput.length;
