@@ -89,25 +89,20 @@ input[data-status='nomatch'] {
   background-color: #787C7E;
 }
 
-@media screen and (max-width: 500px) {  //640
+@media screen and (max-width: 500px) {
   .input-wrapper {
       border: solid;
       border-color: blue;
-      /* width: 62%; */
       display: flex;
       flex-basis: 20%;
     }
 
-  input[id^='id'] {
-    /* background: red; */
-    /* border-radius: 10px; */
-    font-size: 3rem;
-    text-align: center;
-    margin-right: 0.1rem;
-    margin-bottom: 0.1rem;
-    /* border: none; */
-    border-color: light-grey;
-  } 
+    input[id^='id'] {
+      font-size: 3rem;
+      margin-right: 0.1rem;
+      margin-bottom: 0.1rem;
+    } 
+
 }
 
 /* input:disabled,
