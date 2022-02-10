@@ -225,7 +225,7 @@ function evaluateString() {
   
   for (let x = 0; x < 5; x++) {
 
-    document.getElementById('id' + (allInput.length - x - 1)).disabled = 'disabled'
+    // document.getElementById('id' + (allInput.length - x - 1)).disabled = 'disabled'
 
     console.log('match=', x, startPosition, endPosition, currentInput[x], solution[x])
     if (solution.includes(currentInput[x])) {
