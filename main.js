@@ -7,6 +7,8 @@ var inputTilesRow4 = document.querySelector('#inputTilesRow4');
 var inputTilesRow5 = document.querySelector('#inputTilesRow5');
 var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
+
+
 function loadTasks() {
   createSolution();
   createTiles();
@@ -245,7 +247,9 @@ function evaluateString() {
     console.log('exact_match=', x, startPosition, endPosition, currentInput[x], solution[x])
   }
 
-  document.getElementById('id' + (currentPosition * 1 + 1)).focus();
+  if (document.getElementById('id' + (currentPosition * 1 + 1) < 30)) {
+    document.getElementById('id' + (currentPosition * 1 + 1)).focus();
+  }
   currentInput = [];
 }
 
@@ -258,3 +262,55 @@ function flipGradientGreen() {
   bodyBackground.classList.remove('pink-gradient');
   bodyBackground.classList.add('green-gradient');
 }
+
+
+
+// var copyButton = document.querySelector('#copy');
+// copyButton.addEventListener('click', handleCopyTextFromArea);
+// function handleCopyTextFromArea() {
+//   console.log('click');
+//   var area = document.getElementById('clipboard-area').value;
+//   console.log(document.getElementById('clipboard-area').value);
+//   // area.select();
+//   document.execCommand('copy')
+//       /* Save value of myText to input variable */
+//     // var input = document.getElementById("clipboard-area").value;
+   
+//      /* Copy the text inside the text field */
+//     navigator.clipboard.writeText(area);
+     
+//     alert("Copied Text: " + area);
+// }
+
+// function handleClick() {
+//     /* Save value of myText to input variable */
+//     document.getElementById('id2').focus();
+//     var input = document.getElementById('id2').value;
+//     // var input = document.getElementById('id0').style.backgroundColor;
+//     // var input = 'hello'
+//     console.log(input)
+
+//     navigator.clipboard.writeText("<empty clipboard>").then(function() {
+//       /* clipboard successfully set */
+//       console.log('success1')
+//     }, function() {
+//       /* clipboard write failed */
+//       console.log('FAILED1')
+//     });
+
+//     navigator.clipboard.readText().then(
+//       // clipText => document.querySelector(".cliptext").innerText = clipText);
+//       function() {
+//       /* clipboard successfully set */
+//       console.log('success1')
+//       clipText => console.log(clipText);
+//     }, function() {
+//       /* clipboard write failed */
+//       console.log('FAILED2')
+//     });
+   
+//      /* Copy the text inside the text field */
+//     navigator.clipboard.writeText(input);
+     
+//     alert("Copied Text: " + input);
+// }
