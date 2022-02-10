@@ -10,7 +10,7 @@ var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 function loadTasks() {
   createSolution();
   createTiles();
-  document.getElementById('id0').focus();
+  // document.getElementById('id0').focus();
 }
 
 function formatSolution() {
@@ -147,20 +147,21 @@ function createWord(event) {
 }
 
 function inputText() {
-  let key = event.key;
-  keyCode = event.keyCode;
+  // let key = event.key;
+  // keyCode = event.keyCode;
 
-  if ((keyCode >=65 && keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
-  let currentPosition = event.target.id.charAt(event.target.id.length - 1)
+  if ((event.keycode >=65 && event.keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
+  // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
   // console.log(currentPosition);
   // console.log(allInput.length);
 
-  document.getElementById('id' + (allInput.length)).focus()
-  document.getElementById('id' + allInput.length).value = key;
+    document.getElementById('id' + allInput.length).focus()
+    document.getElementById('id' + allInput.length).value = event.key;
 
   // const idValue = currentInput.length;
   // createInputString(idValue);
-  createInputString();
+    createInputString();
+    // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
   }
 }
 
