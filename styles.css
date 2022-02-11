@@ -75,6 +75,11 @@ select[disabled] {
   /* color: blue; */
   background-color: white;
   /* border: initial ; */
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 3rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
 }
 
 input[data-status='exactMatch'] {
