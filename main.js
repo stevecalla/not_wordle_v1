@@ -332,5 +332,3 @@ function flipGradientGreen() {
      
 //     alert("Copied Text: " + input);
 // }
-
-// CONFETTI //

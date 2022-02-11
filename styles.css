@@ -52,6 +52,7 @@ body {
         opacity: 0;
       }
     }
+<<<<<<< HEAD
   }
 }
 @keyframes bang {
@@ -60,3 +61,23 @@ body {
     opacity: 1;
   }
 }
+=======
+
+    input[id^='id'] {
+      height: 2rem;
+      width: 2rem;
+      font-size: 1rem;
+      margin-right: 0.1rem;
+      margin-bottom: 0.1rem;
+    } 
+
+}
+
+/* input:disabled,
+input[disabled]{
+  border: 1px solid #999999;
+  background-color: #cccccc;
+  background-color: red;
+  color: red;
+} */
+>>>>>>> parent of 2fcfe48 (Fix disabled css for iphone)
