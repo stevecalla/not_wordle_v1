@@ -215,48 +215,60 @@ function evaluateString() {
   } else {
     currentPosition = event.target.id.charAt(event.target.id.length - 1);
   }
-
-  // var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
-  // console.log('random=', randomNumber);
-  // var solution = Array.from(wordList[randomNumber].toUpperCase());
-
-  // console.log('solution2=', solution2)
-  // var solution = ['P','L','A','C','E']
-
-  startPosition = currentPosition * 1 - 4
-  endPosition = currentPosition * 1
+  let startPosition = currentPosition * 1 - 4;
+  let endPosition = currentPosition * 1;
+  let dataStatus = [];
   
   // for (let x = startPosition; x < endPosition + 1; x++) {
   
-  for (let x = 0; x < 5; x++) {
+  if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
+    for (let x = 0; x < 5; x++) {
 
-    // document.getElementById('id' + (allInput.length - x - 1)).disabled = 'disabled'
-
-    console.log('match=', x, startPosition, endPosition, currentInput[x], solution[x])
-    if (solution.includes(currentInput[x])) {
-      // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
-      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "match")
-    } else {
-      // document.getElementById('id' + (x+1)).style.backgroundColor = 'grey'
-      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "nomatch")
+      if (currentInput[x] === solution[x]) {
+        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
+        dataStatus.push('exactMatch');
+      } else if (solution.includes(currentInput[x])) {
+        // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
+        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match')
+        dataStatus.push('match');
+      } else {
+        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
+        dataStatus.push('noMatch');
+      }
+    console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
   }
 
-  // for (let x = startPosition; x < endPosition + 1; x++) {
-  for (let x = 0; x < 5; x++) {
-    if (currentInput[x] === solution[x]) {
-      // document.getElementById('id' + (x+1)).style.backgroundColor = 'green'
-      // document.getElementById('id' + (x)).setAttribute("data-status", "exact_match")
-      document.getElementById('id' + (startPosition + x)).setAttribute("data-status", "exact_match")
-    }
-    console.log('exact_match=', x, startPosition, endPosition, currentInput[x], solution[x])
-  }
-
-  if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30)) {
-    console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)))
+  if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30) && (document.getElementById('id' + (endPosition * 1 + 1)).dataset.status !== 'gameOver')) {
+    console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)));
     document.getElementById('id' + (currentPosition * 1 + 1)).focus();
   }
+
   currentInput = [];
+  console.log(dataStatus);
+  
+  var count = 0;
+  for (let i = 0; i < 5; i++) {
+    if (dataStatus[i] === 'exactMatch') {
+      count = count + 1
+    }
+    console.log('count', count)
+  }
+
+  if (count === 5) {
+    console.log('winner')
+    for (let i = endPosition + 1; i < 30; i++) {
+      // console.log(i);
+      document.getElementById('id' + (i)).setAttribute("data-status", "gameOver");
+      document.getElementById('id' + (i)).setAttribute('disabled', '');
+      document.getElementById('id' + (i)).blur();
+      console.log(event.keyCode);
+    }
+  } else {
+    console.log('keep playing')
+  }
+
+  dataStatus = [];
 }
 
 function flipGradientPink() {

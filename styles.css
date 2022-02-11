@@ -69,14 +69,15 @@ input[id^='id'] {
   border-color: light-grey;
 }
 
-/* input[type=text][disabled],
+input[type=text][disabled],
 select[disabled] {
-    color: white;
-    /* background-color: white; */
-    /* border: initial; */
-} */
+  font-size: 0;
+  /* color: blue; */
+  background-color: white;
+  /* border: initial ; */
+}
 
-input[data-status='exact_match'] {
+input[data-status='exactMatch'] {
   /* background-color: green; */
   color: white;
   background-color: #6aaa64;
@@ -92,13 +93,20 @@ input[data-status='match'] {
   cursor: not-allowed;
 }
 
-input[data-status='nomatch'] {
+input[data-status='noMatch'] {
   /* background-color: grey; */
   color: white;
   background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
 }
+
+/* input[data-status='gameOver'] {
+  font-size: 0;
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: none;
+} */
 
 @media screen and (max-width: 600px) {
   .input-wrapper {
