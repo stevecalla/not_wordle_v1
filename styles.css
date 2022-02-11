@@ -77,7 +77,7 @@ select[disabled] {
   /* border: initial ; */
   height: 3.5rem;
   width: 3.5rem;
-  font-size: 3rem;
+  font-size: 0rem;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
 }
@@ -106,12 +106,17 @@ input[data-status='noMatch'] {
   cursor: not-allowed;
 }
 
-/* input[data-status='gameOver'] {
-  font-size: 0;
+input[data-status='gameOver'] {
+  /* font-size: 0;
   pointer-events: none;
   cursor: not-allowed;
-  border-color: none;
-} */
+  border-color: none; */
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 0rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
 
 @media screen and (max-width: 600px) {
   .input-wrapper {
