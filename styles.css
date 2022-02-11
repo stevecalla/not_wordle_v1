@@ -69,15 +69,16 @@ input[id^='id'] {
   border-color: light-grey;
 }
 
-input[type=text][disabled],
+/* input[type=text][disabled],
 select[disabled] {
     color: white;
     /* background-color: white; */
     /* border: initial; */
-}
+} */
 
 input[data-status='exact_match'] {
   /* background-color: green; */
+  color: white;
   background-color: #6aaa64;
   pointer-events: none;
   cursor: not-allowed;
@@ -85,6 +86,7 @@ input[data-status='exact_match'] {
 
 input[data-status='match'] {
   /* background-color: yellow; */
+  color: white;
   background-color: #c9b458;
   pointer-events: none;
   cursor: not-allowed;
@@ -92,6 +94,7 @@ input[data-status='match'] {
 
 input[data-status='nomatch'] {
   /* background-color: grey; */
+  color: white;
   background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
