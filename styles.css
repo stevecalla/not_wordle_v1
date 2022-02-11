@@ -79,16 +79,22 @@ select[disabled] {
 input[data-status='exact_match'] {
   /* background-color: green; */
   background-color: #6aaa64;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 input[data-status='match'] {
   /* background-color: yellow; */
   background-color: #c9b458;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 input[data-status='nomatch'] {
   /* background-color: grey; */
   background-color: #787C7E;
+  pointer-events: none;
+  cursor: not-allowed;
 }
 
 @media screen and (max-width: 600px) {

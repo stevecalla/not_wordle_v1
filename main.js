@@ -169,8 +169,13 @@ function inputText() {
 
 function deleteCharacter() {
   var currentLength = allInput.length;
-  console.log('alllength=', allInput.length)
-  if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
+  console.log('alllength=', allInput.length);
+  console.log(document.getElementById('id' + (currentLength - 1)))
+  console.log(document.getElementById('id' + (currentLength - 1)).dataset.status)
+  // if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
+  // if (document.getElementById('id' + (currentLength - 1)).data-status) {
+  if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
+  // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
     document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
     document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
