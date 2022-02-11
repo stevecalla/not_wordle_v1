@@ -69,19 +69,6 @@ input[id^='id'] {
   border-color: light-grey;
 }
 
-input[type=text][disabled],
-select[disabled] {
-  font-size: 0;
-  /* color: blue; */
-  background-color: white;
-  /* border: initial ; */
-  height: 3.5rem;
-  width: 3.5rem;
-  font-size: 0rem;
-  margin-right: 0.3rem;
-  margin-bottom: 0.3rem;
-}
-
 input[data-status='exactMatch'] {
   /* background-color: green; */
   color: white;
@@ -111,6 +98,19 @@ input[data-status='gameOver'] {
   pointer-events: none;
   cursor: not-allowed;
   border-color: none; */
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 0rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+}
+
+input[type=text][disabled],
+select[disabled] {
+  font-size: 0;
+  /* color: blue; */
+  background-color: white;
+  /* border: initial ; */
   height: 3.5rem;
   width: 3.5rem;
   font-size: 0rem;
