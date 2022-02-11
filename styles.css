@@ -1,67 +1,120 @@
 /*------------MAIN PAGE LAYOUT---------------*/
 
-
-
-/*----------- CONFETTI ----------------*/
-* {
-  margin: 0;
-  padding: 0;
+html {
+  height: 100%;
+  font-family: 'Quicksand', sans-serif;
 }
+
 body {
-  background-color: #21d4fd;
-  /* background-image: linear-gradient(19deg, #21d4fd 0%, #b721ff 100%); */
-  font-family: Helvetica, sans-serif;
-}
-.container {
+  overscroll-behavior-y: none;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
   align-items: center;
-  height: 100vh;
+  height: 100%;
+  margin: 0;
+  background-image:
+    linear-gradient(
+      #134d71 15%, 
+      #78a7c6, 
+      #f7e4bf
+  );
+  font-family: 'Clear Sans', 'Helvetica Neue', Arial, sans-serif;
 }
-.hoverme {
-  width: 240px;
+
+.green-gradient {
+  background-image:
+    linear-gradient(
+      #134d71 15%, 
+      #78a7c6, 
+      #8abe97
+  );
+}
+
+.pink-gradient {
+  background-image:
+    linear-gradient(
+      #134d71 15%, 
+      #78a7c6, 
+      #f8b0b0
+  );
+}
+
+.input-wrapper {
+/* .form-box { */
+  /* border: none; */
+  border: solid;
+  border-color: red;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  /* align-items: center; */
+  /* background-color: #ffffff; */
+  border-radius: 10px;
+  /* height: 7rem; */
+  /* flex-wrap: wrap; */
+  /* width: 300px; */
+  /* margin-right: 1rem; */
+}
+
+input[id^='id'] {
+  /* background: red; */
+  /* border-radius: 10px; */
+  height: 3.5rem;
+  width: 3.5rem;
+  font-size: 3rem;
   text-align: center;
-  padding: 10px 0;
-  cursor: pointer;
-  position: relative;
-  h1 {
-    color: #fff;
-    font-size: 1.5em;
-  }
-  i {
-    position: absolute;
-    display: block;
-    left: 50%;
-    top: 0;
-    width: 5px;
-    height: 10px;
-    background: red;
-    opacity: 0;
-  }
-  &:hover {
-    @for $i from 1 through 50 {
-      i:nth-of-type(#{$i}) {
-        transform: translate3d(
-            random(190) - 100 + px,
-            random(200) - 100 + px,
-            0
-          )
-          rotate(random(360) + deg);
-        background: hsla(random(360), 100%, 50%, 1);
-        animation: bang 700ms ease-out forwards;
-        opacity: 0;
-      }
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+  /* border: none; */
+  border-color: light-grey;
+}
+
+input[type=text][disabled],
+select[disabled] {
+  font-size: 0;
+  /* color: blue; */
+  background-color: white;
+  /* border: initial ; */
+}
+
+input[data-status='exactMatch'] {
+  /* background-color: green; */
+  color: white;
+  background-color: #6aaa64;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+input[data-status='match'] {
+  /* background-color: yellow; */
+  color: white;
+  background-color: #c9b458;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+input[data-status='noMatch'] {
+  /* background-color: grey; */
+  color: white;
+  background-color: #787C7E;
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
+/* input[data-status='gameOver'] {
+  font-size: 0;
+  pointer-events: none;
+  cursor: not-allowed;
+  border-color: none;
+} */
+
+@media screen and (max-width: 600px) {
+  .input-wrapper {
+      border: solid;
+      border-color: blue;
+      /* display: flex; */
+      /* flex-basis: 20%; */
     }
-<<<<<<< HEAD
-  }
-}
-@keyframes bang {
-  from {
-    transform: translate3d(0, 0, 0);
-    opacity: 1;
-  }
-}
-=======
 
     input[id^='id'] {
       height: 2rem;
@@ -71,13 +124,100 @@ body {
       margin-bottom: 0.1rem;
     } 
 
+    input[type=text][disabled],
+    select[disabled] {
+      font-size: 0;
+      background-color: white;
+      height: 2rem;
+      width: 2rem;
+      font-size: 1rem;
+      margin-right: 0.1rem;
+      margin-bottom: 0.1rem;
+    }
+
 }
 
-/* input:disabled,
-input[disabled]{
-  border: 1px solid #999999;
-  background-color: #cccccc;
-  background-color: red;
-  color: red;
-} */
->>>>>>> parent of 2fcfe48 (Fix disabled css for iphone)
+/*----------- CONFETTI ----------------*/
+    /* .container {
+      width: 100%;
+      height: 100%;
+      background-color: black;
+    } */
+
+    .confetti {
+      width: 15px;
+      height: 15px;
+      background-color: black;
+      position: absolute;
+      left: 50%;
+      animation: confetti 4s ease-in-out -2s infinite;
+      transform-origin: right top;
+    }
+    .confetti:nth-child(1) {
+      background-color: #f2d74e; left: 10%; animation-delay: 0;
+    }
+    .confetti:nth-child(2) {
+      background-color: #95c3de; left: 20%; animation-delay: -5s;
+    }
+    .confetti:nth-child(3) {
+      background-color: #ff9a91; left: 30%; animation-delay: -3s;
+    }
+    .confetti:nth-child(4) {
+      background-color: #f2d74e; left: 40%; animation-delay: -2.5s;
+    }
+    .confetti:nth-child(5) {
+      background-color: #95c3de; left: 50%; animation-delay: -4s;
+    }
+    .confetti:nth-child(6) {
+      background-color: #ff9a91; left: 60%; animation-delay: -6s;
+    }
+    .confetti:nth-child(7) {
+      background-color: #f2d74e; left: 70%; animation-delay: -1.5s;
+    }
+    .confetti:nth-child(8) {
+      background-color: #95c3de; left: 80%; animation-delay: -2s;
+    }
+    .confetti:nth-child(9) {
+      background-color: #ff9a91; left: 90%; animation-delay: -3.5s;
+    }
+    .confetti:nth-child(10) {
+      background-color: #f2d74e; left: 100%; animation-delay: -2.5s;
+    }
+    .confetti:nth-child(11) {
+      background-color: #f2d74e; left: 15%; animation-delay: -1.5s;
+    }
+    .confetti:nth-child(12) {
+      background-color: #95c3de; left: 25%; animation-delay: -2.5s;
+    }
+    .confetti:nth-child(13) {
+      background-color: #ff9a91; left: 35%; animation-delay: -3.5s;
+    }
+    .confetti:nth-child(14) {
+      background-color: #f2d74e; left: 45%; animation-delay: -4.5s;
+    }
+    .confetti:nth-child(15) {
+      background-color: #95c3de; left: 55%; animation-delay: -5.5s;
+    }
+    .confetti:nth-child(16) {
+      background-color: #ff9a91; left: 65%; animation-delay: -6.5s;
+    }
+    .confetti:nth-child(17) {
+      background-color: #f2d74e; left: 75%; animation-delay: -1.7s;
+    }
+    .confetti:nth-child(18) {
+      background-color: #95c3de; left: 85%; animation-delay: -2.7s;
+    }
+    .confetti:nth-child(19) {
+      background-color: #ff9a91; left: 95%; animation-delay: -3.7s;
+    }
+    .confetti:nth-child(20) {
+      background-color: #f2d74e; left: 99%; animation-delay: -5.6s;
+    }    
+
+    @keyframes confetti {
+      0% { transform: rotateZ(15deg) rotateY(0deg) translate(0,0); }
+      25% { transform: rotateZ(5deg) rotateY(360deg) translate(-5vw,20vh); }
+      50% { transform: rotateZ(15deg) rotateY(720deg) translate(5vw,60vh); }
+      75% { transform: rotateZ(5deg) rotateY(1080deg) translate(-10vw,80vh); }
+      100% { transform: rotateZ(15deg) rotateY(1440deg) translate(10vw,110vh); }
+    }

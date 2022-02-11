@@ -257,18 +257,36 @@ function evaluateString() {
 
   if (count === 5) {
     console.log('winner')
+    createConfetti();
     for (let i = endPosition + 1; i < 30; i++) {
       // console.log(i);
-      document.getElementById('id' + (i)).setAttribute("data-status", "gameOver");
+      document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
       document.getElementById('id' + (i)).setAttribute('disabled', '');
       document.getElementById('id' + (i)).blur();
-      console.log(event.keyCode);
+      // console.log(event.keyCode);
     }
   } else {
     console.log('keep playing')
   }
 
   dataStatus = [];
+}
+
+var createConfettiAnimation = document.querySelector('#confetti');
+
+function createConfetti() {
+  // setTimeout(() => {
+    for (let i = 0; i < 20; i++) {
+      createConfettiAnimation.innerHTML +=
+      `<div class='confetti'></div>`;
+    }
+  // }, 5000);
+  setTimeout(() => {
+    for (let i = 0; i < 20; i++) {
+      console.log('hello')
+      createConfettiAnimation.innerHTML = ``;
+    }
+  }, 5000);
 }
 
 function flipGradientPink() {
