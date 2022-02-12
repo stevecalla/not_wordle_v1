@@ -260,17 +260,17 @@ function evaluateString() {
         // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
         document.getElementById('id' + (i)).value = 'A';
-        // document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
-        // document.getElementById('id' + (i)).blur();
-        // console.log(event.keyCode);
-      }
-      for (let i = 0; i < 30; i++) {
-        // console.log(i);
-        // document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
         document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
       }
+      // for (let i = 0; i < 30; i++) {
+      //   // console.log(i);
+      //   // document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
+      //   document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
+      //   document.getElementById('id' + (i)).blur();
+      //   // console.log(event.keyCode);
+      // }
     } else {
       console.log('keep playing')
     }
