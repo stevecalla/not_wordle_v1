@@ -232,7 +232,7 @@ function evaluateString() {
       }
     console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
-    createWord();
+    createWord(endPosition);
   }
 
   if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30) && (document.getElementById('id' + (endPosition * 1 + 1)).dataset.status !== 'gameOver')) {
@@ -279,9 +279,13 @@ function evaluateString() {
   word = '';
 }
 
-function createWord() {
+function createWord(endPosition) {
+  console.log('endPosition=', endPosition * 1 + 1);
+  console.log('noway=', document.getElementById('id6').value)
   for (let i = 0; i < 5; i++) {
-    word += currentInput[i];
+    if (document.getElementById('id5').dataset.status !== 'gameOver') {
+      word += currentInput[i];
+    }
   }
   // if (event.keyCode >=65 && event.keyCode <=90) {
   //   word += event.key.toUpperCase();
