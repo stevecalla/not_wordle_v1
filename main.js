@@ -253,7 +253,7 @@ function evaluateString() {
 
   if (count === 5) {
     console.log('winner');
-    getCharacterDataFromMarvelAPI();
+    // getWebsterDictionaryAPI();
     createConfetti();
     for (let i = endPosition + 1; i < 30; i++) {
       // console.log(i);
@@ -307,59 +307,28 @@ function flipGradientGreen() {
   bodyBackground.classList.add('green-gradient');
 }
 
+//COPY TO CLIPBOARD CODE
 
+document.getElementById("solution").addEventListener("click", async () => {
+  console.log('click')
+  try {
+    const regex = /(<br>)+/g;
+    console.log(regex)
 
-// var copyButton = document.querySelector('#copy');
-// copyButton.addEventListener('click', handleCopyTextFromArea);
-// function handleCopyTextFromArea() {
-//   console.log('click');
-//   var area = document.getElementById('clipboard-area').value;
-//   console.log(document.getElementById('clipboard-area').value);
-//   // area.select();
-//   document.execCommand('copy')
-//       /* Save value of myText to input variable */
-//     // var input = document.getElementById("clipboard-area").value;
-   
-//      /* Copy the text inside the text field */
-//     navigator.clipboard.writeText(area);
-     
-//     alert("Copied Text: " + area);
-// }
+    let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
 
-// function handleClick() {
-//     /* Save value of myText to input variable */
-//     document.getElementById('id2').focus();
-//     var input = document.getElementById('id2').value;
-//     // var input = document.getElementById('id0').style.backgroundColor;
-//     // var input = 'hello'
-//     console.log(input)
+    navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
 
-//     navigator.clipboard.writeText("<empty clipboard>").then(function() {
-//       /* clipboard successfully set */
-//       console.log('success1')
-//     }, function() {
-//       /* clipboard write failed */
-//       console.log('FAILED1')
-//     });
+    console.log("Data was shared successfully", shareText);
 
-//     navigator.clipboard.readText().then(
-//       // clipText => document.querySelector(".cliptext").innerText = clipText);
-//       function() {
-//       /* clipboard successfully set */
-//       console.log('success1')
-//       clipText => console.log(clipText);
-//     }, function() {
-//       /* clipboard write failed */
-//       console.log('FAILED2')
-//     });
-   
-//      /* Copy the text inside the text field */
-//     navigator.clipboard.writeText(input);
-     
-//     alert("Copied Text: " + input);
-// }
+  } catch (err) {
+    console.error("Share failed:", err.message);
+  }
+});
 
-getCharacterDataFromMarvelAPI = () => {
+//API CODE
+
+getWebsterDictionaryAPI = () => {
     console.log('get')
     console.log(word)
     // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
@@ -370,11 +339,11 @@ getCharacterDataFromMarvelAPI = () => {
         .then((definition) => displayDefintion(definition))
         .catch(err => {
           console.error('error');
-          getCharacterDataFromMarvelAPI2();
+          getWebsterDictionaryAPI2();
         });     
 };
 
-getCharacterDataFromMarvelAPI2 = () => {
+getWebsterDictionaryAPI2 = () => {
     console.log('get')
     console.log(word)
     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
