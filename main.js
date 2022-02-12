@@ -254,18 +254,25 @@ function evaluateString() {
 
   if (count === 5) {
     console.log('winner');
-    // getWebsterDictionaryAPI();
     createConfetti();
-    for (let i = endPosition + 1; i < 30; i++) {
-      // console.log(i);
-      document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
-      document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
-      document.getElementById('id' + (i)).blur();
-      // console.log(event.keyCode);
+    // getWebsterDictionaryAPI();
+      for (let i = endPosition + 1; i < 30; i++) {
+        // console.log(i);
+        document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
+        // document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
+        // document.getElementById('id' + (i)).blur();
+        // console.log(event.keyCode);
+      }
+      for (let i = 0; i < 30; i++) {
+        // console.log(i);
+        // document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
+        document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
+        document.getElementById('id' + (i)).blur();
+        // console.log(event.keyCode);
+      }
+    } else {
+      console.log('keep playing')
     }
-  } else {
-    console.log('keep playing')
-  }
 
   dataStatus = [];
   word = '';
