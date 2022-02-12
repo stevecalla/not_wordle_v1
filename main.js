@@ -171,7 +171,8 @@ function deleteCharacter() {
   if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
   // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
     document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
-    document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
+    // document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
+    document.getElementById('id' + (currentLength - 1)).removeAttribute('disabled'); //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
     document.getElementById('id' + (currentLength - 1)).focus();
     currentInput.pop();
@@ -258,7 +259,7 @@ function evaluateString() {
     for (let i = endPosition + 1; i < 30; i++) {
       // console.log(i);
       document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
-      document.getElementById('id' + (i)).setAttribute('disabled', '');
+      document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
       document.getElementById('id' + (i)).blur();
       // console.log(event.keyCode);
     }
