@@ -7,11 +7,29 @@ var inputTilesRow4 = document.querySelector('#inputTilesRow4');
 var inputTilesRow5 = document.querySelector('#inputTilesRow5');
 var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
+// function resetGame() {
+//   createSolution();
+//   for (let i = 0; i < 30; i++) {
+//     document.getElementById('id' + (i)).setAttribute("data-status", ""); //remove color
+//     document.getElementById('id' + (i)).removeAttribute('disabled'); //remove disabled
+//     document.getElementById('id' + (i)).value = ' ';
+//     document.getElementById('id' + (0)).focus();
+//   }
+//   var word = "";
+//   var currentInput = [];
+//   var allInput = [];
+//   var solution = [];
 
+// }
 
 function loadTasks() {
   createSolution();
   createTiles();
+
+  // setTimeout(() => {
+  //   alert('HOW TO PLAY. \nGuess the WORDLE in six tries. \nEach guess must be a valid five-letter word. \nHit the enter button to submit. \nAfter each guess, the color of the tiles will change to show how close your guess was to the word. \nExamples The letter W is in the word and in the correct spot. \nThe letter I is in the word but in the wrong spot. \nThe letter U is not in the word in any spot. \nA new WORDLE will be available each day!')
+  // }, 100);
+
   // document.getElementById('id0').focus();
   // getCharacterDataFromMarvelAPI();
   // constructAPIEndpoint();
@@ -274,7 +292,7 @@ function evaluateString() {
     } else {
       console.log('keep playing')
     }
-
+  // document.querySelector('h1').blur();
   dataStatus = [];
   word = '';
 }
