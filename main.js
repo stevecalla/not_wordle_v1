@@ -26,6 +26,10 @@ function loadTasks() {
   createSolution();
   createTiles();
 
+  // document.getElementById('instructionWrapper')).('hidden');
+  // document.getElementById('instructionWrapper').classList.remove('hidden');
+  
+
   // setTimeout(() => {
   //   alert('HOW TO PLAY. \nGuess the WORDLE in six tries. \nEach guess must be a valid five-letter word. \nHit the enter button to submit. \nAfter each guess, the color of the tiles will change to show how close your guess was to the word. \nExamples The letter W is in the word and in the correct spot. \nThe letter I is in the word but in the wrong spot. \nThe letter U is not in the word in any spot. \nA new WORDLE will be available each day!')
   // }, 100);
@@ -33,6 +37,16 @@ function loadTasks() {
   // document.getElementById('id0').focus();
   // getCharacterDataFromMarvelAPI();
   // constructAPIEndpoint();
+}
+
+function deleteInstructions() {
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('inputTilesRow1').classList.remove('hidden');
+  document.getElementById('inputTilesRow2').classList.remove('hidden');
+  document.getElementById('inputTilesRow3').classList.remove('hidden');
+  document.getElementById('inputTilesRow4').classList.remove('hidden');
+  document.getElementById('inputTilesRow5').classList.remove('hidden');
+  // document.getElementById('instructionWrapper').classList.remove('hidden');
 }
 
 function formatSolution() {

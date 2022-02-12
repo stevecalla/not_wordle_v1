@@ -11,8 +11,10 @@
     <meta name=“viewport” content=“width=device-width, initial-scale=1.0">
   </head>
   <body class='container'>
-    <h1 onclick=createConfetti()>✨ NOT WORDLE ✨</h1>
+    <h1 class='header' onclick=createConfetti()>✨ NOT WORDLE ✨</h1>
     <div id='confetti'></div>
+    <div class='solution cloak' id='solution'></div>
+
     <div class='input-wrapper' id='inputTilesRow1'></div>
     <div class='input-wrapper' id='inputTilesRow2'></div>
     <div class='input-wrapper' id='inputTilesRow3'></div>
@@ -20,7 +22,12 @@
     <div class='input-wrapper' id='inputTilesRow5'></div>
     <div class='input-wrapper' id='inputTilesRow6'></div>
 
-    <div class='solution' id='solution'></div>
+    <div class='instruction-wrapper' id='instructionWrapper' onClick='deleteInstructions()'>
+      <img class='instruction-image'
+        src='/Users/stevecalla/not-wordle/wordle_v1/wordle_how_to_play_v2.png'
+        alt="How to play instructions">
+    </div>
+    
     <!-- <div class='solution' id='solution' onclick=resetGame()></div> -->
     <div class='' id='definition'></div>
     <!-- <audio controls autoplay> -->
