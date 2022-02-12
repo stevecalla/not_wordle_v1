@@ -46,6 +46,33 @@ body {
 }
 
 .instruction-wrapper {
+  background-color: white;
+  /* display: flex;
+  flex-direction: column;
+  align-items: center; */
+  height: 60%;
+  width: 50%;
+  margin-top: 5rem;
+  position: absolute;
+  z-index: 2;
+}
+
+p {
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  /* align-items: center; */
+  text-align: center;
+  margin: 1rem;
+  font-size: 0.75rem;
+}
+
+/* .instruction-image {
+  opacity: 95%;
+} */
+
+/* ----------------------- */
+/* .instruction-wrapper {
   display: flex;
   justify-content: center;
   height: 60%;
@@ -56,10 +83,9 @@ body {
 }
 
 .instruction-image {
-  /* position: relative;
-  z-index: 100; */
   opacity: 95%;
-}
+} */
+/* -------------------------- */
 
 .input-wrapper {
 /* .form-box { */
