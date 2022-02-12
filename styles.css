@@ -51,25 +51,33 @@ body {
   flex-direction: column;
   align-items: center; */
   height: 60%;
+  height: 500px;
   width: 50%;
+  width: 400px;
   margin-top: 5rem;
   position: absolute;
   z-index: 2;
+  opacity: 90%;
 }
 
 p {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
-  /* align-items: center; */
   text-align: center;
   margin: 1rem;
   font-size: 0.75rem;
+  font-style: bold;
 }
 
-/* .instruction-image {
-  opacity: 95%;
-} */
+input[id^='tile'] {
+  height: 2rem;
+  width: 2rem;
+  font-size: 1rem;
+  text-align: center;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+  border-color: light-grey;
+}
 
 /* ----------------------- */
 /* .instruction-wrapper {
@@ -117,7 +125,6 @@ input[id^='id'] {
   margin-bottom: 0.3rem;
   /* border: none; */
   border-color: light-grey;
-
   z-index: 4;
 }
 

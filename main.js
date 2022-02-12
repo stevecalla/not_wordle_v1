@@ -142,6 +142,48 @@ function createTiles() {
       </div>
     `;
   }
+  for (let i = 30; i < 35; i++) {
+    instructionTile1.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`tile${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 35; i < 40; i++) {
+    instructionTile2.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`tile${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+  for (let i = 40; i < 45; i++) {
+    instructionTile3.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`tile${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
   
 }
 
