@@ -107,7 +107,7 @@ input[data-status='noMatch'] {
 
 input[type=text][disabled][data-status='gameOver'],
 select[disabled] {
-  font-size: 0;
+  /* font-size: 0; */
   color: white;
   /* color: blue; */
   background-color: white;
@@ -138,7 +138,7 @@ select[disabled] {
 
     input[type=text][disabled][data-status='gameOver'],
     select[disabled] {
-      font-size: 0;
+      /* font-size: 0; */
       color: white;
       background-color: white;
       height: 2rem;
