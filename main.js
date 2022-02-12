@@ -13,6 +13,8 @@ function loadTasks() {
   createSolution();
   createTiles();
   // document.getElementById('id0').focus();
+  // getCharacterDataFromMarvelAPI();
+  // constructAPIEndpoint();
 }
 
 function formatSolution() {
@@ -119,7 +121,7 @@ var solution = [];
 
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
-document.addEventListener('keydown', createWord);
+// document.addEventListener('keydown', createWord);
 document.addEventListener('keydown', inputText);
 document.addEventListener('keydown', function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
   // console.log(event.keyCode, event.code)
@@ -140,14 +142,6 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 }, false);
 
 //functions and event handlers go here 👇
-
-function createWord(event) {
-  if (event.keyCode >=65 && event.keyCode <=90) {
-    word += event.key.toUpperCase();
-    console.log(word);  
-    }
-}
-
 function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
@@ -237,12 +231,14 @@ function evaluateString() {
       }
     console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
+    createWord();
   }
 
   if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30) && (document.getElementById('id' + (endPosition * 1 + 1)).dataset.status !== 'gameOver')) {
     console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)));
     document.getElementById('id' + (currentPosition * 1 + 1)).focus();
   }
+
 
   currentInput = [];
   console.log(dataStatus);
@@ -256,7 +252,8 @@ function evaluateString() {
   }
 
   if (count === 5) {
-    console.log('winner')
+    console.log('winner');
+    getCharacterDataFromMarvelAPI();
     createConfetti();
     for (let i = endPosition + 1; i < 30; i++) {
       // console.log(i);
@@ -270,10 +267,21 @@ function evaluateString() {
   }
 
   dataStatus = [];
+  word = '';
+}
+
+function createWord() {
+  for (let i = 0; i < 5; i++) {
+    word += currentInput[i];
+  }
+  // if (event.keyCode >=65 && event.keyCode <=90) {
+  //   word += event.key.toUpperCase();
+  //   console.log(word);  
+  //   }
+  console.log(word);
 }
 
 var createConfettiAnimation = document.querySelector('#confetti');
-
 function createConfetti() {
   // setTimeout(() => {
     for (let i = 0; i < 20; i++) {
@@ -283,7 +291,7 @@ function createConfetti() {
   // }, 5000);
   setTimeout(() => {
     for (let i = 0; i < 20; i++) {
-      console.log('hello')
+      // console.log('hello')
       createConfettiAnimation.innerHTML = ``;
     }
   }, 5000);
@@ -350,3 +358,40 @@ function flipGradientGreen() {
      
 //     alert("Copied Text: " + input);
 // }
+
+getCharacterDataFromMarvelAPI = () => {
+    console.log('get')
+    console.log(word)
+    // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+    fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+        .then((response) => response.json())
+        // .then((definition) => console.log(definition[0].shortdef[0]))
+        // .then((definition) => displayDefintion(definition[0].shortdef[0]))
+        .then((definition) => displayDefintion(definition))
+        .catch(err => {
+          console.error('error');
+          getCharacterDataFromMarvelAPI2();
+        });     
+};
+
+getCharacterDataFromMarvelAPI2 = () => {
+    console.log('get')
+    console.log(word)
+    fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+        .then((response) => response.json())
+        // .then((definition) => console.log('college=', definition[0].shortdef[0]))
+        .then((definition) => displayDefintion(definition))
+        // .catch(err => {
+        //   console.error('error');
+        // });     
+};  
+
+function displayDefintion(definition) {
+  console.log('elementary=', definition);
+  console.log('elementary=', definition[0].shortdef[0]);
+  console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
+  document.querySelector('#definition').innerText = definition[0].shortdef[0];
+  document.querySelector('#definition').innerText = definition[0].shortdef[0];
+  // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
+  // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
+}
