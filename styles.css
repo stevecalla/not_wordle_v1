@@ -233,10 +233,10 @@ select[disabled] {
       /* display: flex;
       flex-direction: column;
       text-align: center; */
-      margin: 0.3rem;
+      margin: 0.4rem;
       font-size: 0.75rem;
       /* font-style: bolder; */
-      font-weight: 400;
+      font-weight: 700;
     }
 
     input[id^='tile'] {
