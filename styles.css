@@ -70,6 +70,20 @@ body {
   overflow: scroll;
 }
 
+.instx-title {
+  display: flex;
+  justify-content: space-between;
+  margin: 0px 10px;
+  border-bottom: solid;
+  border-color: lightgrey;
+}
+
+.click-to-hide-x {
+  color: grayscale;
+  font-size: 15px;
+  font-weight: lighter;
+}
+
 p {
   display: flex;
   flex-direction: column;
