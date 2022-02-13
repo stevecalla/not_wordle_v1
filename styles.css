@@ -1,4 +1,8 @@
 /*------------MAIN PAGE LAYOUT---------------*/
+* {
+  margin: 0;
+  padding: 0;
+}
 
 html {
   /* height: 100%; */
@@ -65,7 +69,7 @@ p {
   display: flex;
   flex-direction: column;
   text-align: center;
-  margin: 1rem;
+  margin: 0.75rem;
   font-size: 0.75rem;
   /* font-style: bolder; */
   font-weight: 700;
@@ -79,6 +83,14 @@ input[id^='tile'] {
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
   border-color: light-grey;
+}
+
+.example-border {
+  margin: 10px;
+  padding: 0px;
+  border-top: solid;
+  border-bottom: solid;
+  border-color: lightgrey;
 }
 
 /* ----------------------- */
