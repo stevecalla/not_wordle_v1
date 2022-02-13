@@ -202,6 +202,11 @@ input[type=text][disabled][data-status='gameOver'] {
   margin-bottom: 0.3rem;
 }
 
+input[type=text][data-status='start'] {
+  pointer-events: none;
+  cursor: not-allowed;
+}
+
 .cloak {
   visibility: hidden;
 }

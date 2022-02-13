@@ -26,6 +26,7 @@ function loadTasks() {
   createSolution();
   createTiles();
   populateHowToTiles();
+  document.getElementById('instructionWrapper').focus();
 
   // document.getElementById('instructionWrapper')).('hidden');
   // document.getElementById('instructionWrapper').classList.remove('hidden');
@@ -51,9 +52,9 @@ function populateHowToTiles() {
     document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
     document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
   }
-  document.getElementById('tile30').style.backgroundColor = 'green';
-  document.getElementById('tile36').style.backgroundColor = 'yellow';
-  document.getElementById('tile43').style.backgroundColor = 'grey';
+  document.getElementById('tile30').style.backgroundColor = '#6aaa64';
+  document.getElementById('tile36').style.backgroundColor = '#c9b458';
+  document.getElementById('tile43').style.backgroundColor = '#787C7E';
 }
 
 function deleteInstructions() {
@@ -63,6 +64,12 @@ function deleteInstructions() {
   document.getElementById('inputTilesRow3').classList.remove('hidden');
   document.getElementById('inputTilesRow4').classList.remove('hidden');
   document.getElementById('inputTilesRow5').classList.remove('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
+
+  document.getElementById('id0').focus();
   // document.getElementById('instructionWrapper').classList.remove('hidden');
 }
 
@@ -85,6 +92,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -99,6 +108,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -113,6 +124,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -127,6 +140,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -141,6 +156,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -155,6 +172,8 @@ function createTiles() {
                 name="selection" 
                 value=""
                 size="1"
+                disabled="disabled"
+                data-status="start"
                 style="text-transform:uppercase" >
       </div>
     `;
@@ -237,7 +256,7 @@ function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
 
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5) { //&& (!event.ctrlKey && event.keyCode != 82)
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //&& (!event.ctrlKey && event.keyCode != 82)
   // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
   // console.log(currentPosition);
   // console.log(allInput.length);
