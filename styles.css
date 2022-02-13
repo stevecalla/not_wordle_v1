@@ -45,6 +45,7 @@ body {
   /* position: relative; */
 }
 
+/*--------- INSTRUCTION BOX -------------*/
 .instruction-wrapper {
   background-color: white;
   /* display: flex;
@@ -66,7 +67,8 @@ p {
   text-align: center;
   margin: 1rem;
   font-size: 0.75rem;
-  font-style: bold;
+  /* font-style: bolder; */
+  font-weight: 700;
 }
 
 input[id^='tile'] {
@@ -80,20 +82,6 @@ input[id^='tile'] {
 }
 
 /* ----------------------- */
-/* .instruction-wrapper {
-  display: flex;
-  justify-content: center;
-  height: 60%;
-  width: 100%;
-  margin-top: 5rem;
-  position: absolute;
-  z-index: 2;
-}
-
-.instruction-image {
-  opacity: 95%;
-} */
-/* -------------------------- */
 
 .input-wrapper {
 /* .form-box { */
@@ -223,22 +211,40 @@ select[disabled] {
       margin-bottom: 0.1rem;
     }
 
-    /* .instruction-wrapper {
-      display: flex;
-      justify-content: center;
+/*--------- INSTRUCTION BOX -------------*/
+    .instruction-wrapper {
+      background-color: white;
+      /* display: flex;
+      flex-direction: column;
+      align-items: center; */
       height: 60%;
-      width: 100%;
-      margin-top: 5rem;
+      height: 375px;
+      width: 50%;
+      width: 300px;
+      /* margin-top: 5rem; */
       position: absolute;
       z-index: 2;
-    } */
-    
-    .instruction-image {
-      /* position: relative;
-      z-index: 100; */
-      height: 35vh;
-      width: 35vw;
-      opacity: 95%;
+      opacity: 90%;
+    }
+
+    p {
+      display: flex;
+      flex-direction: column;
+      text-align: center;
+      margin: 0.3rem;
+      font-size: 0.75rem;
+      /* font-style: bolder; */
+      font-weight: 700;
+    }
+
+    input[id^='tile'] {
+      height: 2rem;
+      width: 2rem;
+      font-size: 1rem;
+      text-align: center;
+      margin-right: 0.3rem;
+      margin-bottom: 0.3rem;
+      border-color: light-grey;
     }
 }
 
