@@ -318,18 +318,19 @@ function evaluateString() {
   currentInput = [];
   console.log(dataStatus);
   
-  var count = 0;
+  var winCount = 0;
   for (let i = 0; i < 5; i++) {
     if (dataStatus[i] === 'exactMatch') {
-      count = count + 1
+      winCount = winCount + 1
     }
-    console.log('count', count)
+    console.log('count', winCount)
   }
 
-  if (count === 5) {
+  if (winCount === 5) {
     console.log('winner');
     createConfetti();
     // getWebsterDictionaryAPI();
+      document.getElementById('id29').blur();
       for (let i = endPosition + 1; i < 30; i++) {
         // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
