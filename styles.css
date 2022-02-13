@@ -2,6 +2,8 @@
 * {
   margin: 0;
   padding: 0;
+  /* border: solid;
+  border-color: red; */
 }
 
 html {
@@ -63,6 +65,7 @@ body {
   position: absolute;
   z-index: 2;
   opacity: 90%;
+  overflow: scroll;
 }
 
 p {
@@ -83,6 +86,14 @@ input[id^='tile'] {
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
   border-color: light-grey;
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+input[id^='tile'][disabled] {
+  color: black;
+  opacity: 1;
+  filter: grayscale(0);
 }
 
 .example-border {
@@ -98,8 +109,8 @@ input[id^='tile'] {
 .input-wrapper {
 /* .form-box { */
   /* border: none; */
-  border: solid;
-  border-color: red;
+  /* border: solid; */
+  /* border-color: red; */
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -197,10 +208,11 @@ select[disabled] {
 /*------- MEDIA QUERIES -----------------*/
 @media screen and (max-width: 600px) {
   .input-wrapper {
-      border: solid;
-      border-color: blue;
+      /* border: solid; */
+      /* border-color: blue; */
       /* display: flex; */
       /* flex-basis: 20%; */
+      /* overflow: scroll; */
     }
 
     input[id^='id'] {
@@ -239,6 +251,7 @@ select[disabled] {
       /* position: absolute;
       z-index: 2; */
       opacity: 90%;
+      overflow: scroll;
     }
 
     p {

@@ -25,6 +25,7 @@ var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 function loadTasks() {
   createSolution();
   createTiles();
+  populateHowToTiles();
 
   // document.getElementById('instructionWrapper')).('hidden');
   // document.getElementById('instructionWrapper').classList.remove('hidden');
@@ -37,6 +38,22 @@ function loadTasks() {
   // document.getElementById('id0').focus();
   // getCharacterDataFromMarvelAPI();
   // constructAPIEndpoint();
+}
+
+function populateHowToTiles() {
+  const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
+  for (let i = 0; i < 5; i++) {
+    document.getElementById('tile' + (i + 30)).value = letters[i];
+    document.getElementById('tile' + (i + 35)).value = letters[i + 5];
+    document.getElementById('tile' + (i + 40)).value = letters[i + 10];
+
+    document.getElementById('tile' + (i + 30)).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
+  }
+  document.getElementById('tile30').style.backgroundColor = 'green';
+  document.getElementById('tile36').style.backgroundColor = 'yellow';
+  document.getElementById('tile43').style.backgroundColor = 'grey';
 }
 
 function deleteInstructions() {
