@@ -345,8 +345,15 @@ function evaluateString() {
       //   document.getElementById('id' + (i)).blur();
       //   // console.log(event.keyCode);
       // }
+    } else if (endPosition === 29) {
+        console.log('end of game');
+        console.log(solution, solution.join(''))
+        document.getElementById('solution').classList.remove('cloak');
+        displaySolution.innerText = '';
+        displaySolution.innerText = solution.join('');
+
     } else {
-      console.log('keep playing')
+        console.log('keep playing')
     }
   // document.querySelector('h1').blur();
   dataStatus = [];
