@@ -90,8 +90,8 @@ input[id^='tile'] {
   border-color: light-grey;
   opacity: 1;
   filter: grayscale(0);
-  border: solid;
-  border-color: black;
+  border: thin solid black;
+  /* border-color: black; */
   border-radius: 0px;
 }
 
@@ -143,8 +143,9 @@ input[id^='id'] {
   width: 56px;
   font-size: 3rem;
   /* border: none; */
-  border: solid;
-  border-color: black;
+  /* border: solid;
+  border-color: black; */
+  border: thin solid black;
   border-radius: 0px;
   /* border-color: light-grey; */
   z-index: 4;
