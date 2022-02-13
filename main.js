@@ -351,6 +351,7 @@ function evaluateString() {
         document.getElementById('solution').classList.remove('cloak');
         displaySolution.innerText = '';
         displaySolution.innerText = solution.join('');
+        document.getElementById('id29').blur();
 
     } else {
         console.log('keep playing')
