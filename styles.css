@@ -96,8 +96,8 @@ input[id^='tile'] {
 }
 
 input[id^='tile'][disabled] {
-  background-color: white;
   color: black;
+  background-color: white;
   opacity: 1;
   filter: grayscale(0);
 }
@@ -225,9 +225,9 @@ input[type=text][disabled][data-status='gameOver'] {
     }
 
     input[id^='id'] {
-      height: 2rem;
-      width: 2rem;
-      font-size: 1rem;
+      height: 3rem;
+      width: 3rem;
+      font-size: 2rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
     } 
@@ -238,12 +238,16 @@ input[type=text][disabled][data-status='gameOver'] {
       filter: grayscale(0);
       color: white;
       background-color: white;
-      height: 2rem;
-      width: 2rem;
-      font-size: 1rem;
+      height: 3rem;
+      width: 3rem;
+      font-size: 2rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
     }
+
+    /* height: 2rem;
+    width: 2rem;
+    font-size: 1rem; */
 
 /*--------- INSTRUCTION BOX -------------*/
     .instruction-wrapper {
