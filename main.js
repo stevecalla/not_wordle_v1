@@ -41,6 +41,21 @@ function loadTasks() {
   // constructAPIEndpoint();
 }
 
+function refresh() {
+  console.log('reset in progress')
+  location.reload(true);
+}
+
+function contrast() {
+  console.log('contrast in progress')
+  // location.reload(true);
+} 
+
+function definition() {
+  console.log('definition in progress')
+  // location.reload(true);
+} 
+
 function populateHowToTiles() {
   const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
   for (let i = 0; i < 5; i++) {
