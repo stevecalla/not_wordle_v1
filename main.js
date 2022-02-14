@@ -255,19 +255,31 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
+  console.log('length=', allInput.length)
+
+  // console.log('event=', event.value) //for button
+  // console.log('letter=', letter) //for button
+  // let letter = event.value; // for button
 
   if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //&& (!event.ctrlKey && event.keyCode != 82)
+  // if ((letter || (event.keyCode >=65 && event.keyCode <=90)) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //for button
   // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
   // console.log(currentPosition);
   // console.log(allInput.length);
 
-    document.getElementById('id' + allInput.length).focus()
+    document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
+
+    // if (event.key) {document.getElementById('id' + allInput.length).value = event.key};
+    // if (event.value) {document.getElementById('id' + allInput.length).value = event.value}; // for button
 
   // const idValue = currentInput.length;
   // createInputString(idValue);
-    createInputString();
-    // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
+
+  createInputString();
+  // createInputString(letter);//for button
+
+  // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
   }
 }
 
@@ -291,11 +303,22 @@ function deleteCharacter() {
 }
 
 // function createInputString(idValue) {
+// function createInputString(letter) { //todo: for button
+
 function createInputString() {
+  // console.log('createInputString=', letter) //for button
+
   // currentInput.push(document.getElementById('id' + idValue).value.toUpperCase());
   // allInput.push(document.getElementById('id' + idValue).value.toUpperCase());
+
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
+
+  // if (event.key) {currentInput.push(event.key.toUpperCase())}; //for button
+  // if (event.key) {allInput.push(event.key.toUpperCase())}; //for button
+  // if (letter) {currentInput.push(letter)}; //for button
+  // if (letter) {allInput.push(letter)}; //for button
+
   console.log(currentInput);
   // if (currentInput.length === 5) {
   //   console.log('length=', currentInput.length)
