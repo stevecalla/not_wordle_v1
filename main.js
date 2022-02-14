@@ -346,6 +346,7 @@ function evaluateString() {
   let startPosition = currentPosition * 1 - 4;
   let endPosition = currentPosition * 1;
   let dataStatus = [];
+  let miniBoard = "";
   
   // for (let x = startPosition; x < endPosition + 1; x++) {
   
@@ -355,13 +356,19 @@ function evaluateString() {
       if (currentInput[x] === solution[x]) {
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
         dataStatus.push('exactMatch');
+        // miniBoard.push('🟩');
+        miniBoard += '🟩';
       } else if (solution.includes(currentInput[x])) {
         // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match')
         dataStatus.push('match');
+        // miniBoard.push('🟨');
+        miniBoard += '🟨';
       } else {
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
         dataStatus.push('noMatch');
+        // miniBoard.push('⬛');
+        miniBoard += '⬛';
       }
     console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
@@ -419,6 +426,15 @@ function evaluateString() {
   // document.querySelector('h1').blur();
   dataStatus = [];
   word = '';
+
+  console.log('miniBoard=', miniBoard);
+  combinedMiniBoard(miniBoard);
+}
+
+var currentMiniBoard = "";
+function combinedMiniBoard(miniBoard) {
+  currentMiniBoard += miniBoard + '\n';
+  console.log('currentMiniBoard=', currentMiniBoard);
 }
 
 function createWord(endPosition) {
@@ -464,15 +480,17 @@ function flipGradientGreen() {
 
 //COPY TO CLIPBOARD CODE
 
-document.getElementById("solution").addEventListener("click", async () => {
+document.getElementById("copyImage").addEventListener("click", async () => {
   console.log('click')
   try {
     const regex = /(<br>)+/g;
     console.log(regex)
 
-    let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
+    // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
+    let shareText = currentMiniBoard;
 
-    navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
+    // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
+    navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
 
     console.log("Data was shared successfully", shareText);
 
