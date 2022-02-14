@@ -244,6 +244,7 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
   }
   if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
+    console.log('backspace')
     deleteCharacter();
   }
   if (keyCode <65 || keyCode >90) {
@@ -290,10 +291,17 @@ function deleteCharacter() {
   console.log(document.getElementById('id' + (currentLength - 1)).dataset.status)
   // if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
   // if (document.getElementById('id' + (currentLength - 1)).data-status) {
-  if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
   // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
-    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
+  // if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
+
+  let status = document.getElementById('id' + (currentLength -1)).dataset.status;
+  console.log('status=', status);
+
+  if (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
+
     // document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
+
+    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
     document.getElementById('id' + (currentLength - 1)).removeAttribute('disabled'); //remove disabled
     document.getElementById('id' + (currentLength - 1)).value = "";
     document.getElementById('id' + (currentLength - 1)).focus();
