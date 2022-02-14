@@ -47,13 +47,12 @@ function refresh() {
 }
 
 function contrast() {
-  console.log('contrast in progress')
-  // location.reload(true);
+  console.log('contrast in progress');
 } 
 
 function definition() {
-  console.log('definition in progress')
-  // location.reload(true);
+  console.log('definition in progress');
+  getWebsterDictionaryAPI();
 } 
 
 function populateHowToTiles() {
@@ -555,13 +554,16 @@ getWebsterDictionaryAPI = () => {
     console.log('get')
     console.log(word)
     // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-    fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/clean?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
         .then((response) => response.json())
         // .then((definition) => console.log(definition[0].shortdef[0]))
         // .then((definition) => displayDefintion(definition[0].shortdef[0]))
         .then((definition) => displayDefintion(definition))
         .catch(err => {
-          console.error('error');
+          console.error("API failed:", err.message);
+          // console.error('error');
           getWebsterDictionaryAPI2();
         });     
 };
@@ -569,7 +571,7 @@ getWebsterDictionaryAPI = () => {
 getWebsterDictionaryAPI2 = () => {
     console.log('get')
     console.log(word)
-    fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+    fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
         .then((response) => response.json())
         // .then((definition) => console.log('college=', definition[0].shortdef[0]))
         .then((definition) => displayDefintion(definition))
