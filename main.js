@@ -354,7 +354,7 @@ function evaluateString() {
   let startPosition = currentPosition * 1 - 4;
   let endPosition = currentPosition * 1;
   let dataStatus = [];
-  let miniBoard = "";
+  let tileEmoji = "";
   
   // for (let x = startPosition; x < endPosition + 1; x++) {
   
@@ -365,18 +365,18 @@ function evaluateString() {
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
         dataStatus.push('exactMatch');
         // miniBoard.push('🟩');
-        miniBoard += '🟩';
+        tileEmoji += '🟩';
       } else if (solution.includes(currentInput[x])) {
         // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match')
         dataStatus.push('match');
         // miniBoard.push('🟨');
-        miniBoard += '🟨';
+        tileEmoji += '🟨';
       } else {
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
         dataStatus.push('noMatch');
         // miniBoard.push('⬛');
-        miniBoard += '⬛';
+        tileEmoji += '⬛';
       }
     console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
@@ -435,14 +435,14 @@ function evaluateString() {
   dataStatus = [];
   word = '';
 
-  console.log('miniBoard=', miniBoard);
-  combinedMiniBoard(miniBoard);
+  console.log('miniBoard=', tileEmoji);
+  createEmojiBoard(tileEmoji);
 }
 
-var currentMiniBoard = "";
-function combinedMiniBoard(miniBoard) {
-  currentMiniBoard += miniBoard + '\n';
-  console.log('currentMiniBoard=', currentMiniBoard);
+var currentEmojiBoard = "";
+function createEmojiBoard(tileEmoji) {
+  currentEmojiBoard += tileEmoji + '\n';
+  console.log('currentMiniBoard=', currentEmojiBoard);
 }
 
 function createWord(endPosition) {
@@ -488,24 +488,51 @@ function flipGradientGreen() {
 
 //COPY TO CLIPBOARD CODE
 
-document.getElementById("copyImage").addEventListener("click", async () => {
+function copyGameBoard() {
   console.log('click')
-  try {
-    const regex = /(<br>)+/g;
-    console.log(regex)
+  let currentRow = Math.floor(allInput.length / 5);
+  if (currentRow != 0) {
+    try {
+      const regex = /(<br>)+/g;
+      console.log(regex)
 
-    // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
-    let shareText = currentMiniBoard;
+      // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
+      // let shareText = currentRow + currentMiniBoard;
+      let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
 
-    // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
-    navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
+      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
+      navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
 
-    console.log("Data was shared successfully", shareText);
+      console.log("Data was shared successfully\n", shareText);
 
-  } catch (err) {
-    console.error("Share failed:", err.message);
+    } catch (err) {
+      console.error("Share failed:", err.message);
+    }
   }
-});
+}
+
+// document.getElementById("copyImage").addEventListener("click", async () => {
+//   console.log('click')
+//   let currentRow = Math.floor(allInput.length / 5);
+//   if (currentRow != 0) {
+//     try {
+//       const regex = /(<br>)+/g;
+//       console.log(regex)
+
+//       // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
+//       // let shareText = currentRow + currentMiniBoard;
+//       let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
+
+//       // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
+//       navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
+
+//       console.log("Data was shared successfully", shareText);
+
+//     } catch (err) {
+//       console.error("Share failed:", err.message);
+//     }
+//   }
+// });
 
 //API CODE
 
