@@ -55,6 +55,7 @@ body {
     align-items: center;
     height: 8vh;
     width: 400px;
+    margin-bottom: 30px;
     border-bottom: solid;
     border-color: grey;
   }
@@ -78,14 +79,14 @@ body {
     /* animation-duration: 3s; */
   }
 
-  @keyframes skew {
+  /* @keyframes skew {
     0% {
       transform: skewX(20deg);
     }
     100% {
       transform: skewX(-20deg);
     }
-  }
+  } */
 
 /*--------- INSTRUCTION BOX -------------*/
 .instruction-wrapper {
@@ -253,6 +254,13 @@ input[type=text][disabled][data-status='gameOver'] {
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
+}
+
+.definition {
+  width: 250px;
+  margin: 10px;
+  margin-top: 2px;
+  text-align: center;
 }
 
 .cloak {

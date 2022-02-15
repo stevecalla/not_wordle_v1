@@ -17,15 +17,12 @@
         <img class='header-icon' src='./assets/reset_icon_v2.png' alt="Reset Game" onclick='refresh()'>
         <img class='header-icon' src='./assets/color_vision_icon.png' alt="Contrast Mode" onclick='contrast()''>
       </div>
-      <!-- <h1 class='header' onclick=createConfetti()>✨ NOT WORDLE ✨</h1> -->
       <h1 onclick=createConfetti()>NOT WORDLE</h1>
       <div>
         <img class='header-icon' src='./assets/dictionary_icon.png' alt="Get Definition" onclick='definition()''>
         <img class='header-icon' id='copyImage' src='./assets/copy_icon_clipboard_v2.png' alt="Copy Game" onclick='copyGameBoard()'>
       </div>
     </div>
-    
-    <div class='solution cloak' id='solution'></div>
 
     <div class='input-wrapper' id='inputTilesRow1'></div>
     <div class='input-wrapper' id='inputTilesRow2'></div>
@@ -34,13 +31,11 @@
     <div class='input-wrapper' id='inputTilesRow5'></div>
     <div class='input-wrapper' id='inputTilesRow6'></div>
 
+    <!-- KEYBOARD -->
     <!-- <button class="favorite styled" type="button" value='A' onClick=inputText(this)>A</button>
     <button class="favorite styled" type="button" value='B' onClick=inputText(this)>B</button> -->
 
     <div class='instruction-wrapper' id='instructionWrapper' onClick='deleteInstructions()'>
-      <!-- <img class='instruction-image'
-        src='./wordle_how_to_play_v2.png'
-        alt="How to play instructions"> -->
       <div class='instx-title'>
         <p class='cloak'>x</p>
         <p class='title'>HOW TO PLAY</p>
@@ -60,23 +55,9 @@
     </div>
       <p>LET'S PLAY!!<br>CLICK TO PLAY!!</p>
     </div>
-    
-    <!-- src='/Users/stevecalla/not-wordle/wordle_v1/wordle_how_to_play_v2.png' -->
-    
-    <!-- <div class='solution' id='solution' onclick=resetGame()></div> -->
-    <div class='' id='definition'></div>
-    <!-- <audio controls autoplay> -->
-      <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/number/3d000001.mp3" type="audio/mpeg"> -->
-      <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3"type='audio/mpeg'> -->
-    <!-- </audio> -->
 
-    <!-- <button id='copy' onclick="handleCopyTextFromArea()">Copy</button> -->
-    <!-- <button id='copy'>Copy</button> -->
-    <!-- <div id='clipboard-area'>Test Clipboard Copy Function</div> -->
-    <!-- <input type="text" id="mytext" placeholder='placeholder' value='copy value'> -->
-    <!-- <button onclick="handleClick()">Copy</button> -->
-
-    <!-- <h3 class="reset-message hidden">""</h3> -->
+    <div class='solution cloak' id='solution'></div>
+    <div class='definition' id='definition'></div>
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="main.js"></script>
 
@@ -100,3 +81,48 @@ font-size: 16px;
 --header-height: 50px;
 --keyboard-height: 200px;
 --game-max-width: 500px; -->
+
+<!-- src='/Users/stevecalla/not-wordle/wordle_v1/wordle_how_to_play_v2.png' -->
+<!-- <div class='solution' id='solution' onclick=resetGame()></div> -->
+
+<!-- <audio controls autoplay> -->
+  <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/number/3d000001.mp3" type="audio/mpeg"> -->
+  <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3"type='audio/mpeg'> -->
+<!-- </audio> -->
+<!-- <audio id='audio' controls autoplay> -->
+  <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/s/brace001.mp3?key=d6ad76fd-5324-4925-834b-17a06efafce6" type="audio/mpeg"> -->
+  <!-- <source src="https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3" type='audio/mpeg'> -->
+<!-- </audio> -->
+
+<!-- <button id='copy' onclick="handleCopyTextFromArea()">Copy</button> -->
+<!-- <button id='copy'>Copy</button> -->
+<!-- <div id='clipboard-area'>Test Clipboard Copy Function</div> -->
+<!-- <input type="text" id="mytext" placeholder='placeholder' value='copy value'> -->
+<!-- <button onclick="handleClick()">Copy</button> -->
+<!-- <h3 class="reset-message hidden">""</h3> -->
+
+
+<!-- <a class="play-pron hw-play-pron hoverable converted" data-lang="en_us" data-file="shift001" data-dir="s" href="https://www.merriam-webster.com/dictionary/shift?pronunciation&amp;lang=en_us&amp;dir=s&amp;file=shift001" data-url="https://www.merriam-webster.com/dictionary/shift?pronunciation&amp;lang=en_us&amp;dir=s&amp;file=shift001" title="How to pronounce shift (audio)">
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22px" height="22px" viewBox="0 0 26 26" version="1.1" data-inject-url="https://www.merriam-webster.com/images/svg/audio.svg" class="svg replaced-svg"><title>How to pronounce shift (audio)</title>
+<defs>
+<linearGradient id="grad3" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgb(38,86,103);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgb(15,56,80);stop-opacity:1"></stop>
+</linearGradient>
+<linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
+<stop offset="0%" style="stop-color:rgb(231,240,244);stop-opacity:1"></stop>
+<stop offset="100%" style="stop-color:rgb(203,225,234);stop-opacity:1"></stop>
+</linearGradient>
+</defs>
+<g class="Audio" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+  <g class="Icon/AudioPron">
+      <g class="Audio">
+          <circle class="outline Oval" fill="url(#grad3) #265667" cx="13" cy="13" r="13"></circle>
+          <polygon class="logo Path-2" stroke="#FFFFFF" fill="#FFFFFF" points="6 10.5031797 6 15.4563465 9.37102011 15.4563465 13 18 13 8.02789307 9.5 10.5031797"></polygon>
+          <path class="logo2 Path-3" d="M16,8.5 C17.4887382,10.0718463 18.2331073,11.569707 18.2331073,12.993582 C18.2331073,15.1293945 17.1165537,16.4498291 16,17.5894775" stroke="#FFFFFF"></path>
+          <path class="logo2 Path-4" d="M18.0189209,6.5 C20.0989176,8.3652264 21.138916,10.5318931 21.138916,13 C21.138916,15.4681069 20.0723674,17.6756672 17.93927,19.6226807" stroke="#FFFFFF"></path>
+      </g>
+  </g>
+</g>
+</svg>
+</a> -->

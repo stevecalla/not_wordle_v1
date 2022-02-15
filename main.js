@@ -87,12 +87,27 @@ function deleteInstructions() {
   // document.getElementById('instructionWrapper').classList.remove('hidden');
 }
 
+function createSolution() {
+  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  console.log('random=', randomNumber);
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log(solution);
+  console.log(wordList.length);
+  // formatSolution();
+}
+
 function formatSolution() {
+  // displaySolution.innerText = solution.join('');
+
   // console.log(displaySolution)
   // displaySolution.innerText = solution;
-  for (let i = 0; i < solution.length; i++) {
-    displaySolution.innerText += solution[i];
-  }
+  // getWebsterDictionaryAPI();
+
+  // for (let i = 0; i < solution.length; i++) {
+  //   displaySolution.innerText += solution[i];
+  // }
+
+  // document.getElementById('solution').classList.remove('cloak');
 }
 
 function createTiles() {
@@ -348,15 +363,6 @@ function createInputString() {
   // }
 }
 
-function createSolution() {
-  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
-  console.log('random=', randomNumber);
-  solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution);
-  console.log(wordList.length);
-  formatSolution();
-}
-
 function evaluateString() {
 
   let currentPosition = 0;
@@ -440,6 +446,7 @@ function evaluateString() {
         document.getElementById('solution').classList.remove('cloak');
         displaySolution.innerText = '';
         displaySolution.innerText = solution.join('');
+        getWebsterDictionaryAPI();
         document.getElementById('id29').blur();
 
     } else {
@@ -551,6 +558,7 @@ function copyGameBoard() {
 //API CODE
 
 getWebsterDictionaryAPI = () => {
+  console.log('a')
     var elementaryDefinition = '';
     var collegeDefinition = '';
     let currentRow = Math.floor(allInput.length / 5);
@@ -567,9 +575,10 @@ getWebsterDictionaryAPI = () => {
         .then((response) => response.json())
         .then(function (definition) {
           collegeDefinition = definition[0].shortdef[0];
+          console.log(definition[0].hwi.prs[0].sound.audio);
           })
         .catch(err => {
-          console.error("API #1 failed:", err.message);
+          console.error("API #2 failed:", err.message);
         }) 
     setTimeout(() => { 
       displayDefintion(elementaryDefinition, collegeDefinition)
@@ -588,9 +597,12 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   } else {
     displayDefinition = 'Sorry, I could not find the definition';
   }
-  document.querySelector('#definition').innerText = displayDefinition;
+  document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
+  displaySolution.innerText = solution.join('');
+  document.getElementById('solution').classList.remove('cloak');
   console.log('innerText=', document.querySelector('#definition').innerText)
 
+  // console.log(document.querySelector('#audio').innerHTML)
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
