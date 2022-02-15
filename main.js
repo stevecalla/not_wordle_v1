@@ -551,41 +551,102 @@ function copyGameBoard() {
 //API CODE
 
 getWebsterDictionaryAPI = () => {
-    console.log('get')
-    console.log(word)
-    // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-    // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
-    // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/clean?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    var elementaryDefinition = '';
+    var collegeDefinition = '';
     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
         .then((response) => response.json())
-        // .then((definition) => console.log(definition[0].shortdef[0]))
-        // .then((definition) => displayDefintion(definition[0].shortdef[0]))
-        .then((definition) => displayDefintion(definition))
+        .then(function (definition) {
+          elementaryDefinition = definition[0].shortdef[0];
+          })
         .catch(err => {
-          console.error("API failed:", err.message);
-          // console.error('error');
-          getWebsterDictionaryAPI2();
-        });     
-};
-
-getWebsterDictionaryAPI2 = () => {
-    console.log('get')
-    console.log(word)
+          console.error("API #1 failed:", err.message);
+        })  
     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
         .then((response) => response.json())
-        // .then((definition) => console.log('college=', definition[0].shortdef[0]))
-        .then((definition) => displayDefintion(definition))
-        // .catch(err => {
-        //   console.error('error');
-        // });     
-};  
+        .then(function (definition) {
+          collegeDefinition = definition[0].shortdef[0];
+          })
+        .catch(err => {
+          console.error("API #1 failed:", err.message);
+        }) 
+    setTimeout(() => { 
+      displayDefintion(elementaryDefinition, collegeDefinition)
+    }, 1000);
+}
 
-function displayDefintion(definition) {
-  console.log('elementary=', definition);
-  console.log('elementary=', definition[0].shortdef[0]);
-  console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
-  document.querySelector('#definition').innerText = definition[0].shortdef[0];
-  document.querySelector('#definition').innerText = definition[0].shortdef[0];
+function displayDefintion(elementaryDefinition, collegeDefinition) {
+  console.log('a=', elementaryDefinition) 
+  console.log('b=', collegeDefinition) 
+  var display_definition = 'Sorry, I could not find the definition';
+  if (elementaryDefinition !== '') {
+    display_definition = elementaryDefinition;
+  } else if (collegeDefinition !== '') {
+    display_definition = collegeDefinition;
+  } else {
+    display_definition = 'Sorry, I could not find the definition';
+  }
+  document.querySelector('#definition').innerText = display_definition;
+  console.log('innerText=', document.querySelector('#definition').innerText)
+
+  // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
 }
+
+// function getWebsterDictionaryAPI() {
+//   Promise.all([
+//     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`), //college dictionary
+//     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary,
+//   ])
+//   .then(function (responses) {
+//     // Get a JSON object from each of the responses
+//     console.log('responses', responses, responses[0], responses[1])
+//     return Promise.all(responses.map(function (response) {
+//       return response.json();
+//     }));
+//   })
+//   .then(function (data) {
+//     // Log the data to the console
+//     // You would do something with both sets of data here
+//     if (data[0].length && data[1].length) {console.log('good data', data); displayDefintion(data)} else {console.log('bad data', data); displayDefintion(data)}
+//     // displayDefintion(data);
+//     console.log('fetch=', data, 'length=', data.length, !data);
+//   })
+//   .catch(function (error, data) {
+//     // if there's an error, log it
+//     // displayDefinition(data);
+//     console.error("API #3 failed:", error.message);
+//     document.querySelector('#definition').innerText = 'Sorry, I could not find the definition.'
+//     console.log('error=', document.querySelector('#definition').innerText)
+//   });
+// }
+
+// function displayDefintion(data) {
+//   // console.log('data=', data)
+//   // console.log('data2=', data)
+
+//   var elementaryDefinition = data[0][0].shortdef[0];
+//   var collegeDefinition = data[1][0].shortdef[0];
+//   var display_definition = 'Sorry, I could not find the definition';
+
+//   // console.log('1=', elementaryDefinition);
+//   // console.log('2=', collegeDefinition);
+//   // console.log('data3=', data)
+
+//   if (elementaryDefinition) {
+//     display_definition = elementaryDefinition;
+//   } else if (collegeDefinition) {
+//     displaySolution = collegeDefinition;
+//   } else {
+//     display_definition = 'Sorry, I could not find the definition';
+//   }
+  
+//   // console.log(display_definition);
+//   document.querySelector('#definition').innerText = display_definition;
+//   // console.log('data4=', data)
+//   console.log('innerText=', document.querySelector('#definition').innerText)
+
+//   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
+//   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
+//   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
+// }
