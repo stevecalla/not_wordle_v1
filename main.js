@@ -553,6 +553,8 @@ function copyGameBoard() {
 getWebsterDictionaryAPI = () => {
     var elementaryDefinition = '';
     var collegeDefinition = '';
+    let currentRow = Math.floor(allInput.length / 5);
+  // if (currentRow === 6) {
     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
         .then((response) => response.json())
         .then(function (definition) {
@@ -572,20 +574,21 @@ getWebsterDictionaryAPI = () => {
     setTimeout(() => { 
       displayDefintion(elementaryDefinition, collegeDefinition)
     }, 1000);
+  // }
 }
 
 function displayDefintion(elementaryDefinition, collegeDefinition) {
   console.log('a=', elementaryDefinition) 
   console.log('b=', collegeDefinition) 
-  var display_definition = 'Sorry, I could not find the definition';
+  var displayDefinition = 'Sorry, I could not find the definition';
   if (elementaryDefinition !== '') {
-    display_definition = elementaryDefinition;
+    displayDefinition = elementaryDefinition;
   } else if (collegeDefinition !== '') {
-    display_definition = collegeDefinition;
+    displayDefinition = collegeDefinition;
   } else {
-    display_definition = 'Sorry, I could not find the definition';
+    displayDefinition = 'Sorry, I could not find the definition';
   }
-  document.querySelector('#definition').innerText = display_definition;
+  document.querySelector('#definition').innerText = displayDefinition;
   console.log('innerText=', document.querySelector('#definition').innerText)
 
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
@@ -627,22 +630,22 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 
 //   var elementaryDefinition = data[0][0].shortdef[0];
 //   var collegeDefinition = data[1][0].shortdef[0];
-//   var display_definition = 'Sorry, I could not find the definition';
+//   var displayDefinition = 'Sorry, I could not find the definition';
 
 //   // console.log('1=', elementaryDefinition);
 //   // console.log('2=', collegeDefinition);
 //   // console.log('data3=', data)
 
 //   if (elementaryDefinition) {
-//     display_definition = elementaryDefinition;
+//     displayDefinition = elementaryDefinition;
 //   } else if (collegeDefinition) {
-//     displaySolution = collegeDefinition;
+//     displayDefinition = collegeDefinition;
 //   } else {
-//     display_definition = 'Sorry, I could not find the definition';
+//     displayDefinition = 'Sorry, I could not find the definition';
 //   }
   
-//   // console.log(display_definition);
-//   document.querySelector('#definition').innerText = display_definition;
+//   // console.log(displayDefinition);
+//   document.querySelector('#definition').innerText = displayDefinition;
 //   // console.log('data4=', data)
 //   console.log('innerText=', document.querySelector('#definition').innerText)
 
