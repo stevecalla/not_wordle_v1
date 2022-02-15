@@ -22,11 +22,6 @@ var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
 // }
 
-function getKeyboard() {
-  console.log('a');
-  document.getElementById('id0').focus();
-}
-
 function loadTasks() {
   createSolution();
   createTiles();
@@ -44,6 +39,11 @@ function loadTasks() {
   // document.getElementById('id0').focus();
   // getCharacterDataFromMarvelAPI();
   // constructAPIEndpoint();
+}
+
+function getKeyboard() {
+  console.log('a');
+  document.getElementById('id0').focus();
 }
 
 function refresh() {
