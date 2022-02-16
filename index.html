@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <title>✨ WORDGUESS ✨</title>
+    <!-- <link rel="stylesheet" id="theme-link" href="green-yellow-theme.css" > -->
     <link rel="stylesheet" id="theme-link" href="light-theme.css" >
     <link rel="stylesheet" href="normalize.css" media="all">
     <link rel="stylesheet" href="styles.css" media="all">
@@ -61,11 +62,12 @@
     <div class='solution cloak' id='solution'></div>
     <div class='definition' id='definition'></div>
 
-    <button class="btn-toggle darkmode-toggle" aria-label="Activate dark mode" aria-checked="false" role="checkbox" onclick='toggleDarkModeButton()'></button>
+    <button class="btn-toggle darkmode-toggle" onclick='toggleDarkModeButton()' aria-label="Activate dark mode" aria-checked="false" role="checkbox" ></button>
     <script>
     const btn = document.querySelector(".btn-toggle");
     const theme = document.querySelector("#theme-link");
-    function toggleDarkModeButton () {
+
+    function toggleDarkModeButton() {
       btn.classList.toggle('darkmode-toggle--white');
       document.querySelector('.header-icon-svg').classList.toggle('darkmode-svg-toggle--white');
       document.querySelector('.header-icon-svg2').classList.toggle('darkmode-svg-toggle--white');
@@ -81,6 +83,30 @@
       }
     });
     </script>
+
+
+    <button class="btn-toggle2 contrast-toggle" role="checkbox" onclick='toggleContrastModeButton()' aria-label="Activate color blind mode" aria-checked="false" '></button>
+    <script>
+      const btn2 = document.querySelector(".btn-toggle2");
+      const theme2 = document.querySelector("#theme-link");
+
+      function toggleContrastModeButton() {
+        console.log('click')
+        btn2.classList.toggle('contrast-toggle--blueorange');
+        // document.querySelector('.header-icon-svg').classList.toggle('darkmode-svg-toggle--white');
+        // document.querySelector('.header-icon-svg2').classList.toggle('darkmode-svg-toggle--white');
+        // document.querySelector('.header-icon-svg3').classList.toggle('darkmode-svg-toggle--white');
+        // document.querySelector('.header-icon-svg4').classList.toggle('darkmode-svg-toggle--white');
+      };
+      btn2.addEventListener("click", function() {
+        // Swap out the URL for the different stylesheets
+        if (theme2.getAttribute("href") == "light-theme.css") {
+          // theme.href = "blue-orange-theme.css";
+        } else {
+          // theme2.href = "green-yellow-theme.css";
+        }
+      });
+      </script>
 
     <script type="text/javascript" src="data.js"></script>
     <script type="text/javascript" src="main.js"></script>

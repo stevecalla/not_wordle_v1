@@ -310,6 +310,28 @@ input[type=text][data-status='start'] {
   fill: white;
 }
 
+.contrast-toggle {
+  background: #100f2c;
+  width: 3rem;
+  height: 3rem;
+  position: fixed;
+  border-radius: 50%;
+  border: none;
+  left: 32px;
+  bottom: 32px;
+  right: unset;
+  cursor: pointer;
+  transition: all 0.5s ease;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient( 90deg, #85c0f9 50%, #f5793a 50% ); 
+}
+
+.contrast-toggle--blueorange {
+  background: linear-gradient( 90deg, #6aaa64 50%, #c9b458 50% ); 
+}
+
 .cloak {
   visibility: hidden;
 }
