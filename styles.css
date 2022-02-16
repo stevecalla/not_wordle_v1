@@ -291,8 +291,8 @@ input[type=text][data-status='start'] {
   position: fixed;
   border-radius: 50%;
   border: none;
-  right: 32px;
-  bottom: 32px;
+  right: 30px;
+  bottom: 10px;
   left: unset;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -317,8 +317,8 @@ input[type=text][data-status='start'] {
   position: fixed;
   border-radius: 50%;
   border: none;
-  left: 32px;
-  bottom: 32px;
+  left: 30px;
+  bottom: 10px;
   right: unset;
   cursor: pointer;
   transition: all 0.5s ease;
