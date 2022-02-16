@@ -291,8 +291,8 @@ input[type=text][data-status='start'] {
   position: fixed;
   border-radius: 50%;
   border: none;
-  right: 30px;
-  bottom: 10px;
+  right: 32px;
+  bottom: 32px;
   left: unset;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -317,8 +317,8 @@ input[type=text][data-status='start'] {
   position: fixed;
   border-radius: 50%;
   border: none;
-  left: 30px;
-  bottom: 10px;
+  left: 32px;
+  bottom: 32px;
   right: unset;
   cursor: pointer;
   transition: all 0.5s ease;
@@ -438,6 +438,17 @@ input[type=text][data-status='start'] {
       margin-bottom: 0.1rem;
       /* border-color: light-grey; */
     }
+}
+
+/*----------- DARK MODE TOGGLE ------------*/
+.darkmode-toggle {
+  right: 30px;
+  bottom: 10px;
+}
+
+.contrast-toggle {
+  left: 30px;
+  bottom: 10px;
 }
 
 /*----------- CONFETTI ----------------*/
