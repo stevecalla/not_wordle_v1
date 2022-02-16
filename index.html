@@ -93,11 +93,33 @@
       function toggleContrastModeButton() {
         console.log('click')
         btn2.classList.toggle('contrast-toggle--blueorange');
+        document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
+        document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
+
+        for (let i = 0; i < 30; i++) {
+          console.log(i)
+          if (btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'exactMatch') {
+            document.getElementById('id' + i).classList.add('contrast-toggle--blue');
+          } else if (btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'match') {
+            document.getElementById('id' + i).classList.add('contrast-toggle--orange');
+          }
+
+          if (!btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'exactMatch') {
+            document.getElementById('id' + i).classList.remove('contrast-toggle--blue');
+          } else if (!btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'match') {
+            document.getElementById('id' + i).classList.remove('contrast-toggle--orange');
+          }
+        }
+        // document.getElementById('tile30').classList.add('contrast-toggle--green');
+        // document.getElementById('tile36').classList.add('contrast-toggle--yellow');
+        // document.getElementById('tile42').classList.add('contrast-toggle--grey');
+        
         // document.querySelector('.header-icon-svg').classList.toggle('darkmode-svg-toggle--white');
         // document.querySelector('.header-icon-svg2').classList.toggle('darkmode-svg-toggle--white');
         // document.querySelector('.header-icon-svg3').classList.toggle('darkmode-svg-toggle--white');
         // document.querySelector('.header-icon-svg4').classList.toggle('darkmode-svg-toggle--white');
       };
+
       btn2.addEventListener("click", function() {
         // Swap out the URL for the different stylesheets
         if (theme2.getAttribute("href") == "light-theme.css") {

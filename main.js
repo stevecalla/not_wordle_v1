@@ -71,9 +71,9 @@ function populateHowToTiles() {
     document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
     document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
   }
-  document.getElementById('tile30').style.backgroundColor = '#6aaa64';
-  document.getElementById('tile36').style.backgroundColor = '#c9b458';
-  document.getElementById('tile43').style.backgroundColor = '#787C7E';
+  document.getElementById('tile30').classList.add('contrast-toggle--green');
+  document.getElementById('tile36').classList.add('contrast-toggle--yellow');
+  document.getElementById('tile42').classList.add('contrast-toggle--grey');
 }
 
 function deleteInstructions() {
@@ -386,14 +386,39 @@ function evaluateString() {
   if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
     for (let x = 0; x < 5; x++) {
 
+      
+  // document.getElementById('tile30').classList.add('contrast-toggle--green');
+  // document.getElementById('tile36').classList.add('contrast-toggle--yellow');
+  // document.getElementById('tile42').classList.add('contrast-toggle--grey');
+
       if (currentInput[x] === solution[x]) {
         document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
+
+        if(document.querySelector(".btn-toggle2").classList.contains('contrast-toggle--blueorange')) {
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--blue');
+        } else {
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
+        }
+
+        // document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
+
         dataStatus.push('exactMatch');
         // miniBoard.push('🟩');
         tileEmoji += '🟩';
       } else if (solution.includes(currentInput[x])) {
         // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
-        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match')
+        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match');
+
+        if(document.querySelector(".btn-toggle2").classList.contains('contrast-toggle--blueorange')) {
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--orange');
+        } else {
+          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
+        }
+
+        // document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
+
         dataStatus.push('match');
         // miniBoard.push('🟨');
         tileEmoji += '🟨';
