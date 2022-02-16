@@ -438,18 +438,19 @@ input[type=text][data-status='start'] {
       margin-bottom: 0.1rem;
       /* border-color: light-grey; */
     }
-}
 
 /*----------- DARK MODE TOGGLE ------------*/
-.darkmode-toggle {
-  right: 30px;
-  bottom: 10px;
+    .darkmode-toggle {
+      right: 30px;
+      bottom: 10px;
+    }
+
+    .contrast-toggle {
+      left: 30px;
+      bottom: 10px;
+    }    
 }
 
-.contrast-toggle {
-  left: 30px;
-  bottom: 10px;
-}
 
 /*----------- CONFETTI ----------------*/
     /* .container {
