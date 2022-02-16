@@ -70,7 +70,9 @@ body {
   }
 
   .header-icon-svg,
-  .header-icon-svg3 {
+  .header-icon-svg2,
+  .header-icon-svg3,
+  .header-icon-svg4 {
     height: 26px;
     width: 26px;
     fill: black;
