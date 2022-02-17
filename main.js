@@ -511,22 +511,6 @@ function createWord(endPosition) {
   console.log(word);
 }
 
-var createConfettiAnimation = document.querySelector('#confetti');
-function createConfetti() {
-  // setTimeout(() => {
-    for (let i = 0; i < 20; i++) {
-      createConfettiAnimation.innerHTML +=
-      `<div class='confetti'></div>`;
-    }
-  // }, 5000);
-  setTimeout(() => {
-    for (let i = 0; i < 20; i++) {
-      // console.log('hello')
-      createConfettiAnimation.innerHTML = ``;
-    }
-  }, 5000);
-}
-
 function flipGradientPink() {
   bodyBackground.classList.remove('green-gradient');
   bodyBackground.classList.add('pink-gradient');
