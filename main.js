@@ -7,20 +7,13 @@ var inputTilesRow4 = document.querySelector('#inputTilesRow4');
 var inputTilesRow5 = document.querySelector('#inputTilesRow5');
 var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
-// function resetGame() {
-//   createSolution();
-//   for (let i = 0; i < 30; i++) {
-//     document.getElementById('id' + (i)).setAttribute("data-status", ""); //remove color
-//     document.getElementById('id' + (i)).removeAttribute('disabled'); //remove disabled
-//     document.getElementById('id' + (i)).value = ' ';
-//     document.getElementById('id' + (0)).focus();
-//   }
-//   var word = "";
-//   var currentInput = [];
-//   var allInput = [];
-//   var solution = [];
+//global variables go here 👇
+var word = "";
+var currentInput = [];
+var allInput = [];
+var solution = [];
+var currentEmojiBoard = "";
 
-// }
 
 function loadTasks() {
   createSolution();
@@ -257,12 +250,6 @@ function createTiles() {
   
 }
 
-//global variables go here 👇
-var word = "";
-var currentInput = [];
-var allInput = [];
-var solution = [];
-
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
 // document.addEventListener('keydown', createWord);
@@ -490,7 +477,6 @@ function evaluateString() {
   createEmojiBoard(tileEmoji);
 }
 
-var currentEmojiBoard = "";
 function createEmojiBoard(tileEmoji) {
   currentEmojiBoard += tileEmoji + '\n';
   console.log('currentMiniBoard=', currentEmojiBoard);
@@ -622,61 +608,3 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
 }
-
-// function getWebsterDictionaryAPI() {
-//   Promise.all([
-//     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`), //college dictionary
-//     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary,
-//   ])
-//   .then(function (responses) {
-//     // Get a JSON object from each of the responses
-//     console.log('responses', responses, responses[0], responses[1])
-//     return Promise.all(responses.map(function (response) {
-//       return response.json();
-//     }));
-//   })
-//   .then(function (data) {
-//     // Log the data to the console
-//     // You would do something with both sets of data here
-//     if (data[0].length && data[1].length) {console.log('good data', data); displayDefintion(data)} else {console.log('bad data', data); displayDefintion(data)}
-//     // displayDefintion(data);
-//     console.log('fetch=', data, 'length=', data.length, !data);
-//   })
-//   .catch(function (error, data) {
-//     // if there's an error, log it
-//     // displayDefinition(data);
-//     console.error("API #3 failed:", error.message);
-//     document.querySelector('#definition').innerText = 'Sorry, I could not find the definition.'
-//     console.log('error=', document.querySelector('#definition').innerText)
-//   });
-// }
-
-// function displayDefintion(data) {
-//   // console.log('data=', data)
-//   // console.log('data2=', data)
-
-//   var elementaryDefinition = data[0][0].shortdef[0];
-//   var collegeDefinition = data[1][0].shortdef[0];
-//   var displayDefinition = 'Sorry, I could not find the definition';
-
-//   // console.log('1=', elementaryDefinition);
-//   // console.log('2=', collegeDefinition);
-//   // console.log('data3=', data)
-
-//   if (elementaryDefinition) {
-//     displayDefinition = elementaryDefinition;
-//   } else if (collegeDefinition) {
-//     displayDefinition = collegeDefinition;
-//   } else {
-//     displayDefinition = 'Sorry, I could not find the definition';
-//   }
-  
-//   // console.log(displayDefinition);
-//   document.querySelector('#definition').innerText = displayDefinition;
-//   // console.log('data4=', data)
-//   console.log('innerText=', document.querySelector('#definition').innerText)
-
-//   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
-//   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
-//   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
-// }
