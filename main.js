@@ -14,6 +14,59 @@ var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
 
+//event listeners go here 👇
+window.addEventListener('load', loadTasks);
+document.addEventListener('keydown', inputText);
+document.addEventListener('keydown', function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
+  // console.log(event.keyCode, event.code)
+  let key = event.key,
+  keyCode = event.keyCode;
+
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
+  // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
+    evaluateString();
+  }
+  if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
+  // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
+    console.log('backspace')
+    deleteCharacter();
+  }
+  if (keyCode <65 || keyCode >90) {
+    event.preventDefault();
+  }
+}, false);
+
+//functions and event handlers go here 👇
+function inputText() {
+  // let key = event.key;
+  // keyCode = event.keyCode;
+  console.log('length=', allInput.length)
+
+  // console.log('event=', event.value) //for button
+  // console.log('letter=', letter) //for button
+  // let letter = event.value; // for button
+
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //&& (!event.ctrlKey && event.keyCode != 82)
+  // if ((letter || (event.keyCode >=65 && event.keyCode <=90)) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //for button
+  // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
+  // console.log(currentPosition);
+  // console.log(allInput.length);
+
+    document.getElementById('id' + allInput.length).focus();
+    document.getElementById('id' + allInput.length).value = event.key;
+
+    // if (event.key) {document.getElementById('id' + allInput.length).value = event.key};
+    // if (event.value) {document.getElementById('id' + allInput.length).value = event.value}; // for button
+
+  // const idValue = currentInput.length;
+  // createInputString(idValue);
+
+  createInputString();
+  // createInputString(letter);//for button
+
+  // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
+  }
+}
 
 function loadTasks() {
   createSolution();
@@ -250,61 +303,6 @@ function createTiles() {
   
 }
 
-//event listeners go here 👇
-window.addEventListener('load', loadTasks);
-// document.addEventListener('keydown', createWord);
-document.addEventListener('keydown', inputText);
-document.addEventListener('keydown', function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
-  // console.log(event.keyCode, event.code)
-  let key = event.key,
-  keyCode = event.keyCode;
-
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
-  // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-    evaluateString();
-  }
-  if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
-  // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
-    console.log('backspace')
-    deleteCharacter();
-  }
-  if (keyCode <65 || keyCode >90) {
-    event.preventDefault();
-  }
-}, false);
-
-//functions and event handlers go here 👇
-function inputText() {
-  // let key = event.key;
-  // keyCode = event.keyCode;
-  console.log('length=', allInput.length)
-
-  // console.log('event=', event.value) //for button
-  // console.log('letter=', letter) //for button
-  // let letter = event.value; // for button
-
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //&& (!event.ctrlKey && event.keyCode != 82)
-  // if ((letter || (event.keyCode >=65 && event.keyCode <=90)) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //for button
-  // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
-  // console.log(currentPosition);
-  // console.log(allInput.length);
-
-    document.getElementById('id' + allInput.length).focus();
-    document.getElementById('id' + allInput.length).value = event.key;
-
-    // if (event.key) {document.getElementById('id' + allInput.length).value = event.key};
-    // if (event.value) {document.getElementById('id' + allInput.length).value = event.value}; // for button
-
-  // const idValue = currentInput.length;
-  // createInputString(idValue);
-
-  createInputString();
-  // createInputString(letter);//for button
-
-  // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
-  }
-}
-
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length);
@@ -331,8 +329,6 @@ function deleteCharacter() {
   }
 }
 
-// function createInputString(idValue) {
-// function createInputString(letter) { //todo: for button
 
 function createInputString() {
   // console.log('createInputString=', letter) //for button
