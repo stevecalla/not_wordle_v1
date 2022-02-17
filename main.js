@@ -37,6 +37,16 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 }, false);
 
 //functions and event handlers go here 👇
+// TODO LOAD TASKS
+function loadTasks() {
+  createSolution();
+  createTiles();
+  populateHowToTiles();
+  document.getElementById('instructionWrapper').focus();
+}
+
+// TODO TBD
+
 function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
@@ -66,25 +76,6 @@ function inputText() {
 
   // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
   }
-}
-
-function loadTasks() {
-  createSolution();
-  createTiles();
-  populateHowToTiles();
-  document.getElementById('instructionWrapper').focus();
-
-  // document.getElementById('instructionWrapper')).('hidden');
-  // document.getElementById('instructionWrapper').classList.remove('hidden');
-  
-
-  // setTimeout(() => {
-  //   alert('HOW TO PLAY. \nGuess the WORDLE in six tries. \nEach guess must be a valid five-letter word. \nHit the enter button to submit. \nAfter each guess, the color of the tiles will change to show how close your guess was to the word. \nExamples The letter W is in the word and in the correct spot. \nThe letter I is in the word but in the wrong spot. \nThe letter U is not in the word in any spot. \nA new WORDLE will be available each day!')
-  // }, 100);
-
-  // document.getElementById('id0').focus();
-  // getCharacterDataFromMarvelAPI();
-  // constructAPIEndpoint();
 }
 
 function getKeyboard() {
@@ -122,6 +113,7 @@ function populateHowToTiles() {
   document.getElementById('tile42').classList.add('contrast-toggle--grey');
 }
 
+// TODO INSTRUCTIONS FUNCTIONS
 function deleteInstructions() {
   document.getElementById('instructionWrapper').classList.add('hidden');
   document.getElementById('inputTilesRow1').classList.remove('hidden');
@@ -303,6 +295,7 @@ function createTiles() {
   
 }
 
+// TODO DELETE INPUT
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length);
@@ -329,28 +322,14 @@ function deleteCharacter() {
   }
 }
 
-
+// TODO POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
 function createInputString() {
-  // console.log('createInputString=', letter) //for button
-
-  // currentInput.push(document.getElementById('id' + idValue).value.toUpperCase());
-  // allInput.push(document.getElementById('id' + idValue).value.toUpperCase());
-
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
-
-  // if (event.key) {currentInput.push(event.key.toUpperCase())}; //for button
-  // if (event.key) {allInput.push(event.key.toUpperCase())}; //for button
-  // if (letter) {currentInput.push(letter)}; //for button
-  // if (letter) {allInput.push(letter)}; //for button
-
   console.log(currentInput);
-  // if (currentInput.length === 5) {
-  //   console.log('length=', currentInput.length)
-  //   evaluateString(currentInput)
-  // }
 }
 
+// TODO DETERMINE EACH ROW / WINN
 function evaluateString() {
 
   let currentPosition = 0;
@@ -473,11 +452,7 @@ function evaluateString() {
   createEmojiBoard(tileEmoji);
 }
 
-function createEmojiBoard(tileEmoji) {
-  currentEmojiBoard += tileEmoji + '\n';
-  console.log('currentMiniBoard=', currentEmojiBoard);
-}
-
+// TODO CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
 function createWord(endPosition) {
   console.log('endPosition=', endPosition * 1 + 1);
   console.log('noway=', document.getElementById('id6').value)
@@ -486,25 +461,16 @@ function createWord(endPosition) {
       word += currentInput[i];
     }
   }
-  // if (event.keyCode >=65 && event.keyCode <=90) {
-  //   word += event.key.toUpperCase();
-  //   console.log(word);  
-  //   }
   console.log(word);
 }
 
-function flipGradientPink() {
-  bodyBackground.classList.remove('green-gradient');
-  bodyBackground.classList.add('pink-gradient');
+// TODO EMOJI BOARD
+function createEmojiBoard(tileEmoji) {
+  currentEmojiBoard += tileEmoji + '\n';
+  console.log('currentMiniBoard=', currentEmojiBoard);
 }
 
-function flipGradientGreen() {
-  bodyBackground.classList.remove('pink-gradient');
-  bodyBackground.classList.add('green-gradient');
-}
-
-//COPY TO CLIPBOARD CODE
-
+// TODO CLIPBOARD CODE
 function copyGameBoard() {
   console.log('click')
   let currentRow = Math.floor(allInput.length / 5);
@@ -528,31 +494,7 @@ function copyGameBoard() {
   }
 }
 
-// document.getElementById("copyImage").addEventListener("click", async () => {
-//   console.log('click')
-//   let currentRow = Math.floor(allInput.length / 5);
-//   if (currentRow != 0) {
-//     try {
-//       const regex = /(<br>)+/g;
-//       console.log(regex)
-
-//       // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
-//       // let shareText = currentRow + currentMiniBoard;
-//       let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
-
-//       // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
-//       navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
-
-//       console.log("Data was shared successfully", shareText);
-
-//     } catch (err) {
-//       console.error("Share failed:", err.message);
-//     }
-//   }
-// });
-
-//API CODE
-
+// TODO API CODE
 getWebsterDictionaryAPI = () => {
   console.log('a')
     var elementaryDefinition = '';
