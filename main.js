@@ -629,7 +629,8 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   }
   document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
   displaySolution.innerText = solution.join('');
-  document.getElementById('solution').classList.remove('cloak');
+  document.getElementById('solution').classList.toggle('cloak');
+  document.getElementById('definition').classList.toggle('cloak');
   console.log('innerText=', document.querySelector('#definition').innerText)
 
   // console.log(document.querySelector('#audio').innerHTML)

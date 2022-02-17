@@ -60,12 +60,16 @@
     </div>
 
     <div class='solution cloak' id='solution'></div>
-    <div class='definition' id='definition'></div>
+    <div class='definition cloak' id='definition'></div>
+
+    
 
     <button class="btn-toggle darkmode-toggle" onclick='toggleDarkModeButton()' aria-label="Activate dark mode" aria-checked="false" role="checkbox" ></button>
     <script>
     const btn = document.querySelector(".btn-toggle");
     const theme = document.querySelector("#theme-link");
+
+    
 
     function toggleDarkModeButton() {
       btn.classList.toggle('darkmode-toggle--white');
