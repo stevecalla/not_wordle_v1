@@ -10,6 +10,7 @@ var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 //global variables go here 👇
 var word = "";
 var currentInput = [];
+var currentTile = 0;
 var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
@@ -78,9 +79,19 @@ function inputText() {
   }
 }
 
+// TODO POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
+function createInputString() {
+  currentInput.push(event.key.toUpperCase());
+  allInput.push(event.key.toUpperCase());
+  currentTile = allInput.length;
+  console.log(currentInput);
+}
+
+// TODO HEADER BUTTONS
 function getKeyboard() {
   console.log('a');
-  document.getElementById('id0').focus();
+  console.log(currentTile);
+  document.getElementById('id' + currentTile).focus();
 }
 
 function refresh() {
@@ -97,62 +108,30 @@ function definition() {
   getWebsterDictionaryAPI();
 } 
 
-function populateHowToTiles() {
-  const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
-  for (let i = 0; i < 5; i++) {
-    document.getElementById('tile' + (i + 30)).value = letters[i];
-    document.getElementById('tile' + (i + 35)).value = letters[i + 5];
-    document.getElementById('tile' + (i + 40)).value = letters[i + 10];
+function copyGameBoard() { // TODO CLIPBOARD CODE
+  console.log('click')
+  let currentRow = Math.floor(allInput.length / 5);
+  if (currentRow != 0) {
+    try {
+      const regex = /(<br>)+/g;
+      console.log(regex)
 
-    document.getElementById('tile' + (i + 30)).setAttribute('disabled', 'disabled');
-    document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
-    document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
+      // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
+      // let shareText = currentRow + currentMiniBoard;
+      let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
+
+      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
+      navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
+
+      console.log("Data was shared successfully\n", shareText);
+
+    } catch (err) {
+      console.error("Share failed:", err.message);
+    }
   }
-  document.getElementById('tile30').classList.add('contrast-toggle--green');
-  document.getElementById('tile36').classList.add('contrast-toggle--yellow');
-  document.getElementById('tile42').classList.add('contrast-toggle--grey');
 }
 
-// TODO INSTRUCTIONS FUNCTIONS
-function deleteInstructions() {
-  document.getElementById('instructionWrapper').classList.add('hidden');
-  document.getElementById('inputTilesRow1').classList.remove('hidden');
-  document.getElementById('inputTilesRow2').classList.remove('hidden');
-  document.getElementById('inputTilesRow3').classList.remove('hidden');
-  document.getElementById('inputTilesRow4').classList.remove('hidden');
-  document.getElementById('inputTilesRow5').classList.remove('hidden');
-
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
-
-  document.getElementById('id0').focus();
-  // document.getElementById('instructionWrapper').classList.remove('hidden');
-}
-
-function createSolution() {
-  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
-  console.log('random=', randomNumber);
-  solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution);
-  console.log(wordList.length);
-  // formatSolution();
-}
-
-function formatSolution() {
-  // displaySolution.innerText = solution.join('');
-
-  // console.log(displaySolution)
-  // displaySolution.innerText = solution;
-  // getWebsterDictionaryAPI();
-
-  // for (let i = 0; i < solution.length; i++) {
-  //   displaySolution.innerText += solution[i];
-  // }
-
-  // document.getElementById('solution').classList.remove('cloak');
-}
-
+// TODO CREATE GAME TILES
 function createTiles() {
   for (let i = 0; i < 5; i++) {
     inputTilesRow1.innerHTML +=
@@ -295,6 +274,55 @@ function createTiles() {
   
 }
 
+// TODO CREATE SOLUTION
+function createSolution() {
+  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  console.log('random=', randomNumber);
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log(solution);
+  console.log(wordList.length);
+  // formatSolution();
+}
+
+function formatSolution() {
+  // displaySolution.innerText = solution.join('');
+
+  // console.log(displaySolution)
+  // displaySolution.innerText = solution;
+  // getWebsterDictionaryAPI();
+
+  // for (let i = 0; i < solution.length; i++) {
+  //   displaySolution.innerText += solution[i];
+  // }
+
+  // document.getElementById('solution').classList.remove('cloak');
+}
+
+// TODO INSTRUCTIONS FUNCTIONS
+function populateHowToTiles() {
+  const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
+  for (let i = 0; i < 5; i++) {
+    document.getElementById('tile' + (i + 30)).value = letters[i];
+    document.getElementById('tile' + (i + 35)).value = letters[i + 5];
+    document.getElementById('tile' + (i + 40)).value = letters[i + 10];
+
+    document.getElementById('tile' + (i + 30)).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
+  }
+  document.getElementById('tile30').classList.add('contrast-toggle--green');
+  document.getElementById('tile36').classList.add('contrast-toggle--yellow');
+  document.getElementById('tile42').classList.add('contrast-toggle--grey');
+}
+
+function deleteInstructions() {
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
+  document.getElementById('id' + currentTile).focus();
+}
+
 // TODO DELETE INPUT
 function deleteCharacter() {
   var currentLength = allInput.length;
@@ -319,14 +347,8 @@ function deleteCharacter() {
     document.getElementById('id' + (currentLength - 1)).focus();
     currentInput.pop();
     allInput.pop();
+    currentTile = allInput.length;
   }
-}
-
-// TODO POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
-function createInputString() {
-  currentInput.push(event.key.toUpperCase());
-  allInput.push(event.key.toUpperCase());
-  console.log(currentInput);
 }
 
 // TODO DETERMINE EACH ROW / WINN
@@ -468,30 +490,6 @@ function createWord(endPosition) {
 function createEmojiBoard(tileEmoji) {
   currentEmojiBoard += tileEmoji + '\n';
   console.log('currentMiniBoard=', currentEmojiBoard);
-}
-
-// TODO CLIPBOARD CODE
-function copyGameBoard() {
-  console.log('click')
-  let currentRow = Math.floor(allInput.length / 5);
-  if (currentRow != 0) {
-    try {
-      const regex = /(<br>)+/g;
-      console.log(regex)
-
-      // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
-      // let shareText = currentRow + currentMiniBoard;
-      let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
-
-      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
-      navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
-
-      console.log("Data was shared successfully\n", shareText);
-
-    } catch (err) {
-      console.error("Share failed:", err.message);
-    }
-  }
 }
 
 // TODO API CODE
