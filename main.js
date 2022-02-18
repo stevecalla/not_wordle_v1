@@ -31,7 +31,7 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
   if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
     console.log('backspace')
-    deleteCharacter();
+    deleteInputText();
   }
   if (keyCode <65 || keyCode >90) {
     event.preventDefault();
@@ -47,71 +47,42 @@ function loadTasks() {
 }
 
 // SECTION INPUT TEXT
-function inputText() {
-  // let key = event.key;
-  // keyCode = event.keyCode;
-  console.log('length=', allInput.length)
-
-  // console.log('event=', event.value) //for button
-  // console.log('letter=', letter) //for button
-  // let letter = event.value; // for button
-
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //&& (!event.ctrlKey && event.keyCode != 82)
-  // if ((letter || (event.keyCode >=65 && event.keyCode <=90)) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) { //for button
-  // let currentPosition = event.target.id.charAt(event.target.id.length - 1)
-  // console.log(currentPosition);
-  // console.log(allInput.length);
-
+function inputText(event) {
+  console.log('length=', allInput.length);
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
-
-    // if (event.key) {document.getElementById('id' + allInput.length).value = event.key};
-    // if (event.value) {document.getElementById('id' + allInput.length).value = event.value}; // for button
-
-  // const idValue = currentInput.length;
-  // createInputString(idValue);
-
-  createInputString();
-  // createInputString(letter);//for button
-
-  // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
-  }
+    createInputString(event);
+  };
 }
 
-// SECTION DELETE INPUT TEXT 
-function deleteCharacter() {
-  var currentLength = allInput.length;
-  console.log('alllength=', allInput.length);
-  console.log(document.getElementById('id' + (currentLength - 1)))
-  console.log(document.getElementById('id' + (currentLength - 1)).dataset.status)
-  // if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
-  // if (document.getElementById('id' + (currentLength - 1)).data-status) {
-  // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
-  // if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
-
-  let status = document.getElementById('id' + (currentLength -1)).dataset.status;
-  console.log('status=', status);
-
-  if (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
-
-    // document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
-
-    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
-    document.getElementById('id' + (currentLength - 1)).removeAttribute('disabled'); //remove disabled
-    document.getElementById('id' + (currentLength - 1)).value = "";
-    document.getElementById('id' + (currentLength - 1)).focus();
-    currentInput.pop();
-    allInput.pop();
-    currentTile = allInput.length;
-  }
-}
-
-// SECTION POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
-function createInputString() {
+function createInputString(event) {
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
+  determineCurrentTile(allInput);
+  // console.log(currentInput);
+}
+
+function determineCurrentTile(allInput) {
   currentTile = allInput.length;
-  console.log(currentInput);
+}
+
+function deleteInputText() {
+  let status = '';
+  let deleteTile = '';
+  if (allInput.length !== 0) {
+    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
+    deleteTile = document.getElementById('id' + (allInput.length - 1));
+  };
+  if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
+    deleteTile.setAttribute("data-status", ""); //remove color
+    deleteTile.removeAttribute('disabled'); //remove disabled
+    deleteTile.value = "";
+    deleteTile.focus();
+    currentInput.pop();
+    allInput.pop();
+    determineCurrentTile(allInput);
+  }
 }
 
 // SECTION BUTTONS
@@ -586,7 +557,6 @@ function createEmojiBoard2(tileEmoji2) {
   currentEmojiBoard2 += tileEmoji2 + '\n';
   console.log('currentMiniBoard2=', currentEmojiBoard2);
 }
-
 
 // SECTION API CODE
 let elementaryDefinition = 'Placeholder';
