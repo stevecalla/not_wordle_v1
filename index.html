@@ -39,39 +39,16 @@
     <!-- <button class="favorite styled" type="button" value='A' onClick=inputText(this)>A</button>
     <button class="favorite styled" type="button" value='B' onClick=inputText(this)>B</button> -->
 
-    <div class='instruction-wrapper' id='instructionWrapper' onClick='deleteInstructions()'>
-      <div class='instx-title'>
-        <p class='cloak'>x</p>
-        <p class='title'>HOW TO PLAY</p>
-        <p class='click-to-hide-x'>X</p>
-      </div>
-      <p>Guess the WORD in six tries.</p>
-      <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
-      <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
-      <div class='example-border'>
-        <p>Examples</p>
-        <div class='input-wrapper' id='instructionTile1'></div>
-        <p>The letter W is in the word and in the correct spot.</p>
-        <div class='input-wrapper' id='instructionTile2'></div>
-        <p>The letter I is in the word but in the wrong spot.</p>
-        <div class='input-wrapper' id='instructionTile3'></div>
-        <p>The letter U is not in the word in any spot.</p>
-    </div>
-      <p>LET'S PLAY!!</p>
-    </div>
-
+    <div class='instruction-wrapper' id='instructionWrapper' onClick='deleteInstructions()'> </div>
     <div class='solution cloak' id='solution'></div>
     <div class='definition cloak' id='definition'></div>
 
-    
-
     <button class="btn-toggle darkmode-toggle" onclick='toggleDarkModeButton()' aria-label="Activate dark mode" aria-checked="false" role="checkbox" ></button>
+
+
     <script>
     const btn = document.querySelector(".btn-toggle");
     const theme = document.querySelector("#theme-link");
-
-    
-
     function toggleDarkModeButton() {
       btn.classList.toggle('darkmode-toggle--white');
       document.querySelector('.header-icon-svg').classList.toggle('darkmode-svg-toggle--white');
@@ -115,14 +92,6 @@
             document.getElementById('id' + i).classList.remove('contrast-toggle--orange');
           }
         }
-        // document.getElementById('tile30').classList.add('contrast-toggle--green');
-        // document.getElementById('tile36').classList.add('contrast-toggle--yellow');
-        // document.getElementById('tile42').classList.add('contrast-toggle--grey');
-        
-        // document.querySelector('.header-icon-svg').classList.toggle('darkmode-svg-toggle--white');
-        // document.querySelector('.header-icon-svg2').classList.toggle('darkmode-svg-toggle--white');
-        // document.querySelector('.header-icon-svg3').classList.toggle('darkmode-svg-toggle--white');
-        // document.querySelector('.header-icon-svg4').classList.toggle('darkmode-svg-toggle--white');
       };
 
       btn2.addEventListener("click", function() {

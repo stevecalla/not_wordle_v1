@@ -40,6 +40,7 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 //functions and event handlers go here 👇
 // TODO LOAD TASKS
 function loadTasks() {
+  injectHowToInstrx();
   createSolution();
   createTiles();
   populateHowToTiles();
@@ -299,6 +300,29 @@ function formatSolution() {
 }
 
 // TODO INSTRUCTIONS FUNCTIONS
+function injectHowToInstrx() {
+  document.getElementById('instructionWrapper').innerHTML = `
+    <div class='instx-title'>
+      <p class='cloak'>x</p>
+      <p class='title'>HOW TO PLAY</p>
+      <p class='click-to-hide-x'>X</p>
+    </div>
+    <p>Guess the WORD in six tries.</p>
+    <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+    <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+    <div class='example-border'>
+      <p>Examples</p>
+      <div class='input-wrapper' id='instructionTile1'></div>
+      <p>The letter W is in the word and in the correct spot.</p>
+      <div class='input-wrapper' id='instructionTile2'></div>
+      <p>The letter I is in the word but in the wrong spot.</p>
+      <div class='input-wrapper' id='instructionTile3'></div>
+      <p>The letter U is not in the word in any spot.</p>
+    </div>
+    <p>LET'S PLAY!!</p>
+  `
+}
+
 function populateHowToTiles() {
   const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
   for (let i = 0; i < 5; i++) {
