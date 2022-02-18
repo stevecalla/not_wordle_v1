@@ -87,13 +87,10 @@ function deleteInputText() {
 
 // SECTION BUTTONS
 function getKeyboardButton() {
-  console.log('a');
-  console.log(currentTile);
   focusCurrentTile();
 }
 
 function refreshButton() {
-  console.log('reset in progress')
   location.reload(true);
   focusCurrentTile();;
   focusCurrentTile();
@@ -110,30 +107,19 @@ function toggleContrastModeButton() {
 } 
 
 function definitionButton() {
-  console.log('definition in progress');
   getWebsterDictionaryAPI();
   focusCurrentTile();
 } 
 
-function copyGameBoardButton() { // SECTION CLIPBOARD CODE
-  console.log('click')
+function copyGameBoardButton() {
   let currentRow = Math.floor(allInput.length / 5);
+  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
+  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
+  let contrastState = document.querySelector('.contrast-toggle');
   if (currentRow != 0) {
     try {
-      const regex = /(<br>)+/g;
-      console.log(regex)
-
-      // let shareText = document.getElementById("inputTilesRow1").innerHTML.replace(regex, "\n");
-      // let shareText = currentRow + currentMiniBoard;
-      // let shareText = `${currentRow}/6\n${currentEmojiBoard}`;
-
-      let shareText = document.querySelector('.contrast-toggle').classList.contains('contrast-toggle--blueorange') ? `${currentRow}/6\n${currentEmojiBoard2}` : `${currentRow}/6\n${currentEmojiBoard}`;
-
-      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!" ${shareText}`)});
-      navigator.clipboard.writeText(shareText).then(()=>{alert(`${shareText}`)});
-
-      console.log("Data was shared successfully\n", shareText);
-
+      let shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
+      navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
     } catch (err) {
       console.error("Share failed:", err.message);
     }
