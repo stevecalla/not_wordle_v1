@@ -75,8 +75,10 @@
       function toggleContrastModeButton() {
         console.log('click')
         btn2.classList.toggle('contrast-toggle--blueorange');
-        document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
-        document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
+        if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
+          document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
+          document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
+        }
 
         for (let i = 0; i < 30; i++) {
           console.log(i)
