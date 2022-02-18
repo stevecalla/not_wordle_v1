@@ -583,10 +583,11 @@ function createEmojiBoard2(tileEmoji2) {
   console.log('currentMiniBoard2=', currentEmojiBoard2);
 }
 
-var elementaryDefinition = 'Placeholder';
-var collegeDefinition = 'Placeholder';
 
 // SECTION API CODE
+let elementaryDefinition = 'Placeholder';
+let collegeDefinition = 'Placeholder';
+let displayDefinition = 'Sorry, I could not find the definition';
 getWebsterDictionaryAPI = () => {
   console.log('a')
   let currentRow = Math.floor(allInput.length / 5);
@@ -615,8 +616,6 @@ getWebsterDictionaryAPI = () => {
     displayDefintion(elementaryDefinition, collegeDefinition)
   }, 1000);
 }
-
-var displayDefinition = 'Sorry, I could not find the definition';
 
 function displayDefintion(elementaryDefinition, collegeDefinition) {
   console.log('a=', elementaryDefinition) 
