@@ -117,30 +117,36 @@ function createInputString() {
 }
 
 // SECTION BUTTONS
-function getKeyboard() {
+function getKeyboardButton() {
   console.log('a');
   console.log(currentTile);
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();
 }
 
-function refresh() {
+function refreshButton() {
   console.log('reset in progress')
   location.reload(true);
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();;
+  focusCurrentTile();
 }
 
-function toggleContrast() {
-  toggleContrastModeButton();
-  document.getElementById('id' + currentTile).focus();
+function toggleDarkModeButton() {
+  toggleDarkMode();
+  focusCurrentTile();
 } 
 
-function definition() {
+function toggleContrastModeButton() {
+  toggleContrastMode();
+  focusCurrentTile();
+} 
+
+function definitionButton() {
   console.log('definition in progress');
   getWebsterDictionaryAPI();
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();
 } 
 
-function copyGameBoard() { // SECTION CLIPBOARD CODE
+function copyGameBoardButton() { // SECTION CLIPBOARD CODE
   console.log('click')
   let currentRow = Math.floor(allInput.length / 5);
   if (currentRow != 0) {
@@ -163,7 +169,7 @@ function copyGameBoard() { // SECTION CLIPBOARD CODE
       console.error("Share failed:", err.message);
     }
   }
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();
 }
 
 // SECTION CREATE GAME TILES
@@ -429,7 +435,7 @@ function deleteInstructions() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();;
 }
 
 // SECTION DETERMINE EACH ROW / WINN
@@ -640,7 +646,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 }
 
 // SECTION DARK & CONTRAST MODE
-function toggleDarkModeButton() {
+function toggleDarkMode() {
   const darkModeButton = document.querySelector(".darkmode-toggle");
   const darkModeCSS = document.querySelector("#darkMode-link");
   const darkModeIconList = document.querySelectorAll('.header-icon-svg');
@@ -649,10 +655,10 @@ function toggleDarkModeButton() {
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();;
 }
 
-function toggleContrastModeButton() {
+function toggleContrastMode() {
   const contrastModeButton = document.querySelector(".contrast-toggle");
   contrastModeButton.classList.toggle('contrast-toggle--blueorange');
   const gameTiles = document.querySelectorAll("input[id^='id']");
@@ -668,5 +674,10 @@ function toggleContrastModeButton() {
     document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
     document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
   }
-  document.getElementById('id' + currentTile).focus();
+  focusCurrentTile();
+}
+
+//SECTION FOCUS TILE
+function focusCurrentTile() {
+  if (currentTile < 29) {document.getElementById('id' + currentTile).focus()};
 }
