@@ -125,15 +125,18 @@ function getKeyboard() {
 function refresh() {
   console.log('reset in progress')
   location.reload(true);
+  document.getElementById('id' + currentTile).focus();
 }
 
 function contrast() {
   console.log('contrast in progress');
+  document.getElementById('id' + currentTile).focus();
 } 
 
 function definition() {
   console.log('definition in progress');
   getWebsterDictionaryAPI();
+  document.getElementById('id' + currentTile).focus();
 } 
 
 function copyGameBoard() { // SECTION CLIPBOARD CODE
@@ -157,6 +160,7 @@ function copyGameBoard() { // SECTION CLIPBOARD CODE
       console.error("Share failed:", err.message);
     }
   }
+  document.getElementById('id' + currentTile).focus();
 }
 
 // SECTION CREATE GAME TILES
@@ -629,6 +633,7 @@ function toggleDarkModeButton() {
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
+  document.getElementById('id' + currentTile).focus();
 }
 
 function toggleContrastModeButton() {
@@ -647,4 +652,5 @@ function toggleContrastModeButton() {
     document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
     document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
   }
+  document.getElementById('id' + currentTile).focus();
 }
