@@ -531,10 +531,10 @@ function evaluateString() {
     } else if (endPosition === 29) {
         console.log('end of game');
         console.log(solution, solution.join(''))
-        document.getElementById('solution').classList.remove('cloak');
-        displaySolution.innerText = '';
-        displaySolution.innerText = solution.join('');
-        getWebsterDictionaryAPI();
+        // document.getElementById('solution').classList.remove('cloak');
+        // displaySolution.innerText = '';
+        // displaySolution.innerText = solution.join('');
+        // getWebsterDictionaryAPI();
         document.getElementById('id29').blur();
 
     } else {
