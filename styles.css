@@ -44,18 +44,15 @@ body {
   border-color: grey;
 }
 
-.header-icon {
+/* .header-icon {
   height: 25px;
   width: 25px;
   /* isolation: isolate; */
   /* position: relative;
   z-index: 100; */
-}
+/* } */
 
-.header-icon-svg,
-.header-icon-svg2,
-.header-icon-svg3,
-.header-icon-svg4 {
+.header-icon-svg {
   height: 26px;
   width: 26px;
   fill: black;
