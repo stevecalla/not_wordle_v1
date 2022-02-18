@@ -44,11 +44,9 @@ function loadTasks() {
   createSolution();
   createGameInstruction();
   createTiles();
-  document.getElementById('instructionWrapper').focus();
 }
 
 // SECTION INPUT TEXT
-
 function inputText() {
   // let key = event.key;
   // keyCode = event.keyCode;
