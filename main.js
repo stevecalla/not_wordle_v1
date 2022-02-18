@@ -46,7 +46,7 @@ function loadTasks() {
   document.getElementById('instructionWrapper').focus();
 }
 
-// SECTION TBD
+// SECTION INPUT TEXT
 
 function inputText() {
   // let key = event.key;
@@ -76,6 +76,34 @@ function inputText() {
   // createInputString(letter);//for button
 
   // document.getElementById('id' + (allInput.length * 1 + 1)).focus()
+  }
+}
+
+// SECTION DELETE INPUT TEXT 
+function deleteCharacter() {
+  var currentLength = allInput.length;
+  console.log('alllength=', allInput.length);
+  console.log(document.getElementById('id' + (currentLength - 1)))
+  console.log(document.getElementById('id' + (currentLength - 1)).dataset.status)
+  // if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
+  // if (document.getElementById('id' + (currentLength - 1)).data-status) {
+  // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
+  // if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
+
+  let status = document.getElementById('id' + (currentLength -1)).dataset.status;
+  console.log('status=', status);
+
+  if (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
+
+    // document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
+
+    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
+    document.getElementById('id' + (currentLength - 1)).removeAttribute('disabled'); //remove disabled
+    document.getElementById('id' + (currentLength - 1)).value = "";
+    document.getElementById('id' + (currentLength - 1)).focus();
+    currentInput.pop();
+    allInput.pop();
+    currentTile = allInput.length;
   }
 }
 
@@ -397,34 +425,6 @@ function deleteInstructions() {
   document.getElementById('id' + currentTile).focus();
 }
 
-// SECTION DELETE INPUT 
-function deleteCharacter() {
-  var currentLength = allInput.length;
-  console.log('alllength=', allInput.length);
-  console.log(document.getElementById('id' + (currentLength - 1)))
-  console.log(document.getElementById('id' + (currentLength - 1)).dataset.status)
-  // if (document.getElementById('id' + (currentLength - 1)).disabled === false) {
-  // if (document.getElementById('id' + (currentLength - 1)).data-status) {
-  // if (document.getElementById('id' + (currentLength - 1)).hasAttribute('data-status')) {
-  // if (!document.getElementById('id' + (currentLength - 1)).dataset.status) {
-
-  let status = document.getElementById('id' + (currentLength -1)).dataset.status;
-  console.log('status=', status);
-
-  if (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
-
-    // document.getElementById('id' + (currentLength - 1)).disabled = false; //remove disabled
-
-    document.getElementById('id' + (currentLength - 1)).setAttribute("data-status", ""); //remove color
-    document.getElementById('id' + (currentLength - 1)).removeAttribute('disabled'); //remove disabled
-    document.getElementById('id' + (currentLength - 1)).value = "";
-    document.getElementById('id' + (currentLength - 1)).focus();
-    currentInput.pop();
-    allInput.pop();
-    currentTile = allInput.length;
-  }
-}
-
 // SECTION DETERMINE EACH ROW / WINN
 function evaluateString() {
 
@@ -617,4 +617,34 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
+}
+
+// SECTION DARK & CONTRAST MODE
+function toggleDarkModeButton() {
+  const darkModeButton = document.querySelector(".darkmode-toggle");
+  const darkModeCSS = document.querySelector("#darkMode-link");
+  const darkModeIconList = document.querySelectorAll('.header-icon-svg');
+  darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
+  darkModeButton.classList.toggle('darkmode-toggle--white');
+  for (let i = 0; i < 4; i++) {
+    darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
+  }
+}
+
+function toggleContrastModeButton() {
+  const contrastModeButton = document.querySelector(".btn-toggle2");
+  contrastModeButton.classList.toggle('contrast-toggle--blueorange');
+  const gameTiles = document.querySelectorAll("input[id^='id']");
+  for (let i = 0; i < 30; i++) {
+    // console.log(i)
+    if (gameTiles[i].dataset.status === 'exactMatch') {
+      gameTiles[i].classList.toggle('contrast-toggle--blue');
+    } else if (gameTiles[i].dataset.status === 'match') {
+      gameTiles[i].classList.toggle('contrast-toggle--orange');
+    }
+  }
+  if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
+    document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
+    document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
+  }
 }
