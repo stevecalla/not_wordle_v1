@@ -583,43 +583,47 @@ function createEmojiBoard2(tileEmoji2) {
   console.log('currentMiniBoard2=', currentEmojiBoard2);
 }
 
+var elementaryDefinition = 'Placeholder';
+var collegeDefinition = 'Placeholder';
+
 // SECTION API CODE
 getWebsterDictionaryAPI = () => {
   console.log('a')
-  var elementaryDefinition = '';
-  var collegeDefinition = '';
   let currentRow = Math.floor(allInput.length / 5);
-  // if (currentRow === 6) {
-  fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
-      .then((response) => response.json())
-      .then(function (definition) {
-        elementaryDefinition = definition[0].shortdef[0];
-        })
-      .catch(err => {
-        console.error("API #1 failed:", err.message);
-      })  
-  fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-      .then((response) => response.json())
-      .then(function (definition) {
-        collegeDefinition = definition[0].shortdef[0];
-        console.log(definition[0].hwi.prs[0].sound.audio);
-        })
-      .catch(err => {
-        console.error("API #2 failed:", err.message);
-      }) 
+  if (elementaryDefinition === 'Placeholder' || collegeDefinition === 'Placeholder') {
+    fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+        .then((response) => response.json())
+        .then(function (definition) {
+          elementaryDefinition = definition[0].shortdef[0];
+          console.log('api run 1');
+          })
+        .catch(err => {
+          console.error("API #1 failed:", err.message);
+        })  
+    fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+        .then((response) => response.json())
+        .then(function (definition) {
+          collegeDefinition = definition[0].shortdef[0];
+          // console.log(definition[0].hwi.prs[0].sound.audio);
+          console.log('api run 2');
+          })
+        .catch(err => {
+          console.error("API #2 failed:", err.message);
+        }) 
+  }
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition)
   }, 1000);
-  // }
 }
+
+var displayDefinition = 'Sorry, I could not find the definition';
 
 function displayDefintion(elementaryDefinition, collegeDefinition) {
   console.log('a=', elementaryDefinition) 
   console.log('b=', collegeDefinition) 
-  var displayDefinition = 'Sorry, I could not find the definition';
-  if (elementaryDefinition !== '') {
+  if (elementaryDefinition !== 'Placeholder') {
     displayDefinition = elementaryDefinition;
-  } else if (collegeDefinition !== '') {
+  } else if (collegeDefinition !== 'Placeholder') {
     displayDefinition = collegeDefinition;
   } else {
     displayDefinition = 'Sorry, I could not find the definition';
