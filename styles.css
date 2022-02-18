@@ -12,12 +12,13 @@
 html {
   /* height: 100%; */
   /* font-family: 'Quicksand', sans-serif; */
-  overflow: hidden;
+  /* overflow: hidden; */
+  overscroll-behavior-y: hidden;
   padding: env(safe-area-inset); /*this is the missing piece. Add it.*/
 }
 
 body {
-  overscroll-behavior-y: none;
+  /* overscroll-behavior-y: none; */
   display: flex;
   flex-direction: column;
   align-items: center;
