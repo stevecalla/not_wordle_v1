@@ -38,16 +38,15 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 }, false);
 
 //functions and event handlers go here 👇
-// TODO LOAD TASKS
+// SECTION LOAD TASKS
 function loadTasks() {
-  injectHowToInstrx();
   createSolution();
+  createGameInstruction();
   createTiles();
-  populateHowToTiles();
   document.getElementById('instructionWrapper').focus();
 }
 
-// TODO TBD
+// SECTION TBD
 
 function inputText() {
   // let key = event.key;
@@ -80,7 +79,7 @@ function inputText() {
   }
 }
 
-// TODO POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
+// SECTION POPULATE CURRENT GUESS AND ALL GUESSES ARRAYS
 function createInputString() {
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
@@ -88,7 +87,7 @@ function createInputString() {
   console.log(currentInput);
 }
 
-// TODO HEADER BUTTONS
+// SECTION HEADER BUTTONS
 function getKeyboard() {
   console.log('a');
   console.log(currentTile);
@@ -109,7 +108,7 @@ function definition() {
   getWebsterDictionaryAPI();
 } 
 
-function copyGameBoard() { // TODO CLIPBOARD CODE
+function copyGameBoard() { // SECTION CLIPBOARD CODE
   console.log('click')
   let currentRow = Math.floor(allInput.length / 5);
   if (currentRow != 0) {
@@ -132,7 +131,7 @@ function copyGameBoard() { // TODO CLIPBOARD CODE
   }
 }
 
-// TODO CREATE GAME TILES
+// SECTION CREATE GAME TILES
 function createTiles() {
   for (let i = 0; i < 5; i++) {
     inputTilesRow1.innerHTML +=
@@ -230,6 +229,105 @@ function createTiles() {
       </div>
     `;
   }
+  // for (let i = 30; i < 35; i++) {
+  //   instructionTile1.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input type="text" 
+  //               id=${`tile${i}`}
+  //               maxlength="1"
+  //               name="selection" 
+  //               value=""
+  //               size="1"
+  //               style="text-transform:uppercase" >
+  //     </div>
+  //   `;
+  // }
+  // for (let i = 35; i < 40; i++) {
+  //   instructionTile2.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input type="text" 
+  //               id=${`tile${i}`}
+  //               maxlength="1"
+  //               name="selection" 
+  //               value=""
+  //               size="1"
+  //               style="text-transform:uppercase" >
+  //     </div>
+  //   `;
+  // }
+  // for (let i = 40; i < 45; i++) {
+  //   instructionTile3.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input type="text" 
+  //               id=${`tile${i}`}
+  //               maxlength="1"
+  //               name="selection" 
+  //               value=""
+  //               size="1"
+  //               style="text-transform:uppercase" >
+  //     </div>
+  //   `;
+  // }
+}
+
+// SECTION CREATE SOLUTION
+function createSolution() {
+  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  console.log('random=', randomNumber);
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log(solution);
+  console.log(wordList.length);
+  // formatSolution();
+}
+
+function formatSolution() {
+  // displaySolution.innerText = solution.join('');
+
+  // console.log(displaySolution)
+  // displaySolution.innerText = solution;
+  // getWebsterDictionaryAPI();
+
+  // for (let i = 0; i < solution.length; i++) {
+  //   displaySolution.innerText += solution[i];
+  // }
+
+  // document.getElementById('solution').classList.remove('cloak');
+}
+
+// SECTION INSTRUCTIONS FUNCTIONS
+function createGameInstruction() {
+  injectInstructionText();
+  createIntructionTiles();
+  populateInstructionTiles();
+}
+
+function injectInstructionText() {
+  document.getElementById('instructionWrapper').innerHTML = `
+    <div class='instx-title'>
+      <p class='cloak'>x</p>
+      <p class='title'>HOW TO PLAY</p>
+      <p class='click-to-hide-x'>X</p>
+    </div>
+    <p>Guess the WORD in six tries.</p>
+    <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
+    <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
+    <div class='example-border'>
+      <p>Examples</p>
+      <div class='input-wrapper' id='instructionTile1'></div>
+      <p>The letter W is in the word and in the correct spot.</p>
+      <div class='input-wrapper' id='instructionTile2'></div>
+      <p>The letter I is in the word but in the wrong spot.</p>
+      <div class='input-wrapper' id='instructionTile3'></div>
+      <p>The letter U is not in the word in any spot.</p>
+    </div>
+    <p>LET'S PLAY!!</p>
+  `
+}
+
+function createIntructionTiles() {
   for (let i = 30; i < 35; i++) {
     instructionTile1.innerHTML +=
     `   
@@ -272,58 +370,9 @@ function createTiles() {
       </div>
     `;
   }
-  
 }
 
-// TODO CREATE SOLUTION
-function createSolution() {
-  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
-  console.log('random=', randomNumber);
-  solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution);
-  console.log(wordList.length);
-  // formatSolution();
-}
-
-function formatSolution() {
-  // displaySolution.innerText = solution.join('');
-
-  // console.log(displaySolution)
-  // displaySolution.innerText = solution;
-  // getWebsterDictionaryAPI();
-
-  // for (let i = 0; i < solution.length; i++) {
-  //   displaySolution.innerText += solution[i];
-  // }
-
-  // document.getElementById('solution').classList.remove('cloak');
-}
-
-// TODO INSTRUCTIONS FUNCTIONS
-function injectHowToInstrx() {
-  document.getElementById('instructionWrapper').innerHTML = `
-    <div class='instx-title'>
-      <p class='cloak'>x</p>
-      <p class='title'>HOW TO PLAY</p>
-      <p class='click-to-hide-x'>X</p>
-    </div>
-    <p>Guess the WORD in six tries.</p>
-    <p>Each guess must be a valid five-letter word. Hit the enter button to submit.</p>
-    <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
-    <div class='example-border'>
-      <p>Examples</p>
-      <div class='input-wrapper' id='instructionTile1'></div>
-      <p>The letter W is in the word and in the correct spot.</p>
-      <div class='input-wrapper' id='instructionTile2'></div>
-      <p>The letter I is in the word but in the wrong spot.</p>
-      <div class='input-wrapper' id='instructionTile3'></div>
-      <p>The letter U is not in the word in any spot.</p>
-    </div>
-    <p>LET'S PLAY!!</p>
-  `
-}
-
-function populateHowToTiles() {
+function populateInstructionTiles() {
   const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
   for (let i = 0; i < 5; i++) {
     document.getElementById('tile' + (i + 30)).value = letters[i];
@@ -340,6 +389,7 @@ function populateHowToTiles() {
 }
 
 function deleteInstructions() {
+  document.getElementById('instructionWrapper').innerHTML = ``;
   document.getElementById('instructionWrapper').classList.add('hidden');
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
@@ -347,7 +397,7 @@ function deleteInstructions() {
   document.getElementById('id' + currentTile).focus();
 }
 
-// TODO DELETE INPUT
+// SECTION DELETE INPUT 
 function deleteCharacter() {
   var currentLength = allInput.length;
   console.log('alllength=', allInput.length);
@@ -375,7 +425,7 @@ function deleteCharacter() {
   }
 }
 
-// TODO DETERMINE EACH ROW / WINN
+// SECTION DETERMINE EACH ROW / WINN
 function evaluateString() {
 
   let currentPosition = 0;
@@ -498,7 +548,7 @@ function evaluateString() {
   createEmojiBoard(tileEmoji);
 }
 
-// TODO CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
+// SECTION CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
 function createWord(endPosition) {
   console.log('endPosition=', endPosition * 1 + 1);
   console.log('noway=', document.getElementById('id6').value)
@@ -510,13 +560,13 @@ function createWord(endPosition) {
   console.log(word);
 }
 
-// TODO EMOJI BOARD
+// SECTION EMOJI BOARD
 function createEmojiBoard(tileEmoji) {
   currentEmojiBoard += tileEmoji + '\n';
   console.log('currentMiniBoard=', currentEmojiBoard);
 }
 
-// TODO API CODE
+// SECTION API CODE
 getWebsterDictionaryAPI = () => {
   console.log('a')
     var elementaryDefinition = '';
