@@ -562,10 +562,11 @@ function createEmojiBoard2(tileEmoji2) {
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
+
 getWebsterDictionaryAPI = () => {
-  console.log('a')
+  console.log('api#1=', elementaryDefinition === 'Placeholder', 'api#2', collegeDefinition === 'Placeholder')
   let currentRow = Math.floor(allInput.length / 5);
-  if (elementaryDefinition === 'Placeholder' || collegeDefinition === 'Placeholder') {
+  if (elementaryDefinition === 'Placeholder' && collegeDefinition === 'Placeholder') {
     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
         .then((response) => response.json())
         .then(function (definition) {
