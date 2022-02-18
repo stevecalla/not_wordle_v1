@@ -62,43 +62,25 @@
     </script>
 
 
-    <button class="btn-toggle2 contrast-toggle" role="checkbox" onclick='toggleContrastModeButton()' aria-label="Activate color blind mode" aria-checked="false" '></button>
+    <button class="btn-toggle2 contrast-toggle" onclick='toggleContrastModeButton()' aria-label="Activate color blind mode" aria-checked="false" role="checkbox"></button>
     <script>
-      const btn2 = document.querySelector(".btn-toggle2");
-      const theme2 = document.querySelector("#theme-link");
-
       function toggleContrastModeButton() {
-        console.log('click')
-        btn2.classList.toggle('contrast-toggle--blueorange');
+        const contrastModeButton = document.querySelector(".btn-toggle2");
+        contrastModeButton.classList.toggle('contrast-toggle--blueorange');
+        const gameTiles = document.querySelectorAll("input[id^='id']");
+        for (let i = 0; i < 30; i++) {
+          // console.log(i)
+          if (gameTiles[i].dataset.status === 'exactMatch') {
+            gameTiles[i].classList.toggle('contrast-toggle--blue');
+          } else if (gameTiles[i].dataset.status === 'match') {
+            gameTiles[i].classList.toggle('contrast-toggle--orange');
+          }
+        }      
         if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
           document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
           document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
         }
-
-        for (let i = 0; i < 30; i++) {
-          console.log(i)
-          if (btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'exactMatch') {
-            document.getElementById('id' + i).classList.add('contrast-toggle--blue');
-          } else if (btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'match') {
-            document.getElementById('id' + i).classList.add('contrast-toggle--orange');
-          }
-
-          if (!btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'exactMatch') {
-            document.getElementById('id' + i).classList.remove('contrast-toggle--blue');
-          } else if (!btn2.classList.contains('contrast-toggle--blueorange') && document.getElementById('id' + i).dataset.status === 'match') {
-            document.getElementById('id' + i).classList.remove('contrast-toggle--orange');
-          }
-        }
       };
-
-      // btn2.addEventListener("click", function() {
-      //   Swap out the URL for the different stylesheets
-      //   if (theme2.getAttribute("href") === "light-theme.css") {
-      //     theme.href = "blue-orange-theme.css";
-      //   } else {
-      //     theme2.href = "green-yellow-theme.css";
-      //   }
-      // });
       </script>
 
     <script type="text/javascript" src="confetti.js"></script>
