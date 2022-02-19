@@ -350,11 +350,12 @@ input[type=text][data-status='start'] {
   }
 
   .input-wrapper {
-      /* border: solid; */
-      /* border-color: blue; */
-      /* display: flex; */
-      /* flex-basis: 20%; */
-      /* overflow: scroll; */
+    width: 300px;
+    /* border: solid; */
+    /* border-color: blue; */
+    /* display: flex; */
+    /* flex-basis: 20%; */
+    /* overflow: scroll; */
     }
 
     input[id^='id'] {
