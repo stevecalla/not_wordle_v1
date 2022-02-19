@@ -75,7 +75,7 @@ function deleteInputText() {
     deleteTile = document.getElementById('id' + (allInput.length - 1));
   };
   if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
-    deleteTile.setAttribute("data-status", ""); //remove color
+    deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = "";
     deleteTile.focus();
@@ -536,12 +536,12 @@ function createWord(endPosition) {
 // SECTION EMOJI BOARD
 function createEmojiBoard(tileEmoji) {
   currentEmojiBoard += tileEmoji + '\n';
-  console.log('currentMiniBoard=', currentEmojiBoard);
+  console.log('currentMiniBoard=\n', currentEmojiBoard);
 }
 
 function createEmojiBoard2(tileEmoji2) {
   currentEmojiBoard2 += tileEmoji2 + '\n';
-  console.log('currentMiniBoard2=', currentEmojiBoard2);
+  console.log('currentMiniBoard2=\n', currentEmojiBoard2);
 }
 
 // SECTION API CODE
@@ -634,5 +634,17 @@ function toggleContrastMode() {
 
 //SECTION FOCUS TILE
 function focusCurrentTile() {
-  if (currentTile < 29) {document.getElementById('id' + currentTile).focus()};
+  console.log('focus currentTile=', allInput.length);
+  console.log('allInput.length % 5=', allInput.length % 5);
+  let status = "";
+  if (allInput.length !== 0) {
+    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
+  };
+
+  if (allInput.length !== 0 && allInput.length % 5 === 0 && status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
+    currentTile = allInput.length - 1;
+  } else {
+    currentTile = allInput.length;
+  }
+  document.getElementById('id' + (currentTile)).focus();
 }
