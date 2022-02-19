@@ -634,17 +634,17 @@ function toggleContrastMode() {
 
 //SECTION FOCUS TILE
 function focusCurrentTile() {
-  console.log('focus currentTile=', allInput.length);
-  console.log('allInput.length % 5=', allInput.length % 5);
-  let status = "";
-  if (allInput.length !== 0) {
-    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
-  };
+  let status = '';
+  let checkLengthNotZero = false;
+  let checkLengthEqualToFive = false;
+  let checkStatus = false;
 
-  if (allInput.length !== 0 && allInput.length % 5 === 0 && status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') {
-    currentTile = allInput.length - 1;
-  } else {
-    currentTile = allInput.length;
-  }
+  if (allInput.length !== 0) {
+    checkLengthNotZero = true;
+    checkLengthEqualToFive = (allInput.length % 5 === 0);
+    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
+    checkStatus = (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch');
+  };
+  checkLengthNotZero && checkLengthEqualToFive && checkStatus ? (currentTile = allInput.length - 1) : (currentTile = allInput.length);
   document.getElementById('id' + (currentTile)).focus();
 }
