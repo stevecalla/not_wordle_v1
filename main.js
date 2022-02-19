@@ -15,6 +15,11 @@ var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
 var currentEmojiBoard2 = "";
+var currentEmojiBoard3 = "";
+var currentEmojiBoard4 = "";
+let elementaryDefinition = 'Placeholder';
+let collegeDefinition = 'Placeholder';
+let displayDefinition = 'Sorry, I could not find the definition';
 
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
@@ -41,95 +46,14 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
-  createSolution();
   createGameInstruction();
-  createTiles();
-}
-
-// SECTION INPUT TEXT
-function inputText(event) {
-  console.log('length=', allInput.length);
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) {
-    document.getElementById('id' + allInput.length).focus();
-    document.getElementById('id' + allInput.length).value = event.key;
-    createInputString(event);
-  };
-}
-
-function createInputString(event) {
-  currentInput.push(event.key.toUpperCase());
-  allInput.push(event.key.toUpperCase());
-  determineCurrentTile(allInput);
-  // console.log(currentInput);
-}
-
-function determineCurrentTile(allInput) {
-  currentTile = allInput.length;
-}
-
-function deleteInputText() {
-  let status = '';
-  let deleteTile = '';
-  if (allInput.length !== 0) {
-    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
-    deleteTile = document.getElementById('id' + (allInput.length - 1));
-  };
-  if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
-    deleteTile.setAttribute('data-status', 'start'); //remove color
-    deleteTile.removeAttribute('disabled'); //remove disabled
-    deleteTile.value = "";
-    deleteTile.focus();
-    currentInput.pop();
-    allInput.pop();
-    determineCurrentTile(allInput);
-  }
-}
-
-// SECTION BUTTONS
-function getKeyboardButton() {
-  focusCurrentTile();
-}
-
-function refreshButton() {
-  location.reload(true);
-  focusCurrentTile();;
-  focusCurrentTile();
-}
-
-function toggleDarkModeButton() {
-  toggleDarkMode();
-  focusCurrentTile();
-} 
-
-function toggleContrastModeButton() {
-  toggleContrastMode();
-  focusCurrentTile();
-} 
-
-function definitionButton() {
-  getWebsterDictionaryAPI();
-  focusCurrentTile();
-} 
-
-function copyGameBoardButton() {
-  let currentRow = Math.floor(allInput.length / 5);
-  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
-  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
-  let contrastState = document.querySelector('.contrast-toggle');
-  if (currentRow != 0) {
-    try {
-      let shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
-      navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
-    } catch (err) {
-      console.error("Share failed:", err.message);
-    }
-  }
-  focusCurrentTile();
+  createGameTiles();
+  createGameSolution();
 }
 
 // SECTION CREATE GAME TILES
-function createTiles() {
-  for (let i = 0; i < 5; i++) {
+function createGameTiles() {
+  for (let i = 0; i < 30; i++) {
     inputTilesRow1.innerHTML +=
     `   
       <div>
@@ -145,155 +69,89 @@ function createTiles() {
       </div>
     `;
   }
-  for (let i = 5; i < 10; i++) {
-    inputTilesRow2.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 10; i < 15; i++) {
-    inputTilesRow3.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 15; i < 20; i++) {
-    inputTilesRow4.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 20; i < 25; i++) {
-    inputTilesRow5.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 25; i < 30; i++) {
-    inputTilesRow6.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  // for (let i = 30; i < 35; i++) {
-  //   instructionTile1.innerHTML +=
+  // for (let i = 5; i < 10; i++) {
+  //   inputTilesRow2.innerHTML +=
   //   `   
   //     <div>
   //       <input type="text" 
-  //               id=${`tile${i}`}
+  //               id=${`id${i}`}
   //               maxlength="1"
   //               name="selection" 
   //               value=""
   //               size="1"
+  //               disabled="disabled"
+  //               data-status="start"
   //               style="text-transform:uppercase" >
   //     </div>
   //   `;
   // }
-  // for (let i = 35; i < 40; i++) {
-  //   instructionTile2.innerHTML +=
+  // for (let i = 10; i < 15; i++) {
+  //   inputTilesRow3.innerHTML +=
   //   `   
   //     <div>
   //       <input type="text" 
-  //               id=${`tile${i}`}
+  //               id=${`id${i}`}
   //               maxlength="1"
   //               name="selection" 
   //               value=""
   //               size="1"
+  //               disabled="disabled"
+  //               data-status="start"
   //               style="text-transform:uppercase" >
   //     </div>
   //   `;
   // }
-  // for (let i = 40; i < 45; i++) {
-  //   instructionTile3.innerHTML +=
+  // for (let i = 15; i < 20; i++) {
+  //   inputTilesRow4.innerHTML +=
   //   `   
   //     <div>
   //       <input type="text" 
-  //               id=${`tile${i}`}
+  //               id=${`id${i}`}
   //               maxlength="1"
   //               name="selection" 
   //               value=""
   //               size="1"
+  //               disabled="disabled"
+  //               data-status="start"
+  //               style="text-transform:uppercase" >
+  //     </div>
+  //   `;
+  // }
+  // for (let i = 20; i < 25; i++) {
+  //   inputTilesRow5.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input type="text" 
+  //               id=${`id${i}`}
+  //               maxlength="1"
+  //               name="selection" 
+  //               value=""
+  //               size="1"
+  //               disabled="disabled"
+  //               data-status="start"
+  //               style="text-transform:uppercase" >
+  //     </div>
+  //   `;
+  // }
+  // for (let i = 25; i < 30; i++) {
+  //   inputTilesRow6.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input type="text" 
+  //               id=${`id${i}`}
+  //               maxlength="1"
+  //               name="selection" 
+  //               value=""
+  //               size="1"
+  //               disabled="disabled"
+  //               data-status="start"
   //               style="text-transform:uppercase" >
   //     </div>
   //   `;
   // }
 }
 
-// SECTION CREATE SOLUTION
-function createSolution() {
-  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
-  console.log('random=', randomNumber);
-  solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution);
-  console.log(wordList.length);
-  // formatSolution();
-}
-
-function formatSolution() {
-  // displaySolution.innerText = solution.join('');
-
-  // console.log(displaySolution)
-  // displaySolution.innerText = solution;
-  // getWebsterDictionaryAPI();
-
-  // for (let i = 0; i < solution.length; i++) {
-  //   displaySolution.innerText += solution[i];
-  // }
-
-  // document.getElementById('solution').classList.remove('cloak');
-}
-
-// SECTION INSTRUCTIONS FUNCTIONS
+// SECTION  CREATE INSTRUCTIONS
 function createGameInstruction() {
   injectInstructionText();
   createIntructionTiles();
@@ -393,9 +251,60 @@ function deleteInstructions() {
   focusCurrentTile();;
 }
 
+// SECTION CREATE SOLUTION
+function createGameSolution() {
+  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  console.log('random=', randomNumber);
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log(solution);
+  console.log(wordList.length);
+  // formatSolution();
+}
+
+// SECTION INPUT TEXT
+function inputText(event) {
+  // console.log('length=', allInput.length);
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) {
+    document.getElementById('id' + allInput.length).focus();
+    document.getElementById('id' + allInput.length).value = event.key;
+    createInputString(event);
+  };
+  // console.log('inputText=', event, event.key);
+}
+
+function createInputString(event) {
+  currentInput.push(event.key.toUpperCase());
+  allInput.push(event.key.toUpperCase());
+  determineCurrentTile(allInput);
+  // console.log(currentInput);
+}
+
+function determineCurrentTile(allInput) {
+  currentTile = allInput.length;
+}
+
+function deleteInputText() {
+  let status = '';
+  let deleteTile = '';
+  if (allInput.length !== 0) {
+    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
+    deleteTile = document.getElementById('id' + (allInput.length - 1));
+  };
+  if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
+    deleteTile.setAttribute('data-status', 'start'); //remove color
+    deleteTile.removeAttribute('disabled'); //remove disabled
+    deleteTile.value = "";
+    deleteTile.focus();
+    currentInput.pop();
+    allInput.pop();
+    determineCurrentTile(allInput);
+  }
+}
+
 // SECTION DETERMINE EACH ROW / WINN
 function evaluateString() {
 
+  //UGLY DETERMINE CURRENT POSITION
   let currentPosition = 0;
   if (event.target.id.length > 3) {
     currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
@@ -407,58 +316,57 @@ function evaluateString() {
   let dataStatus = [];
   let tileEmoji = "";
   let tileEmoji2 = '';
-  
-  // for (let x = startPosition; x < endPosition + 1; x++) {
+
+  for (let i = 0; i < 5; i++) {
+    if (allInput[startPosition + i] === solution[i]) {
+      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'exactMatch');
+      dataStatus.push('exactMatch');
+      // createEmojiBoard3('🟩', '🟦');
+      // console.log('true');
+    } else if (solution.includes(allInput[startPosition + i])) {
+      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'match');
+      dataStatus.push('match');
+      // createEmojiBoard3('🟨', '🟧');
+      // console.log('false');
+    } else {
+      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'noMatch');
+      dataStatus.push('noMatch');
+      // createEmojiBoard3('⬛', '⬛');
+    }
+    console.log('status=', i, startPosition, endPosition, currentInput[i], solution[i], document.getElementById('id' + (startPosition + i)).dataset.status)
+  }
   
   if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
     for (let x = 0; x < 5; x++) {
-
-      
-  // document.getElementById('tile30').classList.add('contrast-toggle--green');
-  // document.getElementById('tile36').classList.add('contrast-toggle--yellow');
-  // document.getElementById('tile42').classList.add('contrast-toggle--grey');
-
       if (currentInput[x] === solution[x]) {
-        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
-
+        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
         if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--blue');
         } else {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
         }
-
-        // document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
-
-        dataStatus.push('exactMatch');
-        // miniBoard.push('🟩');
+        // dataStatus.push('exactMatch');
         tileEmoji += '🟩';
-        tileEmoji2 += '🟦'
+        tileEmoji2 += '🟦';
       } else if (solution.includes(currentInput[x])) {
-        // document.getElementById('id' + (x+1)).style.backgroundColor = 'yellow'
-        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match');
-
+        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match');
         if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--orange');
         } else {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
         }
-
-        // document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
-
-        dataStatus.push('match');
-        // miniBoard.push('🟨');
+        // dataStatus.push('match');
         tileEmoji += '🟨';
-        tileEmoji2 += '🟧'
+        tileEmoji2 += '🟧';
       } else {
-        document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
-        dataStatus.push('noMatch');
-        // miniBoard.push('⬛');
+        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
+        // dataStatus.push('noMatch');
         tileEmoji += '⬛';
         tileEmoji2 += '⬛';
       }
-    console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
+    // console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
     createWord(endPosition);
   }
@@ -467,10 +375,6 @@ function evaluateString() {
     console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)));
     document.getElementById('id' + (currentPosition * 1 + 1)).focus();
   }
-
-
-  currentInput = [];
-  console.log(dataStatus);
   
   var winCount = 0;
   for (let i = 0; i < 5; i++) {
@@ -483,8 +387,7 @@ function evaluateString() {
   if (winCount === 5) {
     console.log('winner');
     createConfetti();
-    // getWebsterDictionaryAPI();
-      document.getElementById('id29').blur();
+    document.getElementById('id29').blur();
       for (let i = endPosition + 1; i < 30; i++) {
         // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
@@ -493,30 +396,19 @@ function evaluateString() {
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
       }
-      // for (let i = 0; i < 30; i++) {
-      //   // console.log(i);
-      //   // document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
-      //   document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
-      //   document.getElementById('id' + (i)).blur();
-      //   // console.log(event.keyCode);
-      // }
     } else if (endPosition === 29) {
         console.log('end of game');
-        console.log(solution, solution.join(''))
-        // document.getElementById('solution').classList.remove('cloak');
-        // displaySolution.innerText = '';
-        // displaySolution.innerText = solution.join('');
-        // getWebsterDictionaryAPI();
+        console.log(solution, solution.join(''));
         document.getElementById('id29').blur();
-
     } else {
         console.log('keep playing')
     }
-  // document.querySelector('h1').blur();
-  dataStatus = [];
-  word = '';
 
   console.log('miniBoard=', tileEmoji);
+
+  currentInput = [];
+  dataStatus = [];
+  word = '';
   createEmojiBoard(tileEmoji);
   createEmojiBoard2(tileEmoji2);
 }
@@ -544,11 +436,14 @@ function createEmojiBoard2(tileEmoji2) {
   console.log('currentMiniBoard2=\n', currentEmojiBoard2);
 }
 
-// SECTION API CODE
-let elementaryDefinition = 'Placeholder';
-let collegeDefinition = 'Placeholder';
-let displayDefinition = 'Sorry, I could not find the definition';
+function createEmojiBoard3(tileEmoji, tileEmoji2) {
+  currentEmojiBoard3 += tileEmoji;
+  currentEmojiBoard4 += tileEmoji2;
+  console.log('currentMiniBoard3=', currentEmojiBoard3);
+  console.log('currentMiniBoard4=', currentEmojiBoard4);
+}
 
+// SECTION API CODE
 getWebsterDictionaryAPI = () => {
   console.log('api#1=', elementaryDefinition === 'Placeholder', 'api#2', collegeDefinition === 'Placeholder')
   let currentRow = Math.floor(allInput.length / 5);
@@ -598,6 +493,48 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
+}
+
+// SECTION BUTTONS
+function getKeyboardButton() {
+  focusCurrentTile();
+}
+
+function refreshButton() {
+  location.reload(true);
+  focusCurrentTile();;
+  focusCurrentTile();
+}
+
+function toggleDarkModeButton() {
+  toggleDarkMode();
+  focusCurrentTile();
+} 
+
+function toggleContrastModeButton() {
+  toggleContrastMode();
+  focusCurrentTile();
+} 
+
+function definitionButton() {
+  getWebsterDictionaryAPI();
+  focusCurrentTile();
+} 
+
+function copyGameBoardButton() {
+  let currentRow = Math.floor(allInput.length / 5);
+  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
+  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
+  let contrastState = document.querySelector('.contrast-toggle');
+  if (currentRow != 0) {
+    try {
+      let shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
+      navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
+    } catch (err) {
+      console.error("Share failed:", err.message);
+    }
+  }
+  focusCurrentTile();
 }
 
 // SECTION DARK & CONTRAST MODE
