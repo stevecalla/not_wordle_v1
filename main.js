@@ -15,8 +15,8 @@ var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
 var currentEmojiBoard2 = "";
-var currentEmojiBoard3 = "";
-var currentEmojiBoard4 = "";
+var currentEmojiBoard3 = [];
+var currentEmojiBoard4 = [];
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
@@ -32,6 +32,7 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
   if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
   // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
     evaluateString();
+    createEmojiRow();
   }
   if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -308,32 +309,25 @@ function evaluateString() {
   let currentPosition = 0;
   if (event.target.id.length > 3) {
     currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
-  } else {
+    } else {
     currentPosition = event.target.id.charAt(event.target.id.length - 1);
-  }
+    }
   let startPosition = currentPosition * 1 - 4;
   let endPosition = currentPosition * 1;
   let dataStatus = [];
-  let tileEmoji = "";
-  let tileEmoji2 = '';
 
   for (let i = 0; i < 5; i++) {
     if (allInput[startPosition + i] === solution[i]) {
       document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'exactMatch');
       dataStatus.push('exactMatch');
-      // createEmojiBoard3('🟩', '🟦');
-      // console.log('true');
     } else if (solution.includes(allInput[startPosition + i])) {
       document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'match');
       dataStatus.push('match');
-      // createEmojiBoard3('🟨', '🟧');
-      // console.log('false');
     } else {
       document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'noMatch');
       dataStatus.push('noMatch');
-      // createEmojiBoard3('⬛', '⬛');
     }
-    console.log('status=', i, startPosition, endPosition, currentInput[i], solution[i], document.getElementById('id' + (startPosition + i)).dataset.status)
+    // console.log('status=', i, startPosition, endPosition, currentInput[i], solution[i], document.getElementById('id' + (startPosition + i)).dataset.status)
   }
   
   if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
@@ -347,8 +341,8 @@ function evaluateString() {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
         }
         // dataStatus.push('exactMatch');
-        tileEmoji += '🟩';
-        tileEmoji2 += '🟦';
+        // tileEmoji += '🟩';
+        // tileEmoji2 += '🟦';
       } else if (solution.includes(currentInput[x])) {
         // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match');
         if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
@@ -358,13 +352,13 @@ function evaluateString() {
           document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
         }
         // dataStatus.push('match');
-        tileEmoji += '🟨';
-        tileEmoji2 += '🟧';
+        // tileEmoji += '🟨';
+        // tileEmoji2 += '🟧';
       } else {
         // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
         // dataStatus.push('noMatch');
-        tileEmoji += '⬛';
-        tileEmoji2 += '⬛';
+        // tileEmoji += '⬛';
+        // tileEmoji2 += '⬛';
       }
     // console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
     }
@@ -403,14 +397,9 @@ function evaluateString() {
     } else {
         console.log('keep playing')
     }
-
-  console.log('miniBoard=', tileEmoji);
-
   currentInput = [];
   dataStatus = [];
   word = '';
-  createEmojiBoard(tileEmoji);
-  createEmojiBoard2(tileEmoji2);
 }
 
 // SECTION CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
@@ -426,21 +415,36 @@ function createWord(endPosition) {
 }
 
 // SECTION EMOJI BOARD
-function createEmojiBoard(tileEmoji) {
+function createEmojiRow(position) {
+  let currentPosition = 0;
+  if (event.target.id.length > 3) {
+    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
+    } else {
+    currentPosition = event.target.id.charAt(event.target.id.length - 1);
+    }
+  let startPosition = currentPosition * 1 - 4;
+  let tileEmoji = '';
+  let tileEmoji2 = '';
+  for (let i = 0; i < 5; i++) {
+    if (allInput[startPosition + i] === solution[i]) {
+      tileEmoji += '🟩';
+      tileEmoji2 += '🟦';
+    } else if (solution.includes(allInput[startPosition + i])) {
+      tileEmoji += '🟨';
+      tileEmoji2 += '🟧';
+    } else {
+      tileEmoji += '⬛';
+      tileEmoji2 += '⬛';
+    }
+  }
+  createEmojiBoard(tileEmoji, tileEmoji2);
+}
+
+function createEmojiBoard(tileEmoji, tileEmoji2) {
   currentEmojiBoard += tileEmoji + '\n';
   console.log('currentMiniBoard=\n', currentEmojiBoard);
-}
-
-function createEmojiBoard2(tileEmoji2) {
   currentEmojiBoard2 += tileEmoji2 + '\n';
   console.log('currentMiniBoard2=\n', currentEmojiBoard2);
-}
-
-function createEmojiBoard3(tileEmoji, tileEmoji2) {
-  currentEmojiBoard3 += tileEmoji;
-  currentEmojiBoard4 += tileEmoji2;
-  console.log('currentMiniBoard3=', currentEmojiBoard3);
-  console.log('currentMiniBoard4=', currentEmojiBoard4);
 }
 
 // SECTION API CODE
