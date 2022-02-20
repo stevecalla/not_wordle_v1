@@ -31,8 +31,9 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 
   if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
   // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-    evaluateString();
-    createEmojiRow();
+    evaluateString(event);
+    createEmojiRow(event);
+    setColorContrast(event);
   }
   if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -193,15 +194,15 @@ function deleteInputText() {
 }
 
 // SECTION DETERMINE EACH ROW / WINN
-function evaluateString() {
+function evaluateString(event) {
 
   //UGLY DETERMINE CURRENT POSITION
   let currentPosition = 0;
   if (event.target.id.length > 3) {
     currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
-    } else {
+  } else {
     currentPosition = event.target.id.charAt(event.target.id.length - 1);
-    }
+  }
   let startPosition = currentPosition * 1 - 4;
   let endPosition = currentPosition * 1;
   let dataStatus = [];
@@ -221,37 +222,6 @@ function evaluateString() {
   }
   
   if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
-    for (let x = 0; x < 5; x++) {
-      if (currentInput[x] === solution[x]) {
-        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'exactMatch');
-        if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--blue');
-        } else {
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--green');
-        }
-        // dataStatus.push('exactMatch');
-        // tileEmoji += '🟩';
-        // tileEmoji2 += '🟦';
-      } else if (solution.includes(currentInput[x])) {
-        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'match');
-        if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--orange');
-        } else {
-          document.getElementById('id' + (startPosition + x)).classList.add('contrast-toggle--yellow');
-        }
-        // dataStatus.push('match');
-        // tileEmoji += '🟨';
-        // tileEmoji2 += '🟧';
-      } else {
-        // document.getElementById('id' + (startPosition + x)).setAttribute('data-status', 'noMatch')
-        // dataStatus.push('noMatch');
-        // tileEmoji += '⬛';
-        // tileEmoji2 += '⬛';
-      }
-    // console.log('status=', x, startPosition, endPosition, currentInput[x], solution[x], document.getElementById('id' + (startPosition + x)).dataset.status)
-    }
     createWord(endPosition);
   }
 
@@ -442,6 +412,33 @@ function toggleDarkMode() {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
   focusCurrentTile();;
+}
+
+function setColorContrast(event) {
+  let currentPosition = 0;
+  if (event.target.id.length > 3) {
+    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
+    } else {
+    currentPosition = event.target.id.charAt(event.target.id.length - 1);
+    }
+  let startPosition = currentPosition * 1 - 4;
+  for (let i = 0; i < 5; i++) {
+    if (allInput[startPosition + i] === solution[i]) {
+      if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--green');
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--blue');
+      } else {
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--green');
+      }
+    } else if (solution.includes(allInput[startPosition + i])) {
+      if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--yellow');
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--orange');
+      } else {
+        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--yellow');
+      }
+    }
+  }
 }
 
 function toggleContrastMode() {
