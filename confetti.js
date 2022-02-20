@@ -11,13 +11,14 @@ function createConfetti() {
       src="https://assets8.lottiefiles.com/datafiles/U1I3rWEyksM9cCH/data.json"  
       background="transparent"  
       speed="1"  
-      style="width: 300px; height: 300px;"
+      style="width: 300px; height: 300px"
       loop 
       autoplay>
     </lottie-player>`
-    lottiPlayerConfetti.classList.remove('hidden');
+    // lottiPlayerConfetti.classList.remove('hidden');
   setTimeout(() => {
       animateConfetti.innerHTML = ``;
-      lottiPlayerConfetti.classList.add('hidden');
+      // lottiPlayerConfetti.classList.add('hidden');
+      lottiPlayerConfetti.innerHTML = ``;
   }, 5000);
 }

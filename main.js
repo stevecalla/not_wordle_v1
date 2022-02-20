@@ -72,11 +72,11 @@ function injectInstructionText() {
     <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
     <div class='example-border'>
       <p>Examples</p>
-      <div class='instrx-wrapper' id='instructionTile1'></div>
+      <div class='instrx-wrapper'></div>
       <p>The letter W is in the word and in the correct spot.</p>
-      <div class='instrx-wrapper' id='instructionTile2'></div>
+      <div class='instrx-wrapper'></div>
       <p>The letter I is in the word but in the wrong spot.</p>
-      <div class='instrx-wrapper' id='instructionTile3'></div>
+      <div class='instrx-wrapper'></div>
       <p>The letter U is not in the word in any spot.</p>
     </div>
     <p>LET'S PLAY!!</p>
