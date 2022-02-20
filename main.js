@@ -48,108 +48,8 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
 // SECTION LOAD TASKS
 function loadTasks() {
   createGameInstruction();
-  createGameTiles();
   createGameSolution();
-}
-
-// SECTION CREATE GAME TILES
-function createGameTiles() {
-  for (let i = 0; i < 30; i++) {
-    inputTilesRow1.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  // for (let i = 5; i < 10; i++) {
-  //   inputTilesRow2.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input type="text" 
-  //               id=${`id${i}`}
-  //               maxlength="1"
-  //               name="selection" 
-  //               value=""
-  //               size="1"
-  //               disabled="disabled"
-  //               data-status="start"
-  //               style="text-transform:uppercase" >
-  //     </div>
-  //   `;
-  // }
-  // for (let i = 10; i < 15; i++) {
-  //   inputTilesRow3.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input type="text" 
-  //               id=${`id${i}`}
-  //               maxlength="1"
-  //               name="selection" 
-  //               value=""
-  //               size="1"
-  //               disabled="disabled"
-  //               data-status="start"
-  //               style="text-transform:uppercase" >
-  //     </div>
-  //   `;
-  // }
-  // for (let i = 15; i < 20; i++) {
-  //   inputTilesRow4.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input type="text" 
-  //               id=${`id${i}`}
-  //               maxlength="1"
-  //               name="selection" 
-  //               value=""
-  //               size="1"
-  //               disabled="disabled"
-  //               data-status="start"
-  //               style="text-transform:uppercase" >
-  //     </div>
-  //   `;
-  // }
-  // for (let i = 20; i < 25; i++) {
-  //   inputTilesRow5.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input type="text" 
-  //               id=${`id${i}`}
-  //               maxlength="1"
-  //               name="selection" 
-  //               value=""
-  //               size="1"
-  //               disabled="disabled"
-  //               data-status="start"
-  //               style="text-transform:uppercase" >
-  //     </div>
-  //   `;
-  // }
-  // for (let i = 25; i < 30; i++) {
-  //   inputTilesRow6.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input type="text" 
-  //               id=${`id${i}`}
-  //               maxlength="1"
-  //               name="selection" 
-  //               value=""
-  //               size="1"
-  //               disabled="disabled"
-  //               data-status="start"
-  //               style="text-transform:uppercase" >
-  //     </div>
-  //   `;
-  // }
+  createGameTiles();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -171,11 +71,11 @@ function injectInstructionText() {
     <p>After each guess, the color of the tiles will change to show how close your guess was to the word.</p>
     <div class='example-border'>
       <p>Examples</p>
-      <div class='input-wrapper' id='instructionTile1'></div>
+      <div class='instrx-wrapper' id='instructionTile1'></div>
       <p>The letter W is in the word and in the correct spot.</p>
-      <div class='input-wrapper' id='instructionTile2'></div>
+      <div class='instrx-wrapper' id='instructionTile2'></div>
       <p>The letter I is in the word but in the wrong spot.</p>
-      <div class='input-wrapper' id='instructionTile3'></div>
+      <div class='instrx-wrapper' id='instructionTile3'></div>
       <p>The letter U is not in the word in any spot.</p>
     </div>
     <p>LET'S PLAY!!</p>
@@ -183,64 +83,37 @@ function injectInstructionText() {
 }
 
 function createIntructionTiles() {
-  for (let i = 30; i < 35; i++) {
-    instructionTile1.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`tile${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 35; i < 40; i++) {
-    instructionTile2.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`tile${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                style="text-transform:uppercase" >
-      </div>
-    `;
-  }
-  for (let i = 40; i < 45; i++) {
-    instructionTile3.innerHTML +=
-    `   
-      <div>
-        <input type="text" 
-                id=${`tile${i}`}
-                maxlength="1"
-                name="selection" 
-                value=""
-                size="1"
-                style="text-transform:uppercase" >
-      </div>
-    `;
+  for (let x = 0; x < 3; x++)
+    for (let i = 0; i < 5; i++) {
+      document.querySelectorAll('.instrx-wrapper')[x].innerHTML += 
+      `   
+        <div>
+          <input type="text" 
+                  id=${`tile${x}${i}`}
+                  maxlength="1"
+                  name="selection" 
+                  value=""
+                  size="1"
+                  style="text-transform:uppercase">
+        </div>
+      `;
   }
 }
 
 function populateInstructionTiles() {
-  const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E']
+  const letters = ['W','A','C','K','Y','F','I','L','E','S','V','A','G','U','E'];
   for (let i = 0; i < 5; i++) {
-    document.getElementById('tile' + (i + 30)).value = letters[i];
-    document.getElementById('tile' + (i + 35)).value = letters[i + 5];
-    document.getElementById('tile' + (i + 40)).value = letters[i + 10];
+    document.getElementById('tile' + 0 + i).value = letters[i];
+    document.getElementById('tile' + 1 + i).value = letters[i + 5];
+    document.getElementById('tile' + 2 + i).value = letters[i + 10];
 
-    document.getElementById('tile' + (i + 30)).setAttribute('disabled', 'disabled');
-    document.getElementById('tile' + (i + 35)).setAttribute('disabled', 'disabled');
-    document.getElementById('tile' + (i + 40)).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + 0 + i).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + 1 + i).setAttribute('disabled', 'disabled');
+    document.getElementById('tile' + 2 + i).setAttribute('disabled', 'disabled');
   }
-  document.getElementById('tile30').classList.add('contrast-toggle--green');
-  document.getElementById('tile36').classList.add('contrast-toggle--yellow');
-  document.getElementById('tile42').classList.add('contrast-toggle--grey');
+  document.getElementById('tile00').classList.add('contrast-toggle--green');
+  document.getElementById('tile11').classList.add('contrast-toggle--yellow');
+  document.getElementById('tile23').classList.add('contrast-toggle--grey');
 }
 
 function deleteInstructions() {
@@ -262,22 +135,39 @@ function createGameSolution() {
   // formatSolution();
 }
 
-// SECTION INPUT TEXT
+// SECTION CREATE GAME TILES
+function createGameTiles() {
+  for (let i = 0; i < 30; i++) {
+    inputTilesRow1.innerHTML +=
+    `   
+      <div>
+        <input type="text" 
+                id=${`id${i}`}
+                maxlength="1"
+                name="selection" 
+                value=""
+                size="1"
+                disabled="disabled"
+                data-status="start"
+                style="text-transform:uppercase" >
+      </div>
+    `;
+  }
+}
+
+// SECTION GET INPUT CHARACTERS
 function inputText(event) {
-  // console.log('length=', allInput.length);
   if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
     createInputString(event);
   };
-  // console.log('inputText=', event, event.key);
 }
 
 function createInputString(event) {
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
   determineCurrentTile(allInput);
-  // console.log(currentInput);
 }
 
 function determineCurrentTile(allInput) {
@@ -567,8 +457,8 @@ function toggleContrastMode() {
     }
   }
   if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
-    document.getElementById('tile30').classList.toggle('contrast-toggle--blue');
-    document.getElementById('tile36').classList.toggle('contrast-toggle--orange');
+    document.getElementById('tile00').classList.toggle('contrast-toggle--blue');
+    document.getElementById('tile11').classList.toggle('contrast-toggle--orange');
   }
   focusCurrentTile();
 }
