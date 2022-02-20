@@ -15,7 +15,7 @@ function createConfetti() {
       loop 
       autoplay>
     </lottie-player>`
-    // lottiPlayerConfetti.classList.remove('hidden');
+    lottiPlayerConfetti.classList.remove('hidden');
   setTimeout(() => {
       animateConfetti.innerHTML = ``;
       // lottiPlayerConfetti.classList.add('hidden');

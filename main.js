@@ -123,7 +123,8 @@ function deleteInstructions() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
-  focusCurrentTile();;
+  focusCurrentTile();
+  document.querySelector('.input-wrapper').classList.remove('cloak');
 }
 
 // SECTION CREATE SOLUTION
