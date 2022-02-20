@@ -15,8 +15,8 @@ var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
 var currentEmojiBoard2 = "";
-var currentEmojiBoard3 = [];
-var currentEmojiBoard4 = [];
+// var currentEmojiBoard3 = [];
+// var currentEmojiBoard4 = [];
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
@@ -29,12 +29,12 @@ document.addEventListener('keydown', function(event) { //https://developer.mozil
   let key = event.key,
   keyCode = event.keyCode;
 
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
-  // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-    evaluateString(event);
-    createEmojiRow(event);
-    setColorContrast(event);
-  }
+  // if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
+  // // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
+  //   evaluateString(event);
+  //   createEmojiRow(event);
+  //   setColorContrast(event);
+  // }
   if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
   // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
     console.log('backspace')
@@ -163,12 +163,24 @@ function inputText(event) {
     document.getElementById('id' + allInput.length).value = event.key;
     createInputString(event);
   };
+  evaluateWord(event);
 }
 
 function createInputString(event) {
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
   determineCurrentTile(allInput);
+}
+
+function evaluateWord(event) {
+  let key = event.key,
+  keyCode = event.keyCode;
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
+    // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
+      evaluateString(event);
+      createEmojiRow(event);
+      setColorContrast(event);
+  }
 }
 
 function determineCurrentTile(allInput) {
@@ -443,10 +455,9 @@ function setColorContrast(event) {
 
 function toggleContrastMode() {
   const contrastModeButton = document.querySelector(".contrast-toggle");
-  contrastModeButton.classList.toggle('contrast-toggle--blueorange');
   const gameTiles = document.querySelectorAll("input[id^='id']");
+  contrastModeButton.classList.toggle('contrast-toggle--blueorange');
   for (let i = 0; i < 30; i++) {
-    // console.log(i)
     if (gameTiles[i].dataset.status === 'exactMatch') {
       gameTiles[i].classList.toggle('contrast-toggle--blue');
     } else if (gameTiles[i].dataset.status === 'match') {
