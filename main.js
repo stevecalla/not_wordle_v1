@@ -124,7 +124,7 @@ function deleteInstructions() {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
   focusCurrentTile();
-  document.querySelector('.input-wrapper').classList.remove('cloak');
+  document.querySelector('.input-wrapper').classList.remove('hidden');
 }
 
 // SECTION CREATE SOLUTION
