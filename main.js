@@ -121,8 +121,8 @@ function deleteInstructions() {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
   document.querySelector('.input-wrapper').classList.remove('hidden');
-  // document.getElementById('id0').focus();
-  focusCurrentTile();
+  document.getElementById('id0').focus();
+  // focusCurrentTile();
 }
 
 // SECTION CREATE SOLUTION
