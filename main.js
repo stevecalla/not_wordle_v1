@@ -156,7 +156,8 @@ function createGameTiles() {
 
 // SECTION GET INPUT CHARACTERS
 function inputText(event) {
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && !document.getElementById('id' + allInput.length).disabled) {
+  // console.log(event);
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
     createInputString(event);
@@ -205,12 +206,16 @@ function deleteInputText() {
 
 // SECTION DETERMINE EACH ROW / WIN
 function evaluateString(event) {
-  determineCurrentRow(event);
+  determineCurrentRow();
 }
 
-function determineCurrentRow(event) {
-  let endRowTile = allInput.length - 1;
-  let startRowTile = endRowTile * 1 - 4;
+function determineCurrentRow() {
+  let startRowTile = (allInput.length - 1) * 1 - 4;
+  let endRowTile = startRowTile + 4; //FIX delete endrow variable
+
+  if ((startRowTile + 5) < 29) {
+    document.getElementById('id' + (startRowTile + 5)).focus();
+  }
   determineMatchStatus(startRowTile, endRowTile);
 }
 
@@ -227,38 +232,34 @@ function determineMatchStatus(startRowTile, endRowTile) {
       document.getElementById('id' + (startRowTile + i)).setAttribute('data-status', 'noMatch');
       dataStatus.push('noMatch');
     }
-    console.log('status=', i, startRowTile, endRowTile, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
+    console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
-  determineWinStatus(endRowTile, dataStatus);
+  determineWinStatus(startRowTile, endRowTile, dataStatus);
 }
 
-function determineWinStatus(endRowTile, dataStatus) {
-  if (document.getElementById('id' + (endRowTile * 1 + 1)) && (endRowTile * 1 + 1 < 30) && (document.getElementById('id' + (endRowTile * 1 + 1)).dataset.status !== 'gameOver')) {
-    console.log(document.getElementById('id' + (endRowTile * 1 + 1 < 30)));
-    document.getElementById('id' + (endRowTile * 1 + 1)).focus();
-  }
-  
+function determineWinStatus(startRowTile, endRowTile, dataStatus) {
   var winCount = 0;
   for (let i = 0; i < 5; i++) {
     if (dataStatus[i] === 'exactMatch') {
       winCount = winCount + 1
     }
-    console.log('count', winCount)
+    // console.log('count', winCount)
   }
 
   if (winCount === 5) {
     console.log('winner');
     createConfetti();
     document.getElementById('id29').blur();
-      for (let i = endRowTile + 1; i < 30; i++) {
+      // for (let i = endRowTile + 1; i < 30; i++) {
+      for (let i = startRowTile + 5; i < 30; i++) {
         // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
-        document.getElementById('id' + (i)).value = ' ';
+        // document.getElementById('id' + (i)).value = ' ';
         document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
       }
-    } else if (endRowTile === 29) {
+    } else if (startRowTile + 4 === 29) {
         console.log('end of game');
         console.log(solution, solution.join(''));
         document.getElementById('id29').blur();
@@ -274,8 +275,8 @@ function reset() {
 
 // SECTION EMOJI BOARD
 function createEmojiRow(position) {
-  let endRowTile = allInput.length - 1;
-  let startRowTile = endRowTile * 1 - 4;
+  let startRowTile = (allInput.length - 1) * 1 - 4;
+  // let endRowTile = startRowTile + 4;
   let tileEmoji = '';
   let tileEmoji2 = '';
   for (let i = 0; i < 5; i++) {
@@ -408,8 +409,8 @@ function toggleDarkMode() {
 }
 
 function setColorContrast() {
-  let endRowTile = allInput.length - 1;
-  let startRowTile = endRowTile * 1 - 4;
+  let startRowTile = (allInput.length - 1) * 1 - 4;
+  // let endRowTile = startRowTile + 4; 
   for (let i = 0; i < 5; i++) {
     if (allInput[startRowTile + i] === solution[i]) {
       if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
@@ -460,7 +461,9 @@ function focusCurrentTile() {
     checkLengthEqualToFive = (allInput.length % 5 === 0);
     status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
     checkStatus = (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch');
-  };
+  }
   checkLengthNotZero && checkLengthEqualToFive && checkStatus ? (currentTile = allInput.length - 1) : (currentTile = allInput.length);
-  document.getElementById('id' + (currentTile)).focus();
+  if (!allInput.length > 29) {
+    document.getElementById('id' + (currentTile)).focus()
+  };
 }
