@@ -120,8 +120,9 @@ function deleteInstructions() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
-  focusCurrentTile();
   document.querySelector('.input-wrapper').classList.remove('hidden');
+  // document.getElementById('id0').focus();
+  focusCurrentTile();
 }
 
 // SECTION CREATE SOLUTION
@@ -452,7 +453,9 @@ function focusCurrentTile() {
     checkStatus = (status !== 'noMatch' && status !== 'match' && status !== 'exactMatch');
   }
   checkLengthNotZero && checkLengthEqualToFive && checkStatus ? (currentTile = allInput.length - 1) : (currentTile = allInput.length);
-  if (!allInput.length > 29) {
-    document.getElementById('id' + (currentTile)).focus()
+  console.log(currentTile);
+
+  if (allInput.length < 30) {
+    document.getElementById('id' + (currentTile)).focus();
   };
 }
