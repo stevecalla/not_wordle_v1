@@ -157,12 +157,12 @@ function createGameTiles() {
 // SECTION GET INPUT CHARACTERS
 function inputText(event) {
   // console.log(event);
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length != 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
+  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
     createInputString(event);
   };
-  evaluateWord(event);
+  evaluateCurrentInput(event);
 }
 
 function createInputString(event) {
@@ -171,7 +171,7 @@ function createInputString(event) {
   // determineCurrentTile(allInput);
 }
 
-function evaluateWord(event) {
+function evaluateCurrentInput(event) {
   let key = event.key,
   keyCode = event.keyCode;
   if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
@@ -181,10 +181,6 @@ function evaluateWord(event) {
       setColorContrast();
   }
 }
-
-// function determineCurrentTile(allInput) {
-//   currentTile = allInput.length;
-// }
 
 function deleteInputText() {
   let status = '';
@@ -212,14 +208,13 @@ function evaluateString(event) {
 function determineCurrentRow() {
   let startRowTile = (allInput.length - 1) * 1 - 4;
   let endRowTile = startRowTile + 4; //FIX delete endrow variable
-
   if ((startRowTile + 5) < 29) {
     document.getElementById('id' + (startRowTile + 5)).focus();
   }
-  determineMatchStatus(startRowTile, endRowTile);
+  assignMatchStatus(startRowTile, endRowTile);
 }
 
-function determineMatchStatus(startRowTile, endRowTile) {
+function assignMatchStatus(startRowTile, endRowTile) {
   let dataStatus = [];
   for (let i = 0; i < 5; i++) {
     if (allInput[startRowTile + i] === solution[i]) {
@@ -238,17 +233,11 @@ function determineMatchStatus(startRowTile, endRowTile) {
 }
 
 function determineWinStatus(startRowTile, endRowTile, dataStatus) {
-  var winCount = 0;
-  for (let i = 0; i < 5; i++) {
-    if (dataStatus[i] === 'exactMatch') {
-      winCount = winCount + 1
-    }
-    // console.log('count', winCount)
-  }
-
-  if (winCount === 5) {
-    console.log('winner');
+  let winningCondition = !dataStatus.includes('match') && !dataStatus.includes('noMatch');
+  let gameOverCondition = startRowTile + 4 === 29;
+  if (winningCondition) {
     createConfetti();
+    //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
     document.getElementById('id29').blur();
       // for (let i = endRowTile + 1; i < 30; i++) {
       for (let i = startRowTile + 5; i < 30; i++) {
@@ -259,24 +248,24 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
       }
-    } else if (startRowTile + 4 === 29) {
-        console.log('end of game');
-        console.log(solution, solution.join(''));
+    // } else if (startRowTile + 4 === 29) {
+    } else if (gameOverCondition) {
+        //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
         document.getElementById('id29').blur();
     } else {
+        //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
     }
-  reset();
+  resetCurrentInput();
 }
 
-function reset() {
+function resetCurrentInput() {
   currentInput = [];
 }
 
 // SECTION EMOJI BOARD
-function createEmojiRow(position) {
+function createEmojiRow() {
   let startRowTile = (allInput.length - 1) * 1 - 4;
-  // let endRowTile = startRowTile + 4;
   let tileEmoji = '';
   let tileEmoji2 = '';
   for (let i = 0; i < 5; i++) {
@@ -296,15 +285,16 @@ function createEmojiRow(position) {
 
 function createEmojiBoard(tileEmoji, tileEmoji2) {
   currentEmojiBoard += tileEmoji + '\n';
-  console.log('currentMiniBoard=\n', currentEmojiBoard);
   currentEmojiBoard2 += tileEmoji2 + '\n';
+
+  console.log('currentMiniBoard=\n', currentEmojiBoard);
   console.log('currentMiniBoard2=\n', currentEmojiBoard2);
 }
 
 // SECTION API CODE
 getWebsterDictionaryAPI = () => {
+  //FIX HIDE API KEYS!!
   console.log('api#1=', elementaryDefinition === 'Placeholder', 'api#2', collegeDefinition === 'Placeholder')
-  let currentRow = Math.floor(allInput.length / 5);
   if (elementaryDefinition === 'Placeholder' && collegeDefinition === 'Placeholder') {
     fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
         .then((response) => response.json())
@@ -313,7 +303,7 @@ getWebsterDictionaryAPI = () => {
           console.log('api run 1');
           })
         .catch(err => {
-          console.error("API #1 failed:", err.message);
+          console.error("API #2 failed:", 'message:', err.message, 'stack:', err.stack);
         })  
     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
         .then((response) => response.json())
@@ -323,7 +313,7 @@ getWebsterDictionaryAPI = () => {
           console.log('api run 2');
           })
         .catch(err => {
-          console.error("API #2 failed:", err.message);
+          console.error("API #2 failed:", 'message:', err.message, 'stack:', err.stack);
         }) 
   }
   setTimeout(() => { 
@@ -360,7 +350,6 @@ function getKeyboardButton() {
 
 function refreshButton() {
   location.reload(true);
-  focusCurrentTile();;
   focusCurrentTile();
 }
 
