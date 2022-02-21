@@ -8,7 +8,6 @@ var inputTilesRow5 = document.querySelector('#inputTilesRow5');
 var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
 //global variables go here 👇
-var word = "";
 var currentInput = [];
 // var currentTile = 0;
 var allInput = [];
@@ -234,10 +233,6 @@ function determineMatchStatus(startRowTile, endRowTile) {
 }
 
 function determineWinStatus(endRowTile, dataStatus) {
-  if (endRowTile * 1 + 1 < 30 || document.getElementById('id' + (endRowTile * 1)).dataset.status !== 'gameOver') {
-    createWord(endRowTile);
-  }
-
   if (document.getElementById('id' + (endRowTile * 1 + 1)) && (endRowTile * 1 + 1 < 30) && (document.getElementById('id' + (endRowTile * 1 + 1)).dataset.status !== 'gameOver')) {
     console.log(document.getElementById('id' + (endRowTile * 1 + 1 < 30)));
     document.getElementById('id' + (endRowTile * 1 + 1)).focus();
@@ -275,19 +270,6 @@ function determineWinStatus(endRowTile, dataStatus) {
 
 function reset() {
   currentInput = [];
-  word = ''
-}
-
-// SECTION CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
-function createWord(endRowTile) {
-  console.log('endRowTile=', endRowTile * 1 + 1);
-  console.log('noway=', document.getElementById('id6').value)
-  for (let i = 0; i < 5; i++) {
-    if (document.getElementById('id5').dataset.status !== 'gameOver') {
-      word += currentInput[i];
-    }
-  }
-  console.log(word);
 }
 
 // SECTION EMOJI BOARD
