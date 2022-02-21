@@ -10,13 +10,11 @@ var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 //global variables go here 👇
 var word = "";
 var currentInput = [];
-var currentTile = 0;
+// var currentTile = 0;
 var allInput = [];
 var solution = [];
 var currentEmojiBoard = "";
 var currentEmojiBoard2 = "";
-// var currentEmojiBoard3 = [];
-// var currentEmojiBoard4 = [];
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
@@ -170,7 +168,7 @@ function inputText(event) {
 function createInputString(event) {
   currentInput.push(event.key.toUpperCase());
   allInput.push(event.key.toUpperCase());
-  determineCurrentTile(allInput);
+  // determineCurrentTile(allInput);
 }
 
 function evaluateWord(event) {
@@ -178,15 +176,15 @@ function evaluateWord(event) {
   keyCode = event.keyCode;
   if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
     // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-      evaluateString(event);
-      createEmojiRow(event);
-      setColorContrast(event);
+      evaluateString();
+      createEmojiRow();
+      setColorContrast();
   }
 }
 
-function determineCurrentTile(allInput) {
-  currentTile = allInput.length;
-}
+// function determineCurrentTile(allInput) {
+//   currentTile = allInput.length;
+// }
 
 function deleteInputText() {
   let status = '';
@@ -202,45 +200,47 @@ function deleteInputText() {
     deleteTile.focus();
     currentInput.pop();
     allInput.pop();
-    determineCurrentTile(allInput);
+    // determineCurrentTile(allInput);
   }
 }
 
-// SECTION DETERMINE EACH ROW / WINN
+// SECTION DETERMINE EACH ROW / WIN
 function evaluateString(event) {
+  determineCurrentRow(event);
+}
 
-  //UGLY DETERMINE CURRENT POSITION
-  let currentPosition = 0;
-  if (event.target.id.length > 3) {
-    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
-  } else {
-    currentPosition = event.target.id.charAt(event.target.id.length - 1);
-  }
-  let startPosition = currentPosition * 1 - 4;
-  let endPosition = currentPosition * 1;
+function determineCurrentRow(event) {
+  let endRowTile = allInput.length - 1;
+  let startRowTile = endRowTile * 1 - 4;
+  determineMatchStatus(startRowTile, endRowTile);
+}
+
+function determineMatchStatus(startRowTile, endRowTile) {
   let dataStatus = [];
-
   for (let i = 0; i < 5; i++) {
-    if (allInput[startPosition + i] === solution[i]) {
-      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'exactMatch');
+    if (allInput[startRowTile + i] === solution[i]) {
+      document.getElementById('id' + (startRowTile + i)).setAttribute('data-status', 'exactMatch');
       dataStatus.push('exactMatch');
-    } else if (solution.includes(allInput[startPosition + i])) {
-      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'match');
+    } else if (solution.includes(allInput[startRowTile + i])) {
+      document.getElementById('id' + (startRowTile + i)).setAttribute('data-status', 'match');
       dataStatus.push('match');
     } else {
-      document.getElementById('id' + (startPosition + i)).setAttribute('data-status', 'noMatch');
+      document.getElementById('id' + (startRowTile + i)).setAttribute('data-status', 'noMatch');
       dataStatus.push('noMatch');
     }
-    // console.log('status=', i, startPosition, endPosition, currentInput[i], solution[i], document.getElementById('id' + (startPosition + i)).dataset.status)
+    console.log('status=', i, startRowTile, endRowTile, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
-  
-  if (endPosition * 1 + 1 < 30 || document.getElementById('id' + (endPosition * 1)).dataset.status !== 'gameOver') {
-    createWord(endPosition);
+  determineWinStatus(endRowTile, dataStatus);
+}
+
+function determineWinStatus(endRowTile, dataStatus) {
+  if (endRowTile * 1 + 1 < 30 || document.getElementById('id' + (endRowTile * 1)).dataset.status !== 'gameOver') {
+    createWord(endRowTile);
   }
 
-  if (document.getElementById('id' + (currentPosition * 1 + 1)) && (currentPosition * 1 + 1 < 30) && (document.getElementById('id' + (endPosition * 1 + 1)).dataset.status !== 'gameOver')) {
-    console.log(document.getElementById('id' + (currentPosition * 1 + 1 < 30)));
-    document.getElementById('id' + (currentPosition * 1 + 1)).focus();
+  if (document.getElementById('id' + (endRowTile * 1 + 1)) && (endRowTile * 1 + 1 < 30) && (document.getElementById('id' + (endRowTile * 1 + 1)).dataset.status !== 'gameOver')) {
+    console.log(document.getElementById('id' + (endRowTile * 1 + 1 < 30)));
+    document.getElementById('id' + (endRowTile * 1 + 1)).focus();
   }
   
   var winCount = 0;
@@ -255,7 +255,7 @@ function evaluateString(event) {
     console.log('winner');
     createConfetti();
     document.getElementById('id29').blur();
-      for (let i = endPosition + 1; i < 30; i++) {
+      for (let i = endRowTile + 1; i < 30; i++) {
         // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
         document.getElementById('id' + (i)).value = ' ';
@@ -263,21 +263,24 @@ function evaluateString(event) {
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
       }
-    } else if (endPosition === 29) {
+    } else if (endRowTile === 29) {
         console.log('end of game');
         console.log(solution, solution.join(''));
         document.getElementById('id29').blur();
     } else {
         console.log('keep playing')
     }
+  reset();
+}
+
+function reset() {
   currentInput = [];
-  dataStatus = [];
-  word = '';
+  word = ''
 }
 
 // SECTION CREATE WORD - COMBINE INPUT INTO WORD NOT ARRAY
-function createWord(endPosition) {
-  console.log('endPosition=', endPosition * 1 + 1);
+function createWord(endRowTile) {
+  console.log('endRowTile=', endRowTile * 1 + 1);
   console.log('noway=', document.getElementById('id6').value)
   for (let i = 0; i < 5; i++) {
     if (document.getElementById('id5').dataset.status !== 'gameOver') {
@@ -289,20 +292,15 @@ function createWord(endPosition) {
 
 // SECTION EMOJI BOARD
 function createEmojiRow(position) {
-  let currentPosition = 0;
-  if (event.target.id.length > 3) {
-    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
-    } else {
-    currentPosition = event.target.id.charAt(event.target.id.length - 1);
-    }
-  let startPosition = currentPosition * 1 - 4;
+  let endRowTile = allInput.length - 1;
+  let startRowTile = endRowTile * 1 - 4;
   let tileEmoji = '';
   let tileEmoji2 = '';
   for (let i = 0; i < 5; i++) {
-    if (allInput[startPosition + i] === solution[i]) {
+    if (allInput[startRowTile + i] === solution[i]) {
       tileEmoji += '🟩';
       tileEmoji2 += '🟦';
-    } else if (solution.includes(allInput[startPosition + i])) {
+    } else if (solution.includes(allInput[startRowTile + i])) {
       tileEmoji += '🟨';
       tileEmoji2 += '🟧';
     } else {
@@ -427,28 +425,23 @@ function toggleDarkMode() {
   focusCurrentTile();;
 }
 
-function setColorContrast(event) {
-  let currentPosition = 0;
-  if (event.target.id.length > 3) {
-    currentPosition = event.target.id.charAt(event.target.id.length - 2) + event.target.id.charAt(event.target.id.length - 1);
-    } else {
-    currentPosition = event.target.id.charAt(event.target.id.length - 1);
-    }
-  let startPosition = currentPosition * 1 - 4;
+function setColorContrast() {
+  let endRowTile = allInput.length - 1;
+  let startRowTile = endRowTile * 1 - 4;
   for (let i = 0; i < 5; i++) {
-    if (allInput[startPosition + i] === solution[i]) {
+    if (allInput[startRowTile + i] === solution[i]) {
       if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--green');
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--blue');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--blue');
       } else {
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--green');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
       }
-    } else if (solution.includes(allInput[startPosition + i])) {
+    } else if (solution.includes(allInput[startRowTile + i])) {
       if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--yellow');
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--orange');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--orange');
       } else {
-        document.getElementById('id' + (startPosition + i)).classList.add('contrast-toggle--yellow');
+        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
       }
     }
   }
@@ -478,6 +471,7 @@ function focusCurrentTile() {
   let checkLengthNotZero = false;
   let checkLengthEqualToFive = false;
   let checkStatus = false;
+  let currentTile = 0;
 
   if (allInput.length !== 0) {
     checkLengthNotZero = true;
