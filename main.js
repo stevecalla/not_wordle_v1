@@ -21,26 +21,6 @@ let displayDefinition = 'Sorry, I could not find the definition';
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
-document.addEventListener('keydown', function(event) { //https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/code https://dev.to/taufik_nurrohman/bringing-keyboardevent-key-and-keyboardevent-keycode-altogether-for-the-best-keyboard-interaction-experience-jlf
-  // console.log(event.keyCode, event.code)
-  let key = event.key,
-  keyCode = event.keyCode;
-
-  // if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
-  // // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
-  //   evaluateString(event);
-  //   createEmojiRow(event);
-  //   setColorContrast(event);
-  // }
-  if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
-  // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
-    console.log('backspace')
-    deleteInputText();
-  }
-  if (keyCode <65 || keyCode >90) {
-    event.preventDefault();
-  }
-}, false);
 
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
@@ -158,11 +138,19 @@ function createGameTiles() {
 // SECTION GET INPUT CHARACTERS
 function inputText(event) {
   // console.log(event);
+  let key = event.key,
+  keyCode = event.keyCode;
   if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = event.key;
     createInputString(event);
-  };
+  } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
+    // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
+        console.log('backspace')
+        deleteInputText();
+  } else if (event.keyCode <65 || event.keyCode >90) {
+    event.preventDefault();
+  }
   evaluateCurrentInput(event);
 }
 
