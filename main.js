@@ -148,10 +148,11 @@ function inputText(event) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
         deleteInputText();
+  } else if (currentInput.length === 5) {
+    evaluateCurrentInput(event);
   } else if (event.keyCode <65 || event.keyCode >90) {
     event.preventDefault();
-  }
-  evaluateCurrentInput(event);
+  } 
 }
 
 function createInputString(event) {
@@ -163,11 +164,19 @@ function createInputString(event) {
 function evaluateCurrentInput(event) {
   let key = event.key,
   keyCode = event.keyCode;
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5)) {
+  let currentGuess = currentInput.join('').toLowerCase();
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5) && (wordListv1.includes(currentGuess))) {
     // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
       evaluateString();
       createEmojiRow();
       setColorContrast();
+  } else {
+    console.log('Not a word');
+    document.getElementById('message').classList.remove('hidden');
+    document.getElementById('message').innerText = 'NOT IN WORD LIST';
+    setTimeout(() => {  
+      document.getElementById('message').classList.add('hidden');
+    }, 3000);
   }
 }
 

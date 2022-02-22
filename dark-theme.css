@@ -10,6 +10,7 @@ body a {
 }
 
 p,
-.solution {
+.solution,
+.message {
   color: black;
 }

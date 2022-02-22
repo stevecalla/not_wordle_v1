@@ -74,6 +74,21 @@ body {
   /* animation-duration: 3s; */
 }
 
+.message {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 6.5rem;
+  height: 35px;
+  width: 175px;
+  color: white;
+  background-color: black;
+  border: none;
+  border-radius: 5px;
+  position: absolute;
+  z-index: 2;
+}
+
 /* @keyframes skew {
   0% {
     transform: skewX(20deg);
