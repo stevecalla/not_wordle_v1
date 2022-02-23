@@ -139,7 +139,8 @@ function createGameTiles() {
 
 // SECTION CREATE ONSCREEN KEYBOARD
 function createKeyboard() {
-  const alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
+  const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
+  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','⌫'];
   document.getElementById('keyboardWrapper').innerHTML = '';
   for (let i = 0; i < 28; i++) {
     document.getElementById('keyboardWrapper').innerHTML += `
@@ -147,9 +148,9 @@ function createKeyboard() {
         class='keyboard-button' 
         id='keyboard${[i]}' 
         type='button' 
-        value=${alphabet[i]} 
+        value=${qwertyKeys[i]} 
         onClick=inputText(this)>
-        ${alphabet[i]}
+        ${qwertyKeys[i]}
       </button>
     `
   }
@@ -182,13 +183,13 @@ function createKeyboard() {
 
   for (let i = 0; i < 28; i++) {
     console.log('whatever2')
-    allInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#787C7E' : null;
+    allInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#787C7E' : null;
   }
 
   for (let i = 0; i < 28; i++) {
     console.log('whatever2')
-    matchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
-    exactMatchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
+    matchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
+    exactMatchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
   }
 }
 
