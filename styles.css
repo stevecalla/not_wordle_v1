@@ -383,6 +383,7 @@ input[type=text][data-status='start'] {
   justify-content: center;
   flex-wrap: wrap;
   width: 400px;
+  margin-top: 30px;
 }
 
 .keyboard-button {
@@ -405,7 +406,7 @@ input[type=text][data-status='start'] {
 }
 
 .back-button {
-  font-size: 25px;
+  font-size: 23px;
 }
 
 /*------- MEDIA QUERIES -----------------*/

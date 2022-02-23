@@ -452,7 +452,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 
 // SECTION BUTTONS
 function getKeyboardButton() {
-  focusCurrentTile();
+  // focusCurrentTile();
   createKeyboard();
 }
 
@@ -489,7 +489,7 @@ function copyGameBoardButton() {
       console.error("Share failed:", err.message);
     }
   }
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 // SECTION DARK & CONTRAST MODE
