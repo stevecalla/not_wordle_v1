@@ -337,9 +337,42 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   document.getElementById('solution').classList.toggle('cloak');
   document.getElementById('definition').classList.toggle('cloak');
   console.log('innerText=', document.querySelector('#definition').innerText);
+
+
+  let currentRow = Math.floor(allInput.length / 5);
+  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
+  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
+  let contrastState = document.querySelector('.contrast-toggle');
+  let shareText = '';
+  if (currentRow != 0) {
+    try {
+      shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
+      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
+    } catch (err) {
+      console.error("Share failed:", err.message);
+    }
+  }
+
   // document.getElementById('instructionWrapper').innerHTML = `
+  //   <div class='instx-title'>
+  //     <p class='cloak'>x</p>
+  //     <p class='title'>GAME SUMMARY</p>
+  //     <p class='click-to-hide-x'>X</p>
+  //   </div>
+  //   <p class=''>Winner in X Guesses/Try again</p>
   //   <p class=''>Solution: ${solution.join('')}</p>
   //   <p class=''>Definition: ${displayDefinition}</p>
+  //   <div class='example-border'>
+  //     <p>Game Statistics</p>
+  //     <div class='instrx-wrapper'>Board Review</div>
+  //     <p>${currentEmojiBoard}</p>
+  //     <div class='instrx-wrapper'></div>
+  //     <p>The letter I is in the word but in the wrong spot.</p>
+  //     <div class='instrx-wrapper'></div>
+  //     <p>The letter U is not in the word in any spot.</p>
+  //   </div>
+  //   <button>Play again</button>
+  //   <button>Copy Game Summary</button>
   //   `;
   // document.getElementById('instructionWrapper').classList.remove('hidden');
 
@@ -364,17 +397,17 @@ function refreshButton() {
 
 function toggleDarkModeButton() {
   toggleDarkMode();
-  focusCurrentTile();
+  // focusCurrentTile();
 } 
 
 function toggleContrastModeButton() {
   toggleContrastMode();
-  focusCurrentTile();
+  // focusCurrentTile();
 } 
 
 function definitionButton() {
   getWebsterDictionaryAPI();
-  focusCurrentTile();
+  // focusCurrentTile();
 } 
 
 function copyGameBoardButton() {
