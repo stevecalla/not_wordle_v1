@@ -28,6 +28,7 @@ function loadTasks() {
   createGameInstruction();
   createGameSolution();
   createGameTiles();
+  // createKeyboard();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -121,30 +122,92 @@ function createGameTiles() {
     inputTilesRow1.innerHTML +=
     `   
       <div>
-        <input type="text" 
+        <input type='text' 
                 id=${`id${i}`}
-                maxlength="1"
-                name="selection" 
+                maxlength='1'
+                name='selection' 
                 onclick()
-                value=""
-                size="1"
-                disabled="disabled"
-                data-status="start"
-                style="text-transform:uppercase" >
+                value=''
+                size='1'
+                disabled='disabled'
+                data-status='start'
+                style='text-transform:uppercase' >
       </div>
     `;
   }
 }
 
+// SECTION CREATE ONSCREEN KEYBOARD
+function createKeyboard() {
+  const alphabet = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
+  document.getElementById('keyboardWrapper').innerHTML = '';
+  for (let i = 0; i < 28; i++) {
+    document.getElementById('keyboardWrapper').innerHTML += `
+      <button 
+        class='keyboard-button' 
+        id='keyboard${[i]}' 
+        type='button' 
+        value=${alphabet[i]} 
+        onClick=inputText(this)>
+        ${alphabet[i]}
+      </button>
+    `
+  }
+  document.getElementById('keyboard20').classList.add('enter-button');
+  document.getElementById('keyboard27').classList.add('back-button');
+
+  document.getElementById('keyboard20').value = 13;
+  document.getElementById('keyboard20').setAttribute('onclick', 'eventKeyBoardButton()');
+  document.getElementById('keyboard27').setAttribute('onclick', 'deleteInputText()');
+
+  let exactMatchInput = [];
+  let matchInput = [];
+  //todo color contrast
+  //todo simplify
+
+  for (let i = 0; i < allInput.length; i++) {
+    console.log('solution=', solution, 'allInput[i]=', allInput[i])
+    if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'exactMatch') {
+      exactMatchInput.push(allInput[i]);
+      console.log('matchInput=', exactMatchInput);
+      console.log(document.getElementById('id' + i))
+    } else if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'match') {
+        matchInput.push(allInput[i]);
+        console.log('matchInput=', matchInput);
+        console.log(document.getElementById('id' + i));
+    }
+  }
+
+  for (let i = 0; i < 28; i++) {
+    console.log('whatever2')
+    allInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#787C7E' : null;
+  }
+
+  for (let i = 0; i < 28; i++) {
+    console.log('whatever2')
+    matchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
+    exactMatchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
+  }
+
+}
+
+function eventKeyBoardButton() {
+  console.log('enter key pressed');
+  event.key = '13';
+  inputText(event.key);
+}
+
 // SECTION GET INPUT CHARACTERS
 function inputText(event) {
-  // console.log(event);
-  let key = event.key,
+  console.log(event);
+  // console.log(a)
+  let key = event.key? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
-  if ((event.keyCode >=65 && event.keyCode <=90) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
+  console.log(key);
+  if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
-    document.getElementById('id' + allInput.length).value = event.key;
-    createInputString(event);
+    document.getElementById('id' + allInput.length).value = key;
+    createInputString(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
@@ -156,9 +219,9 @@ function inputText(event) {
   } 
 }
 
-function createInputString(event) {
-  currentInput.push(event.key.toUpperCase());
-  allInput.push(event.key.toUpperCase());
+function createInputString(key) {
+  currentInput.push(key.toUpperCase());
+  allInput.push(key.toUpperCase());
   // determineCurrentTile(allInput);
 }
 
@@ -166,7 +229,7 @@ function evaluateCurrentInput(event) {
   let key = event.key,
   keyCode = event.keyCode;
   let currentGuess = currentInput.join('').toLowerCase();
-  if ((key && 'Enter' === key || keyCode && 13 === keyCode) && (currentInput.length === 5) && (wordListv1.includes(currentGuess))) {
+  if ((key && 'Enter' === key || keyCode && 13 === keyCode || event) && (currentInput.length === 5) && ((wordListv1.includes(currentGuess) || wordList.includes(currentGuess)))) {
     // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
       evaluateString();
       createEmojiRow();
@@ -191,7 +254,7 @@ function deleteInputText() {
   if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
-    deleteTile.value = "";
+    deleteTile.value = '';
     deleteTile.focus();
     currentInput.pop();
     allInput.pop();
@@ -241,12 +304,12 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
       // for (let i = endRowTile + 1; i < 30; i++) {
       for (let i = startRowTile + 5; i < 30; i++) {
         // console.log(i);
-        document.getElementById('id' + (i)).setAttribute('data-status', "gameOver");
+        document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
         // document.getElementById('id' + (i)).value = ' ';
         document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
-        getWebsterDictionaryAPI();
+        // getWebsterDictionaryAPI();
       }
     // } else if (startRowTile + 4 === 29) {
     } else if (gameOverCondition) {
@@ -304,7 +367,7 @@ getWebsterDictionaryAPI = () => {
           console.log('api run 1');
           })
         .catch(err => {
-          console.error("API #2 failed:", 'message:', err.message, 'stack:', err.stack);
+          console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
         })  
     fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
         .then((response) => response.json())
@@ -314,7 +377,7 @@ getWebsterDictionaryAPI = () => {
           console.log('api run 2');
           })
         .catch(err => {
-          console.error("API #2 failed:", 'message:', err.message, 'stack:', err.stack);
+          console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
         }) 
   }
   setTimeout(() => { 
@@ -347,9 +410,9 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   if (currentRow != 0) {
     try {
       shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
-      // navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
+      // navigator.clipboard.writeText(shareText).then(()=>{alert(`'Copied to clipboard!'\n${shareText}`)});
     } catch (err) {
-      console.error("Share failed:", err.message);
+      console.error('Share failed:', err.message);
     }
   }
 
@@ -388,6 +451,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 // SECTION BUTTONS
 function getKeyboardButton() {
   focusCurrentTile();
+  createKeyboard();
 }
 
 function refreshButton() {
