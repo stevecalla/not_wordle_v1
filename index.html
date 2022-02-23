@@ -26,7 +26,7 @@
         <svg  class='header-icon-svg' id='headerIconSVG' onclick='copyGameBoardButton()' version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 210.107 210.107" style="enable-background:new 0 0 210.107 210.107;" xml:space="preserve"><g><path d="M168.506,0H80.235C67.413,0,56.981,10.432,56.981,23.254v2.854h-15.38 c-12.822,0-23.254,10.432-23.254,23.254v137.492c0,12.822,10.432,23.254,23.254,23.254h88.271 c12.822,0,23.253-10.432,23.253-23.254V184h15.38c12.822,0,23.254-10.432,23.254-23.254V23.254C191.76,10.432,181.328,0,168.506,0z M138.126,186.854c0,4.551-3.703,8.254-8.253,8.254H41.601c-4.551,0-8.254-3.703-8.254-8.254V49.361 c0-4.551,3.703-8.254,8.254-8.254h88.271c4.551,0,8.253,3.703,8.253,8.254V186.854z M176.76,160.746 c0,4.551-3.703,8.254-8.254,8.254h-15.38V49.361c0-12.822-10.432-23.254-23.253-23.254H71.981v-2.854c0-4.551,3.703-8.254,8.254-8.254h88.271c4.551,0,8.254,3.703,8.254,8.254V160.746z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
       </div>
     </div>
-    <div class='input-wrapper hidden' id='inputTilesRow1'></div>
+    <div class='input-wrapper hidden' id='inputTilesRow1' onclick=focusCurrentTile()></div>
     <!-- KEYBOARD -->
     <!-- <button class="favorite styled" type="button" value='A' onClick=inputText(this)>A</button>
       <button class="favorite styled" type="button" value='B' onClick=inputText(this)>B</button> -->
@@ -38,6 +38,9 @@
     <button class="darkmode-toggle" onclick='toggleDarkModeButton()' aria-label="Activate dark mode" aria-checked="false" role="checkbox" ></button>
     <button class="contrast-toggle" onclick='toggleContrastModeButton()' aria-label="Activate color blind mode" aria-checked="false" role="checkbox"></button>
   
+    <!-- <audio controls="" autoplay="" name="media"><source src="https://audio.wordnik.com/19857.mp3?Expires=1645570334&amp;Key-Pair-Id=APKAIHXX6B6C37D2VKVA&amp;Signature=KbRZHAdorJfD9s-oQisIXYn8BY-d6WG8L4IBEtIQQ0MNXO0BD1C5xQEV4ZJzVBjNi12GTQ~jf6lOeauQQC10C5mY~NujDTFJDZwseupcCsiia9OToFNf8T--inZji9paQNaEVM0QwMhpksucMv1n87IPdGJGfMcACkmLrPIziMsNFhfBK-Jxl6FH3occElD8anUEKwwigDhwf9E0b2Y0bbVbqmQRJpmi9eGYfosEv1SLGIwyoBsIGehnQFmY4j6SQJ2trcnJfP5KK7dU24inyxTT-uHWQvERnZNG-9ci7A4ydXy9s9BKoYLhhyIomzjLAYqS~vSoXfl1sm7vwWSeEQ__" type="audio/mpeg"></audio> -->
+    <!-- <audio controls="" autoplay="" name="media"><source src='https://audio.wordnik.com/11411185.mp3?Expires=1645571589&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=b0iIwQWcOsAUjOk8515SDgiJIK2rBzadaGVWY5p4xJ7ApcCmqViZpd4RQ11Ua7P-cquf4qTikZHoLqK9ENH60Ru~CLryrV5RJlroioSDiqjeQDcLqh93yxLtddDsiZW-W5cW1CSL95hkmCcMV6AyipGkCqm00wTK4EVmvsb3AnHaBRaFaWUV4kgk8b1bHEhfGiL0gGwxwePV8xADwiLwm69q5O4s7b6JUGGNiCMfR6xx-Eh99khtV3XxkFpA3k-kJ7SFG2s5A6a531xYtq47OqHTn4XlOcdgNSDY9wYg5ZiJfFbos9jIEJCUgYbK8LgNxdd2pTHqNek1TiNY5vZWaA__' type='audio/mpeg'></audio> -->
+
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="text/javascript" src="confetti.js"></script>
     <script type="text/javascript" src="data.js"></script>

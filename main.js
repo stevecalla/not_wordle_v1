@@ -125,6 +125,7 @@ function createGameTiles() {
                 id=${`id${i}`}
                 maxlength="1"
                 name="selection" 
+                onclick()
                 value=""
                 size="1"
                 disabled="disabled"
