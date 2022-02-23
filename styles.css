@@ -60,18 +60,30 @@ body {
   /* bottom: 32px; */
 }
 
-.solution {
+.solution, 
+.definition {
+  margin-top: 15rem;
   width: 100px;
   text-align: center;
   border: solid;
-  border-color: white;
+  border-color: black;
   border-radius: 5px;
+  color: black;
   background-color: white;
+  position: absolute;
+  z-index: 3;
   animation: skew 3s infinite;
   animation-iteration-count: 5;
   /* transform: skew(20deg); */
   animation-direction: alternate;
   /* animation-duration: 3s; */
+}
+
+.definition {
+  margin-top: 18rem;
+  width: 250px;
+  margin: 10px;
+  text-align: center;
 }
 
 .message {
@@ -284,13 +296,6 @@ input[type=text][disabled][data-status='gameOver'] {
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
-}
-
-.definition {
-  width: 250px;
-  margin: 10px;
-  margin-top: 2px;
-  text-align: center;
 }
 
 .darkmode-toggle {

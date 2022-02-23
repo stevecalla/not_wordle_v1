@@ -11,6 +11,8 @@ body a {
 
 p,
 .solution,
-.message {
+.message,
+.definition {
   color: black;
+  background-color: white;
 }
