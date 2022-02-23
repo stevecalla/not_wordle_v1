@@ -94,7 +94,7 @@ function populateInstructionTiles() {
   document.getElementById('tile23').classList.add('contrast-toggle--grey');
 }
 
-function deleteInstructions() {
+function hideInstructions() {
   document.getElementById('instructionWrapper').innerHTML = ``;
   document.getElementById('instructionWrapper').classList.add('hidden');
   for (let i = 0; i < 30; i++) {
@@ -246,11 +246,13 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
         document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
         document.getElementById('id' + (i)).blur();
         // console.log(event.keyCode);
+        getWebsterDictionaryAPI();
       }
     // } else if (startRowTile + 4 === 29) {
     } else if (gameOverCondition) {
         //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
         document.getElementById('id29').blur();
+        getWebsterDictionaryAPI();
     } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
@@ -334,7 +336,15 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   displaySolution.innerText = solution.join('');
   document.getElementById('solution').classList.toggle('cloak');
   document.getElementById('definition').classList.toggle('cloak');
-  console.log('innerText=', document.querySelector('#definition').innerText)
+  console.log('innerText=', document.querySelector('#definition').innerText);
+  // document.getElementById('instructionWrapper').innerHTML = `
+  //   <p class=''>Solution: ${solution.join('')}</p>
+  //   <p class=''>Definition: ${displayDefinition}</p>
+  //   `;
+  // document.getElementById('instructionWrapper').classList.remove('hidden');
+
+  // Solution: ${solution.join('')};
+  // Definition: ${displayDefinition};
 
   // console.log(document.querySelector('#audio').innerHTML)
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
