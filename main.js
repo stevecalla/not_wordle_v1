@@ -155,6 +155,8 @@ function createKeyboard() {
   }
   document.getElementById('keyboard20').classList.add('enter-button');
   document.getElementById('keyboard27').classList.add('back-button');
+  document.getElementById('keyboard20').style.backgroundColor = '#939598'
+  document.getElementById('keyboard27').style.backgroundColor = '#939598'
 
   document.getElementById('keyboard20').value = 13;
   document.getElementById('keyboard20').setAttribute('onclick', 'eventKeyBoardButton()');
@@ -188,7 +190,6 @@ function createKeyboard() {
     matchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
     exactMatchInput.includes(alphabet[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
   }
-
 }
 
 function eventKeyBoardButton() {

@@ -404,6 +404,10 @@ input[type=text][data-status='start'] {
   width: 3.6rem;
 }
 
+.back-button {
+  font-size: 25px;
+}
+
 /*------- MEDIA QUERIES -----------------*/
 @media screen and (max-width: 600px) {
   .header {
