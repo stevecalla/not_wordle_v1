@@ -495,11 +495,13 @@ function refreshButton() {
 function toggleDarkModeButton() {
   toggleDarkMode();
   // focusCurrentTile();
+  event.preventDefault;
 } 
 
 function toggleContrastModeButton() {
   toggleContrastMode();
   // focusCurrentTile();
+  event.preventDefault;
 } 
 
 function definitionButton() {
