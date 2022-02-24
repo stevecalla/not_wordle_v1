@@ -242,10 +242,10 @@ input[id^='id'] {
   z-index: 4;
 }
 
-input[data-status='exactMatch'] {
-  /* background-color: green; */
+input[data-status='noMatch'] {
+  /* background-color: grey; */
   color: white;
-  /* background-color: #6aaa64; */
+  background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -258,10 +258,10 @@ input[data-status='match'] {
   cursor: not-allowed;
 }
 
-input[data-status='noMatch'] {
-  /* background-color: grey; */
+input[data-status='exactMatch'] {
+  /* background-color: green; */
   color: white;
-  background-color: #787C7E;
+  /* background-color: #6aaa64; */
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -298,6 +298,41 @@ input[type=text][data-status='start'] {
   cursor: not-allowed;
 }
 
+/*------- KEYBOARD -----------*/
+.keyboard-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 400px;
+  margin-top: 30px;
+}
+
+.keyboard-button {
+  height: 3.2rem;
+  width: 2rem;
+  margin-right: 0.3rem;
+  margin-bottom: 0.3rem;
+  border: none;
+  border-radius: 5px;
+  color: black;
+  /* background-color: #787C7E; */
+  /* background-color: #939598; */
+  background-color: #d8d8d8;
+  font-size: 1rem;
+}
+
+.enter-button,
+.back-button {
+  width: 3.6rem;
+  background-color: #939598;
+}
+
+.back-button {
+  font-size: 23px;
+}
+
+/*-------- DARK MODE & CONTRAST -------*/
+
 .darkmode-toggle {
   background: #100f2c;
   width: 3rem;
@@ -325,7 +360,7 @@ input[type=text][data-status='start'] {
 }
 
 .contrast-toggle {
-  background: #100f2c;
+  /* background: #100f2c; */
   width: 3rem;
   height: 3rem;
   position: fixed;
@@ -346,23 +381,24 @@ input[type=text][data-status='start'] {
   background: linear-gradient( 90deg, #6aaa64 50%, #c9b458 50% ); 
 }
 
-.contrast-toggle--green {
-  background-color: #6aaa64;
+.contrast-toggle--grey {
+  background-color: #787C7E;
 }
 
 .contrast-toggle--yellow {
   background-color: #c9b458;
 }
-.contrast-toggle--blue {
-  background-color: #85c0f9;
+
+.contrast-toggle--green {
+  background-color: #6aaa64;
 }
 
 .contrast-toggle--orange {
   background-color: #f5793a;
 }
 
-.contrast-toggle--grey {
-  background-color: #787C7E;
+.contrast-toggle--blue {
+  background-color: #85c0f9;
 }
 
 .cloak {
@@ -375,38 +411,6 @@ input[type=text][data-status='start'] {
 
 .show {
   display: flex;
-}
-
-/*------- KEYBOARD -----------*/
-.keyboard-wrapper {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  width: 400px;
-  margin-top: 30px;
-}
-
-.keyboard-button {
-  height: 3.2rem;
-  width: 2rem;
-  margin-right: 0.3rem;
-  margin-bottom: 0.3rem;
-  border: none;
-  border-radius: 5px;
-  color: black;
-  /* background-color: #787C7E; */
-  /* background-color: #939598; */
-  background-color: #d8d8d8;
-  font-size: 1rem;
-}
-
-.enter-button,
-.back-button {
-  width: 3.6rem;
-}
-
-.back-button {
-  font-size: 23px;
 }
 
 /*------- MEDIA QUERIES -----------------*/

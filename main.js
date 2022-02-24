@@ -28,7 +28,7 @@ function loadTasks() {
   createGameInstruction();
   createGameSolution();
   createGameTiles();
-  // createKeyboard();
+  createOnscreenKeyboard();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -102,6 +102,7 @@ function hideInstructions() {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
   document.querySelector('.input-wrapper').classList.remove('hidden');
+  document.querySelector('.keyboard-wrapper').classList.remove('hidden');
   // document.getElementById('id0').focus();
   focusCurrentTile();
 }
@@ -138,7 +139,7 @@ function createGameTiles() {
 }
 
 // SECTION CREATE ONSCREEN KEYBOARD
-function createKeyboard() {
+function createOnscreenKeyboard() {
   const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','⌫'];
   document.getElementById('keyboardWrapper').innerHTML = '';
@@ -156,41 +157,39 @@ function createKeyboard() {
   }
   document.getElementById('keyboard20').classList.add('enter-button');
   document.getElementById('keyboard27').classList.add('back-button');
-  document.getElementById('keyboard20').style.backgroundColor = '#939598'
-  document.getElementById('keyboard27').style.backgroundColor = '#939598'
 
   document.getElementById('keyboard20').value = 13;
   document.getElementById('keyboard20').setAttribute('onclick', 'eventKeyBoardButton()');
   document.getElementById('keyboard27').setAttribute('onclick', 'deleteInputText()');
 
-  let exactMatchInput = [];
-  let matchInput = [];
-  //todo color contrast
-  //todo simplify
+  // let exactMatchInput = [];
+  // let matchInput = [];
+  // //todo color contrast
+  // //todo simplify
 
-  for (let i = 0; i < allInput.length; i++) {
-    console.log('solution=', solution, 'allInput[i]=', allInput[i])
-    if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'exactMatch') {
-      exactMatchInput.push(allInput[i]);
-      console.log('matchInput=', exactMatchInput);
-      console.log(document.getElementById('id' + i))
-    } else if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'match') {
-        matchInput.push(allInput[i]);
-        console.log('matchInput=', matchInput);
-        console.log(document.getElementById('id' + i));
-    }
-  }
+  // for (let i = 0; i < allInput.length; i++) {
+  //   console.log('solution=', solution, 'allInput[i]=', allInput[i])
+  //   if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'exactMatch') {
+  //     exactMatchInput.push(allInput[i]);
+  //     console.log('matchInput=', exactMatchInput);
+  //     console.log(document.getElementById('id' + i))
+  //   } else if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'match') {
+  //       matchInput.push(allInput[i]);
+  //       console.log('matchInput=', matchInput);
+  //       console.log(document.getElementById('id' + i));
+  //   }
+  // }
 
-  for (let i = 0; i < 28; i++) {
-    console.log('whatever2')
-    allInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#787C7E' : null;
-  }
+  // for (let i = 0; i < 28; i++) {
+  //   console.log('whatever2')
+  //   allInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#787C7E' : null;
+  // }
 
-  for (let i = 0; i < 28; i++) {
-    console.log('whatever2')
-    matchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
-    exactMatchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
-  }
+  // for (let i = 0; i < 28; i++) {
+  //   console.log('whatever2')
+  //   matchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#c9b458' : null;
+  //   exactMatchInput.includes(qwertyKeys[i]) ? document.getElementById('keyboard' + i).style.backgroundColor = '#6aaa64' : null;
+  // }
 }
 
 function eventKeyBoardButton() {
@@ -293,7 +292,38 @@ function assignMatchStatus(startRowTile, endRowTile) {
     }
     console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
+  updateOnscreenKeyboard();
   determineWinStatus(startRowTile, endRowTile, dataStatus);
+}
+
+function updateOnscreenKeyboard() {
+  const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
+  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','⌫'];
+  let exactMatchInput = [];
+  let matchInput = [];
+  for (let i = 0; i < allInput.length; i++) {
+    console.log('solution=', solution, 'allInput[i]=', allInput[i])
+    if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'exactMatch') {
+      exactMatchInput.push(allInput[i]);
+      console.log('matchInput=', exactMatchInput);
+      console.log(document.getElementById('id' + i))
+    } else if (solution.includes(allInput[i]) && document.getElementById('id' + i).dataset.status === 'match') {
+        matchInput.push(allInput[i]);
+        console.log('matchInput=', matchInput);
+        console.log(document.getElementById('id' + i));
+    }
+  }
+
+  for (let i = 0; i < 28; i++) {
+    console.log('whatever2')
+    if (exactMatchInput.includes(qwertyKeys[i])) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--green')
+    } else if (matchInput.includes(qwertyKeys[i])) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--yellow')
+    } else if (allInput.includes(qwertyKeys[i])) {
+     document.getElementById('keyboard' + i).classList.add('contrast-toggle--grey');
+    }
+  }
 }
 
 function determineWinStatus(startRowTile, endRowTile, dataStatus) {
@@ -452,8 +482,9 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 
 // SECTION BUTTONS
 function getKeyboardButton() {
-  // focusCurrentTile();
-  createKeyboard();
+  // createOnscreenKeyboard();
+  // document.querySelector('.keyboard-wrapper').classList.toggle('hidden');
+  focusCurrentTile();
 }
 
 function refreshButton() {
@@ -532,10 +563,17 @@ function toggleContrastMode() {
   const gameTiles = document.querySelectorAll("input[id^='id']");
   contrastModeButton.classList.toggle('contrast-toggle--blueorange');
   for (let i = 0; i < 30; i++) {
-    if (gameTiles[i].dataset.status === 'exactMatch') {
+    if (gameTiles[i].classList.contains('contrast-toggle--green')) {
       gameTiles[i].classList.toggle('contrast-toggle--blue');
-    } else if (gameTiles[i].dataset.status === 'match') {
+    } else if (gameTiles[i].classList.contains('contrast-toggle--yellow')) {
       gameTiles[i].classList.toggle('contrast-toggle--orange');
+    }
+  }
+  for (let i = 0; i < 28; i++) {
+    if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--green')) {
+      document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--blue')
+    } else if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--yellow')) {
+      document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--orange')
     }
   }
   if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
