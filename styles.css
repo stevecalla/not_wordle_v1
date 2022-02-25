@@ -389,8 +389,7 @@ input[type=text][data-status='start'] {
   fill: white;
 }
 
-.contrast-toggle {
-  /* background: #100f2c; */
+/* .contrast-toggle {
   width: 3rem;
   height: 3rem;
   position: fixed;
@@ -429,7 +428,7 @@ input[type=text][data-status='start'] {
 
 .contrast-toggle--blue {
   background-color: #85c0f9;
-}
+} */
 
 .cloak {
   visibility: hidden;

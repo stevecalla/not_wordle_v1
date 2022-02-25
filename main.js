@@ -523,10 +523,10 @@ function copyGameBoardButton() {
   let currentRow = Math.floor(allInput.length / 5);
   let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
   let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
-  let contrastState = document.querySelector('.contrast-toggle');
+  const contrastModeCSS = document.querySelector("#contrastMode-link");
   if (currentRow != 0) {
     try {
-      let shareText = contrastState.classList.contains('contrast-toggle--blueorange') ? blueOrangeBoard : greenYellowBoard;
+      let shareText = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
       navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
     } catch (err) {
       console.error("Share failed:", err.message);
@@ -622,7 +622,7 @@ function setColorContrast() {
 // }
 
 function toggleContrastMode() {
-  const contrastModeButton = document.querySelector(".contrastMode-toggle");
+  // const contrastModeButton = document.querySelector(".contrastMode-toggle");
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   // const contrastModeIconList = document.querySelectorAll('.header-icon-svg');
   contrastModeCSS.getAttribute("href") === "contrast-theme-green.css" ? contrastModeCSS.href = "contrast-theme-blue.css" : contrastModeCSS.href = "contrast-theme-green.css";
