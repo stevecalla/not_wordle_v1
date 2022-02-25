@@ -104,7 +104,7 @@ function hideInstructions() {
   document.querySelector('.input-wrapper').classList.remove('hidden');
   document.querySelector('.keyboard-wrapper').classList.remove('hidden');
   // document.getElementById('id0').focus();
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 // SECTION CREATE SOLUTION
@@ -141,7 +141,7 @@ function createGameTiles() {
 // SECTION CREATE ONSCREEN KEYBOARD
 function createOnscreenKeyboard() {
   const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
-  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','⌫'];
+  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','ENTER','Z','X','C','V','B','N','M','⌫'];
   document.getElementById('keyboardWrapper').innerHTML = '';
   for (let i = 0; i < 28; i++) {
     document.getElementById('keyboardWrapper').innerHTML += `
@@ -155,11 +155,13 @@ function createOnscreenKeyboard() {
       </button>
     `
   }
-  document.getElementById('keyboard20').classList.add('enter-button');
+
+  document.getElementById('keyboard10').style.marginLeft = '0.5rem';
+  document.getElementById('keyboard19').classList.add('enter-button');
   document.getElementById('keyboard27').classList.add('back-button');
 
-  document.getElementById('keyboard20').value = 13;
-  document.getElementById('keyboard20').setAttribute('onclick', 'eventKeyBoardButton()');
+  document.getElementById('keyboard19').value = 13;
+  document.getElementById('keyboard19').setAttribute('onclick', 'eventKeyBoardButton()');
   document.getElementById('keyboard27').setAttribute('onclick', 'deleteInputText()');
 
   // let exactMatchInput = [];
@@ -484,12 +486,12 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 function getKeyboardButton() {
   // createOnscreenKeyboard();
   // document.querySelector('.keyboard-wrapper').classList.toggle('hidden');
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 function refreshButton() {
   location.reload(true);
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 function toggleDarkModeButton() {
@@ -535,7 +537,7 @@ function toggleDarkMode() {
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
-  focusCurrentTile();;
+  // focusCurrentTile();;
 }
 
 function setColorContrast() {
@@ -582,7 +584,7 @@ function toggleContrastMode() {
     document.getElementById('tile00').classList.toggle('contrast-toggle--blue');
     document.getElementById('tile11').classList.toggle('contrast-toggle--orange');
   }
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 //SECTION FOCUS TILE

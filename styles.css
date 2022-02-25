@@ -416,7 +416,8 @@ input[type=text][data-status='start'] {
 /*------- MEDIA QUERIES -----------------*/
 @media screen and (max-width: 600px) {
   .header {
-    width: 375px;
+    margin-bottom: 10px;
+    width: 350px;
   }
 
   .input-wrapper {
@@ -447,6 +448,14 @@ input[type=text][data-status='start'] {
       font-size: 2rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
+    }
+
+    .keyboard-wrapper {
+      margin-top: 10px;
+    }
+
+    .keyboard-button {
+      height: 2.8rem;
     }
 
     /* height: 2rem;
