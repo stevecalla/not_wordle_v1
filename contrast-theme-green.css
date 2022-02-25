@@ -1,0 +1,11 @@
+.contrast-toggle--noMatch {
+  background-color: #787C7E;
+}
+
+.contrast-toggle--match {
+  background-color: #c9b458;
+}
+
+.contrast-toggle--exactMatch {
+  background-color: #6aaa64;
+}

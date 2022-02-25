@@ -90,9 +90,9 @@ function populateInstructionTiles() {
     document.getElementById('tile' + 1 + i).setAttribute('disabled', 'disabled');
     document.getElementById('tile' + 2 + i).setAttribute('disabled', 'disabled');
   }
-  document.getElementById('tile00').classList.add('contrast-toggle--green');
-  document.getElementById('tile11').classList.add('contrast-toggle--yellow');
-  document.getElementById('tile23').classList.add('contrast-toggle--grey');
+  document.getElementById('tile00').classList.add('contrast-toggle--exactMatch');
+  document.getElementById('tile11').classList.add('contrast-toggle--match');
+  document.getElementById('tile23').classList.add('contrast-toggle--noMatch');
 }
 
 function hideInstructions() {
@@ -319,11 +319,11 @@ function updateOnscreenKeyboard() {
   for (let i = 0; i < 28; i++) {
     console.log('whatever2')
     if (exactMatchInput.includes(qwertyKeys[i])) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle--green')
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--exactMatch')
     } else if (matchInput.includes(qwertyKeys[i])) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle--yellow')
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--match')
     } else if (allInput.includes(qwertyKeys[i])) {
-     document.getElementById('keyboard' + i).classList.add('contrast-toggle--grey');
+     document.getElementById('keyboard' + i).classList.add('contrast-toggle--noMatch');
     }
   }
 }
@@ -545,30 +545,22 @@ function toggleDarkMode() {
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
-  // focusCurrentTile();;
+  // focusCurrentTile();
 }
 
-function setColorContrast() {
-  let startRowTile = (allInput.length - 1) * 1 - 4;
-  // let endRowTile = startRowTile + 4; 
-  for (let i = 0; i < 5; i++) {
-    if (allInput[startRowTile + i] === solution[i]) {
-      if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--blue');
-      } else {
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
-      }
-    } else if (solution.includes(allInput[startRowTile + i])) {
-      if(document.querySelector(".contrast-toggle").classList.contains('contrast-toggle--blueorange')) {
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--orange');
-      } else {
-        document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
-      }
-    }
-  } 
+// function setColorContrast() {
+//   let startRowTile = (allInput.length - 1) * 1 - 4;
+//   // let endRowTile = startRowTile + 4; 
+//   for (let i = 0; i < 5; i++) {
+//     if (allInput[startRowTile + i] === solution[i]) {
+//       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--exactMatch');
+//     } else if (solution.includes(allInput[startRowTile + i])) {
+//       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
+//     }
+//   } 
+// }
 
+// function setColorContrast() {
   // for (let i = 0; i < 5; i++) {//todo
   //   if (allInput[startRowTile + i] === solution[i]) {
   //     if(document.getElementById('toggleOffIcon2').classList.contains('contrast-toggle--blueorange')) {
@@ -586,34 +578,56 @@ function setColorContrast() {
   //     }
   //   }
   // }
+// }
+
+function setColorContrast() {
+  let startRowTile = (allInput.length - 1) * 1 - 4;
+  // let endRowTile = startRowTile + 4; 
+  for (let i = 0; i < 5; i++) {
+    if (allInput[startRowTile + i] === solution[i]) {
+      document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--exactMatch');
+    } else if (solution.includes(allInput[startRowTile + i])) {
+      document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
+    }
+  }
 }
 
+// function toggleContrastMode() {
+//   // const contrastModeToggle = document.getElementById('toggleOffIcon2');//todo
+//   // contrastModeToggle.classList.toggle('contrast-toggle--blueorange');//todo
+
+//   const contrastModeButton = document.querySelector(".contrast-toggle");
+//   contrastModeButton.classList.toggle('contrast-toggle--blueorange');
+
+//   const gameTiles = document.querySelectorAll("input[id^='id']");
+//   for (let i = 0; i < 30; i++) {
+//     if (gameTiles[i].classList.contains('contrast-toggle--green')) {
+//       gameTiles[i].classList.toggle('contrast-toggle--blue');
+//     } else if (gameTiles[i].classList.contains('contrast-toggle--yellow')) {
+//       gameTiles[i].classList.toggle('contrast-toggle--orange');
+//     }
+//   }
+//   for (let i = 0; i < 28; i++) {
+//     if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--green')) {
+//       document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--blue')
+//     } else if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--yellow')) {
+//       document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--orange')
+//     }
+//   }
+//   // if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
+//   //   document.getElementById('tile00').classList.toggle('contrast-toggle--blue');
+//   //   document.getElementById('tile11').classList.toggle('contrast-toggle--orange');
+//   // }
+//   // focusCurrentTile();
+// }
+
 function toggleContrastMode() {
-  // const contrastModeToggle = document.getElementById('toggleOffIcon2');//todo
-  // contrastModeToggle.classList.toggle('contrast-toggle--blueorange');//todo
+  const contrastModeButton = document.querySelector(".contrastMode-toggle");
+  const contrastModeCSS = document.querySelector("#contrastMode-link");
+  // const contrastModeIconList = document.querySelectorAll('.header-icon-svg');
+  contrastModeCSS.getAttribute("href") === "contrast-theme-green.css" ? contrastModeCSS.href = "contrast-theme-blue.css" : contrastModeCSS.href = "contrast-theme-green.css";
+  // contrastModeButton.classList.toggle('darkmode-toggle--white');
 
-  const contrastModeButton = document.querySelector(".contrast-toggle");
-  contrastModeButton.classList.toggle('contrast-toggle--blueorange');
-
-  const gameTiles = document.querySelectorAll("input[id^='id']");
-  for (let i = 0; i < 30; i++) {
-    if (gameTiles[i].classList.contains('contrast-toggle--green')) {
-      gameTiles[i].classList.toggle('contrast-toggle--blue');
-    } else if (gameTiles[i].classList.contains('contrast-toggle--yellow')) {
-      gameTiles[i].classList.toggle('contrast-toggle--orange');
-    }
-  }
-  for (let i = 0; i < 28; i++) {
-    if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--green')) {
-      document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--blue')
-    } else if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--yellow')) {
-      document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--orange')
-    }
-  }
-  if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
-    document.getElementById('tile00').classList.toggle('contrast-toggle--blue');
-    document.getElementById('tile11').classList.toggle('contrast-toggle--orange');
-  }
   // focusCurrentTile();
 }
 
