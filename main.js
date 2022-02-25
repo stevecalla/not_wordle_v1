@@ -208,7 +208,7 @@ function inputText(event) {
   keyCode = event.keyCode;
   // console.log(key);
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
-    document.getElementById('id' + allInput.length).focus();
+    // document.getElementById('id' + allInput.length).focus();//todo
     document.getElementById('id' + allInput.length).value = key;
     createInputString(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
@@ -258,7 +258,7 @@ function deleteInputText() {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = '';
-    deleteTile.focus();
+    // deleteTile.focus();//todo
     currentInput.pop();
     allInput.pop();
     // determineCurrentTile(allInput);
@@ -273,9 +273,9 @@ function evaluateString(event) {
 function determineCurrentRow() {
   let startRowTile = (allInput.length - 1) * 1 - 4;
   let endRowTile = startRowTile + 4; //FIX delete endrow variable
-  if ((startRowTile + 5) < 29) {
-    document.getElementById('id' + (startRowTile + 5)).focus();
-  }
+  // if ((startRowTile + 5) < 29) {
+  //   document.getElementById('id' + (startRowTile + 5)).focus();
+  // } //todo
   assignMatchStatus(startRowTile, endRowTile);
 }
 
