@@ -317,11 +317,10 @@ function updateOnscreenKeyboard() {
   }
 
   for (let i = 0; i < 28; i++) {
-    console.log('whatever2')
     if (exactMatchInput.includes(qwertyKeys[i])) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle--exactMatch')
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--exactMatch');
     } else if (matchInput.includes(qwertyKeys[i])) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle--match')
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--match');
     } else if (allInput.includes(qwertyKeys[i])) {
      document.getElementById('keyboard' + i).classList.add('contrast-toggle--noMatch');
     }
@@ -506,12 +505,10 @@ function toggleDarkModeButton() {
   event.preventDefault;
 } 
 
-function toggleContrastModeButton() {
-  document.getElementById('toggleOffIcon2').classList.toggle('hidden');
-  document.getElementById('toggleOnIcon2').classList.toggle('hidden');
+function toggleContrastModeButton(event) {
   toggleContrastMode();
   // focusCurrentTile();
-  event.preventDefault;
+  // event.preventDefault;
 } 
 
 function definitionButton() {
@@ -548,38 +545,6 @@ function toggleDarkMode() {
   // focusCurrentTile();
 }
 
-// function setColorContrast() {
-//   let startRowTile = (allInput.length - 1) * 1 - 4;
-//   // let endRowTile = startRowTile + 4; 
-//   for (let i = 0; i < 5; i++) {
-//     if (allInput[startRowTile + i] === solution[i]) {
-//       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--exactMatch');
-//     } else if (solution.includes(allInput[startRowTile + i])) {
-//       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
-//     }
-//   } 
-// }
-
-// function setColorContrast() {
-  // for (let i = 0; i < 5; i++) {//todo
-  //   if (allInput[startRowTile + i] === solution[i]) {
-  //     if(document.getElementById('toggleOffIcon2').classList.contains('contrast-toggle--blueorange')) {
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--blue');
-  //     } else {
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
-  //     }
-  //   } else if (solution.includes(allInput[startRowTile + i])) {
-  //     if(document.getElementById('toggleOffIcon2').classList.contains('contrast-toggle--blueorange')) {
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--orange');
-  //     } else {
-  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
-  //     }
-  //   }
-  // }
-// }
-
 function setColorContrast() {
   let startRowTile = (allInput.length - 1) * 1 - 4;
   // let endRowTile = startRowTile + 4; 
@@ -592,42 +557,13 @@ function setColorContrast() {
   }
 }
 
-// function toggleContrastMode() {
-//   // const contrastModeToggle = document.getElementById('toggleOffIcon2');//todo
-//   // contrastModeToggle.classList.toggle('contrast-toggle--blueorange');//todo
-
-//   const contrastModeButton = document.querySelector(".contrast-toggle");
-//   contrastModeButton.classList.toggle('contrast-toggle--blueorange');
-
-//   const gameTiles = document.querySelectorAll("input[id^='id']");
-//   for (let i = 0; i < 30; i++) {
-//     if (gameTiles[i].classList.contains('contrast-toggle--green')) {
-//       gameTiles[i].classList.toggle('contrast-toggle--blue');
-//     } else if (gameTiles[i].classList.contains('contrast-toggle--yellow')) {
-//       gameTiles[i].classList.toggle('contrast-toggle--orange');
-//     }
-//   }
-//   for (let i = 0; i < 28; i++) {
-//     if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--green')) {
-//       document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--blue')
-//     } else if (document.getElementById('keyboard' + i).classList.contains('contrast-toggle--yellow')) {
-//       document.getElementById('keyboard' + i).classList.toggle('contrast-toggle--orange')
-//     }
-//   }
-//   // if (!document.getElementById('instructionWrapper').classList.contains('hidden')) {
-//   //   document.getElementById('tile00').classList.toggle('contrast-toggle--blue');
-//   //   document.getElementById('tile11').classList.toggle('contrast-toggle--orange');
-//   // }
-//   // focusCurrentTile();
-// }
-
 function toggleContrastMode() {
-  // const contrastModeButton = document.querySelector(".contrastMode-toggle");
-  const contrastModeCSS = document.querySelector("#contrastMode-link");
-  // const contrastModeIconList = document.querySelectorAll('.header-icon-svg');
-  contrastModeCSS.getAttribute("href") === "contrast-theme-green.css" ? contrastModeCSS.href = "contrast-theme-blue.css" : contrastModeCSS.href = "contrast-theme-green.css";
-  // contrastModeButton.classList.toggle('darkmode-toggle--white');
-
+  document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
+  document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
+  let contrastModeCSS = document.querySelector("#contrastMode-link");
+  const blue = 'contrast-theme-blue.css';
+  const green = 'contrast-theme-green.css';
+  contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
   // focusCurrentTile();
 }
 
