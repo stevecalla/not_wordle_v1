@@ -499,12 +499,16 @@ function refreshButton() {
 }
 
 function toggleDarkModeButton() {
+  document.getElementById('toggleOffIcon').classList.toggle('hidden');
+  document.getElementById('toggleOnIcon').classList.toggle('hidden');
   toggleDarkMode();
   // focusCurrentTile();
   event.preventDefault;
 } 
 
 function toggleContrastModeButton() {
+  document.getElementById('toggleOffIcon2').classList.toggle('hidden');
+  document.getElementById('toggleOnIcon2').classList.toggle('hidden');
   toggleContrastMode();
   // focusCurrentTile();
   event.preventDefault;
@@ -563,13 +567,35 @@ function setColorContrast() {
         document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
       }
     }
-  }
+  } 
+
+  // for (let i = 0; i < 5; i++) {//todo
+  //   if (allInput[startRowTile + i] === solution[i]) {
+  //     if(document.getElementById('toggleOffIcon2').classList.contains('contrast-toggle--blueorange')) {
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--blue');
+  //     } else {
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--green');
+  //     }
+  //   } else if (solution.includes(allInput[startRowTile + i])) {
+  //     if(document.getElementById('toggleOffIcon2').classList.contains('contrast-toggle--blueorange')) {
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--orange');
+  //     } else {
+  //       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--yellow');
+  //     }
+  //   }
+  // }
 }
 
 function toggleContrastMode() {
+  // const contrastModeToggle = document.getElementById('toggleOffIcon2');//todo
+  // contrastModeToggle.classList.toggle('contrast-toggle--blueorange');//todo
+
   const contrastModeButton = document.querySelector(".contrast-toggle");
-  const gameTiles = document.querySelectorAll("input[id^='id']");
   contrastModeButton.classList.toggle('contrast-toggle--blueorange');
+
+  const gameTiles = document.querySelectorAll("input[id^='id']");
   for (let i = 0; i < 30; i++) {
     if (gameTiles[i].classList.contains('contrast-toggle--green')) {
       gameTiles[i].classList.toggle('contrast-toggle--blue');
