@@ -202,11 +202,11 @@ function eventKeyBoardButton() {
 
 // SECTION GET INPUT CHARACTERS
 function inputText(event) {
-  console.log(event);
+  // console.log(event);
   // console.log(a)
   let key = event.key? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
-  console.log(key);
+  // console.log(key);
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     document.getElementById('id' + allInput.length).focus();
     document.getElementById('id' + allInput.length).value = key;
@@ -483,6 +483,10 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 }
 
 // SECTION BUTTONS
+function hamburgerMenu() {
+  document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+}
+
 function getKeyboardButton() {
 //   // createOnscreenKeyboard();
 //   // document.querySelector('.keyboard-wrapper').classList.toggle('hidden');
