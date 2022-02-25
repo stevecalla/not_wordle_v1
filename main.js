@@ -484,9 +484,9 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 
 // SECTION BUTTONS
 function getKeyboardButton() {
-  // createOnscreenKeyboard();
-  // document.querySelector('.keyboard-wrapper').classList.toggle('hidden');
-  // focusCurrentTile();
+//   // createOnscreenKeyboard();
+//   // document.querySelector('.keyboard-wrapper').classList.toggle('hidden');
+//   // focusCurrentTile();
 }
 
 function refreshButton() {
