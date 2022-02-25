@@ -16,3 +16,12 @@ p,
   color: black;
   background-color: white;
 }
+
+/* .darkmode-toggle--white {
+  background: #fff;
+} */
+
+.darkmode-svg-toggle--white {
+  background: black;
+  fill: white;
+}

@@ -534,11 +534,11 @@ function copyGameBoardButton() {
 
 // SECTION DARK & CONTRAST MODE
 function toggleDarkMode() {
-  const darkModeButton = document.querySelector(".darkmode-toggle");
   const darkModeCSS = document.querySelector("#darkMode-link");
+  const darkModeButton = document.querySelector(".darkmode-toggle");
   const darkModeIconList = document.querySelectorAll('.header-icon-svg');
   darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
-  darkModeButton.classList.toggle('darkmode-toggle--white');
+  // darkModeButton.classList.toggle('darkmode-toggle--white'); //adjust original circle from black to white
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
