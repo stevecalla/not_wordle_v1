@@ -121,13 +121,26 @@ function createGameSolution() {
 function createGameTiles() {
   for (let i = 0; i < 30; i++) {
     inputTilesRow1.innerHTML +=
+    // `   
+    //   <div>
+    //     <input type='text' 
+    //             id=${`id${i}`}
+    //             maxlength='1'
+    //             name='selection' 
+    //             onclick()
+    //             value=''
+    //             size='1'
+    //             disabled='disabled'
+    //             data-status='start'
+    //             style='text-transform:uppercase' >
+    //   </div>
+    // `;
     `   
       <div>
         <input type='text' 
                 id=${`id${i}`}
                 maxlength='1'
-                name='selection' 
-                onclick()
+                name='selection'
                 value=''
                 size='1'
                 disabled='disabled'
