@@ -24,6 +24,7 @@ body {
   align-items: center;
   height: 100vh;
   margin: 0;
+  font-size: 16px;
   /* background-image:
     linear-gradient(
       #134d71 15%, 
@@ -152,8 +153,8 @@ body {
 }
 
 .click-to-hide-x {
-  color: grayscale;
-  font-size: 15px;
+  /* color: grayscale; */
+  /* font-size: 15px; */
   font-weight: lighter;
 }
 
@@ -170,7 +171,7 @@ p {
 input[id^='tile'] {
   height: 2rem;
   width: 2rem;
-  font-size: 1rem;
+  /* font-size: 1rem; */
   text-align: center;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
@@ -319,10 +320,11 @@ input[type=text][data-status='start'] {
   border: none;
   border-radius: 5px;
   color: black;
+  font-size: 16px;
   /* background-color: #787C7E; */
   /* background-color: #939598; */
   /* background-color: #d8d8d8; //todo */
-  font-size: 1rem;
+  /* font-size: 1rem; */
 }
 
 .enter-button,
@@ -448,18 +450,18 @@ input[type=text][data-status='start'] {
       flex-direction: column;
       text-align: center; */
       margin: 0.4rem;
-      font-size: 0.75rem;
+      /* font-size: 0.75rem; */
       /* font-style: bolder; */
-      font-weight: 700;
+      /* font-weight: 700; */
     }
 
     input[id^='tile'] {
       height: 1.5rem;
       width: 1.5rem;
-      font-size: 1rem;
+      /* font-size: 1rem; */
       /* text-align: center; */
-      margin-right: 0.1rem;
-      margin-bottom: 0.1rem;
+      /* margin-right: 0.1rem;
+      margin-bottom: 0.1rem; */
       /* border-color: light-grey; */
     }
 
