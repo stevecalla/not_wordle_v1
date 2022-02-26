@@ -388,6 +388,7 @@ input[type=text][data-status='start'] {
 
   .input-wrapper {
     width: 300px;
+    width: 275px;
     /* border: solid; */
     /* border-color: blue; */
     /* display: flex; */
@@ -401,6 +402,8 @@ input[type=text][data-status='start'] {
       font-size: 2rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
+      height: 2.7rem;
+      width: 2.7rem;
     } 
 
     input[type=text][disabled][data-status='gameOver'] {
@@ -421,7 +424,7 @@ input[type=text][data-status='start'] {
     }
 
     .keyboard-button {
-      height: 2.8rem;
+      /* height: 2.8rem; */
     }
 
     /* height: 2rem;
