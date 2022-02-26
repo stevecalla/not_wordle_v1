@@ -22,6 +22,13 @@ let displayDefinition = 'Sorry, I could not find the definition';
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
 
+// test doubleclick prevent zoom
+document.addEventListener('dblclick', function (e) {
+  console.log(e)
+  console.log(e.screenX, e.screenY)
+  e.preventDefault();
+});
+
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
