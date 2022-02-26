@@ -219,7 +219,7 @@ function inputText(event) {
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
-  console.log(event.key, event.value, event);
+  // console.log(event.key, event.value, event);
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
     document.getElementById('id' + allInput.length).value = key;
@@ -237,7 +237,7 @@ function inputText(event) {
     // console.log('4')
     event.preventDefault();
   } 
-  console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
+  // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
 function createInputString(key) {
