@@ -210,20 +210,21 @@ function inputText(event) {
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
     document.getElementById('id' + allInput.length).value = key;
-    console.log('1')
+    // console.log('1')
     createInputString(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
-        console.log('2')
+        // console.log('2')
         deleteInputText();
-  } else if (currentInput.length === 5 && (key && 'Enter' === key || keyCode && 13 === keyCode || event)) {
-    console.log('3')
+  } else if (currentInput.length === 5 && (key && 'Enter' === key || keyCode && 13 === keyCode || event === '13')) {
+    // console.log('3')
     evaluateCurrentInput(event);
   } else if (event.keyCode <65 || event.keyCode >90) {
-    console.log('4')
+    // console.log('4')
     event.preventDefault();
   } 
+  console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
 function createInputString(key) {
