@@ -421,10 +421,23 @@ input[type=text][data-status='start'] {
 
     .keyboard-wrapper {
       margin-top: 10px;
+      width: 350px;
     }
 
     .keyboard-button {
       /* height: 2.8rem; */
+      width: 1.7rem;
+    }
+
+    .enter-button,
+    .back-button {
+      width: 3.1rem;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    .back-button {
+      font-size: 20px;
     }
 
     /* height: 2rem;
