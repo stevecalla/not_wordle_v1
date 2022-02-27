@@ -356,11 +356,16 @@ input[type=text][data-status='start'] {
   z-index: 4;
   transition: all 0.5s ease;
   /* cursor: pointer; */
+  border: 3px solid;
+  border-color: whitesmoke;
+  border-radius: 5px;
 }
 
 .hamburger-menu {
   display: flex;
   /* justify-content: space-evenly; */
+  padding: 5px;
+  margin: 0px 10px 10px 0;
 }
 
 .mode-description {
@@ -373,6 +378,10 @@ input[type=text][data-status='start'] {
   text-align: left;
 }
 
+.mode {
+  font-size: 16px;
+}
+
 .toggle-detail {
   margin-top: 0;
   color: grey;
@@ -381,6 +390,27 @@ input[type=text][data-status='start'] {
 .hamburger-toggle {
   text-align: right;
   width: 50px;
+  text-align: left;
+}
+
+.click-to-hide {
+  /* width: 235px; */
+  text-align: right;
+  position: absolute;
+  font-size: 20px;
+  color: grey;
+  font-weight: lighter;
+  /* margin: 0; */
+  margin-top: auto;
+  background: transparent;
+  position: absolute;
+  right: 3px;
+}
+
+.click-to-hide:hover {
+  color: black;
+  font-size: 24px;
+  /* font-weight: bolder; */
 }
 
 
