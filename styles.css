@@ -360,8 +360,10 @@ input[type=text][data-status='start'] {
   height: 25px;
   width: 25px;
   stroke: black;
-  /* stroke-width: 0.1; */
+  stroke-width: 0.1;
   stroke-width: 0.2;
+  stroke-width: 0.3;
+  stroke-width: 0.4;
   /* stroke-width: 0.5; */
 }
 
