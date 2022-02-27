@@ -40,7 +40,7 @@ body {
   align-items: center;
   height: 8vh;
   width: 400px;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
   border-bottom: solid;
   border-color: grey;
 }
@@ -113,6 +113,14 @@ body {
 } */
 
 /*--------- INSTRUCTION BOX -------------*/
+.main-content {
+  /* border: solid red; */
+  display: flex;
+  justify-content: center;
+  width: 400px;
+  height: 375px;
+  position: relative;
+}
 .instruction-wrapper {
   background-color: white;
   /* display: flex;
@@ -125,8 +133,8 @@ body {
   border: solid;
   border-color: whitesmoke;
   border-radius: 5px;
-  margin-top: 4.2rem;
-  position: absolute;
+  /* margin-top: 4.2rem; */
+  /* position: absolute; */
   z-index: 2;
   /* opacity: 90%; */
   /* overflow: scroll; */
@@ -156,6 +164,11 @@ body {
   /* color: grayscale; */
   /* font-size: 15px; */
   font-weight: lighter;
+}
+
+.click-to-hide-x:hover {
+  color: black;
+  font-size: 16px;
 }
 
 p {
@@ -217,6 +230,7 @@ input[id^='tile'][disabled] {
   /* margin-right: 1rem; */
   /* position: relative; */
   /* z-index: 1; */
+  position: absolute;
 }
 
 .instrx-wrapper {
@@ -342,7 +356,7 @@ input[type=text][data-status='start'] {
   /* display: flex;
   flex-direction: column; */
   width: 255px;
-  margin-top: 70px;
+  /* margin-top: 70px; */
   /* bottom: unset; */
   /* right: unset; */
   /* border: solid; */
@@ -359,6 +373,7 @@ input[type=text][data-status='start'] {
   border: 3px solid;
   border-color: whitesmoke;
   border-radius: 5px;
+  left: 0;
 }
 
 .hamburger-menu {
@@ -413,8 +428,6 @@ input[type=text][data-status='start'] {
   /* font-weight: bolder; */
 }
 
-
-
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
@@ -435,6 +448,15 @@ input[type=text][data-status='start'] {
   .header {
     margin-bottom: 10px;
     width: 350px;
+  }
+
+  .main-content {
+    /* border: solid red;
+    display: flex;
+    justify-content: center; */
+    width: 350px;
+    height: 280px;
+    /* position: relative; */
   }
 
   .input-wrapper {
