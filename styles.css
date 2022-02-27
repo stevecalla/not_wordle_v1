@@ -118,7 +118,7 @@ body {
   /* border: solid red; */
   display: flex;
   justify-content: center;
-  width: 400px;
+  width: 425px;
   height: 375px;
   position: relative;
 }
@@ -361,7 +361,7 @@ input[type=text][data-status='start'] {
   width: 25px;
   stroke: black;
   /* stroke-width: 0.1; */
-  stroke-width: 0.3;
+  stroke-width: 0.2;
   /* stroke-width: 0.5; */
 }
 
@@ -522,12 +522,12 @@ input[type=text][data-status='start'] {
     .back-button {
       width: 3.1rem;
       font-size: 14px;
-      font-weight: 500;
+      font-weight: 450;
     }
 
-    .back-button {
+    /* .back-button {
       font-size: 20px;
-    }
+    } */
 
     /* height: 2rem;
     width: 2rem;
