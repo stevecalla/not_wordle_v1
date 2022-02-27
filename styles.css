@@ -415,6 +415,7 @@ input[type=text][data-status='start'] {
 .toggle-detail {
   margin-top: 0;
   color: grey;
+  margin-left: 0.4rem;
 }
 
 .hamburger-toggle {
