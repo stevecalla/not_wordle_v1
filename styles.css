@@ -341,7 +341,7 @@ input[type=text][data-status='start'] {
 .hamburger-wrapper {
   /* display: flex;
   flex-direction: column; */
-  width: 250px;
+  width: 255px;
   margin-top: 70px;
   /* bottom: unset; */
   /* right: unset; */
