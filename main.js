@@ -37,6 +37,7 @@ function loadTasks() {
   createGameTiles();
   createOnscreenKeyboard();
   window.moveTo(0, 0);
+  createHamburgerMenu();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -495,10 +496,10 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
 }
 
 // SECTION BUTTONS
-function hamburgerMenu() {
+function createHamburgerMenu() {
   document.getElementById('hamburgerPopupMenu').innerHTML =
   `
-    <div class='click-to-hide-x' onclick='hamburgerMenuHide()'>
+    <div class='click-to-hide-x' onclick='hamburgerMenuShowHide()'>
       <p class='click-to-hide'>x</p>
     </div>
     <div class='hamburger-menu'>
@@ -522,10 +523,10 @@ function hamburgerMenu() {
       </div>
     </div>
       `;
-  document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+  // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
-function hamburgerMenuHide() { 
+function hamburgerMenuShowHide() { 
   document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
