@@ -36,6 +36,7 @@ function loadTasks() {
   createGameSolution();
   createGameTiles();
   createOnscreenKeyboard();
+  window.moveTo(0, 0);
 }
 
 // SECTION  CREATE INSTRUCTIONS
