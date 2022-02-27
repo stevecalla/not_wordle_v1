@@ -40,7 +40,8 @@ body {
   align-items: center;
   height: 8vh;
   width: 400px;
-  margin-bottom: 10px;
+  width: 425px;
+  margin-bottom: 20px;
   border-bottom: solid;
   border-color: grey;
 }
@@ -325,6 +326,8 @@ input[type=text][data-status='start'] {
   flex-wrap: wrap;
   width: 400px;
   margin-top: 30px;
+  margin-top: 20px;
+  width: 425px;
 }
 
 .keyboard-button {
@@ -340,6 +343,7 @@ input[type=text][data-status='start'] {
   /* background-color: #939598; */
   /* background-color: #d8d8d8; //todo */
   /* font-size: 1rem; */
+  width: 2.35rem;
 }
 
 .enter-button,
