@@ -419,7 +419,7 @@ input[type=text][data-status='start'] {
   margin-top: auto;
   background: transparent;
   position: absolute;
-  right: 3px;
+  right: 0px;
 }
 
 .click-to-hide:hover {
