@@ -179,6 +179,7 @@ p {
   font-size: 0.75rem;
   /* font-style: bolder; */
   font-weight: 700;
+  /* margin: 0.4rem; */
 }
 
 input[id^='tile'] {
@@ -355,7 +356,7 @@ input[type=text][data-status='start'] {
 .hamburger-wrapper {
   /* display: flex;
   flex-direction: column; */
-  width: 255px;
+  width: 260px;
   /* margin-top: 70px; */
   /* bottom: unset; */
   /* right: unset; */
@@ -394,6 +395,7 @@ input[type=text][data-status='start'] {
 }
 
 .mode {
+  margin: 0.4rem;
   font-size: 16px;
 }
 
