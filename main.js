@@ -358,9 +358,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
     } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
-    } 
-  
-  // setLocalStorage('gameCount', gameStats.gameCount + 1);  
+    }  
   setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));    
   resetCurrentInput();
 }
