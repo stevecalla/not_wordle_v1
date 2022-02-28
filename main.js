@@ -343,7 +343,6 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
       if (localStorage.getItem('wordguess-winCount') === null) {
         localStorage.setItem('wordguess-winCount', '1');
         localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
-        console.log(b, a, a/b);
       } else {
         localStorage.setItem('wordguess-winCount', (localStorage.getItem('wordguess-winCount') * 1 + 1));
         localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
