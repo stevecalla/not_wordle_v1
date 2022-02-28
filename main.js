@@ -40,6 +40,11 @@ function loadTasks() {
   createHamburgerMenu();
   toggleDarkMode(localStorage.getItem('wordguess-darkmode'));
   toggleContrastMode(localStorage.getItem('wordguess-contrastmode'));
+  if (localStorage.getItem('wordguess-gameCount') === null) {
+    localStorage.setItem('wordguess-gameCount', '1');
+  } else {
+    localStorage.setItem('wordguess-gameCount', (localStorage.getItem('wordguess-gameCount') * 1 + 1))
+  }
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -335,11 +340,20 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
         // console.log(event.keyCode);
         // getWebsterDictionaryAPI();
       }
+      if (localStorage.getItem('wordguess-winCount') === null) {
+        localStorage.setItem('wordguess-winCount', '1');
+        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
+        console.log(b, a, a/b);
+      } else {
+        localStorage.setItem('wordguess-winCount', (localStorage.getItem('wordguess-winCount') * 1 + 1));
+        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
+      }
     // } else if (startRowTile + 4 === 29) {
     } else if (gameOverCondition) {
         //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
         document.getElementById('id29').blur();
         getWebsterDictionaryAPI();
+        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));=
     } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
