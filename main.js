@@ -327,37 +327,44 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
   let winningCondition = !dataStatus.includes('match') && !dataStatus.includes('noMatch');
   let gameOverCondition = startRowTile + 4 === 29;
   if (winningCondition) {
-    createConfetti();
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
+    createConfetti();
     document.getElementById('id29').blur();
-      // for (let i = endRowTile + 1; i < 30; i++) {
       for (let i = startRowTile + 5; i < 30; i++) {
-        // console.log(i);
         document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
-        // document.getElementById('id' + (i)).value = ' ';
         document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
         document.getElementById('id' + (i)).blur();
-        // console.log(event.keyCode);
-        // getWebsterDictionaryAPI();
       }
       if (localStorage.getItem('wordguess-winCount') === null) {
-        localStorage.setItem('wordguess-winCount', '1');
-        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
+        setLocalStorage('wordguess-winCount', 1);
       } else {
-        localStorage.setItem('wordguess-winCount', (localStorage.getItem('wordguess-winCount') * 1 + 1));
-        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
+        setLocalStorage('wordguess-winCount', (localStorage.getItem('wordguess-winCount') * 1 + 1));
       }
-    // } else if (startRowTile + 4 === 29) {
     } else if (gameOverCondition) {
-        //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
-        document.getElementById('id29').blur();
-        getWebsterDictionaryAPI();
-        localStorage.setItem('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));
+      //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
+      document.getElementById('id29').blur();
     } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
-    }
+    } 
+  setLocalStorage('wordguess-winPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));    
   resetCurrentInput();
+}
+
+let gameStats = {
+  'wordguess-gameCount':0, 
+  'wordguess-winCount': 0, 
+  'wordguess-winPercent': 0, 
+  'wordguess-darkmode':'false', 
+  'wordguess-contrastmode':'false',
+};
+function setLocalStorage(variable, value) {
+  console.log('localStorate');
+  localStorage.setItem(variable, value);
+  // localStorage.setItem('wordguess-windPercent', (localStorage.getItem('wordguess-winCount') / localStorage.getItem('wordguess-gameCount')));  
+  gameStats[variable] = value;
+  localStorage.setItem('gameStats', JSON.stringify(gameStats));
+  console.log('gameStats=', gameStats);
 }
 
 function resetCurrentInput() {
@@ -589,11 +596,7 @@ function copyGameBoardButton() {
 // SECTION DARK & CONTRAST MODE
 function toggleDarkMode(storageDarkValue) {
   const darkModeCSS = document.querySelector("#darkMode-link");
-  // const darkModeButton = document.querySelector(".darkmode-toggle");
   const darkModeIconList = document.querySelectorAll('.header-icon-svg');
-  // darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
-  // darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = 'false' : storageDarkValue = 'true';
-  
   console.log(storageDarkValue);
   if (storageDarkValue === 'true') {
     console.log('1')
@@ -606,14 +609,11 @@ function toggleDarkMode(storageDarkValue) {
     console.log('3')
     darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = 'true' : storageDarkValue = 'false';
     darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
-    localStorage.setItem('wordguess-darkmode', storageDarkValue)
-    console.log(storageDarkValue);
+    setLocalStorage('wordguess-darkmode', storageDarkValue);
   }
-  
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
-
   // focusCurrentTile();
 }
 
@@ -630,29 +630,21 @@ function setColorContrast() {
 }
 
 function toggleContrastMode(storageContrastValue) {
-  // document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
-  // document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   let contrastModeCSS = document.querySelector("#contrastMode-link");
   const blue = 'contrast-theme-blue.css';
   const green = 'contrast-theme-green.css';
-  // contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
-
-  console.log(storageContrastValue);
   if (storageContrastValue === 'true') {
     console.log('1')
     contrastModeCSS.href = blue;
     document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
     document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   } else if (storageContrastValue === null || storageContrastValue === 'false') {
-    return console.log('2');
+    return;
   } else {
-    console.log('3')
     contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? storageContrastValue = 'true' : storageContrastValue = 'false';
     contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
-    localStorage.setItem('wordguess-contrastmode', storageContrastValue)
-    console.log(storageContrastValue);
+    setLocalStorage('wordguess-contrastmode', storageContrastValue);
   }
-
   // focusCurrentTile();
 }
 
