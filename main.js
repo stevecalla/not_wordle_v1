@@ -38,6 +38,8 @@ function loadTasks() {
   createOnscreenKeyboard();
   window.moveTo(0, 0);
   createHamburgerMenu();
+  toggleDarkMode(localStorage.getItem('wordguess-darkmode'));
+  // toggleContrastMode(localStorage.getItem('wordguess-contrastmode'));
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -543,6 +545,8 @@ function toggleDarkModeButton() {
 } 
 
 function toggleContrastModeButton(event) {
+  document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
+  document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   toggleContrastMode();
   // focusCurrentTile();
   // event.preventDefault;
@@ -570,15 +574,33 @@ function copyGameBoardButton() {
 }
 
 // SECTION DARK & CONTRAST MODE
-function toggleDarkMode() {
+function toggleDarkMode(storageDarkValue) {
   const darkModeCSS = document.querySelector("#darkMode-link");
-  const darkModeButton = document.querySelector(".darkmode-toggle");
+  // const darkModeButton = document.querySelector(".darkmode-toggle");
   const darkModeIconList = document.querySelectorAll('.header-icon-svg');
-  darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
-  // darkModeButton.classList.toggle('darkmode-toggle--white'); //adjust original circle from black to white
+  // darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
+  // darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = 'false' : storageDarkValue = 'true';
+  
+  console.log(storageDarkValue);
+  if (storageDarkValue === 'true') {
+    console.log('1')
+    darkModeCSS.href = "dark-theme.css";
+    document.getElementById('toggleOffIcon').classList.toggle('hidden');
+    document.getElementById('toggleOnIcon').classList.toggle('hidden');
+  } else if (storageDarkValue === null || storageDarkValue === 'false') {
+    return console.log('2');
+  } else {
+    console.log('3')
+    darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = 'true' : storageDarkValue = 'false';
+    darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
+    localStorage.setItem('wordguess-darkmode', storageDarkValue)
+    console.log(storageDarkValue);
+  }
+  
   for (let i = 0; i < 4; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
+
   // focusCurrentTile();
 }
 
@@ -595,8 +617,8 @@ function setColorContrast() {
 }
 
 function toggleContrastMode() {
-  document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
-  document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
+  // document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
+  // document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   let contrastModeCSS = document.querySelector("#contrastMode-link");
   const blue = 'contrast-theme-blue.css';
   const green = 'contrast-theme-green.css';
