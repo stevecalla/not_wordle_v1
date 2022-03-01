@@ -354,7 +354,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) {
     } else if (gameOverCondition) {
       //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
       document.getElementById('id29').blur();
-      setLocalStorage('gameCount', gameStats.gameCount + 1);  
+      setLocalStorage('gameCount', gameStats.gameCount + 1);
+      getWebsterDictionaryAPI();
     } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
