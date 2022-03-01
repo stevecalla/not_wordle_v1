@@ -23,6 +23,12 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode':'false', 
   'contrastMode':'false',
+  '1': 0,
+  '2': 0,
+  '3': 0,
+  '4': 0,
+  '5': 0,
+  '6': 0,
 }
 
 //event listeners go here 👇
@@ -276,15 +282,16 @@ function evaluateString(event) {
 }
 
 function determineCurrentRow() {
-  let startRowTile = (allInput.length - 1) * 1 - 4;
-  let endRowTile = startRowTile + 4; //FIX delete endrow variable
+  let startRowTile = ((allInput.length - 1) * 1 - 4);
+  let endRowTile = (startRowTile + 4); //FIX delete endrow variable
+  let currentRow = ((allInput.length) / 5);
   // if ((startRowTile + 5) < 29) {
   //   document.getElementById('id' + (startRowTile + 5)).focus();
   // } //todo
-  assignMatchStatus(startRowTile, endRowTile);
+  assignMatchStatus(startRowTile, endRowTile, currentRow);
 }
 
-function assignMatchStatus(startRowTile, endRowTile) {
+function assignMatchStatus(startRowTile, endRowTile, currentRow) {
   let dataStatus = [];
   for (let i = 0; i < 5; i++) {
     if (allInput[startRowTile + i] === solution[i]) {
@@ -300,7 +307,7 @@ function assignMatchStatus(startRowTile, endRowTile) {
     console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
   updateOnscreenKeyboard();
-  determineWinStatus(startRowTile, endRowTile, dataStatus);
+  determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow);
 }
 
 function updateOnscreenKeyboard() {
@@ -332,25 +339,28 @@ function updateOnscreenKeyboard() {
   }
 }
 
-function determineWinStatus(startRowTile, endRowTile, dataStatus) {
+function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   let winningCondition = !dataStatus.includes('match') && !dataStatus.includes('noMatch');
   let gameOverCondition = startRowTile + 4 === 29;
   if (winningCondition) {
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
-    createConfetti();
-    document.getElementById('id29').blur();
     setLocalStorage('gameCount', gameStats.gameCount + 1);  
-      for (let i = startRowTile + 5; i < 30; i++) {
-        document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
-        document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
-        document.getElementById('id' + (i)).blur();
-      }
+    for (let i = startRowTile + 5; i < 30; i++) {
+      document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
+      document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
+      document.getElementById('id' + (i)).blur();
+    }
       if (gameStats.winCount === null) {
         setLocalStorage('winCount', 1);
       } else {
-        console.log('win')
+        console.trace();
+        // console.log('win')
+        // console.log('currentRow=', currentRow, gameStats['1'], (gameStats[currentRow] + 1));
         setLocalStorage('winCount', (gameStats.winCount + 1));
+        setLocalStorage(currentRow, (gameStats[currentRow] + 1));
       }
+    document.getElementById('id29').blur();
+    createConfetti();
     } else if (gameOverCondition) {
       //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
       document.getElementById('id29').blur();
