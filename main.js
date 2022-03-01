@@ -547,6 +547,7 @@ function createHamburgerMenu() {
 
 function hamburgerMenuShowHide() { 
   document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+  document.getElementById('createGamesStatsMenu').classList.toggle('hidden');
 }
 
 // function windowClick() {
@@ -603,6 +604,36 @@ function copyGameBoardButton() {
     }
   }
   // focusCurrentTile();
+}
+
+function createGameStatsMenu() {
+  let percentage = (gameStats.winPercent * 100);
+  document.getElementById('createGamesStatsMenu').innerHTML =
+  `
+    <div class='click-to-hide-x' onclick='hamburgerMenuShowHide()'>
+      <p class='click-to-hide'>x</p>
+    </div>
+    <div class='hamburger-menu'>
+      <div class='mode-description'>
+        <p class='mode'>Games Played</p>
+        <p class='toggle-detail'>${gameStats.gameCount}</p>
+      </div>
+    </div>
+    <div class='hamburger-menu'>
+      <div class='mode-description'>
+        <p class='mode'>Games Won</p>
+        <p class='toggle-detail'>${gameStats.winCount}</p>
+      </div>
+    </div>
+    <div class='hamburger-menu'>
+      <div class='mode-description'>
+        <p class='mode'>Win Percentage</p>
+        <p class='toggle-detail'>${percentage}%</p>
+      </div>
+    </div>
+    <progress id="file" max="100" value="10"> 70% </progress>
+      `;
+  // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
 // SECTION DARK & CONTRAST MODE
