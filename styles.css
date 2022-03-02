@@ -448,7 +448,7 @@ input[type=text][data-status='start'] {
   /* font-weight: bolder; */
 }
 
-/*-------- HAMBURGER MENU ---------*/
+/*-------- GAME STATS ---------*/
 .gameStats-wrapper {
   display: flex;
   justify-content: center;
@@ -519,7 +519,12 @@ input[type=text][data-status='start'] {
 }
 
 .progress-bar {
-  width: 175px;
+  width: 125px;
+}
+
+.win-percent {
+  width: 30px;
+  text-align: right;
 }
 
 
