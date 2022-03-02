@@ -51,7 +51,7 @@ function loadTasks() {
   createOnscreenKeyboard();
   // window.moveTo(0, 0);
   createHamburgerMenu();
-
+  
   if (localStorage.getItem('gameStats') === null) {
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
@@ -60,6 +60,7 @@ function loadTasks() {
   
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
+  createGameStatsMenu();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -547,6 +548,9 @@ function createHamburgerMenu() {
 
 function hamburgerMenuShowHide() { 
   document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+}
+
+function statsMenuShowHide() { 
   document.getElementById('createGamesStatsMenu').classList.toggle('hidden');
 }
 
@@ -603,35 +607,50 @@ function copyGameBoardButton() {
       console.error("Share failed:", err.message);
     }
   }
+  statsMenuShowHide();
   // focusCurrentTile();
 }
 
 function createGameStatsMenu() {
-  let percentage = (gameStats.winPercent * 100);
+  let percentage = Math.round(gameStats.winPercent * 100);
   document.getElementById('createGamesStatsMenu').innerHTML =
   `
-    <div class='click-to-hide-x' onclick='hamburgerMenuShowHide()'>
+    <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
       <p class='click-to-hide'>x</p>
     </div>
-    <div class='hamburger-menu'>
-      <div class='mode-description'>
-        <p class='mode'>Games Played</p>
-        <p class='toggle-detail'>${gameStats.gameCount}</p>
+    <div class='gameStats-menu'>
+      <div class='stat-description'>
+        <p class=''>Played</p>
+        <p class='stat'>${gameStats.gameCount}</p>
+      </div>
+      <div class='stat-description'>
+        <p class=''>Won</p>
+        <p class='stat'>${gameStats.winCount}</p>
+      </div>
+      <div class='stat-description'>
+        <p class=''>Win%</p>
+        <p class='stat'>${percentage}%</p>
       </div>
     </div>
-    <div class='hamburger-menu'>
-      <div class='mode-description'>
-        <p class='mode'>Games Won</p>
-        <p class='toggle-detail'>${gameStats.winCount}</p>
+    <div class='win-stats-wrapper'>
+      <p class='win-description'>Win Distribution</p>
+      <div class='bars-wrapper'>
+        <p class='row-number'>1</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
+        <p class='row-number'>2</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
+        <p class='row-number'>3</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
+        <p class='row-number'>4</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
+        <p class='row-number'>5</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
+        <p class='row-number'>6</p>
+        <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
       </div>
     </div>
-    <div class='hamburger-menu'>
-      <div class='mode-description'>
-        <p class='mode'>Win Percentage</p>
-        <p class='toggle-detail'>${percentage}%</p>
-      </div>
-    </div>
-    <progress id="file" max="100" value="10"> 70% </progress>
+    <p class=''>Game Board</p>
+    <button>Copy Game Board</button>
       `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }

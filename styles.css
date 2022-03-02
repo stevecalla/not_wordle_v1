@@ -448,6 +448,81 @@ input[type=text][data-status='start'] {
   /* font-weight: bolder; */
 }
 
+/*-------- HAMBURGER MENU ---------*/
+.gameStats-wrapper {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  width: 260px;
+  right: 0;
+  background-color: white;
+  /* border: thin solid; */
+  border: 3px solid;
+  border-color: whitesmoke;
+  /* border-radius: 4px; */
+  border-radius: 5px;
+  position: absolute;
+  z-index: 4;
+  transition: all 0.5s ease;
+}
+
+.stat-description {
+  width: 85px;
+  margin-bottom: 0;
+}
+
+.gameStats-menu {
+  display: flex;
+  flex-direction: row;
+  width: 225px;
+  margin: 0px;
+  margin-top: 15px;
+  border-bottom: solid;
+  border-color: lightgrey;
+}
+
+.gameStats-menu p {
+  margin-bottom: 0;
+  margin-top: 5px;
+  text-align: left;
+  text-align: center;
+}
+
+.stat {
+}
+
+.win-stats-wrapper {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  align-items: center;
+}
+
+.win-description {
+  width: 225px;
+  margin: 15px 0px 0 0;
+  text-align: center;
+}
+
+.bars-wrapper {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  width: 225px;
+  align-items: center;
+  border-bottom: solid;
+  border-color: lightgrey;
+}
+
+.row-number {
+  width: 10px;
+}
+
+.progress-bar {
+  width: 175px;
+}
+
+
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
