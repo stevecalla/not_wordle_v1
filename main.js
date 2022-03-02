@@ -248,7 +248,8 @@ function evaluateCurrentInput(event) {
     // if (key && 'Enter' === key || keyCode && 13 === keyCode) {
       evaluateString();
       createEmojiRow();
-      setColorContrast();
+      setColorContrast(); 
+      createGameStatsMenu(); 
   } else {
     console.log('Not a word');
     document.getElementById('message').classList.remove('hidden');
@@ -371,7 +372,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
     }  
-  setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));    
+  setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));   
+  createGameStatsMenu(); 
   resetCurrentInput();
 }
 
@@ -585,6 +587,7 @@ function toggleContrastModeButton(event) {
   document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
   document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   toggleContrastMode();
+  createGameStatsMenu();
   // focusCurrentTile();
   // event.preventDefault;
 } 
@@ -601,8 +604,8 @@ function copyGameBoardButton() {
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   if (currentRow != 0) {
     try {
-      let shareText = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
-      navigator.clipboard.writeText(shareText).then(()=>{alert(`"Copied to clipboard!"\n${shareText}`)});
+      let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
+      navigator.clipboard.writeText(gameBoard).then(()=>{alert(`"Copied to clipboard!"\n${gameBoard}`)});
     } catch (err) {
       console.error("Share failed:", err.message);
     }
@@ -613,6 +616,13 @@ function copyGameBoardButton() {
 
 function createGameStatsMenu() {
   let percentage = Math.round(gameStats.winPercent * 100);
+
+  let currentRow = Math.floor(allInput.length / 5);
+  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
+  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
+  const contrastModeCSS = document.querySelector("#contrastMode-link");
+  let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
+
   document.getElementById('createGamesStatsMenu').innerHTML =
   `
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
@@ -640,24 +650,27 @@ function createGameStatsMenu() {
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['1'] / gameStats.winCount) * 100)}%</p>
         <p class='row-number'>2</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'> 70% </progress>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['2'] / gameStats.winCount) * 100)}%</p>
         <p class='row-number'>3</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'> 70% </progress>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['3'] / gameStats.winCount) * 100)}%</p>
         <p class='row-number'>4</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'> 70% </progress>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['4'] / gameStats.winCount) * 100)}%</p>
         <p class='row-number'>5</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'> 70% </progress>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['5'] / gameStats.winCount) * 100)}%</p>
         <p class='row-number'>6</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'> 70% </progress>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'></progress>
         <p class='win-percent'>${Math.round((gameStats['6'] / gameStats.winCount) * 100)}%</p>
       </div>
     </div>
-    <p class=''>Current Game Board</p>
-    <button>Copy Game Board</button>
+    <div>
+      <p class=''>Current Game Board</p>
+      <p class='game-board'>${gameBoard}</p>
+    </div>
+    <button onclick='copyGameBoardButton()'>Copy Game Board</button>
       `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
