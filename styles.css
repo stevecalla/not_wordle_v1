@@ -482,7 +482,7 @@ input[type=text][data-status='start'] {
 }
 
 .gameStats-menu p {
-  margin-bottom: 0;
+  margin-bottom: 5px;
   margin-top: 5px;
   text-align: left;
   text-align: center;

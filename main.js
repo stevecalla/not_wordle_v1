@@ -618,6 +618,7 @@ function createGameStatsMenu() {
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
       <p class='click-to-hide'>x</p>
     </div>
+    <p class='win-description'>GAME INFORMATION</p>
     <div class='gameStats-menu'>
       <div class='stat-description'>
         <p class=''>Played</p>
@@ -649,7 +650,7 @@ function createGameStatsMenu() {
         <progress class='progress-bar' id='' max='100' value='10'> 70% </progress>
       </div>
     </div>
-    <p class=''>Game Board</p>
+    <p class=''>Current Game Board</p>
     <button>Copy Game Board</button>
       `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
