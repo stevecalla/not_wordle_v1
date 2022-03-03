@@ -158,7 +158,7 @@ function createGameTiles() {
     inputTilesRow1.innerHTML +=
     `   
       <div>
-        <input type='text' 
+        <input  type='text' 
                 id=${`id${i}`}
                 maxlength='1'
                 name='selection'
@@ -217,6 +217,7 @@ function inputText(event) {
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
     document.getElementById('id' + allInput.length).value = key;
+    document.getElementById('id' + allInput.length).setAttribute('value', key);
     // console.log('1')
     createInputString(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
@@ -271,6 +272,7 @@ function deleteInputText() {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = '';
+    document.getElementById('id' + allInput.length).setAttribute('value', '');
     // deleteTile.focus();//todo
     currentInput.pop();
     allInput.pop();
