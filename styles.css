@@ -535,6 +535,7 @@ progress {
   margin-left: -11.5%; */
   /* box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 ); */
 }
+
 progress::-webkit-progress-bar {
   background-color: white;
   border-radius: 7px;
@@ -564,15 +565,16 @@ progress::-webkit-progress-value {
   width: 64px;
   width: 75px; */
 
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   margin: auto;
   transform: scale(1.15);
-  flex-direction: row;
-  flex-wrap: wrap;
-  width: 75px;
+  /* flex-direction: row;
+  flex-wrap: wrap; */
+  /* width: 75px; */
   margin-bottom: 2px;
   letter-spacing: 1px;
+  width: 200px;
 }
 
 /*-------- DARK MODE & CONTRAST -------*/
@@ -595,6 +597,10 @@ progress::-webkit-progress-value {
   .header {
     margin-bottom: 10px;
     width: 350px;
+  }
+
+  progress {
+    width: 150px;
   }
 
   .main-content {
