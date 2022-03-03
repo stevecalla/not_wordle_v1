@@ -685,15 +685,21 @@ function CopyToClipboard(element) {
   var doc = document
   , text = doc.getElementById(element)
   , range, selection;
+
+  console.log('1=', doc.body.createTextRange, '2=', window.getSelection)
   
   if (doc.body.createTextRange) {
+    console.log('1=', doc.body.createTextRange);
     range = doc.body.createTextRange();
-    range.moveToElementText(text);
+    range.moveToElementText(createGamesStatsMenu);
     range.select();
   } else if (window.getSelection) {
     selection = window.getSelection();        
     range = doc.createRange();
     range.selectNodeContents(createGamesStatsMenu);
+
+    console.log('2=', window.getSelection(), doc.createRange(), range.selectNodeContents(createGamesStatsMenu));
+
     selection.removeAllRanges();
     selection.addRange(range);
   }
