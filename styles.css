@@ -488,9 +488,6 @@ input[type=text][data-status='start'] {
   text-align: center;
 }
 
-.stat {
-}
-
 .win-stats-wrapper {
   display: flex;
   flex-direction: column;
@@ -518,8 +515,23 @@ input[type=text][data-status='start'] {
   width: 10px;
 }
 
-.progress-bar {
+progress {
+  border-radius: 7px;
   width: 125px;
+  border: solid grey;
+  border-radius: 15px;
+  /* width: 80%;
+  height: 22px;
+  margin-left: -11.5%; */
+  /* box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 ); */
+}
+progress::-webkit-progress-bar {
+  background-color: white;
+  border-radius: 7px;
+}
+progress::-webkit-progress-value {
+  background-color: black;
+  border-radius: 7px;
 }
 
 .win-percent {
@@ -528,8 +540,11 @@ input[type=text][data-status='start'] {
 }
 
 .game-board {
+  height: 80px;
   width: 60px;
   margin: auto;
+  margin-bottom: 20px;
+  transform: scale(1.15);
 }
 
 /*-------- DARK MODE & CONTRAST -------*/

@@ -618,8 +618,10 @@ function createGameStatsMenu() {
   let percentage = Math.round(gameStats.winPercent * 100);
 
   let currentRow = Math.floor(allInput.length / 5);
-  let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
-  let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
+  let greenYellowBoard = `${currentEmojiBoard}`;
+  let blueOrangeBoard = `${currentEmojiBoard2}`;
+  // let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
+  // let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
 
@@ -632,15 +634,15 @@ function createGameStatsMenu() {
     <div class='gameStats-menu'>
       <div class='stat-description'>
         <p class=''>Played</p>
-        <p class='stat'>${gameStats.gameCount}</p>
+        <p class=''>${gameStats.gameCount}</p>
       </div>
       <div class='stat-description'>
         <p class=''>Won</p>
-        <p class='stat'>${gameStats.winCount}</p>
+        <p class=''>${gameStats.winCount}</p>
       </div>
       <div class='stat-description'>
         <p class=''>Win%</p>
-        <p class='stat'>${percentage}%</p>
+        <p class=''>${percentage}%</p>
       </div>
     </div>
     <div class='win-stats-wrapper'>
