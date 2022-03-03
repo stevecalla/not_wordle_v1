@@ -621,7 +621,7 @@ function copyGameBoardButton() {
 }
 
 function createGameStatsMenu() {
-  let percentage = Math.round(gameStats.winPercent * 100);
+  let percentage = Math.round(gameStats.winPercent * 100) ? Math.round(gameStats.winPercent * 100) : '0';
 
   let currentRow = Math.floor(allInput.length / 5);
   let greenYellowBoard = `${currentEmojiBoard}`;
