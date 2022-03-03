@@ -159,22 +159,36 @@ function createGameSolution() {
 
 // SECTION CREATE GAME TILES
 function createGameTiles() {
+  // for (let i = 0; i < 30; i++) {
+  //   inputTilesRow1.innerHTML +=
+  //   `   
+  //     <div>
+  //       <input  type='text' 
+  //               id=${`id${i}`}
+  //               maxlength='1'
+  //               name='selection'
+  //               value=''
+  //               size='1'
+  //               disabled='disabled'
+  //               data-status='start'
+  //               style='text-transform:uppercase' >
+  //     </div>
+  //   `;
+  // }
   for (let i = 0; i < 30; i++) {
     inputTilesRow1.innerHTML +=
     `   
-      <div>
-        <input  type='text' 
-                id=${`id${i}`}
-                maxlength='1'
-                name='selection'
-                value=''
-                size='1'
-                disabled='disabled'
-                data-status='start'
-                style='text-transform:uppercase' >
-      </div>
+      <input  type='text' 
+              id=${`id${i}`}
+              maxlength='1'
+              name='selection'
+              value=''
+              size='1'
+              disabled='disabled'
+              data-status='start'
+              style='text-transform:uppercase'>
     `;
-  }
+  }  
 }
 
 // SECTION CREATE ONSCREEN KEYBOARD
@@ -624,7 +638,7 @@ function copyGameBoardButton() {
   //   }
   // }
 
-  copyToClipboard('gameBoardWrapper');
+  copyToClipboard('body');
   statsMenuShowHide();
   // focusCurrentTile();
 }
@@ -686,7 +700,7 @@ function createGameStatsMenu() {
       <p class='current-game-text'>Current Game Board</p>
       ${gameBoard}
     </div>
-    <button onclick="copyToClipboard('body')">Copy Game Board</button>
+    <button onclick="copyToClipboard('gameBoardWrapper')">Copy Game Board</button>
     <input id="btn" onclick="copyToClipboard('createGameStatsMenu')" type="button" value="Copy"></input>
   `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
@@ -705,7 +719,6 @@ function copyToClipboard(element) {
     selection = window.getSelection();        
     range = document.createRange();
     range.selectNodeContents(referenceNode);
-
     selection.removeAllRanges();
     selection.addRange(range);
   }
