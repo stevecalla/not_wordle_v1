@@ -118,6 +118,11 @@ function populateInstructionTiles() {
     document.getElementById('tile' + 1 + i).value = letters[i + 5];
     document.getElementById('tile' + 2 + i).value = letters[i + 10];
 
+
+    document.getElementById('tile' + 0 + i).setAttribute('value', letters[i]);
+    document.getElementById('tile' + 1 + i).setAttribute('value', letters[i + 5]);
+    document.getElementById('tile' + 2 + i).setAttribute('value', letters[i + 10]);
+
     document.getElementById('tile' + 0 + i).setAttribute('disabled', 'disabled');
     document.getElementById('tile' + 1 + i).setAttribute('disabled', 'disabled');
     document.getElementById('tile' + 2 + i).setAttribute('disabled', 'disabled');
@@ -688,12 +693,8 @@ function createGameStatsMenu() {
 }
 
 function copyToClipboard(element) {
-  // var doc = document
-  // , text = document.getElementById(element)
-  var range, selection;
+  let range, selection;
   let referenceNode = document.getElementById(element);
-
-  console.log(element, '1=', document.body.createTextRange, '2=', window.getSelection)
 
   if (document.body.createTextRange) {
     console.log('1=', document.body.createTextRange);
