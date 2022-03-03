@@ -619,7 +619,7 @@ function copyGameBoardButton() {
   //   }
   // }
 
-  copyToClipboard2('gameBoardWrapper');
+  copyToClipboard('gameBoardWrapper');
   statsMenuShowHide();
   // focusCurrentTile();
 }
@@ -681,85 +681,36 @@ function createGameStatsMenu() {
       <p class='current-game-text'>Current Game Board</p>
       ${gameBoard}
     </div>
-    <button onclick="copyToClipboard3('body')">Copy Game Board</button>
-    <input id="btn" onclick="copyToClipboard('createGamesStatsMenu')" type="button" value="Copy"></input>
+    <button onclick="copyToClipboard('body')">Copy Game Board</button>
+    <input id="btn" onclick="copyToClipboard('createGameStatsMenu')" type="button" value="Copy"></input>
   `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
 function copyToClipboard(element) {
-  var doc = document
-  , text = document.getElementById(element)
-  , range, selection;
-  console.log(element, text, '1=', doc.body.createTextRange, '2=', window.getSelection)
-  if (doc.body.createTextRange) {
-    console.log('1=', doc.body.createTextRange);
-    range = doc.body.createTextRange();
-    range.moveToElementText(createGameStatsMenu);
+  // var doc = document
+  // , text = document.getElementById(element)
+  var range, selection;
+  let referenceNode = document.getElementById(element);
+
+  console.log(element, '1=', document.body.createTextRange, '2=', window.getSelection)
+
+  if (document.body.createTextRange) {
+    console.log('1=', document.body.createTextRange);
+    range = document.body.createTextRange();
+    range.moveToElementText(referenceNode);
     range.select();
   } else if (window.getSelection) {
     selection = window.getSelection();        
-    range = doc.createRange();
-    referenceNode = document.getElementById('createGameStatsMenu');
-    // console.log("'" + element + "'")
-    // referenceNode = document.getElementById("'" + element.toString() + "'");
+    range = document.createRange();
     range.selectNodeContents(referenceNode);
-    // console.log('2=', window.getSelection(), doc.createRange(), range.selectNodeContents(createGameStatsMenu));
+
     selection.removeAllRanges();
     selection.addRange(range);
   }
   document.execCommand('copy');
   window.getSelection().removeAllRanges();
   document.getElementById("btn").value="Copied";
-}
-
-function copyToClipboard2(element) {
-  var doc = document
-  , text = document.getElementById(element)
-  , range, selection;
-  console.log(element, text, '1=', doc.body.createTextRange, '2=', window.getSelection)
-  if (doc.body.createTextRange) {
-    console.log('1=', doc.body.createTextRange);
-    range = doc.body.createTextRange();
-    range.moveToElementText(gameBoardWrapper);
-    range.select();
-  } else if (window.getSelection) {
-    selection = window.getSelection();        
-    range = doc.createRange();
-    referenceNode = document.getElementById('gameBoardWrapper');
-    // console.log("'" + element + "'")
-    // referenceNode = document.getElementById("'" + element.toString() + "'");
-    range.selectNodeContents(referenceNode);
-    // console.log('2=', window.getSelection(), doc.createRange(), range.selectNodeContents(createGameStatsMenu));
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-  document.execCommand('copy');
-  window.getSelection().removeAllRanges();
-  // document.getElementById("btn").value="Copied";
-}
-
-function copyToClipboard3(element) {
-  var doc = document
-  , text = document.getElementById(element)
-  , range, selection;
-  console.log(element, text, '1=', doc.body.createTextRange, '2=', window.getSelection)
-  if (doc.body.createTextRange) {
-    console.log('1=', doc.body.createTextRange);
-    range = doc.body.createTextRange();
-    range.moveToElementText(body);
-    range.select();
-  } else if (window.getSelection) {
-    selection = window.getSelection();        
-    range = doc.createRange();
-    referenceNode = document.getElementById('body');
-    range.selectNodeContents(referenceNode);
-    selection.removeAllRanges();
-    selection.addRange(range);
-  }
-  document.execCommand('copy');
-  window.getSelection().removeAllRanges();
-  // document.getElementById("btn").value="Copied";
 }
 
 // SECTION DARK & CONTRAST MODE
