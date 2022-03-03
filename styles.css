@@ -546,19 +546,27 @@ progress::-webkit-progress-value {
 }
 
 .win-percent {
-  width: 30px;
+  width: 35px;
   text-align: right;
 }
 
 .game-board {
   display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  flex-direction: rows;
+  /* flex-wrap: wrap; */
   height: 80px;
   width: 60px;
   margin: auto;
   margin-bottom: 20px;
   transform: scale(1.15);
+  /* flex-direction: row; */
+  /* flex-direction: column; */
+  /* flex-direction: column-reverse; */
+  /* flex-direction: row-reverse; */
+  flex-direction: inherit;
+  flex-wrap: wrap;
+  width: 64px;
+  width: 75px;
 }
 
 /*-------- DARK MODE & CONTRAST -------*/
