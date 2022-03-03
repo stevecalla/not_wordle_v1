@@ -520,7 +520,8 @@ input[type=text][data-status='start'] {
   margin-bottom: 20px;
   border-bottom: solid;
   border-color: lightgrey;
-
+  margin-bottom: 15px;
+  padding: 5px;
 }
 
 progress {
@@ -551,23 +552,27 @@ progress::-webkit-progress-value {
 }
 
 .game-board {
-  display: flex;
+  /* display: flex;
   flex-direction: rows;
-  /* flex-wrap: wrap; */
   height: 80px;
   width: 60px;
   margin: auto;
   margin-bottom: 20px;
   transform: scale(1.15);
-  /* flex-direction: row; */
-  /* flex-direction: column; */
-  /* flex-direction: column-reverse; */
-  /* flex-direction: row-reverse; */
   flex-direction: inherit;
   flex-wrap: wrap;
   width: 64px;
+  width: 75px; */
+
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  transform: scale(1.15);
+  flex-direction: row;
+  flex-wrap: wrap;
   width: 75px;
-  /* width: 500px; */
+  margin-bottom: 2px;
+  letter-spacing: 1px;
 }
 
 /*-------- DARK MODE & CONTRAST -------*/

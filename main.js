@@ -410,11 +410,11 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
   // currentEmojiBoard += tileEmoji + '\n';
   // currentEmojiBoard2 += tileEmoji2 + '\n';
 
-  currentEmojiBoard += tileEmoji + '<br>';
-  currentEmojiBoard2 += tileEmoji2 + '<br>';
+  // currentEmojiBoard += tileEmoji + '<br>';
+  // currentEmojiBoard2 += tileEmoji2 + '<br>';
 
-  // currentEmojiBoard += '<p>' + tileEmoji + '</p>';
-  // currentEmojiBoard2 += `<p>${tileEmoji2}</p>`;
+  currentEmojiBoard += `<p class='game-board'>${tileEmoji}</p>`;
+  currentEmojiBoard2 += `<p class='game-board'>${tileEmoji2}</p>`;
 
   console.log('currentMiniBoard=\n', currentEmojiBoard);
   console.log('currentMiniBoard2=\n', currentEmojiBoard2);
@@ -676,7 +676,7 @@ function createGameStatsMenu() {
     </div>
     <div class='gameBoard-wrapper'>
       <p class=''>Current Game Board</p>
-      <p class='game-board'>${gameBoard}</p>
+      ${gameBoard}
     </div>
     <button onclick='copyGameBoardButton()'>Copy Game Board</button>
     <input id="btn" onclick="CopyToClipboard('createGamesStatsMenu')" type="button" value="Copy"></input>
