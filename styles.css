@@ -567,6 +567,7 @@ progress::-webkit-progress-value {
   flex-wrap: wrap;
   width: 64px;
   width: 75px;
+  /* width: 500px; */
 }
 
 /*-------- DARK MODE & CONTRAST -------*/
