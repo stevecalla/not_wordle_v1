@@ -515,11 +515,20 @@ input[type=text][data-status='start'] {
   width: 10px;
 }
 
+.gameBoard-wrapper {
+  width: 225px;
+  margin-bottom: 20px;
+  border-bottom: solid;
+  border-color: lightgrey;
+
+}
+
 progress {
   border-radius: 7px;
   width: 125px;
   border: solid grey;
   border-radius: 15px;
+  margin: 0px;
   /* width: 80%;
   height: 22px;
   margin-left: -11.5%; */
@@ -528,6 +537,8 @@ progress {
 progress::-webkit-progress-bar {
   background-color: white;
   border-radius: 7px;
+  margin: 0;
+  padding: 0;
 }
 progress::-webkit-progress-value {
   background-color: black;

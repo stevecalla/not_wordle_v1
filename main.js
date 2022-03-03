@@ -650,25 +650,25 @@ function createGameStatsMenu() {
       <div class='bars-wrapper'>
         <p class='row-number'>1</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['1'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>2</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['2'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>3</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['3'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>4</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['4'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>5</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['5'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>6</p>
         <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'></progress>
-        <p class='win-percent'>${Math.round((gameStats['6'] / gameStats.winCount) * 100)}%</p>
+        <p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p>
       </div>
     </div>
-    <div>
+    <div class='gameBoard-wrapper'>
       <p class=''>Current Game Board</p>
       <p class='game-board'>${gameBoard}</p>
     </div>
