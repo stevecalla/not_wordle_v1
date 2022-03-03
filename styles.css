@@ -551,6 +551,9 @@ progress::-webkit-progress-value {
 }
 
 .game-board {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
   height: 80px;
   width: 60px;
   margin: auto;
