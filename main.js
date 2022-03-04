@@ -73,7 +73,7 @@ function createGameInstruction() {
 function injectInstructionText() {
   document.getElementById('instructionWrapper').innerHTML = `
     <div class='instx-title'>
-      <p class='hidden'>x</p>
+      <p class='cloak'>x</p>
       <p class='title'>HOW TO PLAY</p>
       <p class='click-to-hide-x'>X</p>
     </div>
