@@ -49,7 +49,7 @@ function loadTasks() {
   createGameSolution();
   createGameTiles();
   createOnscreenKeyboard();
-  // window.moveTo(0, 0);
+  window.moveTo(0, 0);
   createHamburgerMenu();
 
   if (localStorage.getItem('gameStats') === null) {
