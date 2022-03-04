@@ -12,7 +12,8 @@ body a {
 p,
 .solution,
 .message,
-.definition {
+.definition,
+.copy-notification {
   color: black;
   background-color: white;
 }

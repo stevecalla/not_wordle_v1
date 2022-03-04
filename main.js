@@ -728,7 +728,13 @@ function copyToClipboard(element) {
   }
   document.execCommand('copy');
   window.getSelection().removeAllRanges();
-  document.getElementById("btn").value="Copied";
+  // document.getElementById("btn").value="Copied";
+
+  document.getElementById('copyNotification').innerText = 'Screen Capture Copied To Clipboard';
+  document.getElementById('copyNotification').classList.toggle('cloak');
+  setTimeout(() => {
+    document.getElementById('copyNotification').classList.toggle('cloak');
+  }, 3000);
 }
 
 // SECTION DARK & CONTRAST MODE

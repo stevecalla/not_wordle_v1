@@ -215,6 +215,16 @@ input[id^='tile'][disabled] {
   border-color: lightgrey;
 }
 
+.copy-notification {
+  position: absolute;
+  z-index: 5;
+  border: solid black;
+  background: white;
+  border-radius: 5px;
+  width: 150px;
+  text-align: center;
+}
+
 /* ----------------------- */
 
 .input-wrapper {
