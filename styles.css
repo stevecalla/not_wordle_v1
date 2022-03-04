@@ -63,6 +63,12 @@ body {
   /* bottom: 32px; */
 }
 
+.spacer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .solution, 
 .definition {
   margin-top: 15rem;
@@ -124,6 +130,7 @@ body {
   height: 375px;
   position: relative;
 }
+
 .instruction-wrapper {
   background-color: white;
   /* display: flex;
@@ -630,6 +637,10 @@ progress::-webkit-progress-value {
   .header {
     margin-bottom: 10px;
     width: 350px;
+  }
+
+  h1 {
+    font-size: 24px;
   }
 
   progress {
