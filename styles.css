@@ -687,6 +687,8 @@ progress::-webkit-progress-value {
       font-size: 2rem;
       margin-right: 0.1rem;
       margin-bottom: 0.1rem;
+      height: 2.7rem;
+      width: 2.7rem;
     }
 
     .keyboard-wrapper {
