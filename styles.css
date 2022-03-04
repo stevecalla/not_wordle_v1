@@ -354,9 +354,9 @@ input[type=text][data-status='start'] {
   background-color: #939598;
 }
 
-.back-button {
+/* .back-button {
   font-size: 23px;
-}
+} */
 
 .backspace-svg-icon {
   height: 25px;
