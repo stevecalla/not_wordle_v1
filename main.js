@@ -754,7 +754,7 @@ function toggleDarkMode(storageDarkValue) {
     darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
     setLocalStorage('darkMode', storageDarkValue);
   }
-  for (let i = 0; i < 4; i++) {
+  for (let i = 0; i < 6; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
   // focusCurrentTile();
