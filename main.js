@@ -51,7 +51,7 @@ function loadTasks() {
   createOnscreenKeyboard();
   // window.moveTo(0, 0);
   createHamburgerMenu();
-  
+
   if (localStorage.getItem('gameStats') === null) {
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
@@ -217,7 +217,7 @@ function createOnscreenKeyboard() {
   document.getElementById('keyboard27').setAttribute('onclick', 'deleteInputText()');
 
   // document.getElementById('keyboard27').innerHTML = '<svg class="backspace-svg-icon" viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg"><path d="M5.83 5.146a.5.5 0 0 0 0 .708L7.975 8l-2.147 2.146a.5.5 0 0 0 .707.708l2.147-2.147 2.146 2.147a.5.5 0 0 0 .707-.708L9.39 8l2.146-2.146a.5.5 0 0 0-.707-.708L8.683 7.293 6.536 5.146a.5.5 0 0 0-.707 0z"/><path d="M13.683 1a2 2 0 0 1 2 2v10a2 2 0 0 1-2 2h-7.08a2 2 0 0 1-1.519-.698L.241 8.65a1 1 0 0 1 0-1.302L5.084 1.7A2 2 0 0 1 6.603 1h7.08zm-7.08 1a1 1 0 0 0-.76.35L1 8l4.844 5.65a1 1 0 0 0 .759.35h7.08a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1h-7.08z"/></svg>'
-  document.getElementById('keyboard27').innerHTML = '<svg class="backspace-svg-icon" viewBox="0 0 44.18 44.18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"><g><path d="M10.625,5.09L0,22.09l10.625,17H44.18v-34H10.625z M42.18,37.09H11.734l-9.375-15l9.375-15H42.18V37.09z"/><polygon points="18.887,30.797 26.18,23.504 33.473,30.797 34.887,29.383 27.594,22.09 34.887,14.797 33.473,13.383 26.18,20.676 18.887,13.383 17.473,14.797 24.766,22.09 17.473,29.383 	"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>'
+  // document.getElementById('keyboard27').innerHTML = '<svg class="backspace-svg-icon" viewBox="0 0 44.18 44.18" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve"><g><path d="M10.625,5.09L0,22.09l10.625,17H44.18v-34H10.625z M42.18,37.09H11.734l-9.375-15l9.375-15H42.18V37.09z"/><polygon points="18.887,30.797 26.18,23.504 33.473,30.797 34.887,29.383 27.594,22.09 34.887,14.797 33.473,13.383 26.18,20.676 18.887,13.383 17.473,14.797 24.766,22.09 17.473,29.383 	"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>'
 }
 
 function eventKeyBoardButton() {
@@ -638,8 +638,8 @@ function copyGameBoardButton() {
   //   }
   // }
 
+  // statsMenuShowHide();
   copyToClipboard('body');
-  statsMenuShowHide();
   // focusCurrentTile();
 }
 
@@ -700,8 +700,10 @@ function createGameStatsMenu() {
       <p class='current-game-text'>Current Game Board</p>
       ${gameBoard}
     </div>
-    <button onclick="copyToClipboard('gameBoardWrapper')">Copy Game Board</button>
-    <input id="btn" onclick="copyToClipboard('createGameStatsMenu')" type="button" value="Copy"></input>
+    <div class='stats-buttons'>
+      <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
+      <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
+    </div>
   `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }

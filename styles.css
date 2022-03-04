@@ -520,10 +520,13 @@ input[type=text][data-status='start'] {
 .gameBoard-wrapper {
   width: 225px;
   margin-bottom: 20px;
-  border-bottom: solid;
-  border-color: lightgrey;
-  margin-bottom: 15px;
+  /* border-bottom: solid;
+  border-color: lightgrey; */
+  margin-bottom: 5px;
   padding: 5px;
+  display: flex;
+  justify-content: left;
+  flex-wrap: wrap;
 }
 
 progress {
@@ -567,20 +570,34 @@ progress::-webkit-progress-value {
   width: 64px;
   width: 75px; */
 
-  display: flex;
-  justify-content: center;
+  /* display: flex;
+  justify-content: center; */
   margin: auto;
   transform: scale(1.15);
   flex-direction: row;
-  /* flex-wrap: wrap; */
+  flex-wrap: wrap;
   /* width: 75px; */
   margin-bottom: 2px;
   letter-spacing: 1px;
   width: 200px;
+  /* /* text-align: left; */
+  /* margin-left: 0; */
+  width: 195px;
+}
+
+.stats-buttons {
+  width: 195px;
+  /* margin-top: 15px; */
+  /* margin-bottom: 20px; */
+  border-top: solid;
+  border-color: lightgrey;
+  padding: 15px;
 }
 
 .current-game-text {
   margin: 0 0 10px 0;
+  text-align: left;
+  margin-left: 0px;
 }
 
 /*-------- DARK MODE & CONTRAST -------*/
