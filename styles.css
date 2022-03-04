@@ -63,16 +63,17 @@ body {
   /* bottom: 32px; */
 }
 
-/* .spacer {
-  /* display: flex; */
+.spacer {
+  display: flex; */
   /* justify-content: center; */
   /* align-items: center; */
-} */
+} 
 
 .solution, 
 .definition {
-  margin-top: 15rem;
+  /* margin-top: 15rem; */
   width: 100px;
+  /* margin: 30px; */
   text-align: center;
   border: solid;
   border-color: black;
@@ -80,19 +81,25 @@ body {
   color: black;
   background-color: white;
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   animation: skew 3s infinite;
   animation-iteration-count: 5;
   /* transform: skew(20deg); */
   animation-direction: alternate;
   /* animation-duration: 3s; */
+  padding: 0.2rem;
+  margin-top: 35px;
+
 }
 
 .definition {
   width: 250px;
-  margin: 10px;
-  margin-top: 18rem;
+  margin: 75px;
+  /* margin-top: 18rem;
+  margin-top: 3rem; */
   text-align: center;
+  padding: 0.5rem;
+  margin-top: 75px;
 }
 
 .message {
@@ -154,10 +161,12 @@ body {
   inset 0 -3em 3em rgba(0,0,0,0.1),
         0 0  0 2px rgb(255,255,255),
         0.3em 0.3em 1em rgba(0,0,0,0.3); */
+  position: absolute;
 }
 
 .confetti-lottiplayer-wrapper {
   margin-top: 75px;
+  margin-top: 0rem;
   position: absolute;
   z-index: 3;
 }
@@ -223,13 +232,17 @@ input[id^='tile'][disabled] {
 }
 
 .copy-notification {
+  margin-top: 230px;
   position: absolute;
-  z-index: 5;
+  z-index: 6;
   border: solid black;
   background: white;
   border-radius: 5px;
   width: 150px;
   text-align: center;
+  position: relative;
+  height: 50px;
+  padding: 3px;
 }
 
 /* ----------------------- */

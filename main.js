@@ -73,7 +73,7 @@ function createGameInstruction() {
 function injectInstructionText() {
   document.getElementById('instructionWrapper').innerHTML = `
     <div class='instx-title'>
-      <p class='cloak'>x</p>
+      <p class='hidden'>x</p>
       <p class='title'>HOW TO PLAY</p>
       <p class='click-to-hide-x'>X</p>
     </div>
@@ -138,13 +138,14 @@ function hideInstructions() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
-  document.querySelector('.input-wrapper').classList.remove('hidden');
-  document.querySelector('.keyboard-wrapper').classList.remove('hidden');
+  // document.querySelector('.input-wrapper').classList.remove('hidden');
+  // document.querySelector('.keyboard-wrapper').classList.remove('hidden');
 
   document.getElementById('toggleInstructionsOffIcon').classList.toggle('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.toggle('hidden');
   // document.getElementById('id0').focus();
   // focusCurrentTile();
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
 }
 
 // SECTION CREATE SOLUTION
@@ -485,8 +486,8 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   }
   document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
   displaySolution.innerText = solution.join('');
-  document.getElementById('solution').classList.toggle('cloak');
-  document.getElementById('definition').classList.toggle('cloak');
+  document.getElementById('solution').classList.toggle('hidden');
+  document.getElementById('definition').classList.toggle('hidden');
   console.log('innerText=', document.querySelector('#definition').innerText);
 
 
@@ -504,9 +505,14 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
     }
   }
 
+  setTimeout(() => {
+    document.getElementById('solution').classList.toggle('hidden');
+    document.getElementById('definition').classList.toggle('hidden');
+  }, 7000);
+
   // document.getElementById('instructionWrapper').innerHTML = `
   //   <div class='instx-title'>
-  //     <p class='cloak'>x</p>
+  //     <p class='hidden'>x</p>
   //     <p class='title'>GAME SUMMARY</p>
   //     <p class='click-to-hide-x'>X</p>
   //   </div>
@@ -600,6 +606,12 @@ function hamburgerMenuShowHide() {
 
 function statsMenuShowHide() { 
   document.getElementById('createGameStatsMenu').classList.toggle('hidden');
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  // document.getElementById('createGameStatsMenu').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
 }
 
 // function windowClick() {
@@ -640,6 +652,10 @@ function toggleContrastModeButton(event) {
 
 function definitionButton() {
   getWebsterDictionaryAPI();
+  hamburgerMenuShowHide();
+  // document.getElementById('createGameStatsMenu').classList.toggle('hidden');
+  // hideInstructions();
+
   // focusCurrentTile();
 } 
 
@@ -658,7 +674,17 @@ function copyGameBoardButton() {
   // }
 
   // statsMenuShowHide();
+
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  document.getElementById('createGameStatsMenu').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
+  
   copyToClipboard('body');
+
+  // copyToClipboard2();
   // focusCurrentTile();
 }
 
@@ -730,6 +756,7 @@ function createGameStatsMenu() {
 function copyToClipboard(element) {
   let range, selection;
   let referenceNode = document.getElementById(element);
+  console.log(referenceNode);
 
   if (document.body.createTextRange) {
     console.log('1=', document.body.createTextRange);
@@ -748,9 +775,9 @@ function copyToClipboard(element) {
   // document.getElementById("btn").value="Copied";
 
   document.getElementById('copyNotification').innerText = 'Screen Capture Copied To Clipboard';
-  document.getElementById('copyNotification').classList.toggle('cloak');
+  document.getElementById('copyNotification').classList.toggle('hidden');
   setTimeout(() => {
-    document.getElementById('copyNotification').classList.toggle('cloak');
+    document.getElementById('copyNotification').classList.toggle('hidden');
   }, 3000);
 }
 
