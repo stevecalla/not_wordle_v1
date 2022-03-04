@@ -9,3 +9,14 @@
 .contrast-toggle--exactMatch {
   background-color: #85c0f9;
 }
+
+.contrast-toggle {
+  height: 27px;
+  width: 27px;
+  border: solid black;
+  border-radius: 50%;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background: linear-gradient( 90deg, #85c0f9 50%, #f5793a 50% );
+}

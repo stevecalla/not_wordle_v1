@@ -620,6 +620,7 @@ progress::-webkit-progress-value {
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
+/*----------- CLOAK / HIDE / SHOW -----*/
 .cloak {
   visibility: hidden;
 }
