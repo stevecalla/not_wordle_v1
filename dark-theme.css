@@ -18,9 +18,21 @@ p,
   background-color: white;
 }
 
-/* .darkmode-toggle--white {
+.darkmode-toggle-button {
+  height: 27px;
+  width: 27px;
+  border: solid black;
+  border-radius: 50%;
+  border-radius: 50%;
+  border: solid;
+  border: solid white;
+  cursor: pointer;
+  background: linear-gradient( 90deg, white 50%, black 50% ); 
+}
+
+.darkmode-toggle--white {
   background: #fff;
-} */
+}
 
 .darkmode-svg-toggle--white {
   background: black;

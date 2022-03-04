@@ -445,6 +445,12 @@ input[type=text][data-status='start'] {
   text-align: right;
   width: 50px;
   text-align: left;
+  text-align: center;
+}
+
+.toggleDefinition {
+  height: 32px;
+  width: 32px;
 }
 
 .click-to-hide {
