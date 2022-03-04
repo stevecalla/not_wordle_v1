@@ -602,6 +602,14 @@ function createHamburgerMenu() {
 
 function hamburgerMenuShowHide() { 
   document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+
+  // document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  document.getElementById('createGameStatsMenu').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
+  
 }
 
 function statsMenuShowHide() { 
