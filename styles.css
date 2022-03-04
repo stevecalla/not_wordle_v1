@@ -63,11 +63,11 @@ body {
   /* bottom: 32px; */
 }
 
-.spacer {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+/* .spacer {
+  /* display: flex; */
+  /* justify-content: center; */
+  /* align-items: center; */
+} */
 
 .solution, 
 .definition {
