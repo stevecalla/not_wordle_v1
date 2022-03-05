@@ -624,10 +624,17 @@ function hamburgerMenuShowHide() {
   // hideInstructions();
 
   document.getElementById('confettiWrapper').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
   
 }
 
 function statsMenuShowHide() { 
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('solution').classList.add('hidden');
   document.getElementById('definition').classList.add('hidden');
