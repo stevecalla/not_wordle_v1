@@ -804,7 +804,7 @@ function createGameStatsMenu() {
       <div class='bars-wrapper'>
         <p class='row-number'>1</p>
         <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: 50px'>${row1}</div>
+          <div class='progress-bar2' style='width: 100px'>${row1}</div>
         </div>
         <p class='win-percent'>${row1Percent}%</p>
         <p class='row-number'>2</p>
