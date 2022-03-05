@@ -777,29 +777,48 @@ function createGameStatsMenu() {
   console.log('max-', maxWins, gameStats['1'], maxWins / gameStats['1']);
 
   let row1 = gameStats.row1;
-  let row1Width = ((135 * (gameStats.row1 / gameStats.winCount)));
+  let row1Width = Math.round((135 * (gameStats.row1 / gameStats.winCount)));
   let row1Percent = Math.round(gameStats.row1 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+
   let row2 = gameStats.row2;
   let row2Width = Math.round((135 * (gameStats.row2 / gameStats.winCount)));
-  // let row2WidthPx = `${row2Width}px`;
-  // console.log(row2WidthPx);
   let row2Percent = Math.round(gameStats.row2 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+
+
+  let row3 = gameStats.row3;
+  let row3Width = Math.round((135 * (gameStats.row3 / gameStats.winCount)));
+  let row3Percent = Math.round(gameStats.row3 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+
+
+  let row4 = gameStats.row4;
+  let row4Width = Math.round((135 * (gameStats.row4 / gameStats.winCount)));
+  let row4Percent = Math.round(gameStats.row4 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+
+
+  let row5 = gameStats.row5;
+  let row5Width = Math.round((135 * (gameStats.row5 / gameStats.winCount)));
+  let row5Percent = Math.round(gameStats.row5 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+
+
+  let row6 = gameStats.row6;
+  let row6Width = Math.round((135 * (gameStats.row6 / gameStats.winCount)));
+  let row6Percent = Math.round(gameStats.row6 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
 
   // let row2 = gameStats['2'];
   // let row2Width = (135 * (gameStats['2'] / maxWins));
   // let row2Percent = gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'
-  let row3 = gameStats['3'];
-  let row3Width = (135 * (gameStats['3'] / maxWins));
-  let row3Percent = gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'
-  let row4 = gameStats['4'];
-  let row4Width = (135 * (gameStats['4'] / maxWins));
-  let row4Percent = gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'
-  let row5 = gameStats['5'];
-  let row5Width = (135 * (gameStats['5'] / maxWins));
-  let row5Percent = gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'
-  let row6 = gameStats['6'];
-  let row6Width = (135 * (gameStats['6'] / maxWins));
-  let row6Percent = gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'
+  // let row3 = gameStats['3'];
+  // let row3Width = (135 * (gameStats['3'] / maxWins));
+  // let row3Percent = gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'
+  // let row4 = gameStats['4'];
+  // let row4Width = (135 * (gameStats['4'] / maxWins));
+  // let row4Percent = gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'
+  // let row5 = gameStats['5'];
+  // let row5Width = (135 * (gameStats['5'] / maxWins));
+  // let row5Percent = gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'
+  // let row6 = gameStats['6'];
+  // let row6Width = (135 * (gameStats['6'] / maxWins));
+  // let row6Percent = gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'
 
   document.getElementById('createGameStatsMenu').innerHTML = `
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
@@ -854,9 +873,15 @@ function createGameStatsMenu() {
         </div>
         <p class='win-percent'>${row6Percent}%</p>
 
+        <p class='row-number'>7</p>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats.row6} / ${maxWins}))'>${gameStats.row6}</div>
+        </div>
+        <p class='win-percent'>${gameStats.row6 / gameStats.winCount ? Math.round((gameStats.row6 / gameStats.winCount) * 100) : '0'}%</p> 
+
         <p class='row-number'>1</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats[row1]}'></progress>
-        <p class='win-percent'>${gameStats[row1] / gameStats.winCount ? Math.round((gameStats[row1] / gameStats.winCount) * 100) : '0'}%</p>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats.row1}'></progress>
+        <p class='win-percent'>${gameStats.row1 / gameStats.winCount ? Math.round((gameStats.row1 / gameStats.winCount) * 100) : '0'}%</p>
 
       </div>
     </div>
