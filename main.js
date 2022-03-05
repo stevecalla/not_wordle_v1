@@ -772,7 +772,7 @@ function createGameStatsMenu() {
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
 
-  const winsByRow = [gameStats['1'], gameStats['2'], gameStats['3'], gameStats['4'], gameStats['5'], gameStats['6']];
+  const winsByRow = [gameStats.row1, gameStats.row2, gameStats.row3, gameStats.row4, gameStats.row5, gameStats.row6];
   let maxWins = Math.max(...winsByRow);
   console.log('max-', maxWins, gameStats['1'], maxWins / gameStats['1']);
 
@@ -799,26 +799,9 @@ function createGameStatsMenu() {
   let row5Width = Math.round((135 * (gameStats.row5 / gameStats.winCount)));
   let row5Percent = Math.round(gameStats.row5 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
 
-
   let row6 = gameStats.row6;
   let row6Width = Math.round((135 * (gameStats.row6 / gameStats.winCount)));
   let row6Percent = Math.round(gameStats.row6 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
-
-  // let row2 = gameStats['2'];
-  // let row2Width = (135 * (gameStats['2'] / maxWins));
-  // let row2Percent = gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'
-  // let row3 = gameStats['3'];
-  // let row3Width = (135 * (gameStats['3'] / maxWins));
-  // let row3Percent = gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'
-  // let row4 = gameStats['4'];
-  // let row4Width = (135 * (gameStats['4'] / maxWins));
-  // let row4Percent = gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'
-  // let row5 = gameStats['5'];
-  // let row5Width = (135 * (gameStats['5'] / maxWins));
-  // let row5Percent = gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'
-  // let row6 = gameStats['6'];
-  // let row6Width = (135 * (gameStats['6'] / maxWins));
-  // let row6Percent = gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'
 
   document.getElementById('createGameStatsMenu').innerHTML = `
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
@@ -841,49 +824,7 @@ function createGameStatsMenu() {
     </div>
     <div class='win-stats-wrapper'>
       <p class='win-description'>Win Distribution</p>
-      <div class='bars-wrapper'>
-        <p class='row-number'>1</p>
-        <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: ${row1Width}px'>${row1}</div>
-        </div>
-        <p class='win-percent'>${row1Percent}%</p>
-        <p class='row-number'>2</p>
-        <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: ${row2Width}px'>${row2}</div>
-        </div>
-        <p class='win-percent'>${row2Percent}%</p>
-        <p class='row-number'>3</p>
-        <div class='bar-wrapper'>
-        <div class='progress-bar2' style='width: ${row3Width}px'>${row3}</div>
-        </div>
-        <p class='win-percent'>${row3Percent}%</p>
-        <p class='row-number'>4</p>
-        <div class='bar-wrapper'>
-        <div class='progress-bar2' style='width: ${row4Width}px'>${row4}</div>
-        </div>
-        <p class='win-percent'>${row4Percent}%</p>
-        <p class='row-number'>5</p>
-        <div class='bar-wrapper'>
-        <div class='progress-bar2' style='width: ${row5Width}px'>${row5}</div>
-        </div>
-        <p class='win-percent'>${row5Percent}%</p>
-        <p class='row-number'>6</p>
-        <div class='bar-wrapper'>
-        <div class='progress-bar2' style='width: ${row6Width}px'>${row6}</div>
-        </div>
-        <p class='win-percent'>${row6Percent}%</p>
-
-        <p class='row-number'>7</p>
-        <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: calc(135px * (${gameStats.row6} / ${maxWins}))'>${gameStats.row6}</div>
-        </div>
-        <p class='win-percent'>${gameStats.row6 / gameStats.winCount ? Math.round((gameStats.row6 / gameStats.winCount) * 100) : '0'}%</p> 
-
-        <p class='row-number'>1</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats.row1}'></progress>
-        <p class='win-percent'>${gameStats.row1 / gameStats.winCount ? Math.round((gameStats.row1 / gameStats.winCount) * 100) : '0'}%</p>
-
-      </div>
+      <div class='bars-wrapper' id='progressBarWrapper'></div>
     </div>
     <div class='gameBoard-wrapper' id='gameBoardWrapper'>
       <p class='current-game-text'>Current Game Board</p>
@@ -893,46 +834,57 @@ function createGameStatsMenu() {
       <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
       <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
     </div>
-    
-
   `;
+  
+  for (let i = 1; i < 7; i++) {
+    let rowWinCount = `${gameStats['row' + i]}`
+    let rowWidth = Math.round((135 * (gameStats['row' + i] / gameStats.winCount)));
+    let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`
+
+    document.getElementById('progressBarWrapper').innerHTML += `
+      <p class='row-number'>${i}</p>
+      <div class='bar-wrapper'>
+        <div class='progress-bar2' style='width: ${rowWidth}px'>${rowWinCount}</div>
+      </div>
+      <p class='win-percent'>${rowWinPercent}</p> 
+    `
+
+  };
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
-
-{/* <p class='row-number'>6</p>
-<div class='bar-wrapper'>
-  <div class='progress-bar2' style='width: calc(135px * (${gameStats['6']} / ${maxWins}))'>${gameStats['6']}</div>
-</div>
-<p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p> */}
+// calc(${widthBaseline * gameStats['row' + i] / gameStats.winCount})
 
 {/* <p class='row-number'>1</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
-<p class='win-percent'>${gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
-<p class='row-number'>2</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'></progress>
-<p class='win-percent'>${gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'}%</p>
-<p class='row-number'>3</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'></progress>
-<p class='win-percent'>${gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'}%</p>
-<p class='row-number'>4</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'></progress>
-<p class='win-percent'>${gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'}%</p>
-<p class='row-number'>5</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'></progress>
-<p class='win-percent'>${gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'}%</p>
-<p class='row-number'>6</p>
-<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'></progress>
-<p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p> */}
-
-{/* <div class='gameBoard-wrapper' id='gameBoardWrapper'>
-  <p class='current-game-text'>Current Game Board</p>
-  ${gameBoard}
+<div class='bar-wrapper'>
+  <div class='progress-bar2' style='width: ${row1Width}px'>${row1}</div>
 </div>
-<div class='stats-buttons'>
-  <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
-  <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
-</div> */}
+<p class='win-percent'>${row1Percent}%</p>
+<p class='row-number'>2</p>
+<div class='bar-wrapper'>
+  <div class='progress-bar2' style='width: ${row2Width}px'>${row2}</div>
+</div>
+<p class='win-percent'>${row2Percent}%</p>
+<p class='row-number'>3</p>
+<div class='bar-wrapper'>
+<div class='progress-bar2' style='width: ${row3Width}px'>${row3}</div>
+</div>
+<p class='win-percent'>${row3Percent}%</p>
+<p class='row-number'>4</p>
+<div class='bar-wrapper'>
+<div class='progress-bar2' style='width: ${row4Width}px'>${row4}</div>
+</div>
+<p class='win-percent'>${row4Percent}%</p>
+<p class='row-number'>5</p>
+<div class='bar-wrapper'>
+<div class='progress-bar2' style='width: ${row5Width}px'>${row5}</div>
+</div>
+<p class='win-percent'>${row5Percent}%</p>
+<p class='row-number'>6</p>
+<div class='bar-wrapper'>
+<div class='progress-bar2' style='width: ${row6Width}px'>${row6}</div>
+</div>
+<p class='win-percent'>${row6Percent}%</p> */}
 
 function copyToClipboard(element) {
   let range, selection;
