@@ -645,8 +645,12 @@ function statsMenuShowHide() {
   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
   // hideInstructions();
   document.getElementById('confettiWrapper').classList.add('hidden');
+  document.getElementById('copyNotification').classList.add('hidden');
   
   document.getElementById('createGameStatsMenu').classList.toggle('hidden');
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
 }
 
 // function windowClick() {
@@ -716,6 +720,13 @@ function copyGameBoardButton() {
   document.getElementById('createGameStatsMenu').classList.add('hidden');
   document.getElementById('instructionWrapper').classList.add('hidden');
   document.getElementById('confettiWrapper').classList.add('hidden');
+  // document.getElementById('copyNotification').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
+
+  
   
   copyToClipboard('body');
 
@@ -812,7 +823,7 @@ function copyToClipboard(element) {
   document.getElementById('copyNotification').innerText = 'Screen Capture Copied To Clipboard';
   document.getElementById('copyNotification').classList.toggle('hidden');
   setTimeout(() => {
-    document.getElementById('copyNotification').classList.toggle('hidden');
+    document.getElementById('copyNotification').classList.add('hidden');
   }, 3000);
 }
 
