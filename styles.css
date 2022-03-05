@@ -687,9 +687,11 @@ progress::-webkit-progress-value {
     width: 275px;
     /* border: solid; */
     /* border-color: blue; */
-    /* display: flex; */
+    display: flex;
     /* flex-basis: 20%; */
     /* overflow: scroll; */
+    width: 250px;
+    flex-wrap: wrap;
     }
 
     input[id^='id'] {
