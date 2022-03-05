@@ -843,8 +843,8 @@ function createGameStatsMenu() {
         <p class='win-percent'>${row6Percent}%</p>
 
         <p class='row-number'>1</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
-        <p class='win-percent'>${gameStats[row1] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats[row1]}'></progress>
+        <p class='win-percent'>${gameStats[row1] / gameStats.winCount ? Math.round((gameStats[row1] / gameStats.winCount) * 100) : '0'}%</p>
 
       </div>
     </div>
