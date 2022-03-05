@@ -720,15 +720,20 @@ function copyGameBoardButton() {
   document.getElementById('createGameStatsMenu').classList.add('hidden');
   document.getElementById('instructionWrapper').classList.add('hidden');
   document.getElementById('confettiWrapper').classList.add('hidden');
+  document.querySelector('.spacer1').classList.add('hidden');
+  document.querySelector('.spacer2').classList.add('hidden');
   // document.getElementById('copyNotification').classList.add('hidden');
 
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
 
-  
-  
+
   copyToClipboard('body');
+
+
+  document.querySelector('.spacer1').classList.remove('hidden');
+  document.querySelector('.spacer2').classList.remove('hidden');
 
   // copyToClipboard2();
   // focusCurrentTile();
