@@ -624,6 +624,7 @@ input[type=text][data-status='start'] {
   z-index: 2;
   position: relative;
   min-width: 15px;
+  width: 50px;
 }
 
 .win-percent {

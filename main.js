@@ -23,6 +23,7 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode':'false', 
   'contrastMode':'false',
+  'rowOne': 0,
   '1': 0,
   '2': 0,
   '3': 0,
@@ -753,6 +754,12 @@ function createGameStatsMenu() {
   const winsByRow = [gameStats['1'], gameStats['2'], gameStats['3'], gameStats['4'], gameStats['5'], gameStats['6']];
   let maxWins = Math.max(...winsByRow);
   console.log('max-', maxWins, gameStats['1'], maxWins / gameStats['1']);
+  let row1 = gameStats['1'];
+  let row1Width = (135 * (gameStats['1'] / maxWins));
+  let row1Percent = gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'
+  let row2 = gameStats['2'];
+  let row2Width = (135 * (gameStats['2'] / maxWins));
+  let row2Percent = gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'
 
   document.getElementById('createGameStatsMenu').innerHTML = `
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
@@ -778,14 +785,14 @@ function createGameStatsMenu() {
       <div class='bars-wrapper'>
         <p class='row-number'>1</p>
         <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: calc(135px * (${gameStats['1']} / ${maxWins}))'>${gameStats['1']}</div>
+          <div class='progress-bar2' style='width: ${row1Width}px'>${row1}</div>
         </div>
-        <p class='win-percent'>${gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
+        <p class='win-percent'>${row1Percent}%</p>
         <p class='row-number'>2</p>
         <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: calc(135px * (${gameStats['2']} / ${maxWins}))'>${gameStats['2']}</div>
+          <div class='progress-bar2' style='width: ${row2Width}px'>${row2}</div>
         </div>
-        <p class='win-percent'>${gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'}%</p>
+        <p class='win-percent'>${row2Percent}%</p>
         <p class='row-number'>3</p>
         <div class='bar-wrapper'>
           <div class='progress-bar2' style='width: calc(135px * (${gameStats['3']} / ${maxWins}))'>${gameStats['3']}</div>
@@ -806,8 +813,6 @@ function createGameStatsMenu() {
           <div class='progress-bar2' style='width: calc(135px * (${gameStats['6']} / ${maxWins}))'>${gameStats['6']}</div>
         </div>
         <p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p>
-
-
       </div>
     </div>
     <div class='gameBoard-wrapper' id='gameBoardWrapper'>
