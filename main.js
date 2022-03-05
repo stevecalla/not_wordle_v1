@@ -758,10 +758,13 @@ function createGameStatsMenu() {
   let row1 = 7;
   let row1Width = (135 * (7 / maxWins));
   let row1Percent = 7 / (gameStats.winCount ? gameStats.winCount : '0') * 100
+  let row2 = 1;
+  let row2Width = (135 * (1 / maxWins));
+  let row2Percent = Math.round(1 / (gameStats.winCount ? gameStats.winCount : '0') * 100)
 
-  let row2 = gameStats['2'];
-  let row2Width = (135 * (gameStats['2'] / maxWins));
-  let row2Percent = gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'
+  // let row2 = gameStats['2'];
+  // let row2Width = (135 * (gameStats['2'] / maxWins));
+  // let row2Percent = gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'
   let row3 = gameStats['3'];
   let row3Width = (135 * (gameStats['3'] / maxWins));
   let row3Percent = gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'
