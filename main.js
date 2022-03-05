@@ -750,6 +750,10 @@ function createGameStatsMenu() {
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
 
+  const winsByRow = [gameStats['1'], gameStats['2'], gameStats['3'], gameStats['4'], gameStats['5'], gameStats['6']];
+  let maxWins = Math.max(...winsByRow);
+  console.log('max-', maxWins, gameStats['1'], maxWins / gameStats['1']);
+
   document.getElementById('createGameStatsMenu').innerHTML = `
     <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
       <p class='click-to-hide'>x</p>
@@ -773,23 +777,37 @@ function createGameStatsMenu() {
       <p class='win-description'>Win Distribution</p>
       <div class='bars-wrapper'>
         <p class='row-number'>1</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['1']} / ${maxWins}))'>${gameStats['1']}</div>
+        </div>
         <p class='win-percent'>${gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>2</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['2']} / ${maxWins}))'>${gameStats['2']}</div>
+        </div>
         <p class='win-percent'>${gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>3</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['3']} / ${maxWins}))'>${gameStats['3']}</div>
+        </div>
         <p class='win-percent'>${gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>4</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['4']} / ${maxWins}))'>${gameStats['4']}</div>
+        </div>
         <p class='win-percent'>${gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>5</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['5']} / ${maxWins}))'>${gameStats['5']}</div>
+        </div>
         <p class='win-percent'>${gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'}%</p>
         <p class='row-number'>6</p>
-        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'></progress>
+        <div class='bar-wrapper'>
+          <div class='progress-bar2' style='width: calc(135px * (${gameStats['6']} / ${maxWins}))'>${gameStats['6']}</div>
+        </div>
         <p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p>
+
+
       </div>
     </div>
     <div class='gameBoard-wrapper' id='gameBoardWrapper'>
@@ -800,9 +818,39 @@ function createGameStatsMenu() {
       <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
       <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
     </div>
+    
+
   `;
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
+
+{/* <p class='row-number'>1</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
+<p class='win-percent'>${gameStats['1'] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
+<p class='row-number'>2</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['2']}'></progress>
+<p class='win-percent'>${gameStats['2'] / gameStats.winCount ? Math.round((gameStats['2'] / gameStats.winCount) * 100) : '0'}%</p>
+<p class='row-number'>3</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['3']}'></progress>
+<p class='win-percent'>${gameStats['3'] / gameStats.winCount ? Math.round((gameStats['3'] / gameStats.winCount) * 100) : '0'}%</p>
+<p class='row-number'>4</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['4']}'></progress>
+<p class='win-percent'>${gameStats['4'] / gameStats.winCount ? Math.round((gameStats['4'] / gameStats.winCount) * 100) : '0'}%</p>
+<p class='row-number'>5</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['5']}'></progress>
+<p class='win-percent'>${gameStats['5'] / gameStats.winCount ? Math.round((gameStats['5'] / gameStats.winCount) * 100) : '0'}%</p>
+<p class='row-number'>6</p>
+<progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['6']}'></progress>
+<p class='win-percent'>${gameStats['6'] / gameStats.winCount ? Math.round((gameStats['6'] / gameStats.winCount) * 100) : '0'}%</p> */}
+
+{/* <div class='gameBoard-wrapper' id='gameBoardWrapper'>
+  <p class='current-game-text'>Current Game Board</p>
+  ${gameBoard}
+</div>
+<div class='stats-buttons'>
+  <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
+  <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
+</div> */}
 
 function copyToClipboard(element) {
   let range, selection;
