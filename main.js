@@ -23,13 +23,18 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode':'false', 
   'contrastMode':'false',
-  'rowOne': 0,
   '1': 0,
   '2': 0,
   '3': 0,
   '4': 0,
   '5': 0,
   '6': 0,
+  'row1': 0,
+  'row2': 0,
+  'row3': 0,
+  'row4': 0,
+  'row5': 0,
+  'row6': 0,
 }
 
 //event listeners go here 👇
@@ -369,6 +374,8 @@ function updateOnscreenKeyboard() {
 function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   let winningCondition = !dataStatus.includes('match') && !dataStatus.includes('noMatch');
   let gameOverCondition = startRowTile + 4 === 29;
+  let currentRow2 = `row${currentRow}`;
+
   if (winningCondition) {
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
     setLocalStorage('gameCount', gameStats.gameCount + 1);  
@@ -382,9 +389,11 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
       } else {
         console.trace();
         // console.log('win')
-        // console.log('currentRow=', currentRow, gameStats['1'], (gameStats[currentRow] + 1));
+        // console.log('currentRow=', currentRow, gameStats['1'], (gameStats[currentRow] + 1), currentRow2, gameStats[currentRow2], gameStats.winCount);
         setLocalStorage('winCount', (gameStats.winCount + 1));
         setLocalStorage(currentRow, (gameStats[currentRow] + 1));
+        setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
+        // setLocalStorage('rowOne', (gameStats.rowOne + 1));
       }
     document.getElementById('id29').blur();
     createConfetti();
@@ -755,14 +764,14 @@ function createGameStatsMenu() {
   let maxWins = Math.max(...winsByRow);
   console.log('max-', maxWins, gameStats['1'], maxWins / gameStats['1']);
 
-  let row1 = 7;
-  let row1Width = (135 * (7 / maxWins));
-  let row1Percent = Math.round(7 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
-  let row2 = 1;
-  let row2Width = Math.round((135 * (1 / maxWins)));
-  let row2WidthPx = `${row2Width}px`;
-  console.log(row2WidthPx);
-  let row2Percent = Math.round(1 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+  let row1 = gameStats.row1;
+  let row1Width = (135 * (gameStats.row1 / maxWins));
+  let row1Percent = Math.round(gameStats.row1 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
+  let row2 = gameStats.row2;
+  let row2Width = Math.round((135 * (gameStats.row2 / maxWins)));
+  // let row2WidthPx = `${row2Width}px`;
+  // console.log(row2WidthPx);
+  let row2Percent = Math.round(gameStats.row2 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
 
   // let row2 = gameStats['2'];
   // let row2Width = (135 * (gameStats['2'] / maxWins));
@@ -804,12 +813,12 @@ function createGameStatsMenu() {
       <div class='bars-wrapper'>
         <p class='row-number'>1</p>
         <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: 100px'>${row1}</div>
+          <div class='progress-bar2' style='width: ${row1Width}px'>${row1}</div>
         </div>
         <p class='win-percent'>${row1Percent}%</p>
         <p class='row-number'>2</p>
         <div class='bar-wrapper'>
-          <div class='progress-bar2' style='width: ${row2WidthPx}'>${row2}</div>
+          <div class='progress-bar2' style='width: ${row2Width}px'>${row2}</div>
         </div>
         <p class='win-percent'>${row2Percent}%</p>
         <p class='row-number'>3</p>
@@ -832,6 +841,11 @@ function createGameStatsMenu() {
         <div class='progress-bar2' style='width: ${row6Width}px'>${row6}</div>
         </div>
         <p class='win-percent'>${row6Percent}%</p>
+
+        <p class='row-number'>1</p>
+        <progress class='progress-bar' id='' max='${gameStats.winCount}' value='${gameStats['1']}'></progress>
+        <p class='win-percent'>${gameStats[row1] / gameStats.winCount ? Math.round((gameStats['1'] / gameStats.winCount) * 100) : '0'}%</p>
+
       </div>
     </div>
     <div class='gameBoard-wrapper' id='gameBoardWrapper'>
