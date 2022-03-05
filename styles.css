@@ -235,7 +235,7 @@ input[id^='tile'][disabled] {
 }
 
 .copy-notification {
-  margin-top: 230px;
+  /* margin-top: 230px; */
   position: absolute;
   z-index: 6;
   border: solid black;
@@ -246,6 +246,7 @@ input[id^='tile'][disabled] {
   position: relative;
   height: 40px;
   padding: 3px;
+  margin-top: 75px;
 }
 
 /* ----------------------- */
