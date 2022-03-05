@@ -514,7 +514,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   document.getElementById('toggleInstructionsOffIcon').classList.remove('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
   // hideInstructions();
-  
+
   document.getElementById('confettiWrapper').classList.add('hidden');
 
   setTimeout(() => {
@@ -628,19 +628,18 @@ function hamburgerMenuShowHide() {
 }
 
 function statsMenuShowHide() { 
-  document.getElementById('createGameStatsMenu').classList.toggle('hidden');
-
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('solution').classList.add('hidden');
   document.getElementById('definition').classList.add('hidden');
   // document.getElementById('createGameStatsMenu').classList.add('hidden');
-
+  
   document.getElementById('instructionWrapper').classList.add('hidden');
   document.getElementById('toggleInstructionsOffIcon').classList.remove('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
   // hideInstructions();
-
   document.getElementById('confettiWrapper').classList.add('hidden');
+  
+  document.getElementById('createGameStatsMenu').classList.toggle('hidden');
 }
 
 // function windowClick() {
