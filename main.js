@@ -759,8 +759,9 @@ function createGameStatsMenu() {
   let row1Width = (135 * (7 / maxWins));
   let row1Percent = Math.round(7 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
   let row2 = 1;
-  let row2Width = (135 * (1 / maxWins));
+  let row2Width = Math.round((135 * (1 / maxWins)));
   let row2WidthPx = `${row2Width}px`;
+  console.log(row2WidthPx);
   let row2Percent = Math.round(1 / (gameStats.winCount ? gameStats.winCount : '0') * 100);
 
   // let row2 = gameStats['2'];
