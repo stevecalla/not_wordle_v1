@@ -498,7 +498,7 @@ input[type=text][data-status='start'] {
   justify-content: center;
   flex-wrap: wrap;
   width: 260px;
-  right: 0;
+  /* right: 0; */
   background-color: white;
   /* border: thin solid; */
   border: 3px solid;
@@ -508,6 +508,7 @@ input[type=text][data-status='start'] {
   position: absolute;
   z-index: 4;
   transition: all 0.5s ease;
+  left: 0;
 }
 
 .stat-description {
