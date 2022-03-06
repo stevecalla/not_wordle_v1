@@ -83,8 +83,12 @@ body {
   border: solid;
   border-color: black;
   border-radius: 5px;
-  color: black;
+  /* color: black;
   background-color: white;
+
+  color: white;
+  background-color: black; */
+
   position: absolute;
   z-index: 5;
   animation: skew 3s infinite;
@@ -114,9 +118,9 @@ body {
   margin-top: 6.5rem;
   height: 35px;
   width: 175px;
-  color: white;
-  background-color: black;
-  border: none;
+  /* color: white;
+  background-color: black; */
+  /* border: none; */
   border-radius: 5px;
   position: absolute;
   z-index: 2;
@@ -240,8 +244,8 @@ input[id^='tile'][disabled] {
   /* margin-top: 230px; */
   position: absolute;
   z-index: 6;
-  border: solid black;
-  background: white;
+  /* border: solid black;
+  background: white; */
   border-radius: 5px;
   width: 150px;
   text-align: center;

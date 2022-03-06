@@ -9,6 +9,15 @@ a {
   color: #0033cc;
 }
 
+.solution,
+.message,
+.definition,
+.copy-notification {
+  color: white;
+  background-color: black;
+  /* border-radius: solid black; */
+}
+
 .darkmode-toggle-button {
   height: 27px;
   width: 27px;

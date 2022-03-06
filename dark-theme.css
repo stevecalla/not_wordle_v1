@@ -18,6 +18,12 @@ p,
   background-color: white;
 }
 
+.message,
+.definition,
+.copy-notification {
+  border: solid black;
+}
+
 .darkmode-toggle-button {
   height: 27px;
   width: 27px;
