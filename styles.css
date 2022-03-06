@@ -111,20 +111,17 @@ body {
   margin-top: 75px;
 }
 
-.message {
+/* .message {
   display: flex;
   justify-content: center;
   align-items: center;
   margin-top: 6.5rem;
   height: 35px;
   width: 175px;
-  /* color: white;
-  background-color: black; */
-  /* border: none; */
   border-radius: 5px;
   position: absolute;
-  z-index: 2;
-}
+  z-index: 5;
+} */
 
 /* @keyframes skew {
   0% {
@@ -250,9 +247,12 @@ input[id^='tile'][disabled] {
   width: 150px;
   text-align: center;
   position: relative;
-  height: 40px;
-  padding: 3px;
+  height: 50px;
+  padding: 12px;
   margin-top: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /* ----------------------- */

@@ -10,7 +10,7 @@ a {
 }
 
 .solution,
-.message,
+/* .message, */
 .definition,
 .copy-notification {
   color: white;
