@@ -300,7 +300,14 @@ function deleteInputText() {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = '';
-    document.getElementById('id' + allInput.length).setAttribute('value', '');
+
+    console.log(allInput.length)
+    console.log(document.getElementById('id' + allInput.length));
+    if (allInput.length < 30) {
+      document.getElementById('id' + allInput.length).setAttribute('value', '');
+    }
+    console.trace();
+
     // deleteTile.focus();//todo
     currentInput.pop();
     allInput.pop();
