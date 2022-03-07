@@ -69,7 +69,7 @@ function loadTasks() {
   createGameSolution();
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
-  createGameStatsMenu();
+  // createGameStatsMenu();
 }
 
 // SECTION  CREATE INSTRUCTIONS
@@ -721,6 +721,8 @@ function statsMenuShowHide() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
+  console.trace();
+  createGameStatsMenu();
 }
 
 // function windowClick() {
@@ -754,7 +756,7 @@ function toggleContrastModeButton(event) {
   document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
   document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   toggleContrastMode();
-  createGameStatsMenu();
+  // createGameStatsMenu();
   // focusCurrentTile();
   // event.preventDefault;
 } 
