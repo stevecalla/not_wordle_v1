@@ -23,12 +23,6 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode': false,
   'contrastMode': false,
-  'row1': 0,
-  'row2': 0,
-  'row3': 0,
-  'row4': 0,
-  'row5': 0,
-  'row6': 0,
   'allInput': [], //todo code just added allInput array
   'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
   'maxWins': 0, //todo code create array of win streak and take max
@@ -159,14 +153,50 @@ function hideInstructions() {
 
 // SECTION CREATE SOLUTION
 function createGameSolution() {
-  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
-  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
-  console.log('random=', randomNumber);
+  // let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+  let randomNumber = Math.floor(Math.floor(Math.random() * 10));
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
-  console.log(wordList.length);
-  setLocalStorage('wordPlayed', randomNumber, solution);
+  console.log('random=', randomNumber);
+  // console.log(wordList.length);
+
+  if (gameStats.wordPlayed.length >= 1) {
+    previousSolution(randomNumber, solution);
+  } else {
+    gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
+    gameStats.wordPlayed[0].selectedCount ++;
+    gameStats.wordPlayed[0].playedCount ++;
+    setLocalStorage('wordPlayed');
+  }
+
+  // setLocalStorage('wordPlayed', randomNumber, solution);
   // formatSolution();
+}
+
+function previousSolution(randomNumber, solution) {
+
+  gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0});
+  // console.log(gameStats.wordPlayed.length);
+  for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
+    // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
+    let evaluation = (gameStats.wordPlayed.length > 1 && solution.join('') === gameStats.wordPlayed[i].word) ? 'played before' : 'not played before';
+    console.log(randomNumber, gameStats.wordPlayed[i].solutionNumber, evaluation, gameStats.wordPlayed[i].selectedCount, gameStats.wordPlayed[i].selectedCount % 3); 
+    if (evaluation === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 !== 0) {
+      gameStats.wordPlayed[i].selectedCount ++;
+      gameStats.wordPlayed.pop();
+      setLocalStorage('wordPlayed');
+      createGameSolution();
+      return;
+    } else if (evaluation === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 === 0) {
+      gameStats.wordPlayed[i].selectedCount ++;
+      gameStats.wordPlayed[i].playedCount ++;
+      gameStats.wordPlayed.pop();
+      setLocalStorage('wordPlayed');
+      return;
+    } 
+  }
+  setLocalStorage('wordPlayed');
+  console.log('set')
 }
 
 // SECTION CREATE GAME TILES
@@ -318,8 +348,8 @@ function deleteInputText() {
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = '';
 
-    console.log(allInput.length)
-    console.log(document.getElementById('id' + allInput.length));
+    // console.log(allInput.length)
+    // console.log(document.getElementById('id' + allInput.length));
     if (allInput.length < 30) {
       document.getElementById('id' + allInput.length).setAttribute('value', '');
     }
@@ -435,37 +465,21 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   resetCurrentInput();
 }
 
-function setLocalStorage(variable, value, value2) {
+function resetCurrentInput() {
+  currentInput = [];
+}
+
+// SECTION SET LOCAL STORAGE
+function setLocalStorage(variable, value) {
   // gameStats[variable] = value;
   // localStorage.setItem('gameStats', JSON.stringify(gameStats));
 
   if (variable === 'wordPlayed') {
-    gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'selectedCount': 1, 'winCount': 0});
-    console.log(gameStats[variable].length);
-    for (let i = 0; i < gameStats[variable].length - 1; i++) {
-      let evaluation = value === gameStats[variable][i].solutionNumber ? 'played before' : '';
-      console.log(value, gameStats[variable][i].solutionNumber, evaluation); 
-      if (value === gameStats[variable][i].solutionNumber) {
-        // console.log(value, gameStats[variable][i].solutionNumber, evaluation); 
-        gameStats[variable][i].selectedCount = gameStats[variable][i].selectedCount+ 1;
-        gameStats[variable].pop();
-        createGameSolution();
-        return;
-      } 
-    }
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
     gameStats[variable] = value;
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   }
-
-
-// {'solutionNumber': 1234, 'solution': 'word', 'datePlayed': 'date', 'playCount': 0, 'winCount': 0}
-  // setLocalStorage('wordPlayed', randomNumber, solution);
-}
-
-function resetCurrentInput() {
-  currentInput = [];
 }
 
 // SECTION EMOJI BOARD
