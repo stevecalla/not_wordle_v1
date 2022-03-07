@@ -29,6 +29,10 @@ let gameStats = {
   'row4': 0,
   'row5': 0,
   'row6': 0,
+  'allInput': [], //todo code
+  'winStreak': 0, //todo code
+  'maxWins': 0, //todo code
+  'wordPlayed': [], //todo code
 }
 
 //event listeners go here 👇
@@ -45,19 +49,24 @@ document.addEventListener('dblclick', function (e) {
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
+  window.moveTo(0, 0);
   createGameInstruction();
-  createGameSolution();
   createGameTiles();
   createOnscreenKeyboard();
-  window.moveTo(0, 0);
   createHamburgerMenu();
 
+  // console.log('0=', gameStats, localStorage.getItem('gameStats'));
+
   if (localStorage.getItem('gameStats') === null) {
+    // console.log('1');
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
+    // console.log('2 localstorage', gameStats, localStorage.getItem('gameStats'));
     gameStats = JSON.parse(localStorage.getItem('gameStats'));
+    console.log('b=', gameStats)
   }
-  
+
+  createGameSolution();
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameStatsMenu();
@@ -155,6 +164,7 @@ function createGameSolution() {
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
   console.log(wordList.length);
+  setLocalStorage('wordPlayed', randomNumber, solution);
   // formatSolution();
 }
 
@@ -424,9 +434,30 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   resetCurrentInput();
 }
 
-function setLocalStorage(variable, value) {
-  gameStats[variable] = value;
-  localStorage.setItem('gameStats', JSON.stringify(gameStats));
+function setLocalStorage(variable, value, value2) {
+  // gameStats[variable] = value;
+  // localStorage.setItem('gameStats', JSON.stringify(gameStats));
+
+  if (variable === 'wordPlayed') {
+    gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'playCount': 1, 'winCount': 0});
+
+    // for (let i = 0; i < gameStats[variable].length; i++) {
+    //   if (value === gameStats[variable][i]) {
+    //     gameStats[variable][i].playCount = gameStats[variable][i].playCount + 1;
+    //   } else {
+    //     gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'playCount': 1, 'winCount': 0});
+    //   }
+    // }
+    
+    localStorage.setItem('gameStats', JSON.stringify(gameStats));
+  } else {
+    gameStats[variable] = value;
+    localStorage.setItem('gameStats', JSON.stringify(gameStats));
+  }
+
+
+// {'solutionNumber': 1234, 'solution': 'word', 'datePlayed': 'date', 'playCount': 0, 'winCount': 0}
+  // setLocalStorage('wordPlayed', randomNumber, solution);
 }
 
 function resetCurrentInput() {
@@ -862,8 +893,10 @@ function copyToClipboard(element) {
 function toggleDarkMode(storageDarkValue) {
   const darkModeCSS = document.querySelector("#darkMode-link");
   const darkModeIconList = document.querySelectorAll('.header-icon-svg');
-  console.log(storageDarkValue);
-  if (storageDarkValue === 'true') {
+  // console.trace();
+  // console.log(storageDarkValue);
+
+  if (storageDarkValue === true) {
     console.log('1')
     darkModeCSS.href = "dark-theme.css";
     document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
