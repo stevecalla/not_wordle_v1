@@ -29,10 +29,10 @@ let gameStats = {
   'row4': 0,
   'row5': 0,
   'row6': 0,
-  'allInput': [], //todo code
-  'winStreak': 0, //todo code
-  'maxWins': 0, //todo code
-  'wordPlayed': [], //todo code
+  'allInput': [], //todo code just added allInput array
+  'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
+  'maxWins': 0, //todo code create array of win streak and take max
+  'wordPlayed': [], //todo DONE; todo update wincount if played
 }
 
 //event listeners go here 👇
