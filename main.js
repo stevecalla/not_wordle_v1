@@ -159,8 +159,8 @@ function hideInstructions() {
 
 // SECTION CREATE SOLUTION
 function createGameSolution() {
-  // let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
-  let randomNumber = Math.floor(Math.floor(Math.random() * 10));
+  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
   console.log('random=', randomNumber);
