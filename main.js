@@ -21,14 +21,14 @@ let gameStats = {
   'gameCount':0, 
   'winCount': 0, 
   'winPercent': 0, 
-  'darkMode':'false', 
-  'contrastMode':'false',
-  '1': 0,
-  '2': 0,
-  '3': 0,
-  '4': 0,
-  '5': 0,
-  '6': 0,
+  'darkMode': false,
+  'contrastMode': false,
+  // '1': 0,
+  // '2': 0,
+  // '3': 0,
+  // '4': 0,
+  // '5': 0,
+  // '6': 0,
   'row1': 0,
   'row2': 0,
   'row3': 0,
@@ -410,7 +410,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
         // console.log('win')
         // console.log('currentRow=', currentRow, gameStats['1'], (gameStats[currentRow] + 1), currentRow2, gameStats[currentRow2], gameStats.winCount);
         setLocalStorage('winCount', (gameStats.winCount + 1));
-        setLocalStorage(currentRow, (gameStats[currentRow] + 1));
+        // setLocalStorage(currentRow, (gameStats[currentRow] + 1));
         setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
         // setLocalStorage('rowOne', (gameStats.rowOne + 1));
       }
@@ -873,10 +873,10 @@ function toggleDarkMode(storageDarkValue) {
     darkModeCSS.href = "dark-theme.css";
     document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
     document.getElementById('toggleDarkOnIcon').classList.toggle('hidden');
-  } else if (storageDarkValue === null || storageDarkValue === 'false') {
+  } else if (storageDarkValue === null || storageDarkValue === false) {
     return;
   } else {
-    darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = 'true' : storageDarkValue = 'false';
+    darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = true : storageDarkValue = false;
     darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
     setLocalStorage('darkMode', storageDarkValue);
   }
@@ -902,14 +902,14 @@ function toggleContrastMode(storageContrastValue) {
   let contrastModeCSS = document.querySelector("#contrastMode-link");
   const blue = 'contrast-theme-blue.css';
   const green = 'contrast-theme-green.css';
-  if (storageContrastValue === 'true') {
+  if (storageContrastValue === true) {
     contrastModeCSS.href = blue;
     document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
     document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
-  } else if (storageContrastValue === null || storageContrastValue === 'false') {
+  } else if (storageContrastValue === null || storageContrastValue === false) {
     return;
   } else {
-    contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? storageContrastValue = 'true' : storageContrastValue = 'false';
+    contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? storageContrastValue = true : storageContrastValue = false;
     contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
     setLocalStorage('contrastMode', storageContrastValue);
   }
