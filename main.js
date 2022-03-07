@@ -162,8 +162,7 @@ function createGameSolution() {
   let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
   // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
   solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution);
-  console.log('random=', randomNumber);
+  console.log(solution, 'random=', randomNumber);
   // console.log(wordList.length);
 
   if (gameStats.wordPlayed.length >= 1) {
@@ -186,7 +185,7 @@ function previousSolution(randomNumber, solution) {
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
     // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
     let evaluation = (gameStats.wordPlayed.length > 1 && solution.join('') === gameStats.wordPlayed[i].word) ? 'played before' : 'not played before';
-    console.log(randomNumber, gameStats.wordPlayed[i].solutionNumber, evaluation, gameStats.wordPlayed[i].selectedCount, gameStats.wordPlayed[i].selectedCount % 3); 
+    // console.log(randomNumber, gameStats.wordPlayed[i].solutionNumber, evaluation, gameStats.wordPlayed[i].selectedCount, gameStats.wordPlayed[i].selectedCount % 3); 
     if (evaluation === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 !== 0) {
       gameStats.wordPlayed[i].selectedCount ++;
       gameStats.wordPlayed.pop();
@@ -446,33 +445,36 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
       document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
       document.getElementById('id' + (i)).blur();
     }
-      if (gameStats.winCount === null) {
-        setLocalStorage('winCount', 1);
-        setLocalStorage('winStreak', 1); 
-      } else {
-        console.trace();
-        // console.log('win')
-        // console.log('currentRow=', currentRow, gameStats['1'], (gameStats[currentRow] + 1), currentRow2, gameStats[currentRow2], gameStats.winCount);
-        setLocalStorage('winCount', (gameStats.winCount + 1));
-        // setLocalStorage(currentRow, (gameStats[currentRow] + 1));
-        setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
-        setLocalStorage('winStreak', gameStats.winStreak + 1); 
-        // setLocalStorage('rowOne', (gameStats.rowOne + 1));
-        setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
+    if (gameStats.winCount === null) {
+      setLocalStorage('winCount', 1);
+      setLocalStorage('winStreak', 1); 
+    } else {
+      // console.trace();
+      setLocalStorage('winCount', (gameStats.winCount + 1));
+      setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
+      setLocalStorage('winStreak', gameStats.winStreak + 1); 
+      setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
+    }
+    for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+      console.log(gameStats.wordPlayed[i].word === solution.join(''))
+      if (gameStats.wordPlayed[i].word === solution.join('')) {
+        // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
+        gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
+        setLocalStorage('wordPlayed'); 
       }
+    }
     document.getElementById('id29').blur();
     createConfetti();
-    } else if (gameOverCondition) {
-      //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
-      document.getElementById('id29').blur();
-      setLocalStorage('gameCount', gameStats.gameCount + 1);
-      // setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
-      setLocalStorage('winStreak', 0); 
-      getWebsterDictionaryAPI();
-    } else {
+  } else if (gameOverCondition) {
+    //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
+    document.getElementById('id29').blur();
+    setLocalStorage('gameCount', gameStats.gameCount + 1);
+    setLocalStorage('winStreak', 0); 
+    getWebsterDictionaryAPI();
+  } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
-    }  
+  }  
   setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));   
   createGameStatsMenu(); 
   resetCurrentInput();
@@ -525,8 +527,8 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
   currentEmojiBoard += `<p class='game-board'>${tileEmoji}</p>`;
   currentEmojiBoard2 += `<p class='game-board'>${tileEmoji2}</p>`;
 
-  console.log('currentMiniBoard=\n', currentEmojiBoard);
-  console.log('currentMiniBoard2=\n', currentEmojiBoard2);
+  // console.log('currentMiniBoard=\n', currentEmojiBoard);
+  // console.log('currentMiniBoard2=\n', currentEmojiBoard2);
 }
 
 // SECTION API CODE
