@@ -29,7 +29,7 @@ let gameStats = {
   'row4': 0,
   'row5': 0,
   'row6': 0,
-  'allInput': [], //todo code just added allInput array
+  'allInput': [], //todo code add allInput array
   'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
   'maxWins': 0, //todo code create array of win streak and take max
   'wordPlayed': [], //todo DONE; todo update wincount if played
@@ -307,6 +307,7 @@ function inputText(event) {
 function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
+  setLocalStorage('allInput', allInput);
   // determineCurrentTile(allInput);
 }
 
@@ -364,6 +365,7 @@ function deleteInputText() {
     // deleteTile.focus();//todo
     currentInput.pop();
     allInput.pop();
+    setLocalStorage('allInput', allInput);
     // determineCurrentTile(allInput);
   }
 }
@@ -438,7 +440,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
 
   if (winningCondition) {
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
-    setLocalStorage('gameCount', gameStats.gameCount + 1);  
+    setLocalStorage('gameCount', gameStats.gameCount + 1); 
     for (let i = startRowTile + 5; i < 30; i++) {
       document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
       document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
@@ -446,6 +448,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
     }
       if (gameStats.winCount === null) {
         setLocalStorage('winCount', 1);
+        setLocalStorage('winStreak', 1); 
       } else {
         console.trace();
         // console.log('win')
@@ -453,7 +456,9 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
         setLocalStorage('winCount', (gameStats.winCount + 1));
         // setLocalStorage(currentRow, (gameStats[currentRow] + 1));
         setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
+        setLocalStorage('winStreak', gameStats.winStreak + 1); 
         // setLocalStorage('rowOne', (gameStats.rowOne + 1));
+        setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
       }
     document.getElementById('id29').blur();
     createConfetti();
@@ -461,6 +466,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
       //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
       document.getElementById('id29').blur();
       setLocalStorage('gameCount', gameStats.gameCount + 1);
+      // setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
+      setLocalStorage('winStreak', 0); 
       getWebsterDictionaryAPI();
     } else {
         //TODO KEEP PLAYING ANIMATION
