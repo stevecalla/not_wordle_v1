@@ -159,7 +159,8 @@ function hideInstructions() {
 
 // SECTION CREATE SOLUTION
 function createGameSolution() {
-  var randomNumber = Math.floor(Math.floor(Math.random()*wordList.length));
+  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
   console.log('random=', randomNumber);
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution);
@@ -439,16 +440,19 @@ function setLocalStorage(variable, value, value2) {
   // localStorage.setItem('gameStats', JSON.stringify(gameStats));
 
   if (variable === 'wordPlayed') {
-    gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'playCount': 1, 'winCount': 0});
-
-    // for (let i = 0; i < gameStats[variable].length; i++) {
-    //   if (value === gameStats[variable][i]) {
-    //     gameStats[variable][i].playCount = gameStats[variable][i].playCount + 1;
-    //   } else {
-    //     gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'playCount': 1, 'winCount': 0});
-    //   }
-    // }
-    
+    gameStats[variable].push({'solutionNumber': value, 'solution': value2, 'datePlayed': Date(), 'selectedCount': 1, 'winCount': 0});
+    console.log(gameStats[variable].length);
+    for (let i = 0; i < gameStats[variable].length - 1; i++) {
+      let evaluation = value === gameStats[variable][i].solutionNumber ? 'played before' : '';
+      console.log(value, gameStats[variable][i].solutionNumber, evaluation); 
+      if (value === gameStats[variable][i].solutionNumber) {
+        // console.log(value, gameStats[variable][i].solutionNumber, evaluation); 
+        gameStats[variable][i].selectedCount = gameStats[variable][i].selectedCount+ 1;
+        gameStats[variable].pop();
+        createGameSolution();
+        return;
+      } 
+    }
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
     gameStats[variable] = value;
