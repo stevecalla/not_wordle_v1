@@ -568,10 +568,10 @@ input[type=text][data-status='start'] {
 
 .gameBoard-wrapper {
   width: 225px;
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
   /* border-bottom: solid;
   border-color: lightgrey; */
-  margin-bottom: 5px;
+  /* margin-bottom: 5px; */
   padding: 5px;
   display: flex;
   justify-content: left;
@@ -672,11 +672,10 @@ input[type=text][data-status='start'] {
   /* margin-bottom: 20px; */
   border-top: solid;
   border-color: lightgrey;
-  padding: 15px;
-
+  padding: 15px 0 15px 0;
   display: flex;
   align-items: center;
-
+  width: 215px;
 }
 
 .current-game-text {
