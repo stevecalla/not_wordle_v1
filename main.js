@@ -870,8 +870,12 @@ function createGameStatsMenu() {
       ${gameBoard}
     </div>
     <div class='stats-buttons'>
-      <button onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
-      <input id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
+      <button class='play-again-button' onclick="refreshButton()">${'Play\nAgain'}</button>
+      <div class='stats-button-spacer'></div>
+      <div>
+        <button class='copy-buttons' onclick="copyToClipboard('createGameStatsMenu')">Share Stats</button>
+        <input class='copy-buttons' id="btn" onclick="copyToClipboard('gameBoardWrapper')" type="button" value="Share Board"></input>
+      </div>
     </div>
   `;
   for (let i = 1; i < 7; i++) {
