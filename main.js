@@ -23,12 +23,6 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode': false,
   'contrastMode': false,
-  // '1': 0,
-  // '2': 0,
-  // '3': 0,
-  // '4': 0,
-  // '5': 0,
-  // '6': 0,
   'row1': 0,
   'row2': 0,
   'row3': 0,
@@ -831,6 +825,7 @@ function createGameStatsMenu() {
       <p class='win-percent'>${rowWinPercent}</p> 
     `
   };
+  // console.trace();
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
@@ -880,7 +875,8 @@ function toggleDarkMode(storageDarkValue) {
     darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
     setLocalStorage('darkMode', storageDarkValue);
   }
-  for (let i = 0; i < 6; i++) {
+  // console.log(darkModeIconList, darkModeIconList.length);
+  for (let i = 0; i < darkModeIconList.length; i++) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
   // focusCurrentTile();
