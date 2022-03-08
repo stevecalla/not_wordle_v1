@@ -513,6 +513,7 @@ input[type=text][data-status='start'] {
   z-index: 4;
   transition: all 0.5s ease;
   left: 0;
+  width: 260px;
 }
 
 .stat-description {
@@ -537,6 +538,7 @@ input[type=text][data-status='start'] {
   border-color: lightgrey;
   justify-content: space-between;
   margin-top: 5px;
+  width: 240px;
 }
 
 .gameStats-menu p {
@@ -560,6 +562,7 @@ input[type=text][data-status='start'] {
   text-align: center;
   border-bottom: solid lightgray;
   width: 130px;
+  /* width: 240px; */
 }
 
 .bars-wrapper {
@@ -571,6 +574,7 @@ input[type=text][data-status='start'] {
   border-bottom: solid;
   border-color: lightgrey;
   padding-bottom: 10px;
+  width: 240px;
 }
 
 .row-number {
@@ -588,6 +592,7 @@ input[type=text][data-status='start'] {
   /* flex-wrap: wrap; */
   /* width: 115px; */
   /* height: 115px; */
+  width: 240px;
 }
 
 .bar-wrapper {
@@ -600,6 +605,7 @@ input[type=text][data-status='start'] {
   height: 14px;
   padding-right: 10px;
   width: 135px;
+  width: 145px;
 }
 
 .progress-bar2 {
@@ -661,6 +667,7 @@ input[type=text][data-status='start'] {
   align-items: center;
   width: 215px;
   width: 225px;
+  width: 240px;
 }
 
 .current-game-text {
@@ -678,6 +685,7 @@ input[type=text][data-status='start'] {
   margin: 2.5px;
   color: black;
   border-color: lightgray;
+  width: 200px;
 }
 
 .stats-button-spacer {
