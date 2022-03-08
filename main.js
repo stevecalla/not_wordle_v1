@@ -894,7 +894,7 @@ function createGameStatsMenu() {
   `;
   for (let i = 1; i < 7; i++) {
     let rowWinCount = `${gameStats['row' + i]}`
-    let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((135 * (gameStats['row' + i] / gameStats.winCount))) : 15;
+    let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
     let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`
     document.getElementById('progressBarWrapper').innerHTML += `
       <p class='row-number'>${i}</p>
