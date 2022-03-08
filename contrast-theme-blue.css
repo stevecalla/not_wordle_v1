@@ -1,3 +1,15 @@
+.contrast-toggle-selected--noMatch {
+  background: linear-gradient( 90deg, #787C7E 50%, red 50% ); 
+}
+
+.contrast-toggle-selected--match {
+  background: linear-gradient( 90deg, #f5793a 50%, red 50% ); 
+}
+
+.contrast-toggle-selected--exactMatch {
+  background: linear-gradient(90deg, #85c0f9 50%, red 50% ); 
+}
+
 .contrast-toggle--noMatch {
   background-color: #787C7E;
 }

@@ -288,6 +288,7 @@ function inputText(event) {
     document.getElementById('id' + allInput.length).setAttribute('value', key);
     // console.log('1')
     createInputString(key);
+    updateOnscreenKeyboardOnInput(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
@@ -299,7 +300,7 @@ function inputText(event) {
   } else if (event.keyCode <65 || event.keyCode >90) {
     // console.log('4')
     event.preventDefault();
-  } 
+  }
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
@@ -359,7 +360,7 @@ function deleteInputText() {
     if (allInput.length < 30) {
       document.getElementById('id' + allInput.length).setAttribute('value', '');
     }
-    console.trace();
+    // console.trace();
 
     // deleteTile.focus();//todo
     currentInput.pop();
@@ -404,8 +405,8 @@ function assignMatchStatus(startRowTile, endRowTile, currentRow) {
 }
 
 function updateOnscreenKeyboard() {
-  const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','⌫'];
-  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','⌫'];
+  const alphabetKeys = ['A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','ENTER','U','V','W','X','Y','Z','BACK'];
+  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
   let exactMatchInput = [];
   let matchInput = [];
   for (let i = 0; i < allInput.length; i++) {
@@ -422,12 +423,33 @@ function updateOnscreenKeyboard() {
   }
 
   for (let i = 0; i < 28; i++) {
+    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
+    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
+    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+  }
+
+  for (let i = 0; i < 28; i++) {
     if (exactMatchInput.includes(qwertyKeys[i])) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--exactMatch');
     } else if (matchInput.includes(qwertyKeys[i])) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--match');
     } else if (allInput.includes(qwertyKeys[i])) {
      document.getElementById('keyboard' + i).classList.add('contrast-toggle--noMatch');
+    }
+  }
+}
+
+function updateOnscreenKeyboardOnInput(key) {
+  const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
+
+  for (let i = 0; i < 28; i++) {    
+    // console.log(key.toUpperCase(), solution[currentInput.length - 1], key.toUpperCase === solution[currentInput.length - 1], qwertyKeys[i], key.toUpperCase() === qwertyKeys[i])
+    if (key.toUpperCase() === solution[currentInput.length - 1] && key.toUpperCase() === qwertyKeys[i]) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--exactMatch');
+    } else if (solution.includes(key.toUpperCase()) && key.toUpperCase() === qwertyKeys[i]) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--match');
+    } else if (key.toUpperCase() === qwertyKeys[i]) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--noMatch');
     }
   }
 }
