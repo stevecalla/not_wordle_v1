@@ -625,8 +625,9 @@ input[type=text][data-status='start'] {
   min-width: 15px;
   /* width: 50px; */
   display: flex;
-  justify-content: end;
+  /* justify-content: end; */
   align-items: center;
+  justify-content: right;
 }
 
 .win-percent {
