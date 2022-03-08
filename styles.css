@@ -581,38 +581,14 @@ input[type=text][data-status='start'] {
 .gameBoard-wrapper {
   width: 225px;
   /* margin-bottom: 20px; */
-  /* border-bottom: solid;
-  border-color: lightgrey; */
   /* margin-bottom: 5px; */
   padding: 5px;
-  display: flex;
+  /* display: flex; */
   justify-content: left;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
+  /* width: 115px; */
+  /* height: 115px; */
 }
-
-/* progress {
-  border-radius: 7px;
-  width: 125px;
-  border: solid grey;
-  border-radius: 15px;
-  margin: 0px;
-  /* width: 80%;
-  height: 22px;
-  margin-left: -11.5%; */
-  /* box-shadow: 1px 1px 4px rgba( 0, 0, 0, 0.2 ); */
-/* } */
-
-/* progress::-webkit-progress-bar {
-  background-color: white;
-  border-radius: 7px;
-  margin: 0;
-  padding: 0;
-} */
-
-/* progress::-webkit-progress-value {
-  background-color: black;
-  border-radius: 7px;
-} */
 
 .bar-wrapper {
   color: white;
@@ -654,31 +630,24 @@ input[type=text][data-status='start'] {
 }
 
 .game-board {
-  /* display: flex;
-  flex-direction: rows;
-  height: 80px;
-  width: 60px;
-  margin: auto;
-  margin-bottom: 20px;
-  transform: scale(1.15);
-  flex-direction: inherit;
-  flex-wrap: wrap;
-  width: 64px;
-  width: 75px; */
-
-  /* display: flex;
-  justify-content: center; */
-  margin: auto;
-  transform: scale(1.15);
-  flex-direction: row;
-  flex-wrap: wrap;
-  /* width: 75px; */
-  margin-bottom: 2px;
-  letter-spacing: 1px;
-  width: 200px;
-  /* /* text-align: left; */
   /* margin-left: 0; */
-  width: 195px;
+  /* width: 195px; */
+  margin: auto;
+  /* transform: scale(1.15); */
+  flex-direction: row;
+  /* flex-wrap: wrap; */
+  /* width: 75px; */
+  /* margin-bottom: 2px; */
+  letter-spacing: 1px;
+  /* width: 200px; */
+  /* margin-left: 0; */
+  /* width: 195px; */
+  /* justify-content: left; */
+  display: flex;
+  height: 13px;
+  margin: 1.5px;
+  /* margin: 0; */
+  /* width: 225px; */
 }
 
 .stats-buttons {
@@ -695,9 +664,10 @@ input[type=text][data-status='start'] {
 }
 
 .current-game-text {
-  margin: 0 0 10px 0;
+  margin: 0 0 0px 0;
   text-align: left;
   margin-left: 0px;
+  height: 20px;
 }
 
 .play-again-button {
