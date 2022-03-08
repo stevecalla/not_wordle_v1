@@ -168,7 +168,8 @@ function createGameSolution() {
   if (gameStats.wordPlayed.length >= 1) {
     previousSolution(randomNumber, solution);
   } else {
-    gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
+    // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
+    gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
     gameStats.wordPlayed[0].selectedCount ++;
     gameStats.wordPlayed[0].playedCount ++;
     setLocalStorage('wordPlayed');
@@ -180,7 +181,7 @@ function createGameSolution() {
 
 function previousSolution(randomNumber, solution) {
 
-  gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0});
+  gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
   // console.log(gameStats.wordPlayed.length);
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
     // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
@@ -308,6 +309,14 @@ function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
   setLocalStorage('allInput', allInput);
+  // gameStats.wordPlayed[i].boardInput = allInput;
+  // setLocalStorage('wordPlayed');
+  for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    if (gameStats.wordPlayed[i].word === solution.join('')) {
+      gameStats.wordPlayed[i].boardInput = allInput;
+      setLocalStorage('wordPlayed');
+    }
+  }
   // determineCurrentTile(allInput);
 }
 
@@ -377,6 +386,14 @@ function deleteInputText() {
     currentInput.pop();
     allInput.pop();
     setLocalStorage('allInput', allInput);
+    // gameStats.wordPlayed[i].boardInput = allInput;
+    // setLocalStorage('wordPlayed');
+    for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+      if (gameStats.wordPlayed[i].word === solution.join('')) {
+        gameStats.wordPlayed[i].boardInput = allInput;
+        setLocalStorage('wordPlayed');
+      }
+    }
     // determineCurrentTile(allInput);
   }
 }
@@ -494,6 +511,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
         // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
         gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
         setLocalStorage('wordPlayed'); 
+        // gameStats.wordPlayed[i].boardInput = allInput;
+        // setLocalStorage('wordPlayed');
       }
     }
     document.getElementById('id29').blur();
