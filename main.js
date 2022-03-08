@@ -397,7 +397,7 @@ function assignMatchStatus(startRowTile, endRowTile, currentRow) {
       document.getElementById('id' + (startRowTile + i)).setAttribute('data-status', 'noMatch');
       dataStatus.push('noMatch');
     }
-    console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
+    // console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
   updateOnscreenKeyboard();
   determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow);
@@ -456,7 +456,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
       setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
     }
     for (let i = 0; i < gameStats.wordPlayed.length; i++) {
-      console.log(gameStats.wordPlayed[i].word === solution.join(''))
+      // console.log(gameStats.wordPlayed[i].word === solution.join(''))
       if (gameStats.wordPlayed[i].word === solution.join('')) {
         // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
         gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
@@ -714,7 +714,6 @@ function createHamburgerMenu() {
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
-
 function hamburgerMenuShowHide() { 
   document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 
@@ -754,7 +753,7 @@ function statsMenuShowHide() {
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   }
-  console.trace();
+  // console.trace();
   createGameStatsMenu();
 }
 
@@ -858,16 +857,24 @@ function createGameStatsMenu() {
     <p class='win-description'>GAME INFORMATION</p>
     <div class='gameStats-menu'>
       <div class='stat-description'>
-        <p class=''>Played</p>
+        <p class=''>Played<br></p>
         <p class=''>${gameStats.gameCount}</p>
       </div>
       <div class='stat-description'>
-        <p class=''>Won</p>
+        <p class=''>Wins</p>
         <p class=''>${gameStats.winCount}</p>
       </div>
       <div class='stat-description'>
         <p class=''>Win%</p>
         <p class=''>${percentage}%</p>
+      </div>
+      <div class='stat-description'>
+        <p class=''>Current Streak</p>
+        <p class=''>${gameStats.winStreak}</p>
+      </div>
+      <div class='stat-description'>
+        <p class=''>Max Streak</p>
+        <p class=''>${gameStats.maxWins}</p>
       </div>
     </div>
     <div class='win-stats-wrapper'>

@@ -516,8 +516,15 @@ input[type=text][data-status='start'] {
 }
 
 .stat-description {
-  width: 85px;
+  /* width: 85px; */
   margin-bottom: 0;
+  width: 40px;
+  margin-bottom: 0;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 .gameStats-menu {
@@ -528,6 +535,7 @@ input[type=text][data-status='start'] {
   margin-top: 15px;
   border-bottom: solid;
   border-color: lightgrey;
+  justify-content: space-between;
 }
 
 .gameStats-menu p {
