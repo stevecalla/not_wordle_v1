@@ -321,6 +321,7 @@ function evaluateCurrentInput(event) {
       createEmojiRow();
       setColorContrast(); 
       createGameStatsMenu(); 
+      console.trace();
   } else {
     console.log('Not a word');
     displayMessage('NOT IN WORD LIST');
@@ -809,6 +810,7 @@ function toggleDarkModeButton() {
 function toggleContrastModeButton(event) {
   document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
   document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
+  document.querySelector('.contrast-toggle').blur();
   toggleContrastMode();
   // createGameStatsMenu();
   // focusCurrentTile();
@@ -999,6 +1001,7 @@ function setColorContrast() {
       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
     }
   }
+  console.trace();
 }
 
 function toggleContrastMode(storageContrastValue) {
@@ -1016,6 +1019,7 @@ function toggleContrastMode(storageContrastValue) {
     contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
     setLocalStorage('contrastMode', storageContrastValue);
   }
+  console.trace();
   // focusCurrentTile();
 }
 
