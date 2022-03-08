@@ -802,6 +802,7 @@ function refreshButton() {
 function toggleDarkModeButton() {
   document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
   document.getElementById('toggleDarkOnIcon').classList.toggle('hidden');
+  document.querySelector('.darkmode-toggle-button').blur();
   toggleDarkMode();
   // focusCurrentTile();
   event.preventDefault;
