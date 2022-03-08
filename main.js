@@ -1,11 +1,11 @@
 //query selector variables go here 👇
 var displaySolution = document.querySelector('#solution');
 var inputTilesRow1 = document.querySelector('#inputTilesRow1');
-var inputTilesRow2 = document.querySelector('#inputTilesRow2');
-var inputTilesRow3 = document.querySelector('#inputTilesRow3');
-var inputTilesRow4 = document.querySelector('#inputTilesRow4');
-var inputTilesRow5 = document.querySelector('#inputTilesRow5');
-var inputTilesRow6 = document.querySelector('#inputTilesRow6');
+// var inputTilesRow2 = document.querySelector('#inputTilesRow2');
+// var inputTilesRow3 = document.querySelector('#inputTilesRow3');
+// var inputTilesRow4 = document.querySelector('#inputTilesRow4');
+// var inputTilesRow5 = document.querySelector('#inputTilesRow5');
+// var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
 //global variables go here 👇
 var currentInput = [];
@@ -351,6 +351,16 @@ function deleteInputText() {
     status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
     deleteTile = document.getElementById('id' + (allInput.length - 1));
   };
+
+  for (let i = 0; i < 28; i++) {
+    console.log(document.getElementById('keyboard' + i).value, allInput[allInput.length - 1])
+    if (document.getElementById('keyboard' + i).value === allInput[allInput.length - 1]) {
+      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
+      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
+      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+    }
+  }
+
   if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
