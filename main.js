@@ -851,9 +851,7 @@ function createGameStatsMenu() {
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
   document.getElementById('createGameStatsMenu').innerHTML = `
-    <div class='click-to-hide-x' onclick='statsMenuShowHide()'>
-      <p class='click-to-hide'>x</p>
-    </div>
+    <div class='click-to-hide' id='clickToHideX' onclick='statsMenuShowHide()'>x</div>
     <p class='win-description'>GAME INFORMATION</p>
     <div class='gameStats-menu'>
       <div class='stat-description'>
@@ -885,7 +883,7 @@ function createGameStatsMenu() {
       <p class='current-game-text'>Current Game Board</p>
       ${gameBoard}
     </div>
-    <div class='stats-buttons'>
+    <div class='stats-buttons' id='statsButtons'>
       <button class='play-again-button' onclick="refreshButton()">${'Play\nAgain'}</button>
       <div class='stats-button-spacer'></div>
       <div>
@@ -927,7 +925,11 @@ function copyToClipboard(element) {
     selection.removeAllRanges();
     selection.addRange(range);
   }
+  document.getElementById('statsButtons').classList.add('hidden');
+  document.getElementById('clickToHideX').classList.add('hidden');
   document.execCommand('copy');
+  document.getElementById('statsButtons').classList.remove('hidden');
+  document.getElementById('clickToHideX').classList.remove('hidden');
   window.getSelection().removeAllRanges();
   // document.getElementById("btn").value="Copied";
 
