@@ -342,8 +342,12 @@ function createInputString(key) {
 }
 
 function assignTileValue(key) {
+  console.log(allInput.length)
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
+
+  // document.getElementById('id' + (allInput.length)).value = key;
+  // document.getElementById('id' + (allInput.length)).setAttribute('value', key);
   // document.getElementById('id' + allInput.length).innerText(key);
 }
 
@@ -391,9 +395,10 @@ function deleteInputText() {
   for (let i = 0; i < 28; i++) {
     // console.log(document.getElementById('keyboard' + i).value, allInput[allInput.length - 1])
     if (document.getElementById('keyboard' + i).value === allInput[allInput.length - 1]) {
-      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
-      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
-      document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
+      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
+      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+      document.getElementById('keyboard' + i).classList.remove('contrast-toggle--keySelected');
     }
   }
 
