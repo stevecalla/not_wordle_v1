@@ -458,6 +458,20 @@ input[type=text][data-status='start'] {
   padding: 5px;
   justify-content: left;
   width: 240px;
+
+  width: 225px;
+  padding: 5px;
+  justify-content: left;
+  width: 240px;
+  /* text-align: center; */
+  align-items: center;
+  align-content: center;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  /* justify-content: center; */
+  flex-direction: row;
+  flex-direction: column;
 }
 
 .bar-wrapper {
