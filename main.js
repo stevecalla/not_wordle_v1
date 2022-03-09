@@ -282,15 +282,22 @@ function inputText(event) {
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
-  // console.log(event.key, event.value, event);
+  console.log(event.key, event.value, event);
+
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
-    // document.getElementById('id' + allInput.length).value = key;
+
+    document.getElementById('id' + allInput.length).value = key;
     document.getElementById('id' + allInput.length).setAttribute('value', key);
-    window.alert('id' + allInput.length, allInput.value, key);
-    // console.log('1')
+    
+    let test2 = allInput.length;
+    console.log(test2);
+    let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
+    console.log(test)
+    window.alert(test);
+
     createInputString(key);
-    updateOnscreenKeyboardOnInput(key);
+    // updateOnscreenKeyboardOnInput(key);
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
@@ -309,6 +316,11 @@ function inputText(event) {
 function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
+
+  console.log(allInput);
+  let test = allInput + ' ' + allInput[0]
+  window.alert(test);
+
   setLocalStorage('allInput', allInput);
   // gameStats.wordPlayed[i].boardInput = allInput;
   // setLocalStorage('wordPlayed');
