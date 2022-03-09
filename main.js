@@ -925,7 +925,7 @@ function createGameStatsMenu() {
       <p class='win-description'>Win Distribution</p>
       <div class='bars-wrapper' id='progressBarWrapper'></div>
     </div>
-    <div class='current-stats'>
+    <div class='current-stats' id='currentStats'>
       <div class='gameBoard-wrapper' id='gameBoardWrapper'>
         <p class='current-game-text'>Game Board</p>
         ${gameBoard}
@@ -951,6 +951,7 @@ function createGameStatsMenu() {
       </div>
     </div>
   `;
+
   for (let i = 1; i < 7; i++) {
     let rowWinCount = `${gameStats['row' + i]}`
     let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
