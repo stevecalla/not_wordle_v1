@@ -296,7 +296,7 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('put assign tile value after update on screen to main focus');
+    window.alert('change update on screen class to be unique');
     
     createInputString(key);
     updateOnscreenKeyboardOnInput(key);
@@ -478,9 +478,10 @@ function updateOnscreenKeyboard() {
   }
 
   for (let i = 0; i < 28; i++) {
-    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
-    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
-    document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+    // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
+    // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
+    // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
+    document.getElementById('keyboard' + i).classList.remove('contrast-toggle--keySelected');
   }
 
   for (let i = 0; i < 28; i++) {
@@ -499,12 +500,16 @@ function updateOnscreenKeyboardOnInput(key) {
 
   for (let i = 0; i < 28; i++) {    
     // console.log(key.toUpperCase(), solution[currentInput.length - 1], key.toUpperCase === solution[currentInput.length - 1], qwertyKeys[i], key.toUpperCase() === qwertyKeys[i])
-    if (key.toUpperCase() === solution[currentInput.length - 1] && key.toUpperCase() === qwertyKeys[i]) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--exactMatch');
-    } else if (solution.includes(key.toUpperCase()) && key.toUpperCase() === qwertyKeys[i]) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--match');
-    } else if (key.toUpperCase() === qwertyKeys[i]) {
-      document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--noMatch');
+    // if (key.toUpperCase() === solution[currentInput.length - 1] && key.toUpperCase() === qwertyKeys[i]) {
+    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--exactMatch');
+    // } else if (solution.includes(key.toUpperCase()) && key.toUpperCase() === qwertyKeys[i]) {
+    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--match');
+    // } else if (key.toUpperCase() === qwertyKeys[i]) {
+    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--noMatch');
+    // }
+    if (key.toUpperCase() === qwertyKeys[i]) {
+      document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
+      return;
     }
   }
   console.trace();
