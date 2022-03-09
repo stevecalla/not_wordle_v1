@@ -277,7 +277,7 @@ function eventKeyBoardButton() {
 }
 
 // SECTION GET INPUT CHARACTERS
-function inputText(event) {
+async function inputText(event) {
   // console.log(event);
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
@@ -287,8 +287,10 @@ function inputText(event) {
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
 
-    document.getElementById('id' + allInput.length).value = key;
-    document.getElementById('id' + allInput.length).setAttribute('value', key);
+    // document.getElementById('id' + allInput.length).value = key;
+    // document.getElementById('id' + allInput.length).setAttribute('value', key);
+
+    await assignValue(key);
     
     let test2 = allInput.length;
     console.log(test2);
@@ -296,10 +298,12 @@ function inputText(event) {
     console.log(test)
     window.alert(test);
 
-    createInputString(key);
-    updateOnscreenKeyboardOnInput(key);
-    window.alert('update keyboard');
+    await createInputString(key);
+    await updateOnscreenKeyboardOnInput(key);
+
+    window.alert('async await update keyboard');
     console.trace();
+
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
@@ -313,6 +317,11 @@ function inputText(event) {
     event.preventDefault();
   }
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
+}
+
+function assignValue(key) {
+  document.getElementById('id' + allInput.length).value = key;
+  document.getElementById('id' + allInput.length).setAttribute('value', key);
 }
 
 function createInputString(key) {
