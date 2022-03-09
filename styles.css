@@ -376,6 +376,7 @@ input[type=text][data-status='start'] {
   justify-content: space-between;
   margin-top: 5px;
   width: 240px;
+  justify-content: space-evenly;
 }
 
 .gameStats-menu p {
@@ -415,6 +416,38 @@ input[type=text][data-status='start'] {
 .row-number {
   width: 10px;
   margin: 9px;
+}
+
+.current-stats {
+  display: flex;
+  width: 240px;
+  /* height: 125px; */
+}
+
+.streak-stats {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* border: solid red; */
+  /* width: 140px; */
+  height: 125px;
+  /* width: 10px; */
+  width: 118px;
+}
+
+.description-container {
+  width: 125px;
+  height: 50px;
+  margin: 0px;
+  height: 45px;
+}
+
+.description {
+  width: 125px;
+  margin: 0px;
+  margin-bottom: 5px;
+  margin-top: 5px;
 }
 
 .gameBoard-wrapper {
@@ -467,6 +500,16 @@ input[type=text][data-status='start'] {
   margin: 1.5px;
 }
 
+.spacer {
+  height: 50px;
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-left: 5px;
+  border: 1px solid lightgrey;
+  margin-top: 25px;
+  height: 80px;
+}
+
 .stats-buttons {
   width: 195px;
   border-top: solid;
@@ -484,6 +527,7 @@ input[type=text][data-status='start'] {
   text-align: left;
   margin-left: 0px;
   height: 20px;
+  text-align: center;
 }
 
 .play-again-button {

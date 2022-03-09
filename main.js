@@ -920,22 +920,27 @@ function createGameStatsMenu() {
         <p class=''>Win%</p>
         <p class=''>${percentage}%</p>
       </div>
-      <div class='stat-description'>
-        <p class=''>Current Streak</p>
-        <p class=''>${gameStats.winStreak}</p>
-      </div>
-      <div class='stat-description'>
-        <p class=''>Max Streak</p>
-        <p class=''>${gameStats.maxWins}</p>
-      </div>
     </div>
     <div class='win-stats-wrapper'>
       <p class='win-description'>Win Distribution</p>
       <div class='bars-wrapper' id='progressBarWrapper'></div>
     </div>
-    <div class='gameBoard-wrapper' id='gameBoardWrapper'>
-      <p class='current-game-text'>Current Game Board</p>
-      ${gameBoard}
+    <div class='current-stats'>
+      <div class='gameBoard-wrapper' id='gameBoardWrapper'>
+        <p class='current-game-text'>Game Board</p>
+        ${gameBoard}
+      </div>
+      <div class='spacer'></div>
+      <div class='streak-stats'>
+        <div class='description-container'>
+          <p class='description'>Current Streak</p>
+          <p class='description'>${gameStats.winStreak}</p>
+        </div>
+        <div class='description-container'>
+          <p class='description'>Max Streak</p>
+          <p class='description'>${gameStats.maxWins}</p>
+        </div>
+      </div>
     </div>
     <div class='stats-buttons' id='statsButtons'>
       <button class='play-again-button' onclick="refreshButton()">${'Play\nAgain'}</button>
