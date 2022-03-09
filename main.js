@@ -285,7 +285,7 @@ function inputText(event) {
   // console.log(event.key, event.value, event);
 
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
-    // document.getElementById('id' + allInput.length).focus();//todo
+    document.getElementById('id' + allInput.length).focus();//todo
 
     // document.getElementById('id' + allInput.length).value = key;
     // document.getElementById('id' + allInput.length).setAttribute('value', key);
