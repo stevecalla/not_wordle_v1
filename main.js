@@ -296,7 +296,7 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('comment out on screen keyboard');
+    window.alert('move update on screen out of the if statement');
     
     createInputString(key);
     // updateOnscreenKeyboardOnInput(key);
@@ -316,6 +316,8 @@ function inputText(event) {
     // console.log('4')
     event.preventDefault();
   }
+
+  updateOnscreenKeyboardOnInput(key);
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
@@ -516,7 +518,7 @@ function updateOnscreenKeyboardOnInput(key) {
     // }
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
-      document.getElementById('keyboard' + i).blur();
+      // document.getElementById('keyboard' + i).blur();
       return;
     }
   }
