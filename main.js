@@ -296,12 +296,12 @@ async function inputText(event) {
     console.log(test2);
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     console.log(test)
-    window.alert(test);
+    // window.alert(test);
 
     await createInputString(key);
     await updateOnscreenKeyboardOnInput(key);
 
-    window.alert('async await v2 update keyboard');
+    window.alert('try innertext for input?');
     console.trace();
 
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
@@ -322,6 +322,7 @@ async function inputText(event) {
 async function assignValue(key) {
   document.getElementById('id' + allInput.length).value = key;
   document.getElementById('id' + allInput.length).setAttribute('value', key);
+  document.getElementById('id' + allInput.length).innerText(key);
 }
 
 async function createInputString(key) {
