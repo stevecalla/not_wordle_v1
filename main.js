@@ -299,7 +299,7 @@ function inputText(event) {
     window.alert('add blur to update onscreen keyboard');
     
     createInputString(key);
-    updateOnscreenKeyboardOnInput(key);
+    // updateOnscreenKeyboardOnInput(key);
     assignTileValue(key);
 
     // console.trace();
