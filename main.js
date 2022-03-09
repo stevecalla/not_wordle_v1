@@ -282,7 +282,7 @@ async function inputText(event) {
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
-  console.log(event.key, event.value, event);
+  // console.log(event.key, event.value, event);
 
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // document.getElementById('id' + allInput.length).focus();//todo
@@ -293,20 +293,20 @@ async function inputText(event) {
     await assignValue(key);
     
     let test2 = allInput.length;
-    console.log(test2);
+    // console.log(test2);
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
-    console.log(test)
+    // console.log(test)
     // window.alert(test);
 
     await createInputString(key);
-    await updateOnscreenKeyboardOnInput(key);
+    // await updateOnscreenKeyboardOnInput(key);
 
-    window.alert('try innertext for input?');
-    console.trace();
+    window.alert('comment out update onscreen keyboard?');
+    // console.trace();
 
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
-        console.log('backspace')
+        // console.log('backspace')
         // console.log('2')
         deleteInputText();
   } else if (currentInput.length === 5 && (key && 'Enter' === key || keyCode && 13 === keyCode || event === '13')) {
@@ -322,16 +322,16 @@ async function inputText(event) {
 async function assignValue(key) {
   document.getElementById('id' + allInput.length).value = key;
   document.getElementById('id' + allInput.length).setAttribute('value', key);
-  document.getElementById('id' + allInput.length).innerText(key);
+  // document.getElementById('id' + allInput.length).innerText(key);
 }
 
 async function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
 
-  console.log(allInput);
-  let test = allInput + ' ' + allInput[0]
-  window.alert(test);
+  // console.log(allInput);
+  // let test = allInput + ' ' + allInput[0]
+  // window.alert(test);
 
   setLocalStorage('allInput', allInput);
   // gameStats.wordPlayed[i].boardInput = allInput;
