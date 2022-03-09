@@ -296,7 +296,7 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('change update on screen class to be unique');
+    window.alert('add blur to update onscreen keyboard');
     
     createInputString(key);
     updateOnscreenKeyboardOnInput(key);
@@ -516,6 +516,7 @@ function updateOnscreenKeyboardOnInput(key) {
     // }
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
+      document.getElementById('keyboard' + i).blur();
       return;
     }
   }
