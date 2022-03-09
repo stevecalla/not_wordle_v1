@@ -388,6 +388,7 @@ function deleteInputText() {
   let status = '';
   let deleteTile = '';
   if (allInput.length !== 0) {
+    console.log(allInput.length, allInput.length - 1)
     status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
     deleteTile = document.getElementById('id' + (allInput.length - 1));
   };
@@ -406,6 +407,7 @@ function deleteInputText() {
     deleteTile.setAttribute('data-status', 'start'); //remove color
     deleteTile.removeAttribute('disabled'); //remove disabled
     deleteTile.value = '';
+    deleteTile.setAttribute('value', '');
 
     // console.log(allInput.length)
     // console.log(document.getElementById('id' + allInput.length));
