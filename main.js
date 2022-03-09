@@ -277,7 +277,7 @@ function eventKeyBoardButton() {
 }
 
 // SECTION GET INPUT CHARACTERS
-async function inputText(event) {
+function inputText(event) {
   // console.log(event);
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
@@ -290,18 +290,18 @@ async function inputText(event) {
     // document.getElementById('id' + allInput.length).value = key;
     // document.getElementById('id' + allInput.length).setAttribute('value', key);
 
-    await assignValue(key);
     
     let test2 = allInput.length;
     // console.log(test2);
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
+    window.alert('change order of assign tile value');
+    
+    createInputString(key);
+    assignTileValue(key);
+    updateOnscreenKeyboardOnInput(key);
 
-    await createInputString(key);
-    // await updateOnscreenKeyboardOnInput(key);
-
-    window.alert('comment out update onscreen keyboard?');
     // console.trace();
 
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
@@ -319,20 +319,14 @@ async function inputText(event) {
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
-async function assignValue(key) {
-  document.getElementById('id' + allInput.length).value = key;
-  document.getElementById('id' + allInput.length).setAttribute('value', key);
-  // document.getElementById('id' + allInput.length).innerText(key);
-}
-
-async function createInputString(key) {
+function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
-
+  
   // console.log(allInput);
   // let test = allInput + ' ' + allInput[0]
   // window.alert(test);
-
+  
   setLocalStorage('allInput', allInput);
   // gameStats.wordPlayed[i].boardInput = allInput;
   // setLocalStorage('wordPlayed');
@@ -342,7 +336,15 @@ async function createInputString(key) {
       setLocalStorage('wordPlayed');
     }
   }
+
+  // assignTileValue(key);
   // determineCurrentTile(allInput);
+}
+
+function assignTileValue(key) {
+  document.getElementById('id' + (allInput.length - 1)).value = key;
+  document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
+  // document.getElementById('id' + allInput.length).innerText(key);
 }
 
 function evaluateCurrentInput(event) {
@@ -492,7 +494,7 @@ function updateOnscreenKeyboard() {
   }
 }
 
-async function updateOnscreenKeyboardOnInput(key) {
+function updateOnscreenKeyboardOnInput(key) {
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
 
   for (let i = 0; i < 28; i++) {    
@@ -505,6 +507,7 @@ async function updateOnscreenKeyboardOnInput(key) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--noMatch');
     }
   }
+  console.trace();
 }
 
 function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
