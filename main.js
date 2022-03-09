@@ -296,7 +296,7 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('move update on screen out of the if statement');
+    // window.alert('move update on screen out of the if statement');
     
     createInputString(key);
     // updateOnscreenKeyboardOnInput(key);
@@ -317,7 +317,7 @@ function inputText(event) {
     event.preventDefault();
   }
 
-  updateOnscreenKeyboardOnInput(key);
+  // updateOnscreenKeyboardOnInput(key);
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
