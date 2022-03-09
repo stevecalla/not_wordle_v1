@@ -985,11 +985,13 @@ function copyToClipboard(element) {
     selection.removeAllRanges();
     selection.addRange(range);
   }
-  document.getElementById('statsButtons').classList.add('hidden');
-  document.getElementById('clickToHideX').classList.add('hidden');
+  document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.add('hidden') : null;
+  document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.add('hidden') : null;
   document.execCommand('copy');
-  document.getElementById('statsButtons').classList.remove('hidden');
-  document.getElementById('clickToHideX').classList.remove('hidden');
+  document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.remove('hidden') : null;
+  document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.remove('hidden') : null;
+  // document.getElementById('statsButtons').classList.remove('hidden');
+  // document.getElementById('clickToHideX').classList.remove('hidden');
   window.getSelection().removeAllRanges();
   // document.getElementById("btn").value="Copied";
 
