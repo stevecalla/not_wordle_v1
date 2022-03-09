@@ -285,7 +285,7 @@ function inputText(event) {
   // console.log(event.key, event.value, event);
 
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
-    document.getElementById('id' + allInput.length).focus();//todo
+    // document.getElementById('id' + allInput.length).focus();//todo
 
     // document.getElementById('id' + allInput.length).value = key;
     // document.getElementById('id' + allInput.length).setAttribute('value', key);
@@ -296,11 +296,11 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('change order of assign tile value');
+    window.alert('put assign tile value after update on screen to main focus');
     
     createInputString(key);
-    assignTileValue(key);
     updateOnscreenKeyboardOnInput(key);
+    assignTileValue(key);
 
     // console.trace();
 
