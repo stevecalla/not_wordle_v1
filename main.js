@@ -297,7 +297,9 @@ function inputText(event) {
     window.alert(test);
 
     createInputString(key);
-    // updateOnscreenKeyboardOnInput(key);
+    updateOnscreenKeyboardOnInput(key);
+    window.alert('update keyboard');
+    console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
         console.log('backspace')
