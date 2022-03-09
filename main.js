@@ -301,7 +301,7 @@ async function inputText(event) {
     await createInputString(key);
     await updateOnscreenKeyboardOnInput(key);
 
-    window.alert('async await update keyboard');
+    window.alert('async await v2 update keyboard');
     console.trace();
 
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
