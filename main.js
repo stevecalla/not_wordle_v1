@@ -319,12 +319,12 @@ async function inputText(event) {
   // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
-function assignValue(key) {
+async function assignValue(key) {
   document.getElementById('id' + allInput.length).value = key;
   document.getElementById('id' + allInput.length).setAttribute('value', key);
 }
 
-function createInputString(key) {
+async function createInputString(key) {
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
 
@@ -491,7 +491,7 @@ function updateOnscreenKeyboard() {
   }
 }
 
-function updateOnscreenKeyboardOnInput(key) {
+async function updateOnscreenKeyboardOnInput(key) {
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
 
   for (let i = 0; i < 28; i++) {    
