@@ -202,7 +202,7 @@ function previousSolution(randomNumber, solution) {
     } 
   }
   setLocalStorage('wordPlayed');
-  console.log('set')
+  // console.log('set')
 }
 
 // SECTION CREATE GAME TILES
@@ -330,9 +330,9 @@ function evaluateCurrentInput(event) {
       createEmojiRow();
       setColorContrast(); 
       createGameStatsMenu(); 
-      console.trace();
+      // console.trace();
   } else {
-    console.log('Not a word');
+    // console.log('Not a word');
     displayMessage('NOT IN WORD LIST');
   }
 }
@@ -362,7 +362,7 @@ function deleteInputText() {
   };
 
   for (let i = 0; i < 28; i++) {
-    console.log(document.getElementById('keyboard' + i).value, allInput[allInput.length - 1])
+    // console.log(document.getElementById('keyboard' + i).value, allInput[allInput.length - 1])
     if (document.getElementById('keyboard' + i).value === allInput[allInput.length - 1]) {
       document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
       document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
@@ -1037,7 +1037,7 @@ function setColorContrast() {
       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
     }
   }
-  console.trace();
+  // console.trace();
 }
 
 function toggleContrastMode(storageContrastValue) {
@@ -1055,7 +1055,7 @@ function toggleContrastMode(storageContrastValue) {
     contrastModeCSS.getAttribute('href') === "contrast-theme-green.css" ? contrastModeCSS.href = blue : contrastModeCSS.href = green;
     setLocalStorage('contrastMode', storageContrastValue);
   }
-  console.trace();
+  // console.trace();
   // focusCurrentTile();
 }
 

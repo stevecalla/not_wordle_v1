@@ -248,6 +248,9 @@ input[type=text][data-status='start'] {
   color: black;
   font-size: 16px;
   width: 2.35rem;
+  /* border: unset; */
+  /* border: hidden;
+  border: transparent; */
 }
 
 .enter-button,

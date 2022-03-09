@@ -1,13 +1,24 @@
 .contrast-toggle-selected--noMatch {
-  background: linear-gradient( 90deg, #787C7E 50%, red 50% ); 
+  /* background: linear-gradient( 90deg, #787C7E 50%, red 50% );  */
+  border-width: 5px;
+  border-style: double;
+  border-color: black;
 }
 
 .contrast-toggle-selected--match {
-  background: linear-gradient( 90deg, #c9b458 50%, red 50% ); 
+  /* background: linear-gradient( 90deg, #c9b458 50%, red 50% );  */
+  border-width: 5px;
+  border-style: double;
+  border-color: black;
 }
 
 .contrast-toggle-selected--exactMatch {
-  background: linear-gradient(90deg, #6aaa64 50%, red 50% ); 
+  /* background: linear-gradient(90deg, #6aaa64 50%, red 50% );  */
+  /* border: 1px red; */
+  /* border-color: black; */
+  border-width: 5px;
+  border-style: double;
+  border-color: black;
 }
 
 .contrast-toggle--noMatch {
