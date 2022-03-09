@@ -296,7 +296,7 @@ function inputText(event) {
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
-    window.alert('add blur to update onscreen keyboard');
+    window.alert('comment out on screen keyboard');
     
     createInputString(key);
     // updateOnscreenKeyboardOnInput(key);
