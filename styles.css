@@ -158,6 +158,7 @@ input[id^='tile'][disabled] {
   display: flex;
   justify-content: center;
   align-items: center;
+  position: absolute;
 }
 
 /* ----------------------- */
@@ -171,6 +172,8 @@ input[id^='tile'][disabled] {
   width: 350px;
   z-index: 1;
   position: absolute;
+  height: 375px;
+  position: relative;
 }
 
 .instrx-wrapper {
@@ -624,6 +627,7 @@ input[type=text][data-status='start'] {
   .main-content {
     width: 350px;
     height: 280px;
+    height: 300px;
   }
 
   .input-wrapper {
@@ -632,6 +636,7 @@ input[type=text][data-status='start'] {
     display: flex;
     width: 250px;
     flex-wrap: wrap;
+    height: 300px;
     }
 
     input[id^='id'] {
