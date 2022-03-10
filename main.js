@@ -294,7 +294,7 @@ function inputText(event) {
     assignTileValue(key);
     setTimeout(() => {
       updateOnscreenKeyboardOnInput(key);
-    }, 001);
+    }, 000001);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
