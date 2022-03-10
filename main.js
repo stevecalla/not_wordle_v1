@@ -277,7 +277,7 @@ function eventKeyBoardButton() {
 }
 
 // SECTION GET INPUT CHARACTERS
-async function inputText(event) {
+function inputText(event) {
   // console.log(event);
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
@@ -290,9 +290,9 @@ async function inputText(event) {
     // console.log(test)
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
-    await createInputString(key);
-    await updateOnscreenKeyboardOnInput(key);
-    await assignTileValue(key);
+    createInputString(key);
+    updateOnscreenKeyboardOnInput(key);
+    assignTileValue(key);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -308,7 +308,7 @@ async function inputText(event) {
   }
 }
 
-async function createInputString(key) {
+function createInputString(key) {
   // alert('1');
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
@@ -331,7 +331,7 @@ async function createInputString(key) {
   // determineCurrentTile(allInput);
 }
 
-async function assignTileValue(key) {
+function assignTileValue(key) {
   // alert('4');
   // console.log(allInput.length)
   // document.getElementById('id' + (allInput.length - 1)).focus();
@@ -485,7 +485,7 @@ function updateOnscreenKeyboard() {
   }
 }
 
-async function updateOnscreenKeyboardOnInput(key) {
+function updateOnscreenKeyboardOnInput(key) {
   // alert('2')
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
   for (let i = 0; i < 28; i++) {    
