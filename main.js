@@ -491,7 +491,7 @@ async function updateOnscreenKeyboardOnInput(key) {
   for (let i = 0; i < 28; i++) {    
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
-      // return;
+      return;
     }
   }
   alert('3')
