@@ -334,10 +334,12 @@ function createInputString(key) {
 function assignTileValue(key) {
   // alert('4');
   // console.log(allInput.length)
-  // document.getElementById('id' + (allInput.length - 1)).focus();
+  document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
-  // document.getElementById('id' + (allInput.length - 1)).blur();
+  setTimeout(() => {
+    document.getElementById('id' + (allInput.length - 1)).blur();
+  }, 200);
   // alert('5');
   // alert(console.trace())
 }
@@ -491,6 +493,7 @@ function updateOnscreenKeyboardOnInput(key) {
   for (let i = 0; i < 28; i++) {    
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
+      // document.getElementById('keyboard' + i).focus();
       // return;
     }
   }
