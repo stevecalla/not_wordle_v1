@@ -305,7 +305,7 @@ function inputText(event) {
 
     setTimeout(() => {
       updateOnscreenKeyboardOnInput(key);
-    }, 000001);
+    }, 1);
 
     // focusCurrentTile();
 
