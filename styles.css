@@ -650,6 +650,12 @@ input[type=text][data-status='start'] {
       width: 2.7rem;
     }
 
+    input {
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
+    }
+
     .keyboard-wrapper {
       margin-top: 10px;
       width: 350px;
