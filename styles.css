@@ -576,6 +576,12 @@ input[type=text][data-status='start'] {
   border-color: lightgray;
 }
 
+.contrast-toggle--keySelected {
+  border-width: 5px;
+  border-style: double;
+  border-color: black;
+}
+
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
