@@ -339,7 +339,7 @@ function assignTileValue(key) {
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
   setTimeout(() => {
     document.getElementById('id' + (allInput.length - 1)).blur();
-  }, 200);
+  }, 1);
   // alert('5');
   // alert(console.trace())
 }
