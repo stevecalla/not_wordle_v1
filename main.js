@@ -277,7 +277,7 @@ function eventKeyBoardButton() {
 }
 
 // SECTION GET INPUT CHARACTERS
-function inputText(event) {
+async function inputText(event) {
   // console.log(event);
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
@@ -290,9 +290,9 @@ function inputText(event) {
     // console.log(test)
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
-    createInputString(key);
-    // updateOnscreenKeyboardOnInput(key);
-    assignTileValue(key);
+    await createInputString(key);
+    await updateOnscreenKeyboardOnInput(key);
+    await assignTileValue(key);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -308,7 +308,8 @@ function inputText(event) {
   }
 }
 
-function createInputString(key) {
+async function createInputString(key) {
+  alert('1');
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
   
@@ -330,12 +331,15 @@ function createInputString(key) {
   // determineCurrentTile(allInput);
 }
 
-function assignTileValue(key) {
+async function assignTileValue(key) {
+  alert('3');
   // console.log(allInput.length)
   // document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
   // document.getElementById('id' + (allInput.length - 1)).blur();
+  alert('4');
+  // alert(console.trace())
 }
 
 function evaluateCurrentInput(event) {
@@ -481,7 +485,8 @@ function updateOnscreenKeyboard() {
   }
 }
 
-function updateOnscreenKeyboardOnInput(key) {
+async function updateOnscreenKeyboardOnInput(key) {
+  alert('2')
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
   for (let i = 0; i < 28; i++) {    
     if (key.toUpperCase() === qwertyKeys[i]) {
