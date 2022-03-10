@@ -225,6 +225,7 @@ input[type=text][disabled][data-status='gameOver'] {
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
+  color: red;
 }
 
 /*------- KEYBOARD -----------*/
@@ -648,12 +649,6 @@ input[type=text][data-status='start'] {
       margin-bottom: 0.1rem;
       height: 2.7rem;
       width: 2.7rem;
-    }
-
-    input {
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
     }
 
     .keyboard-wrapper {
