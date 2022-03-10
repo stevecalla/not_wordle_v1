@@ -498,9 +498,10 @@ input[type=text][data-status='start'] {
   z-index: 2;
   position: relative;
   min-width: 15px;
-  display: flex;
+  /* display: flex;
   align-items: center;
-  justify-content: right;
+  justify-content: right; */
+  text-align: right;
 }
 
 .win-percent {
