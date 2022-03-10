@@ -38,6 +38,17 @@ let gameStats = {
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
+// document.addEventListener('focus', function(e) {
+//   console.log('focused: ', document.activeElement)
+//   console.log('focus:', e, 'target:', e.target, e.target.id)
+//   e.target.style.color = 'red';
+//   // e.target.blur();
+// }, true);
+
+// document.addEventListener('blur', (e) => {
+//   e.target.style.color = 'blue';
+//   console.log('blur:', e, 'target:', e.target, e.target.id)
+// }, true);
 
 //SECTION test doubleclick prevent zoom
 document.addEventListener('dblclick', function (e) {
@@ -49,7 +60,9 @@ document.addEventListener('dblclick', function (e) {
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
-  window.moveTo(0, 0);
+  window.moveTo(0, 142);
+  console.log(window);
+  // currentFocus();
   createGameInstruction();
   // createGameTiles();
   createOnscreenKeyboard();
@@ -308,6 +321,7 @@ function inputText(event) {
     }, 100);
 
     // focusCurrentTile();
+    // currentFocus();
 
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
