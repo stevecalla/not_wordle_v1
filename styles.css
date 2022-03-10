@@ -231,6 +231,7 @@ input[type=text][data-status='start'] {
   cursor: not-allowed;
   color: blue;
   color: black;
+  color: red;
 }
 
 /*------- KEYBOARD -----------*/

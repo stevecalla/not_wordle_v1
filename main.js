@@ -159,7 +159,7 @@ function hideInstructions() {
 
   document.getElementById('toggleInstructionsOffIcon').classList.toggle('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.toggle('hidden');
-  document.getElementById('id0').focus();
+  // document.getElementById('id0').focus();
   // document.getElementById('id0').blur();
   // focusCurrentTile();
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
@@ -855,7 +855,7 @@ function getKeyboardButton() {
 
 function refreshButton() {
   location.reload(true);
-  // focusCurrentTile();
+  focusCurrentTile();
 }
 
 function toggleDarkModeButton() {
