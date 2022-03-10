@@ -80,9 +80,9 @@ function loadTasks() {
   }
 
   createGameSolution();
+
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
-
   createGameTiles();
 
   // focusCurrentTile();
@@ -198,6 +198,8 @@ function createGameSolution() {
     setLocalStorage('wordPlayed');
   }
 
+  console.log('hello')
+  setLocalStorage('gameCount', gameStats.gameCount + 1); 
   // setLocalStorage('wordPlayed', randomNumber, solution);
   // formatSolution();
 }
@@ -545,7 +547,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
 
   if (winningCondition) {
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
-    setLocalStorage('gameCount', gameStats.gameCount + 1); 
+    // setLocalStorage('gameCount', gameStats.gameCount + 1); 
+
     for (let i = startRowTile + 5; i < 30; i++) {
       document.getElementById('id' + (i)).setAttribute('data-status', 'gameOver');
       document.getElementById('id' + (i)).setAttribute('disabled', 'disabled');
@@ -891,20 +894,21 @@ function refreshButton() {
   // focusCurrentTile();
 }
 
-function toggleDarkModeButton() {
+function toggleDarkModeButton(storageDarkValue) {
   document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
   document.getElementById('toggleDarkOnIcon').classList.toggle('hidden');
   document.querySelector('.darkmode-toggle-button').blur();
-  toggleDarkMode();
+  // toggleDarkMode();
+  toggleDarkMode(storageDarkValue)
   // focusCurrentTile();
-  event.preventDefault;
+  // event.preventDefault;
 } 
 
-function toggleContrastModeButton(event) {
+function toggleContrastModeButton(storageContrastValue) {
   document.getElementById('toggleContrastOffIcon').classList.toggle('hidden');
   document.getElementById('toggleContrastOnIcon').classList.toggle('hidden');
   document.querySelector('.contrast-toggle').blur();
-  toggleContrastMode();
+  toggleContrastMode(storageContrastValue);
   // createGameStatsMenu();
   // focusCurrentTile();
   // event.preventDefault;
