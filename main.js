@@ -332,13 +332,13 @@ async function createInputString(key) {
 }
 
 async function assignTileValue(key) {
-  alert('3');
+  alert('4');
   // console.log(allInput.length)
   // document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
   // document.getElementById('id' + (allInput.length - 1)).blur();
-  alert('4');
+  alert('5');
   // alert(console.trace())
 }
 
@@ -494,6 +494,7 @@ async function updateOnscreenKeyboardOnInput(key) {
       return;
     }
   }
+  alert('3')
   console.trace();
 }
 
