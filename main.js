@@ -72,6 +72,10 @@ function loadTasks() {
 
   createGameTiles();
 
+  // let currentElement = document.getElementById('id0');
+  // document.activeElement = currentElement;
+  document.getElementById('id0').focus();
+
   // createGameStatsMenu();
 }
 
@@ -155,7 +159,8 @@ function hideInstructions() {
 
   document.getElementById('toggleInstructionsOffIcon').classList.toggle('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.toggle('hidden');
-  // document.getElementById('id0').focus();
+  document.getElementById('id0').focus();
+  document.getElementById('id0').blur();
   // focusCurrentTile();
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
 }
