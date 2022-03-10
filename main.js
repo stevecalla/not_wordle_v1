@@ -291,7 +291,7 @@ async function inputText(event) {
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
     await createInputString(key);
-    await updateOnscreenKeyboardOnInput(key);
+    // await updateOnscreenKeyboardOnInput(key);
     await assignTileValue(key);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
@@ -495,7 +495,7 @@ async function updateOnscreenKeyboardOnInput(key) {
     }
   }
   // alert('3')
-  console.trace();
+  // console.trace();
 }
 
 function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
