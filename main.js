@@ -407,6 +407,8 @@ function deleteInputText() {
     if (document.getElementById('keyboard' + i).value === allInput[allInput.length - 1]) {
       document.getElementById('keyboard' + i).classList.remove('contrast-toggle--keySelected');
     }
+    document.getElementById('keyboard' + i).blur(); //todo new blur()
+    // body.focus();
   }
 
   if ((status !== 'noMatch' && status !== 'match' && status !== 'exactMatch') && allInput.length !== 0) {
