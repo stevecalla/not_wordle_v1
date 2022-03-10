@@ -51,7 +51,7 @@ document.addEventListener('dblclick', function (e) {
 function loadTasks() {
   window.moveTo(0, 0);
   createGameInstruction();
-  createGameTiles();
+  // createGameTiles();
   createOnscreenKeyboard();
   createHamburgerMenu();
 
@@ -69,6 +69,9 @@ function loadTasks() {
   createGameSolution();
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
+
+  createGameTiles();
+
   // createGameStatsMenu();
 }
 
