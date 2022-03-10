@@ -190,10 +190,12 @@ input[id^='id'] {
   border: thin solid black;
   border-radius: 0px;
   z-index: 4;
+  color: black;
 }
 
 input[data-status='noMatch'] {
   color: white;
+  color: black;
   background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
@@ -201,12 +203,14 @@ input[data-status='noMatch'] {
 
 input[data-status='match'] {
   color: white;
+  color: black;
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='exactMatch'] {
   color: white;
+  color: black;
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -226,6 +230,7 @@ input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
   color: blue;
+  color: black;
 }
 
 /*------- KEYBOARD -----------*/
