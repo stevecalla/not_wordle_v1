@@ -225,7 +225,7 @@ input[type=text][disabled][data-status='gameOver'] {
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
-  color: red;
+  color: blue;
 }
 
 /*------- KEYBOARD -----------*/

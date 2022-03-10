@@ -294,7 +294,7 @@ function inputText(event) {
     assignTileValue(key);
     setTimeout(() => {
       updateOnscreenKeyboardOnInput(key);
-    }, 1);
+    }, 001);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -496,8 +496,8 @@ function updateOnscreenKeyboardOnInput(key) {
   for (let i = 0; i < 28; i++) {    
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
-      // document.getElementById('keyboard' + i).focus();
-      // return;
+      // document.getElementById('keyboard' + i).blur();
+      return;
     }
   }
   // alert('3')
