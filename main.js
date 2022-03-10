@@ -332,7 +332,8 @@ function createInputString(key) {
   // console.log(allInput);
   // let test = allInput + ' ' + allInput[0]
   // window.alert(test);
-  
+  alert(currentInput);
+
   setLocalStorage('allInput', allInput);
   // gameStats.wordPlayed[i].boardInput = allInput;
   // setLocalStorage('wordPlayed');
