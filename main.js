@@ -309,7 +309,7 @@ async function inputText(event) {
 }
 
 async function createInputString(key) {
-  alert('1');
+  // alert('1');
   currentInput.push(key.toUpperCase());
   allInput.push(key.toUpperCase());
   
@@ -332,13 +332,13 @@ async function createInputString(key) {
 }
 
 async function assignTileValue(key) {
-  alert('4');
+  // alert('4');
   // console.log(allInput.length)
   // document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
   // document.getElementById('id' + (allInput.length - 1)).blur();
-  alert('5');
+  // alert('5');
   // alert(console.trace())
 }
 
@@ -486,7 +486,7 @@ function updateOnscreenKeyboard() {
 }
 
 async function updateOnscreenKeyboardOnInput(key) {
-  alert('2')
+  // alert('2')
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
   for (let i = 0; i < 28; i++) {    
     if (key.toUpperCase() === qwertyKeys[i]) {
@@ -494,7 +494,7 @@ async function updateOnscreenKeyboardOnInput(key) {
       return;
     }
   }
-  alert('3')
+  // alert('3')
   console.trace();
 }
 

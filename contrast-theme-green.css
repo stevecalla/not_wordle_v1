@@ -20,12 +20,12 @@
   border-style: double;
   border-color: black;
 } */
-/* 
+
 .contrast-toggle--keySelected {
   border-width: 5px;
   border-style: double;
   border-color: black;
-} */
+}
 
 .contrast-toggle--noMatch {
   background-color: #787C7E;
