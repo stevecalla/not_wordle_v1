@@ -291,8 +291,10 @@ function inputText(event) {
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
     createInputString(key);
-    updateOnscreenKeyboardOnInput(key);
     assignTileValue(key);
+    setTimeout(() => {
+      updateOnscreenKeyboardOnInput(key);
+    }, 1);
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -334,12 +336,13 @@ function createInputString(key) {
 function assignTileValue(key) {
   // alert('4');
   // console.log(allInput.length)
-  document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
-  setTimeout(() => {
-    document.getElementById('id' + (allInput.length - 1)).blur();
-  }, 1);
+
+  // document.getElementById('id' + (allInput.length - 1)).focus();
+  // setTimeout(() => {
+  //   document.getElementById('id' + (allInput.length - 1)).blur();
+  // }, 0001);
   // alert('5');
   // alert(console.trace())
 }
