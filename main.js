@@ -332,9 +332,10 @@ function createInputString(key) {
 
 function assignTileValue(key) {
   // console.log(allInput.length)
-  document.getElementById('id' + allInput.length).focus();//todo
+  document.getElementById('id' + (allInput.length - 1)).focus();
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
+  document.getElementById('id' + (allInput.length - 1)).blur();
 }
 
 function evaluateCurrentInput(event) {
