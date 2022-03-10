@@ -72,9 +72,11 @@ function loadTasks() {
 
   createGameTiles();
 
+  // focusCurrentTile();
+
   // let currentElement = document.getElementById('id0');
   // document.activeElement = currentElement;
-  document.getElementById('id0').focus();
+  // document.getElementById('id0').focus();
 
   // createGameStatsMenu();
 }
@@ -300,9 +302,13 @@ function inputText(event) {
     // window.alert('move update on screen out of the if statement');
     createInputString(key);
     assignTileValue(key);
+
     setTimeout(() => {
       updateOnscreenKeyboardOnInput(key);
     }, 000001);
+
+    // focusCurrentTile();
+
     // console.trace();
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
@@ -344,8 +350,12 @@ function createInputString(key) {
 function assignTileValue(key) {
   // alert('4');
   // console.log(allInput.length)
+
+  // focusCurrentTile();
+
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
+
 
   // document.getElementById('id' + (allInput.length - 1)).focus();
   // setTimeout(() => {
@@ -508,8 +518,7 @@ function updateOnscreenKeyboardOnInput(key) {
       return;
     }
   }
-  // alert('3')
-  // console.trace();
+  // focusCurrentTile();
 }
 
 function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
@@ -855,7 +864,7 @@ function getKeyboardButton() {
 
 function refreshButton() {
   location.reload(true);
-  focusCurrentTile();
+  // focusCurrentTile();
 }
 
 function toggleDarkModeButton() {

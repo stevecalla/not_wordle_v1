@@ -195,7 +195,7 @@ input[id^='id'] {
 
 input[data-status='noMatch'] {
   color: white;
-  color: black;
+  /* color: black; */
   background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
@@ -203,14 +203,14 @@ input[data-status='noMatch'] {
 
 input[data-status='match'] {
   color: white;
-  color: black;
+  /* color: black; */
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='exactMatch'] {
   color: white;
-  color: black;
+  /* color: black; */
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -229,9 +229,8 @@ input[type=text][disabled][data-status='gameOver'] {
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
-  color: blue;
-  color: black;
   color: red;
+  color: blue;
 }
 
 /*------- KEYBOARD -----------*/
