@@ -283,32 +283,22 @@ function inputText(event) {
   let key = event.key ? event.key : event.value ? event.value : event;
   keyCode = event.keyCode;
   // console.log(event.key, event.value, event);
-
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
-    // document.getElementById('id' + allInput.length).focus();//todo
-
-    // document.getElementById('id' + allInput.length).value = key;
-    // document.getElementById('id' + allInput.length).setAttribute('value', key);
-
-    
     let test2 = allInput.length;
     // console.log(test2);
     let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
-    
     createInputString(key);
     // updateOnscreenKeyboardOnInput(key);
     assignTileValue(key);
-
     // console.trace();
-
   } else if (key && 'Backspace' === key || keyCode && 8 === keyCode || key && 'ArrowLeft' === key || keyCode && 37 === keyCode) {
     // if (key && 'Backspace' === key || keyCode && 8 === keyCode) {
-        // console.log('backspace')
-        // console.log('2')
-        deleteInputText();
+    // console.log('backspace')
+    // console.log('2')
+    deleteInputText();
   } else if (currentInput.length === 5 && (key && 'Enter' === key || keyCode && 13 === keyCode || event === '13')) {
     // console.log('3')
     evaluateCurrentInput(event);
@@ -316,9 +306,6 @@ function inputText(event) {
     // console.log('4')
     event.preventDefault();
   }
-
-  // updateOnscreenKeyboardOnInput(key);
-  // console.log(allInput.length, document.getElementById('id' + allInput.length).id, document.getElementById('id' + (allInput.length - 1)).value)
 }
 
 function createInputString(key) {
@@ -344,13 +331,10 @@ function createInputString(key) {
 }
 
 function assignTileValue(key) {
-  console.log(allInput.length)
+  // console.log(allInput.length)
+  // document.getElementById('id' + allInput.length).focus();//todo
   document.getElementById('id' + (allInput.length - 1)).value = key;
   document.getElementById('id' + (allInput.length - 1)).setAttribute('value', key);
-
-  // document.getElementById('id' + (allInput.length)).value = key;
-  // document.getElementById('id' + (allInput.length)).setAttribute('value', key);
-  // document.getElementById('id' + allInput.length).innerText(key);
 }
 
 function evaluateCurrentInput(event) {
@@ -387,20 +371,12 @@ function displayMessage(message) {
 }
 
 function deleteInputText() {
-  let status = '';
-  let deleteTile = '';
-  if (allInput.length !== 0) {
-    console.log(allInput.length, allInput.length - 1)
-    status = document.getElementById('id' + (allInput.length - 1)).dataset.status;
-    deleteTile = document.getElementById('id' + (allInput.length - 1));
-  };
+  let status = allInput.length !== 0 ? document.getElementById('id' + (allInput.length - 1)).dataset.status : '';
+  let deleteTile = allInput.length !== 0 ? document.getElementById('id' + (allInput.length - 1)) : '';
 
   for (let i = 0; i < 28; i++) {
     // console.log(document.getElementById('keyboard' + i).value, allInput[allInput.length - 1])
     if (document.getElementById('keyboard' + i).value === allInput[allInput.length - 1]) {
-      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--exactMatch');
-      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--match');
-      // document.getElementById('keyboard' + i).classList.remove('contrast-toggle-selected--noMatch');
       document.getElementById('keyboard' + i).classList.remove('contrast-toggle--keySelected');
     }
   }
@@ -506,19 +482,9 @@ function updateOnscreenKeyboard() {
 
 function updateOnscreenKeyboardOnInput(key) {
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','Z','ENTER','X','C','V','B','N','M','BACK'];
-
   for (let i = 0; i < 28; i++) {    
-    // console.log(key.toUpperCase(), solution[currentInput.length - 1], key.toUpperCase === solution[currentInput.length - 1], qwertyKeys[i], key.toUpperCase() === qwertyKeys[i])
-    // if (key.toUpperCase() === solution[currentInput.length - 1] && key.toUpperCase() === qwertyKeys[i]) {
-    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--exactMatch');
-    // } else if (solution.includes(key.toUpperCase()) && key.toUpperCase() === qwertyKeys[i]) {
-    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--match');
-    // } else if (key.toUpperCase() === qwertyKeys[i]) {
-    //   document.getElementById('keyboard' + i).classList.add('contrast-toggle-selected--noMatch');
-    // }
     if (key.toUpperCase() === qwertyKeys[i]) {
       document.getElementById('keyboard' + i).classList.add('contrast-toggle--keySelected');
-      // document.getElementById('keyboard' + i).blur();
       return;
     }
   }
