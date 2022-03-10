@@ -612,14 +612,21 @@ function createEmojiRow() {
   let tileEmoji2 = '';
   for (let i = 0; i < 5; i++) {
     if (allInput[startRowTile + i] === solution[i]) {
-      tileEmoji += '🟩';
-      tileEmoji2 += '🟦';
+      // tileEmoji += '🟩';
+      tileEmoji += '\uD83D\uDFE9';
+      // tileEmoji += '\uD83D\uDC04'
+      // tileEmoji2 += '🟦';
+      tileEmoji2 += '\uD83D\uDFE6';
     } else if (solution.includes(allInput[startRowTile + i])) {
-      tileEmoji += '🟨';
-      tileEmoji2 += '🟧';
+      // tileEmoji += '🟨';
+      tileEmoji += '\uD83D\uDFE8';
+      // tileEmoji2 += '🟧';
+      tileEmoji2 += '\uD83D\DFE7';
     } else {
-      tileEmoji += '⬛';
-      tileEmoji2 += '⬛';
+      tileEmoji += '\u2B1B';
+      tileEmoji2 += '\u2B1B';
+      // tileEmoji += '⬛';
+      // tileEmoji2 += '⬛';
     }
   }
   createEmojiBoard(tileEmoji, tileEmoji2);
