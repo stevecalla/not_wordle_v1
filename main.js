@@ -262,7 +262,7 @@ function createGameTiles() {
               style='text-transform:uppercase'>
     `;
   }  
-  document.getElementById('id0').autofocus = true;
+  document.getElementById('id0').autofocus = true; //todo autofocus id0
 }
 
 // SECTION CREATE ONSCREEN KEYBOARD
@@ -319,7 +319,7 @@ function inputText(event) {
     createInputString(key);
     assignTileValue(key);
 
-    // setTimeout(() => {
+    // setTimeout(() => { //todo autofocus id0
       updateOnscreenKeyboardOnInput(key);
     // }, 100);
 
