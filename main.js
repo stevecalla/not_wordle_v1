@@ -38,12 +38,12 @@ let gameStats = {
 //event listeners go here 👇
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
-// document.addEventListener('focus', function(e) {
-//   console.log('focused: ', document.activeElement)
-//   console.log('focus:', e, 'target:', e.target, e.target.id)
-//   e.target.style.color = 'red';
-//   // e.target.blur();
-// }, true);
+document.addEventListener('focus', function(e) {
+  console.log('focused: ', document.activeElement)
+  console.log('focus:', e, 'target:', e.target, e.target.id)
+  e.target.style.color = 'red';
+  e.target.blur();
+}, true);
 
 // document.addEventListener('blur', (e) => {
 //   e.target.style.color = 'blue';
@@ -262,6 +262,7 @@ function createGameTiles() {
               style='text-transform:uppercase'>
     `;
   }  
+  document.getElementById('id0').autofocus = true;
 }
 
 // SECTION CREATE ONSCREEN KEYBOARD
@@ -318,9 +319,9 @@ function inputText(event) {
     createInputString(key);
     assignTileValue(key);
 
-    setTimeout(() => {
+    // setTimeout(() => {
       updateOnscreenKeyboardOnInput(key);
-    }, 100);
+    // }, 100);
 
     // focusCurrentTile();
     // currentFocus();

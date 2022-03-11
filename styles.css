@@ -233,8 +233,8 @@ input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
   /* color: blue;
-  color: red;
-  color: green; */
+  color: red;*/
+  color: green;
 }
 
 /*------- KEYBOARD -----------*/
