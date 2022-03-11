@@ -593,6 +593,21 @@ input[type=text][data-status='start'] {
   border-color: black;
 }
 
+/*-------- HISTORY TABLE ---------------*/
+/* table {
+  border: 1px solid black;
+  font: 16px "Open Sans", Helvetica, Arial, sans-serif;
+}
+
+thead > tr {
+  background-color: rgb(228, 240, 245);
+}
+
+th, td {
+  border: 1px solid black;
+  padding:4px 6px;
+} */
+
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 

@@ -46,12 +46,12 @@ let gameStats = {
 //SECTION event listeners go here 👇
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
-document.addEventListener('focus', function(e) {
-  console.log('focused: ', document.activeElement)
-  console.log('focus:', e, 'target:', e.target, e.target.id)
-  e.target.style.color = 'red';
-  e.target.blur();
-}, true);
+// document.addEventListener('focus', function(e) {
+//   console.log('focused: ', document.activeElement)
+//   console.log('focus:', e, 'target:', e.target, e.target.id)
+//   e.target.style.color = 'red';
+//   e.target.blur();
+// }, true);
 
 // document.addEventListener('blur', (e) => {
 //   e.target.style.color = 'blue';
@@ -1158,3 +1158,21 @@ function focusCurrentTile() {
     document.getElementById('id' + (currentTile)).focus();
   };
 }
+
+//SECTION HISTORY TABLE
+// function createHistoryTable() {
+//   console.log(gameStats.wordPlayed[0])
+//   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+//     document.getElementById('historyData').innerHTML =
+//     `
+//       <tr>
+//         <th scope="row">${gameStats.wordPlayed[0].word}</th>
+//         <td>${gameStats.wordPlayed[0].playedCount}</td>
+//         <th scope="row">${gameStats.wordPlayed[0].winCount}</th>
+//         <th>${gameStats.wordPlayed[0].solutionNumber}</th>
+//       </tr>
+//     `
+//   }
+
+//   //create game board
+// }
