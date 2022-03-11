@@ -53,10 +53,10 @@ document.addEventListener('keydown', inputText);
 //   e.target.blur();
 // }, true);
 
-// document.addEventListener('blur', (e) => {
-//   e.target.style.color = 'blue';
-//   console.log('blur:', e, 'target:', e.target, e.target.id)
-// }, true);
+document.addEventListener('blur', (e) => {
+  e.target.style.color = 'green';
+  console.log('blur:', e, 'target:', e.target, e.target.id)
+}, true);
 
 //SECTION test doubleclick prevent zoom
 document.addEventListener('dblclick', function (e) {
@@ -88,6 +88,7 @@ function loadTasks() {
   }
 
   createGameSolution();
+  createHistoryTable();
 
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
@@ -598,6 +599,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));   
   createGameStatsMenu(); 
   resetCurrentInput();
+  createHistoryTable();
 }
 
 function resetCurrentInput() {
@@ -828,11 +830,21 @@ function createHamburgerMenu() {
 
     <div class='hamburger-menu'>
       <div class='mode-description'>
+        <p class='mode'>View Game History</p>
+        <p class='toggle-detail'>Click to view game history</p>
+      </div>
+      <div class='hamburger-toggle'>
+        <svg class='toggleDefinition' id='headerIconSVG' onclick='displayGameHistory()'version="1.1" id="Capa_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="503.379px" height="503.379px" viewBox="0 0 503.379 503.379" style="enable-background:new 0 0 503.379 503.379;"xml:space="preserve"><g><path d="M458.091,128.116v326.842c0,26.698-21.723,48.421-48.422,48.421h-220.92c-26.699,0-48.421-21.723-48.421-48.421V242.439 c6.907,1.149,13.953,1.894,21.184,1.894c5.128,0,10.161-0.381,15.132-0.969v211.594c0,6.673,5.429,12.104,12.105,12.104h220.92 c6.674,0,12.105-5.432,12.105-12.104V128.116c0-6.676-5.432-12.105-12.105-12.105H289.835c0-12.625-1.897-24.793-5.297-36.315 h125.131C436.368,79.695,458.091,101.417,458.091,128.116z M159.49,228.401c-62.973,0-114.202-51.229-114.202-114.199 C45.289,51.229,96.517,0,159.49,0c62.971,0,114.202,51.229,114.202,114.202C273.692,177.172,222.461,228.401,159.49,228.401z  M159.49,204.19c49.618,0,89.989-40.364,89.989-89.988c0-49.627-40.365-89.991-89.989-89.991 c-49.626,0-89.991,40.364-89.991,89.991C69.499,163.826,109.87,204.19,159.49,204.19z M227.981,126.308 c6.682,0,12.105-5.423,12.105-12.105s-5.423-12.105-12.105-12.105h-56.386v-47.52c0-6.682-5.423-12.105-12.105-12.105 s-12.105,5.423-12.105,12.105v59.625c0,6.682,5.423,12.105,12.105,12.105H227.981z M367.697,224.456h-131.14 c-6.682,0-12.105,5.423-12.105,12.105c0,6.683,5.423,12.105,12.105,12.105h131.14c6.685,0,12.105-5.423,12.105-12.105 C379.803,229.879,374.382,224.456,367.697,224.456z M367.91,297.885h-131.14c-6.682,0-12.105,5.42-12.105,12.105 s5.423,12.105,12.105,12.105h131.14c6.685,0,12.104-5.42,12.104-12.105S374.601,297.885,367.91,297.885z M367.91,374.353h-131.14 c-6.682,0-12.105,5.426-12.105,12.105c0,6.685,5.423,12.104,12.105,12.104h131.14c6.685,0,12.104-5.42,12.104-12.104 C380.015,379.778,374.601,374.353,367.91,374.353z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+       </div>
+    </div>
+
+    <div class='hamburger-menu'>
+      <div class='mode-description'>
         <p class='mode'>Delete Game History</p>
         <p class='toggle-detail'>Clear all history & settings</p>
       </div>
       <div class='hamburger-toggle'>
-        <svg  class='toggleDefinition' id='headerIconSVG' onclick='clearStorage()' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 473 473" style="enable-background:new 0 0 473 473;" xml:space="preserve"><g><path d="M317.667,214.42l5.667-86.42h20.951V38h-98.384V0H132.669v38H34.285v90h20.951l20,305h140.571 c23.578,24.635,56.766,40,93.478,40c71.368,0,129.43-58.062,129.43-129.43C438.715,275.019,385.143,218.755,317.667,214.42z 	M162.669,30h53.232v8h-53.232V30z M64.285,68h250v30h-250V68z M103.334,403L85.301,128H293.27l-5.77,87.985 c-61.031,10.388-107.645,63.642-107.645,127.586c0,21.411,5.231,41.622,14.475,59.43H103.334z M309.285,443 c-54.826,0-99.43-44.604-99.43-99.43s44.604-99.429,99.43-99.429s99.43,44.604,99.43,99.429S364.111,443,309.285,443z"/><polygon points="342.248,289.395 309.285,322.358 276.322,289.395 255.109,310.608 288.072,343.571 255.109,376.533 276.322,397.746 309.285,364.783 342.248,397.746 363.461,376.533 330.498,343.571 363.461,310.608 	"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
+        <svg class='toggleDefinition' id='headerIconSVG' onclick='clearStorage()' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 473 473" style="enable-background:new 0 0 473 473;" xml:space="preserve"><g><path d="M317.667,214.42l5.667-86.42h20.951V38h-98.384V0H132.669v38H34.285v90h20.951l20,305h140.571 c23.578,24.635,56.766,40,93.478,40c71.368,0,129.43-58.062,129.43-129.43C438.715,275.019,385.143,218.755,317.667,214.42z 	M162.669,30h53.232v8h-53.232V30z M64.285,68h250v30h-250V68z M103.334,403L85.301,128H293.27l-5.77,87.985 c-61.031,10.388-107.645,63.642-107.645,127.586c0,21.411,5.231,41.622,14.475,59.43H103.334z M309.285,443 c-54.826,0-99.43-44.604-99.43-99.43s44.604-99.429,99.43-99.429s99.43,44.604,99.43,99.429S364.111,443,309.285,443z"/><polygon points="342.248,289.395 309.285,322.358 276.322,289.395 255.109,310.608 288.072,343.571 255.109,376.533 276.322,397.746 309.285,364.783 342.248,397.746 363.461,376.533 330.498,343.571 363.461,310.608 	"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
      </div>
     </div>
 
@@ -1031,7 +1043,7 @@ function createGameStatsMenu() {
   for (let i = 1; i < 7; i++) {
     let rowWinCount = `${gameStats['row' + i]}`
     let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
-    let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`
+    let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`;
     document.getElementById('progressBarWrapper').innerHTML += `
       <p class='row-number'>${i}</p>
       <div class='bar-wrapper'>
@@ -1077,6 +1089,31 @@ function copyToClipboard(element) {
   //   document.getElementById('copyNotification').classList.add('hidden');
   // }, 3000);
   displayMessage('Screen Capture Copied To Clipboard');
+}
+
+function displayGameHistory() {
+  createHistoryTable();
+  document.getElementById('historyTable') ? document.getElementById('historyTable').classList.toggle('hidden') : null;
+  
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('copyNotification').classList.add('hidden');
+  // document.getElementById('inputTilesRow1').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
+  //todo message
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  document.getElementById('createGameStatsMenu').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
+
+  document.getElementById('toggleInstructionsOffIcon').classList.remove('hidden');
+  document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
+  // hideInstructions();
+  // document.getElementById('createGameStatsMenu').classList.toggle('hidden');
+
 }
 
 // SECTION DARK & CONTRAST MODE
@@ -1160,19 +1197,119 @@ function focusCurrentTile() {
 }
 
 //SECTION HISTORY TABLE
-// function createHistoryTable() {
-//   console.log(gameStats.wordPlayed[0])
-//   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
-//     document.getElementById('historyData').innerHTML =
-//     `
-//       <tr>
-//         <th scope="row">${gameStats.wordPlayed[0].word}</th>
-//         <td>${gameStats.wordPlayed[0].playedCount}</td>
-//         <th scope="row">${gameStats.wordPlayed[0].winCount}</th>
-//         <th>${gameStats.wordPlayed[0].solutionNumber}</th>
-//       </tr>
-//     `
-//   }
+function createHistoryTable() {
+  document.getElementById('historyTable').innerHTML =
+  `
+    <p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
+    <table>
+      <thead class='history-header' id='historyHeader'></thead>
+      <tbody class='history-data' id='historyData'></tbody>
+      <tfoot class='history-footer' id='historyFooter'></tfoot>
+    </table>
+  `
 
-//   //create game board
+  document.getElementById('historyHeader').innerHTML =
+  `
+    <tr>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('word')">Word</th>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('playedCount')">Played</th>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('winCount')">Win / Win %</th>
+      <th class='table-header' rowspan="2">Game Board</th>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('solutionNumber')">Number</th>
+  </tr>
+  `
+  document.getElementById('historyData').innerHTML = '';
+  for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    document.getElementById('historyData').innerHTML +=
+    `
+      <tr>
+        <th scope="row">${gameStats.wordPlayed[i].word}</th>
+        <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
+        <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
+        <th scope="row">TBD</th>
+        <th>${gameStats.wordPlayed[i].solutionNumber}</th>
+      </tr>
+    `
+  }
+
+  // let a = 'tbd';
+  let winPercent = `${gameStats.winCount / gameStats.gameCount ? Math.round((gameStats.winCount / gameStats.gameCount) * 100) : '0'}%`;
+  let winCount = gameStats.winCount;
+  let winCountPercent = winCount + ' / ' + winPercent;
+  document.getElementById('historyFooter').innerHTML =
+  `
+    <tr>
+      <th>Totals</th>
+      <th>${gameStats.gameCount}</th>
+      <th>${winCountPercent}</th>
+      <th></th>
+      <th></th>
+    </tr>
+  `
+  //todo create game board
+
+  let tableHeader = document.querySelectorAll('.table-header');
+  for (let i = 0; i < tableHeader.length; i++) {
+    if (tableHeader[i].innerText !== 'Game Board') {
+      tableHeader[i].style.color = 'blue';
+      tableHeader[i].style.textDecoration = 'underline';
+    }
+  }
+
+  document.getElementById('historyTable').scrollTop = 0;
+}
+
+function sortHistoryTable(sortField) {
+  // console.log(gameStats.wordPlayed);
+  // for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+  //   var a = gameStats.wordPlayed[i].word.sort();
+  // }
+  let a = gameStats.wordPlayed;
+
+  let sortedHistory = [...a].sort(function(a, b) {
+    if (a[sortField] < b[sortField]) {
+      return -1;
+    }
+    if (a[sortField] > b[sortField]) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  })
+
+  sortField === 'winCount' || sortField === 'playedCount' ? sortedHistory.reverse() : sortedHistory;
+  document.getElementById('historyData').innerHTML = '';
+  for (let i = 0; i < sortedHistory.length; i++) {
+    document.getElementById('historyData').innerHTML +=
+    `
+      <tr>
+        <th scope="row">${sortedHistory[i].word}</th>
+        <td scope="row">${sortedHistory[i].playedCount}</td>
+        <th scope="row">${sortedHistory[i].winCount}</th>
+        <th scope="row">TBD</th>
+        <th>${sortedHistory[i].solutionNumber}</th>
+      </tr>
+    `
+  }
+
+  let tableHeader = document.querySelectorAll('.table-header');
+  for (let i = 0; i < tableHeader.length; i++) {
+    // console.log('1:', event.target.innerText, '2:', tableHeader[i].innerText, '3:', event.target.innerText === tableHeader[i].innerText);
+    if (event.target.innerText === tableHeader[i].innerText) {
+      tableHeader[i].style.color = 'red';
+      tableHeader[i].style.textDecoration = 'underline';
+    } else if (tableHeader[i].innerText !== 'Game Board') {
+      tableHeader[i].style.color = 'blue';
+      tableHeader[i].style.textDecoration = 'underline';
+    }
+  }
+
+  document.getElementById('historyTable').scrollTop = 0;
+}
+
+// function hideHistoryTable() {
+//   // console.log('hide');
+//   createHistoryTable();
+//   document.getElementById('historyTable').classList.toggle('hidden');
+//   document.getElementById('historyTable').scrollTop = 0;
 // }
