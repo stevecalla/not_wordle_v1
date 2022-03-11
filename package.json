@@ -17,7 +17,7 @@
     "url": "https://github.com/stevecalla/not_wordle_v1/issues"
   },
   "homepage": "https://github.com/stevecalla/not_wordle_v1#readme",
-  "dependencies": {
-    "randomcolor": "^0.6.2"
+  "devDependencies": {
+    "eslint": "^8.10.0"
   }
 }

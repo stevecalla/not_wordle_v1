@@ -37,7 +37,8 @@ let gameStats = {
 
 //SECTION TEST NPM RANDOM COLORS
 // var randomColor = require('randomcolor'); // import the script
-// import randomColor from 'randomcolor';
+// import randomColor from './randomcolor';
+// import randomColor from './node_modules/randomcolor/randomColor.js'
 // var color = randomColor();
 // console.log(color);
 
