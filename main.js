@@ -35,7 +35,13 @@ let gameStats = {
   'wordPlayed': [], //todo DONE; todo update wincount if played
 }
 
-//event listeners go here 👇
+//SECTION TEST NPM RANDOM COLORS
+// var randomColor = require('randomcolor'); // import the script
+import randomColor from 'randomcolor';
+var color = randomColor();
+console.log(color);
+
+//SECTION event listeners go here 👇
 window.addEventListener('load', loadTasks);
 document.addEventListener('keydown', inputText);
 document.addEventListener('focus', function(e) {
@@ -262,7 +268,7 @@ function createGameTiles() {
               style='text-transform:uppercase'>
     `;
   }  
-  document.getElementById('id0').autofocus = true; //todo autofocus id0
+  // document.getElementById('id0').autofocus = true; //todo autofocus id0
 }
 
 // SECTION CREATE ONSCREEN KEYBOARD
