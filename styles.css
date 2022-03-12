@@ -610,29 +610,28 @@ input[type=text][data-status='start'] {
   table-layout: fixed;
 }
 
-.table-x-hide {
-  width: 300px;
-  height: 20px;
-  z-index: 5;
-  /* position: absolute; */
+.table-header-row {
   display: flex;
-  /* right: 20px; */
-  /* width: 10px; */
+  justify-content: right;
+  align-items: center;
+  /* height: 20px; */
+  margin: 0px;
+  position: absolute;
+  z-index: 5;
+  width: 100%;
+}
+
+.table-spacer {
+  width: 95%;
+}
+
+.table-x-hide {
+  width: 5%;
+  margin: 0px;
   font-size: 20px;
   font-weight: lighter;
-  /* margin: 0px; */
-  /* right: 15px; */
-  /* top: 0px; */
-  /* left: 15px; */
-  /* position: relative; */
-  /* top: 0px; */
-  margin: 0px;
-  text-align: right;
-  width: 400px;
+  /* text-align: right; */
   line-height: 8px;
-  /* top: 30px; */
-  position: absolute;
-  position: fixed;
 }
 
 table {
@@ -649,12 +648,17 @@ table {
 table thead,
 table tfoot {
   position: sticky;
+  /* white-space: nowrap; */
 }
 
 table thead {
   inset-block-start: 0; /* "top" */
   /* color: blue;
   text-decoration: underline; */
+}
+
+tbody {
+  white-space: nowrap;
 }
 
 table tfoot {
@@ -664,6 +668,7 @@ table tfoot {
 thead > tr,
 tfoot > tr {
   background-color: rgb(228, 240, 245);
+  background-color: white;
 }
 
 th, td {
@@ -783,16 +788,21 @@ th, td {
     }
 
     table {
-      width: 300px;
+      width: 265px;
+    }
+
+    .table-header-row {
+      width: 350px;
     }
 
     .table-x-hide {
-      width: 325px;
+      /* width: 340px; */
     }
 
     th, td {
-      font-size: 12px;
+      font-size: 10px;
     }
+
 /*----------- DARK MODE TOGGLE ------------*/
     .darkmode-toggle {
       right: 30px;

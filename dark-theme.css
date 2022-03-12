@@ -21,13 +21,13 @@ p,
 .message,
 .definition,
 .copy-notification {
-  border: solid black;
+  border: solid #121212;
 }
 
 .darkmode-toggle-button {
   height: 27px;
   width: 27px;
-  border: solid black;
+  border: solid #121212;
   border-radius: 50%;
   border-radius: 50%;
   border: solid;
@@ -41,6 +41,27 @@ p,
 }
 
 .darkmode-svg-toggle--white {
-  background: black;
+  background: #121212;
   fill: white;
+}
+
+th, td {
+  border: 1px solid white;
+}
+
+.history-header {
+  color: #BB86FD;
+}
+
+table, 
+.table-x-hide,
+.history-table,
+th {
+  background-color: #121212;
+}
+
+.table-header-row,
+.table-x-hide {
+  background-color: transparent;
+  color: whitesmoke
 }

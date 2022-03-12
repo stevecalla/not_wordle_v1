@@ -53,10 +53,10 @@ document.addEventListener('keydown', inputText);
 //   e.target.blur();
 // }, true);
 
-document.addEventListener('blur', (e) => {
-  e.target.style.color = 'green';
-  console.log('blur:', e, 'target:', e.target, e.target.id)
-}, true);
+// document.addEventListener('blur', (e) => {
+//   e.target.style.color = 'green';
+//   console.log('blur:', e, 'target:', e.target, e.target.id)
+// }, true);
 
 //SECTION test doubleclick prevent zoom
 document.addEventListener('dblclick', function (e) {
@@ -1125,14 +1125,16 @@ function toggleDarkMode(storageDarkValue) {
 
   if (storageDarkValue === true) {
     console.log('1')
-    darkModeCSS.href = "dark-theme.css";
+    // darkModeCSS.href = "dark-theme.css";
+    darkModeCSS.setAttribute("href", "dark-theme.css")
     document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
     document.getElementById('toggleDarkOnIcon').classList.toggle('hidden');
   } else if (storageDarkValue === null || storageDarkValue === false) {
     return;
   } else {
     darkModeCSS.getAttribute("href") === "light-theme.css" ? storageDarkValue = true : storageDarkValue = false;
-    darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
+    // darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.href = "dark-theme.css" : darkModeCSS.href = "light-theme.css";
+    darkModeCSS.getAttribute("href") === "light-theme.css" ? darkModeCSS.setAttribute("href", "dark-theme.css") : darkModeCSS.setAttribute("href", "light-theme.css");
     setLocalStorage('darkMode', storageDarkValue);
   }
   // console.log(darkModeIconList, darkModeIconList.length);
@@ -1140,6 +1142,7 @@ function toggleDarkMode(storageDarkValue) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
   // focusCurrentTile();
+  createHistoryTable();
 }
 
 function setColorContrast() {
@@ -1200,7 +1203,10 @@ function focusCurrentTile() {
 function createHistoryTable() {
   document.getElementById('historyTable').innerHTML =
   `
-    <p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
+    <div class='table-header-row'>
+      <p class='table-spacer'></p>
+      <p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
+    </div>
     <table>
       <thead class='history-header' id='historyHeader'></thead>
       <tbody class='history-data' id='historyData'></tbody>
@@ -1213,7 +1219,7 @@ function createHistoryTable() {
     <tr>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('word')">Word</th>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('playedCount')">Played</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('winCount')">Win / Win %</th>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('winCount')">Win/%</th>
       <th class='table-header' rowspan="2">Game Board</th>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('solutionNumber')">Number</th>
   </tr>
@@ -1233,9 +1239,11 @@ function createHistoryTable() {
   }
 
   // let a = 'tbd';
-  let winPercent = `${gameStats.winCount / gameStats.gameCount ? Math.round((gameStats.winCount / gameStats.gameCount) * 100) : '0'}%`;
+  // let winPercent = `${gameStats.winCount / gameStats.gameCount ? Math.round((gameStats.winCount / gameStats.gameCount) * 100) : '0'}%`;
+  // let a = 'tbd';
+  let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
   let winCount = gameStats.winCount;
-  let winCountPercent = winCount + ' / ' + winPercent;
+  let winCountPercent = winCount + '/' + winPercent;
   document.getElementById('historyFooter').innerHTML =
   `
     <tr>
@@ -1246,16 +1254,23 @@ function createHistoryTable() {
       <th></th>
     </tr>
   `
-  //todo create game board
 
   let tableHeader = document.querySelectorAll('.table-header');
+  console.log(document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css")
+
   for (let i = 0; i < tableHeader.length; i++) {
-    if (tableHeader[i].innerText !== 'Game Board') {
+    if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css") {
       tableHeader[i].style.color = 'blue';
+      tableHeader[i].style.textDecoration = 'underline';
+    } else if (tableHeader[i].innerText === 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "dark-theme.css") {
+      tableHeader[i].style.color = 'white';
+    } else if (tableHeader[i].innerText === 'Game Board') {
+      tableHeader[i].style.color = 'black';
+    } else if (document.querySelector("#darkMode-link").getAttribute("href") === "dark-theme.css") {
+      tableHeader[i].style.color = '#BB86FD';
       tableHeader[i].style.textDecoration = 'underline';
     }
   }
-
   document.getElementById('historyTable').scrollTop = 0;
 }
 
@@ -1296,7 +1311,7 @@ function sortHistoryTable(sortField) {
   for (let i = 0; i < tableHeader.length; i++) {
     // console.log('1:', event.target.innerText, '2:', tableHeader[i].innerText, '3:', event.target.innerText === tableHeader[i].innerText);
     if (event.target.innerText === tableHeader[i].innerText) {
-      tableHeader[i].style.color = 'red';
+      tableHeader[i].style.color = 'orange';
       tableHeader[i].style.textDecoration = 'underline';
     } else if (tableHeader[i].innerText !== 'Game Board') {
       tableHeader[i].style.color = 'blue';
