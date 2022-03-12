@@ -1298,7 +1298,7 @@ function sortHistoryTable(sortField) {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
-        <th scope="row">${sortedHistory[i].word}</th>
+      <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
         <th scope="row">TBD</th>
@@ -1306,6 +1306,10 @@ function sortHistoryTable(sortField) {
       </tr>
     `
   }
+
+
+  // <th scope="row">${sortedHistory[i].word}</th>
+  // <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
 
   let tableHeader = document.querySelectorAll('.table-header');
   for (let i = 0; i < tableHeader.length; i++) {
