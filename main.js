@@ -207,7 +207,7 @@ function createGameSolution() {
     setLocalStorage('wordPlayed');
   }
 
-  console.log('hello')
+  // console.log('hello')
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
   // setLocalStorage('wordPlayed', randomNumber, solution);
   // formatSolution();
@@ -1356,15 +1356,16 @@ function sortHistoryTable(sortField) {
 }
 
 function createHistoryBoard() {
-  console.log('history board', event);
+  // console.log('history board', event);
   
   // let id = event.target.id.length === 6 ? event.target.id.slice(-3) : event.target.id.length === 6 ? event.target.id.slice(-2): event.target.id.slice(-1);
-  console.log(event.target.id);
+  // console.log(event.target.id);
 
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
     if (gameStats.wordPlayed[i].word === event.target.id) {
       historyBoard = gameStats.wordPlayed[i].boardInput;
-      console.log(gameStats.wordPlayed[i].word, event.target.id, historyBoard);
+      wordPlayed = gameStats.wordPlayed[i].word;
+      // console.log(gameStats.wordPlayed[i].word, event.target.id, historyBoard);
       // return;
     }
   }
@@ -1376,19 +1377,46 @@ function createHistoryBoard() {
     document.getElementById('historyBoard').innerHTML += 
     `   
       <input  type='text' 
-              id=${`id$`}
+              id=${`idh${x}`}
               maxlength='1'
               name='selection'
-              value='${historyBoard[x]}'
+              value='${historyBoard[x] ? historyBoard[x] : ''}'
               size='1'
               disabled='disabled'
               data-status='start'
               style='text-transform:uppercase'>
     `;
   }  
+
+  // let dataStatus = [];
+  for (let i = 0; i < 30; i++) {
+    if (historyBoard[i] === wordPlayed[i % 5]) {
+      // document.getElementById('idh' + i).setAttribute('data-status', 'exactMatch');
+      document.getElementById('idh' + i).classList.add('contrast-toggle--exactMatch');
+      // dataStatus.push('exactMatch');
+    } else if (wordPlayed.includes(historyBoard[i])) {
+      // document.getElementById('idh' + i).setAttribute('data-status', 'match');
+      document.getElementById('idh' + i).classList.add('contrast-toggle--match');
+      // dataStatus.push('match');
+    } else {
+      // document.getElementById('idh' + i).setAttribute('data-status', 'noMatch');
+      document.getElementById('idh' + i).classList.add('contrast-toggle--noMatch');
+      // dataStatus.push('noMatch');
+    }
+
+    console.log(i % 5, historyBoard[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
+    
+    // console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
+  }
+
   // displayHistoryBoard();
   document.getElementById('historyBoardWrapper').classList.toggle('hidden');
   document.getElementById('historyTable').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
 }
 
 function hideHistoryBoard() {

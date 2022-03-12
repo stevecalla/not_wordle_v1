@@ -233,7 +233,7 @@ input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;
   /* color: blue; */
-  color: red;
+  /* color: red; */
   /* color: green; */
 }
 
