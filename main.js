@@ -1124,7 +1124,7 @@ function toggleDarkMode(storageDarkValue) {
   // console.log(storageDarkValue);
 
   if (storageDarkValue === true) {
-    console.log('1')
+    // console.log('1')
     // darkModeCSS.href = "dark-theme.css";
     darkModeCSS.setAttribute("href", "dark-theme.css")
     document.getElementById('toggleDarkOffIcon').classList.toggle('hidden');
@@ -1229,7 +1229,7 @@ function createHistoryTable() {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
-        <th scope="row">${gameStats.wordPlayed[i].word}</th>
+        <th scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
         <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
         <th scope="row">TBD</th>
@@ -1238,9 +1238,10 @@ function createHistoryTable() {
     `
   }
 
-  // let a = 'tbd';
-  // let winPercent = `${gameStats.winCount / gameStats.gameCount ? Math.round((gameStats.winCount / gameStats.gameCount) * 100) : '0'}%`;
-  // let a = 'tbd';
+  // <th scope="row">${gameStats.wordPlayed[i].word}</th>
+  // console.log(gameStats.wordPlayed[0].word[0] + gameStats.wordPlayed[0].word.slice(1).toLowerCase());
+  // str[0].toUpperCase() + str.slice(1);
+
   let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
   let winCount = gameStats.winCount;
   let winCountPercent = winCount + '/' + winPercent;
@@ -1256,8 +1257,6 @@ function createHistoryTable() {
   `
 
   let tableHeader = document.querySelectorAll('.table-header');
-  console.log(document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css")
-
   for (let i = 0; i < tableHeader.length; i++) {
     if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css") {
       tableHeader[i].style.color = 'blue';
@@ -1272,6 +1271,7 @@ function createHistoryTable() {
     }
   }
   document.getElementById('historyTable').scrollTop = 0;
+  // console.trace();
 }
 
 function sortHistoryTable(sortField) {
