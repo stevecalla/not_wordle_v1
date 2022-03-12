@@ -598,7 +598,7 @@ input[type=text][data-status='start'] {
   display: flex;
   /* justify-content: center; */
   /* height: 375px; */
-  overflow: auto;
+  /* overflow: auto; */
   width: 425px;
   position: absolute;
   z-index: 3;
@@ -640,6 +640,9 @@ table {
   font: 16px "Open Sans", Helvetica, Arial, sans-serif;
   width: 360px;
   /* max-height: 300px; */
+  display: block;
+  overflow-x: auto;
+  border-spacing: 0;
   
 }
 
