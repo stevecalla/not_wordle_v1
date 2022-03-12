@@ -680,6 +680,32 @@ th, td {
   font-size: 15px;
 }
 
+.history-board-wrapper {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  width: 350px;
+  z-index: 6;
+  position: absolute;
+  height: 375px;
+  /* position: relative; */
+  background-color: white;
+}
+
+.history-board {
+  /* display: flex;
+  flex-direction: row;
+  justify-content: center;
+  border-radius: 10px;
+  flex-wrap: wrap;
+  width: 350px;
+  z-index: 6;
+  position: absolute;
+  height: 375px;
+  background-color: white; */
+}
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 

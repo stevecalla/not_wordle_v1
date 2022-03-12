@@ -1114,7 +1114,30 @@ function displayGameHistory() {
   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
   // hideInstructions();
   // document.getElementById('createGameStatsMenu').classList.toggle('hidden');
+}
 
+function displayHistoryBoard() {
+//   createHistoryBoard();
+//   document.getElementById('historyBoard') ? document.getElementById('historyBoard').classList.remove('hidden') : null;
+  
+//   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+//   document.getElementById('copyNotification').classList.add('hidden');
+//   // document.getElementById('inputTilesRow1').classList.add('hidden');
+//   document.getElementById('instructionWrapper').classList.add('hidden');
+//   document.getElementById('confettiWrapper').classList.add('hidden');
+//   //todo message
+//   document.getElementById('solution').classList.add('hidden');
+//   document.getElementById('definition').classList.add('hidden');
+//   document.getElementById('createGameStatsMenu').classList.add('hidden');
+
+//   for (let i = 0; i < 30; i++) {
+//     document.getElementById('id' + (i)).removeAttribute('disabled');
+//   }
+
+//   document.getElementById('toggleInstructionsOffIcon').classList.remove('hidden');
+//   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
+//   // hideInstructions();
+//   // document.getElementById('createGameStatsMenu').classList.toggle('hidden');
 }
 
 // SECTION DARK & CONTRAST MODE
@@ -1233,11 +1256,13 @@ function createHistoryTable() {
         <th scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
         <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
-        <th scope="row">TBD</th>
+        <th scope="row" id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard()'>TBD</th>
         <th>${gameStats.wordPlayed[i].solutionNumber}</th>
       </tr>
     `
   }
+
+  // <th scope="row" id='${`hid${i}`}' onclick='createHistoryBoard()'>TBD</th>
 
   // <th scope="row">${gameStats.wordPlayed[i].word}</th>
   // console.log(gameStats.wordPlayed[0].word[0] + gameStats.wordPlayed[0].word.slice(1).toLowerCase());
@@ -1302,7 +1327,7 @@ function sortHistoryTable(sortField) {
       <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
-        <th scope="row">TBD</th>
+        <th scope="row" id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>TBD</th>
         <th>${sortedHistory[i].solutionNumber}</th>
       </tr>
     `
@@ -1328,6 +1353,46 @@ function sortHistoryTable(sortField) {
   }
 
   document.getElementById('historyTable').scrollTop = 0;
+}
+
+function createHistoryBoard() {
+  console.log('history board', event);
+  
+  // let id = event.target.id.length === 6 ? event.target.id.slice(-3) : event.target.id.length === 6 ? event.target.id.slice(-2): event.target.id.slice(-1);
+  console.log(event.target.id);
+
+  for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    if (gameStats.wordPlayed[i].word === event.target.id) {
+      historyBoard = gameStats.wordPlayed[i].boardInput;
+      console.log(gameStats.wordPlayed[i].word, event.target.id, historyBoard);
+      // return;
+    }
+  }
+
+  document.getElementById('historyBoard').innerHTML = '';
+
+  for (let x = 0; x < 30; x++) {
+    console.log('a')
+    document.getElementById('historyBoard').innerHTML += 
+    `   
+      <input  type='text' 
+              id=${`id$`}
+              maxlength='1'
+              name='selection'
+              value='${historyBoard[x]}'
+              size='1'
+              disabled='disabled'
+              data-status='start'
+              style='text-transform:uppercase'>
+    `;
+  }  
+  // displayHistoryBoard();
+  document.getElementById('historyBoardWrapper').classList.toggle('hidden');
+  document.getElementById('historyTable').classList.add('hidden');
+}
+
+function hideHistoryBoard() {
+  document.getElementById('historyBoardWrapper').classList.toggle('hidden');
 }
 
 // function hideHistoryTable() {

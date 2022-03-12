@@ -48,18 +48,15 @@
       <div class='solution hidden' id='solution'></div>
       <div class='definition hidden' id='definition'></div>
       <div class='gameStats-wrapper hidden' id='createGameStatsMenu'></div>
-      <div class='history-table hidden' id='historyTable'></div>
-
+      <div class='history-table' id='historyTable'></div>
+      <div class='history-board-wrapper hidden' id='historyBoardWrapper' hidden'>
+        <div class='table-header-row'>
+          <p class='table-spacer'></p>
+          <p class='table-x-hide' id='tableXHide' onclick='hideHistoryBoard()'>x</p>
+        </div>
+        <div class='history-board' id='historyBoard'></div>
+      </div>
     </div>
-
-    <!-- <div class="history-table">
-      <table>
-        <thead class='history-header' id='historyHeader'></thead>
-        <tbody class='history-data' id='historyData'></tbody>
-        <tfoot class='history-footer' id='historyFooter'></tfoot>
-      </table>
-    </div> -->
-
     <div class='keyboard-wrapper' id='keyboardWrapper'>
       <!-- <button class='keyboard-button' id='keyboard' type='button' value='A' onClick=inputText(this)>A</button> -->
     </div>
