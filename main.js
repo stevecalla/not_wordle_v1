@@ -635,7 +635,7 @@ function createEmojiRow() {
       // tileEmoji += '🟨';
       tileEmoji += '\uD83D\uDFE8';
       // tileEmoji2 += '🟧';
-      tileEmoji2 += '\uD83D\DFE7';
+      tileEmoji2 += '\uD83D\uDFE7';
     } else {
       tileEmoji += '\u2B1B';
       tileEmoji2 += '\u2B1B';
