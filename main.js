@@ -1318,8 +1318,11 @@ function sortHistoryTable(sortField) {
     if (event.target.innerText === tableHeader[i].innerText) {
       tableHeader[i].style.color = 'orange';
       tableHeader[i].style.textDecoration = 'underline';
-    } else if (tableHeader[i].innerText !== 'Game Board') {
+    } else if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css") {
       tableHeader[i].style.color = 'blue';
+      tableHeader[i].style.textDecoration = 'underline';
+    } else if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "dark-theme.css") {
+      tableHeader[i].style.color = '#BB86FD';
       tableHeader[i].style.textDecoration = 'underline';
     }
   }
