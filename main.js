@@ -1075,6 +1075,7 @@ function copyToClipboard(element) {
   }
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.add('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.add('hidden') : null;
+  document.getElementById('historyTable') ? document.getElementById('historyTable').classList.add('hidden') : null;
   document.execCommand('copy');
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.remove('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.remove('hidden') : null;

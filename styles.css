@@ -626,12 +626,13 @@ input[type=text][data-status='start'] {
 }
 
 .table-x-hide {
-  width: 5%;
+  width: 7%;
   margin: 0px;
   font-size: 20px;
   font-weight: lighter;
   /* text-align: right; */
-  line-height: 8px;
+  /* line-height: 8px; */
+  text-align: left;
 }
 
 table {
@@ -642,6 +643,7 @@ table {
   display: block;
   overflow-x: auto;
   border-spacing: 0;
+  border: none;
   
 }
 
@@ -797,6 +799,7 @@ th, td {
 
     .table-x-hide {
       /* width: 340px; */
+      width: 12%;
     }
 
     th, td {
