@@ -1421,6 +1421,7 @@ function createHistoryBoard() {
 
 function hideHistoryBoard() {
   document.getElementById('historyBoardWrapper').classList.toggle('hidden');
+  document.getElementById('historyTable').classList.remove('hidden');
 }
 
 // function hideHistoryTable() {

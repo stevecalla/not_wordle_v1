@@ -196,6 +196,12 @@ input[id^='id'] {
   color: black;
 }
 
+input[id^='idh'] {
+  margin-right: 0.0rem;
+}
+
+
+
 input[data-status='noMatch'] {
   color: white;
   /* color: black; */
