@@ -196,12 +196,6 @@ input[id^='id'] {
   color: black;
 }
 
-input[id^='idh'] {
-  margin-right: 0.0rem;
-}
-
-
-
 input[data-status='noMatch'] {
   color: white;
   /* color: black; */
@@ -698,9 +692,10 @@ th, td {
   height: 375px;
   /* position: relative; */
   background-color: white;
+  margin-left: 30px;
 }
 
-.history-board {
+/* .history-board { */
   /* display: flex;
   flex-direction: row;
   justify-content: center;
@@ -711,6 +706,11 @@ th, td {
   position: absolute;
   height: 375px;
   background-color: white; */
+/* } */
+
+input[id^='idh'] {
+  margin-right: 0.0rem;
+  color: white;
 }
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
