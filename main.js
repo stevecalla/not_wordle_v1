@@ -1261,13 +1261,6 @@ function createHistoryTable() {
       </tr>
     `
   }
-
-  // <th scope="row" id='${`hid${i}`}' onclick='createHistoryBoard()'>TBD</th>
-
-  // <th scope="row">${gameStats.wordPlayed[i].word}</th>
-  // console.log(gameStats.wordPlayed[0].word[0] + gameStats.wordPlayed[0].word.slice(1).toLowerCase());
-  // str[0].toUpperCase() + str.slice(1);
-
   let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
   let winCount = gameStats.winCount;
   let winCountPercent = winCount + '/' + winPercent;
@@ -1327,7 +1320,7 @@ function sortHistoryTable(sortField) {
       <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
-        <th scope="row" id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>TBD</th>
+        <th scope="row" id='${gameStats.wordPlayed[i].word}'>TBD</th>
         <th>${sortedHistory[i].solutionNumber}</th>
       </tr>
     `
@@ -1356,22 +1349,14 @@ function sortHistoryTable(sortField) {
 }
 
 function createHistoryBoard() {
-  // console.log('history board', event);
-  
-  // let id = event.target.id.length === 6 ? event.target.id.slice(-3) : event.target.id.length === 6 ? event.target.id.slice(-2): event.target.id.slice(-1);
-  // console.log(event.target.id);
-
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
     if (gameStats.wordPlayed[i].word === event.target.id) {
-      historyBoard = gameStats.wordPlayed[i].boardInput;
+      historyBoardInput = gameStats.wordPlayed[i].boardInput;
       wordPlayed = gameStats.wordPlayed[i].word;
-      // console.log(gameStats.wordPlayed[i].word, event.target.id, historyBoard);
-      // return;
     }
   }
 
   document.getElementById('historyBoard').innerHTML = '';
-
   for (let x = 0; x < 30; x++) {
     console.log('a')
     document.getElementById('historyBoard').innerHTML += 
@@ -1380,7 +1365,7 @@ function createHistoryBoard() {
               id=${`idh${x}`}
               maxlength='1'
               name='selection'
-              value='${historyBoard[x] ? historyBoard[x] : ''}'
+              value='${historyBoardInput[x] ? historyBoardInput[x] : ''}'
               size='1'
               disabled='disabled'
               data-status='start'
@@ -1388,29 +1373,18 @@ function createHistoryBoard() {
     `;
   }  
 
-  // let dataStatus = [];
   for (let i = 0; i < 30; i++) {
-    if (historyBoard[i] === wordPlayed[i % 5]) {
-      // document.getElementById('idh' + i).setAttribute('data-status', 'exactMatch');
+    if (historyBoardInput[i] === wordPlayed[i % 5]) {
       document.getElementById('idh' + i).classList.add('contrast-toggle--exactMatch');
-      // dataStatus.push('exactMatch');
-    } else if (wordPlayed.includes(historyBoard[i])) {
-      // document.getElementById('idh' + i).setAttribute('data-status', 'match');
+    } else if (wordPlayed.includes(historyBoardInput[i])) {
       document.getElementById('idh' + i).classList.add('contrast-toggle--match');
-      // dataStatus.push('match');
     } else {
-      // document.getElementById('idh' + i).setAttribute('data-status', 'noMatch');
       document.getElementById('idh' + i).classList.add('contrast-toggle--noMatch');
-      // dataStatus.push('noMatch');
     }
-
-    console.log(i % 5, historyBoard[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
-    
-    // console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
+    console.log(i % 5, historyBoardInput[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
   }
 
-  // displayHistoryBoard();
-  document.getElementById('historyBoardWrapper').classList.toggle('hidden');
+  document.getElementById('historyBoardWrapper').classList.remove('hidden');
   document.getElementById('historyTable').classList.add('hidden');
   document.getElementById('instructionWrapper').classList.add('hidden');
 
@@ -1420,7 +1394,7 @@ function createHistoryBoard() {
 }
 
 function hideHistoryBoard() {
-  document.getElementById('historyBoardWrapper').classList.toggle('hidden');
+  document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyTable').classList.remove('hidden');
 }
 

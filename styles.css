@@ -163,7 +163,8 @@ input[id^='tile'][disabled] {
 
 /* ----------------------- */
 
-.input-wrapper {
+.input-wrapper,
+.history-board {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -183,7 +184,8 @@ input[id^='tile'][disabled] {
     border-radius: 10px;
   }
 
-input[id^='id'] {
+input[id^='id'],
+input[id^='idh'] {
   text-align: center;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
@@ -618,7 +620,7 @@ input[type=text][data-status='start'] {
   margin: 0px;
   position: absolute;
   /* z-index: 1; */
-  width: 100%;
+  width: 101%;
 }
 
 .table-spacer {
@@ -630,9 +632,16 @@ input[type=text][data-status='start'] {
   margin: 0px;
   font-size: 20px;
   font-weight: lighter;
-  /* text-align: right; */
-  /* line-height: 8px; */
   text-align: left;
+
+  background: lightgray;
+  width: 25px;
+  border-radius: 50%;
+  text-align: center;
+  display: flex;
+  justify-content: left;
+  align-items: left;
+  z-index: 6;
 }
 
 table {
@@ -681,37 +690,16 @@ th, td {
 }
 
 .history-board-wrapper {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-radius: 10px;
-  flex-wrap: wrap;
-  width: 350px;
   z-index: 6;
   position: absolute;
-  height: 375px;
-  /* position: relative; */
-  background-color: white;
-  margin-left: 30px;
+  /* margin-left: 38px; */
 }
-
-/* .history-board { */
-  /* display: flex;
-  flex-direction: row;
-  justify-content: center;
-  border-radius: 10px;
-  flex-wrap: wrap;
-  width: 350px;
-  z-index: 6;
-  position: absolute;
-  height: 375px;
-  background-color: white; */
-/* } */
 
 input[id^='idh'] {
-  margin-right: 0.0rem;
+  /* margin-right: 0.0rem; */
   color: white;
 }
+
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
@@ -749,103 +737,113 @@ input[id^='idh'] {
     height: 300px;
   }
 
-  .input-wrapper {
-    width: 300px;
+  .input-wrapper,
+  .history-board {
     width: 275px;
     display: flex;
     width: 250px;
     flex-wrap: wrap;
     height: 300px;
-    }
+  }
 
-    input[id^='id'] {
-      height: 3rem;
-      width: 3rem;
-      font-size: 2rem;
-      margin-right: 0.1rem;
-      margin-bottom: 0.1rem;
-      height: 2.7rem;
-      width: 2.7rem;
-    } 
+  input[id^='id'],
+  input[id^='idh'] {
+    height: 3rem;
+    width: 3rem;
+    font-size: 2rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    height: 2.7rem;
+    width: 2.7rem;
+  } 
 
-    input[type=text][disabled][data-status='gameOver'] {
-      opacity: 1;
-      filter: grayscale(0);
-      color: white;
-      background-color: white;
-      height: 3rem;
-      width: 3rem;
-      font-size: 2rem;
-      margin-right: 0.1rem;
-      margin-bottom: 0.1rem;
-      height: 2.7rem;
-      width: 2.7rem;
-    }
+  input[type=text][disabled][data-status='gameOver'] {
+    opacity: 1;
+    filter: grayscale(0);
+    color: white;
+    background-color: white;
+    height: 3rem;
+    width: 3rem;
+    font-size: 2rem;
+    margin-right: 0.1rem;
+    margin-bottom: 0.1rem;
+    height: 2.7rem;
+    width: 2.7rem;
+  }
 
-    .keyboard-wrapper {
-      margin-top: 10px;
-      width: 350px;
-    }
+  .keyboard-wrapper {
+    margin-top: 10px;
+    width: 350px;
+  }
 
-    .keyboard-button {
-      width: 1.7rem;
-    }
+  .keyboard-button {
+    width: 1.7rem;
+  }
 
-    .enter-button,
-    .back-button {
-      width: 3.1rem;
-      font-size: 14px;
-      font-weight: 450;
-    }
+  .enter-button,
+  .back-button {
+    width: 3.1rem;
+    font-size: 14px;
+    font-weight: 450;
+  }
 
 /*--------- INSTRUCTION BOX -------------*/
-    .instruction-wrapper {
-      background-color: white;
-      height: 410px;
-      width: 275px;
-    }
+  .instruction-wrapper {
+    background-color: white;
+    height: 410px;
+    width: 275px;
+  }
 
-    p {
-      margin: 0.4rem;
-    }
+  p {
+    margin: 0.4rem;
+  }
 
-    input[id^='tile'] {
-      height: 1.5rem;
-      width: 1.5rem;
-    }
+  input[id^='tile'] {
+    height: 1.5rem;
+    width: 1.5rem;
+  }
 
 /*----------- HISTORY TABLE ---------*/
-    .history-table {
-      /* height: 300px; */
-      width: 350px;
-      max-height: 300px;
-    }
+  .history-table {
+    /* height: 300px; */
+    width: 350px;
+    max-height: 300px;
+  }
 
-    table {
-      width: 265px;
-    }
+  table {
+    width: 265px;
+  }
 
-    .table-header-row {
-      width: 350px;
-    }
+  .table-header-row {
+    /* width: 350px; */
+    width: 101%;
+  }
 
-    .table-x-hide {
-      /* width: 340px; */
-      width: 12%;
-    }
+  .table-x-hide {
+    /* width: 340px; */
+    width: 12%;
 
-    th, td {
-      font-size: 10px;
-    }
+    background: lightgray;
+    width: 25px;
+    border-radius: 50%;
+    text-align: center;
+    display: flex;
+    justify-content: left;
+    align-items: left;
+  }
+
+  th, td {
+    font-size: 10px;
+  }
 
 /*----------- DARK MODE TOGGLE ------------*/
-    .darkmode-toggle {
-      right: 30px;
-      bottom: 10px;
-    }
+  .darkmode-toggle {
+    right: 30px;
+    bottom: 10px;
+  }
 
-    .contrast-toggle {
-      left: 30px;
-      bottom: 10px;
-    }    
+  .contrast-toggle {
+    left: 30px;
+    bottom: 10px;
+  }    
 }
