@@ -94,6 +94,8 @@ function loadTasks() {
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
+  document.getElementById('tableHeaderRow').classList.add('hidden');
+
   // focusCurrentTile();
 
   // let currentElement = document.getElementById('id0');
@@ -1225,11 +1227,6 @@ function focusCurrentTile() {
 
 //SECTION HISTORY TABLE
 
-{/* <div class='table-header-row'>
-<p class='table-spacer'></p>
-<p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
-</div> */}
-
 function createHistoryTable() {
   document.getElementById('historyTable').innerHTML =
   `
@@ -1292,6 +1289,7 @@ function createHistoryTable() {
     }
   }
   document.getElementById('historyTable').scrollTop = 0;
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
   // console.trace();
 }
 
@@ -1396,10 +1394,7 @@ function createHistoryBoard() {
 }
 
 function hideHistoryBoard() {
-  // console.log(event)
-  console.log(document.getElementById('historyBoardWrapper').classList.contains('hidden'));
-  // document.getElementById('historyBoardWrapper').classList.contains('hidden') ? document.getElementById('historyBoardWrapper').classList.remove('hidden') : document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('historyTable').classList.remove('hidden') : document.getElementById('historyTable').classList.add('hidden');
-  // document.getElementById('historyTable').classList.remove('hidden');
+  document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('tableHeaderRow').classList.add('hidden') : document.getElementById('tableHeaderRow').classList.remove('hidden');
 }
