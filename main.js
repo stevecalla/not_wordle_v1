@@ -1273,7 +1273,7 @@ function createHistoryTable() {
   `
     <tr>
       <th></th>
-      <th>Totals</th>
+      <th>Total</th>
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
       <th></th>
