@@ -231,6 +231,11 @@ input[type=text][disabled][data-status='gameOver'] {
   margin-bottom: 0.3rem;
 }
 
+input[id^='idh'] {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
 input[type=text][data-status='start'] {
   pointer-events: none;
   cursor: not-allowed;

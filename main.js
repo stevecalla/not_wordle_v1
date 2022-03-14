@@ -75,9 +75,9 @@ function loadTasks() {
   // createGameTiles();
   createOnscreenKeyboard();
   createHamburgerMenu();
-
+  
   // console.log('0=', gameStats, localStorage.getItem('gameStats'));
-
+  
   if (localStorage.getItem('gameStats') === null) {
     // console.log('1');
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
@@ -86,15 +86,12 @@ function loadTasks() {
     gameStats = JSON.parse(localStorage.getItem('gameStats'));
     console.log('b=', gameStats)
   }
-
+  
   createGameSolution();
-  createHistoryTable();
-
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
-  document.getElementById('tableHeaderRow').classList.add('hidden');
 
   // focusCurrentTile();
 
@@ -1096,7 +1093,7 @@ function copyToClipboard(element) {
 
 function displayGameHistory() {
   createHistoryTable();
-  document.getElementById('historyTable') ? document.getElementById('historyTable').classList.toggle('hidden') : null;
+  document.getElementById('historyTable') ? document.getElementById('historyTable').classList.remove('hidden') : null;
   
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('copyNotification').classList.add('hidden');
