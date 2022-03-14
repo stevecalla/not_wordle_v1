@@ -1317,7 +1317,8 @@ function sortHistoryTable(sortColumn) {
     `
   }
   historyTableStyle();
-  document.getElementById('sort0').scrollIntoView();
+  // document.getElementById('sort0').scrollIntoView();
+  document.getElementById('sort0').scrollIntoView({behavior: "auto", block: "end", inline: "nearest"});
   document.getElementById('tableHeaderRow').classList.remove('hidden');
 }
 
