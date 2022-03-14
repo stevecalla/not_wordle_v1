@@ -649,6 +649,7 @@ table {
   overflow-x: auto;
   border-spacing: 0;
   border: none;
+  width: 375px;
   
 }
 
@@ -818,6 +819,7 @@ input[id^='idh'] {
 
   table {
     width: 265px;
+    width: 280px;
   }
 
   .table-header-row {

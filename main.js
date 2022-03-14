@@ -199,26 +199,26 @@ function createGameSolution() {
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log(solution, 'random=', randomNumber);
   // console.log(wordList.length);
+  setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
   if (gameStats.wordPlayed.length >= 1) {
     previousSolution(randomNumber, solution);
   } else {
     // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
-    gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
+    gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
     gameStats.wordPlayed[0].selectedCount ++;
     gameStats.wordPlayed[0].playedCount ++;
     setLocalStorage('wordPlayed');
   }
 
   // console.log('hello')
-  setLocalStorage('gameCount', gameStats.gameCount + 1); 
   // setLocalStorage('wordPlayed', randomNumber, solution);
   // formatSolution();
 }
 
 function previousSolution(randomNumber, solution) {
 
-  gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
+  gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
   // console.log(gameStats.wordPlayed.length);
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
     // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
@@ -1244,11 +1244,12 @@ function createHistoryTable() {
   document.getElementById('historyHeader').innerHTML =
   `
     <tr>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('orderPlayed')">Order</th>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('word')">Word</th>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('playedCount')">Played</th>
       <th class='table-header' rowspan="2" onclick="sortHistoryTable('winCount')">Win/%</th>
       <th class='table-header' rowspan="2">Game Board</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('solutionNumber')">Number</th>
+      <th class='table-header' rowspan="2" onclick="sortHistoryTable('datePlayed')">Date</th>
   </tr>
   `
   document.getElementById('historyData').innerHTML = '';
@@ -1256,11 +1257,12 @@ function createHistoryTable() {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
+        <th scope="row">${gameStats.wordPlayed[i].orderPlayed}</th>
         <th scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
         <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
         <th scope="row" class='history-board-link' id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>View</th>
-        <th>${gameStats.wordPlayed[i].solutionNumber}</th>
+        <th>${gameStats.wordPlayed[i].datePlayedShort}</th>
       </tr>
     `
   }
@@ -1270,6 +1272,7 @@ function createHistoryTable() {
   document.getElementById('historyFooter').innerHTML =
   `
     <tr>
+      <th></th>
       <th>Totals</th>
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
@@ -1278,13 +1281,7 @@ function createHistoryTable() {
     </tr>
   `
   historyTableStyle();
-  // document.getElementById('historyTable').scrollTop = 0;
-  // document.getElementById('historyTable').scrollTop = 0;
-  // document.querySelector('table').scrollTop = 0;
-  // document.getElementById('historyTable').scrollTo(0,0);
-  // document.getElementById('historyData').scrollTo(0,0);
   document.getElementById('tableHeaderRow').classList.remove('hidden');
-  // console.trace();
 }
 
 function sortHistoryTable(sortColumn) {
@@ -1308,11 +1305,12 @@ function sortHistoryTable(sortColumn) {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
-      <th scope="row" id=${`sort${i}`}>${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
+        <th scope="row">${sortedHistory[i].orderPlayed}</th>
+        <th scope="row" id=${`sort${i}`}>${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
         <th scope="row" class='history-board-link' id='${sortedHistory[i].word}' onclick='createHistoryBoard(event)'>View</th>
-        <th>${sortedHistory[i].solutionNumber}</th>
+        <th>${sortedHistory[i].datePlayedShort}</th>
       </tr>
     `
   }
