@@ -1252,7 +1252,7 @@ function createHistoryTable() {
         <th scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
         <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
-        <th scope="row" id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard()'>TBD</th>
+        <th scope="row" class='history-board-link' id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>View</th>
         <th>${gameStats.wordPlayed[i].solutionNumber}</th>
       </tr>
     `
@@ -1345,7 +1345,8 @@ function sortHistoryTable(sortField) {
   document.getElementById('historyTable').scrollTop = 0;
 }
 
-function createHistoryBoard() {
+function createHistoryBoard(event) {
+  console.log(event.target.id, event.target, event);
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
     if (gameStats.wordPlayed[i].word === event.target.id) {
       historyBoardInput = gameStats.wordPlayed[i].boardInput;
@@ -1355,7 +1356,7 @@ function createHistoryBoard() {
 
   document.getElementById('historyBoard').innerHTML = '';
   for (let x = 0; x < 30; x++) {
-    console.log('a')
+    // console.log('a')
     document.getElementById('historyBoard').innerHTML += 
     `   
       <input  type='text' 
@@ -1378,7 +1379,7 @@ function createHistoryBoard() {
     } else {
       document.getElementById('idh' + i).classList.add('contrast-toggle--noMatch');
     }
-    console.log(i % 5, historyBoardInput[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
+    // console.log(i % 5, historyBoardInput[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
   }
 
   document.getElementById('historyBoardWrapper').classList.remove('hidden');

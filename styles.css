@@ -705,6 +705,16 @@ input[id^='idh'] {
   color: white;
 }
 
+.history-board-link {
+  color: black;
+  text-decoration: underline;
+}
+
+.history-board-link:hover {
+  transform: scale(1.05);
+  color: blue;
+}
+
 /*-------- DARK MODE & CONTRAST -------*/
 /* see light-theme.css and dark-theme.css */
 
