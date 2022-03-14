@@ -91,8 +91,9 @@ function loadTasks() {
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
-  // createHistoryTable();
 
+  createHistoryTable();
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
 
   // focusCurrentTile();
 
@@ -1168,6 +1169,7 @@ function toggleDarkMode(storageDarkValue) {
   }
   // focusCurrentTile();
   // createHistoryTable();
+  historyTableStyle();
 }
 
 function setColorContrast() {
@@ -1274,9 +1276,50 @@ function createHistoryTable() {
       <th></th>
     </tr>
   `
+  historyTableStyle();
+  document.getElementById('historyTable').scrollTop = 0;
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
+  // console.trace();
+}
 
+function sortHistoryTable(sortColumn) {
+  console.log(sortColumn);
+  let wordPlayedHistory = gameStats.wordPlayed;
+  let sortedHistory = [...wordPlayedHistory].sort(function(a, b) {
+    if (a[sortColumn] < b[sortColumn]) {
+      return -1;
+    }
+    if (a[sortColumn] > b[sortColumn]) {
+      return 1;
+    }
+    // names must be equal
+    return 0;
+  })
+
+  sortColumn === 'winCount' || sortColumn === 'playedCount' ? sortedHistory.reverse() : sortedHistory;
+
+  document.getElementById('historyData').innerHTML = '';
+  for (let i = 0; i < sortedHistory.length; i++) {
+    document.getElementById('historyData').innerHTML +=
+    `
+      <tr>
+      <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
+        <td scope="row">${sortedHistory[i].playedCount}</td>
+        <th scope="row">${sortedHistory[i].winCount}</th>
+        <th scope="row" class='history-board-link' id='${sortedHistory[i].word}' onclick='createHistoryBoard(event)'>View</th>
+        <th>${sortedHistory[i].solutionNumber}</th>
+      </tr>
+    `
+  }
+  historyTableStyle();
+  document.getElementById('historyTable').scrollTop = 0;
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
+}
+
+function historyTableStyle() {
   let tableHeader = document.querySelectorAll('.table-header');
   for (let i = 0; i < tableHeader.length; i++) {
+    // console.log(tableHeader[i].innerText !== 'Game Board', document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css")
     if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css") {
       tableHeader[i].style.color = 'blue';
       tableHeader[i].style.textDecoration = 'underline';
@@ -1289,72 +1332,26 @@ function createHistoryTable() {
       tableHeader[i].style.textDecoration = 'underline';
     }
   }
-  document.getElementById('historyTable').scrollTop = 0;
-  document.getElementById('tableHeaderRow').classList.remove('hidden');
-  // console.trace();
-}
 
-function sortHistoryTable(sortField) {
-  // console.log(gameStats.wordPlayed);
-  // for (let i = 0; i < gameStats.wordPlayed.length; i++) {
-  //   var a = gameStats.wordPlayed[i].word.sort();
-  // }
-  let a = gameStats.wordPlayed;
-
-  let sortedHistory = [...a].sort(function(a, b) {
-    if (a[sortField] < b[sortField]) {
-      return -1;
-    }
-    if (a[sortField] > b[sortField]) {
-      return 1;
-    }
-    // names must be equal
-    return 0;
-  })
-
-  sortField === 'winCount' || sortField === 'playedCount' ? sortedHistory.reverse() : sortedHistory;
-  document.getElementById('historyData').innerHTML = '';
-  for (let i = 0; i < sortedHistory.length; i++) {
-    document.getElementById('historyData').innerHTML +=
-    `
-      <tr>
-      <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
-        <td scope="row">${sortedHistory[i].playedCount}</td>
-        <th scope="row">${sortedHistory[i].winCount}</th>
-        <th scope="row" id='${gameStats.wordPlayed[i].word}'>TBD</th>
-        <th>${sortedHistory[i].solutionNumber}</th>
-      </tr>
-    `
-  }
-
-
-  // <th scope="row">${sortedHistory[i].word}</th>
-  // <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
-
-  let tableHeader = document.querySelectorAll('.table-header');
-  for (let i = 0; i < tableHeader.length; i++) {
-    // console.log('1:', event.target.innerText, '2:', tableHeader[i].innerText, '3:', event.target.innerText === tableHeader[i].innerText);
-    if (event.target.innerText === tableHeader[i].innerText) {
-      tableHeader[i].style.color = 'orange';
-      tableHeader[i].style.textDecoration = 'underline';
-    } else if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "light-theme.css") {
-      tableHeader[i].style.color = 'blue';
-      tableHeader[i].style.textDecoration = 'underline';
-    } else if (tableHeader[i].innerText !== 'Game Board' && document.querySelector("#darkMode-link").getAttribute("href") === "dark-theme.css") {
-      tableHeader[i].style.color = '#BB86FD';
-      tableHeader[i].style.textDecoration = 'underline';
+  let viewBoardLink = document.querySelectorAll('.history-board-link');
+  for (let i = 0; i < viewBoardLink.length; i++) {
+    if (document.querySelector("#darkMode-link").getAttribute("href") === "dark-theme.css") {
+      viewBoardLink[i].style.color = '#BB86FD';
+      viewBoardLink[i].style.textDecoration = 'underline';
+    } else {
+      viewBoardLink[i].style.color = 'blue';
+      viewBoardLink[i].style.textDecoration = 'underline';
     }
   }
-
-  document.getElementById('historyTable').scrollTop = 0;
 }
 
 function createHistoryBoard(event) {
-  console.log(event.target.id, event.target, event);
+  // console.log(event.target.id, event.target, event);
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    console.log(gameStats.wordPlayed[i].word === event.target.id, gameStats.wordPlayed[i].word, event.target.id)
     if (gameStats.wordPlayed[i].word === event.target.id) {
       historyBoardInput = gameStats.wordPlayed[i].boardInput;
-      wordPlayed = gameStats.wordPlayed[i].word;
+      wordPlayed = event.target.id;
     }
   }
 

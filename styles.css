@@ -696,10 +696,10 @@ input[id^='idh'] {
   /* color: white; */
 }
 
-.history-board-link {
+/* .history-board-link {
   color: black;
   text-decoration: underline;
-}
+} */
 
 .history-board-link:hover {
   transform: scale(1.05);
