@@ -1,28 +1,7 @@
-/* .contrast-toggle-selected--noMatch { */
-  /* background: linear-gradient( 90deg, #787C7E 50%, red 50% );  */
-  /* border-width: 5px;
-  border-style: double;
-  border-color: black;
-} */
-
-/* .contrast-toggle-selected--match { */
-  /* background: linear-gradient( 90deg, #f5793a 50%, red 50% );  */
-  /* border-width: 5px;
-  border-style: double;
-  border-color: black;
-} */
-
-/* .contrast-toggle-selected--exactMatch { */
-  /* background: linear-gradient(90deg, #85c0f9 50%, red 50% );  */
-  /* border-width: 5px;
-  border-style: double;
-  border-color: black;
-} */
-
 .contrast-toggle--keySelected {
   border-width: 5px;
   border-style: double;
-  border-color: black;
+  /* border-color: black; */
 }
 
 .contrast-toggle--noMatch {
