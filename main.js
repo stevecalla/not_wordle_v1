@@ -1224,13 +1224,15 @@ function focusCurrentTile() {
 }
 
 //SECTION HISTORY TABLE
+
+{/* <div class='table-header-row'>
+<p class='table-spacer'></p>
+<p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
+</div> */}
+
 function createHistoryTable() {
   document.getElementById('historyTable').innerHTML =
   `
-    <div class='table-header-row'>
-      <p class='table-spacer'></p>
-      <p class='table-x-hide' id='tableXHide' onclick='displayGameHistory()'>x</p>
-    </div>
     <table>
       <thead class='history-header' id='historyHeader'></thead>
       <tbody class='history-data' id='historyData'></tbody>
@@ -1394,13 +1396,10 @@ function createHistoryBoard() {
 }
 
 function hideHistoryBoard() {
+  // console.log(event)
+  console.log(document.getElementById('historyBoardWrapper').classList.contains('hidden'));
+  // document.getElementById('historyBoardWrapper').classList.contains('hidden') ? document.getElementById('historyBoardWrapper').classList.remove('hidden') : document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyBoardWrapper').classList.add('hidden');
-  document.getElementById('historyTable').classList.remove('hidden');
+  document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('historyTable').classList.remove('hidden') : document.getElementById('historyTable').classList.add('hidden');
+  // document.getElementById('historyTable').classList.remove('hidden');
 }
-
-// function hideHistoryTable() {
-//   // console.log('hide');
-//   createHistoryTable();
-//   document.getElementById('historyTable').classList.toggle('hidden');
-//   document.getElementById('historyTable').scrollTop = 0;
-// }

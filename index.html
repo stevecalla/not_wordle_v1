@@ -39,6 +39,10 @@
     <!-- KEYBOARD -->
     <!-- <div class='input-wrapper hidden' id='inputTilesRow1' onclick=focusCurrentTile()> -->
     <div class='main-content' id='mainContent'>
+      <div class='table-header-row' onclick=''>
+        <p class='table-spacer'></p>
+        <p class='table-x-hide' id='tableXHide' onclick='hideHistoryBoard()'>x</p>
+      </div>
       <div class='hamburger-wrapper hidden' id='hamburgerPopupMenu'></div>
       <div class='copy-notification hidden' id='copyNotification'></div>
       <div class='input-wrapper' id='inputTilesRow1'></div>
@@ -50,10 +54,10 @@
       <div class='gameStats-wrapper hidden' id='createGameStatsMenu'></div>
       <div class='history-table hidden' id='historyTable'></div>
       <div class='history-board-wrapper hidden' id='historyBoardWrapper'>
-        <div class='table-header-row'>
+        <!-- <div class='table-header-row'>
           <p class='table-spacer'></p>
           <p class='table-x-hide' id='tableXHide' onclick='hideHistoryBoard()'>x</p>
-        </div>
+        </div> -->
         <div class='history-board' id='historyBoard'></div>
       </div>
     </div>
