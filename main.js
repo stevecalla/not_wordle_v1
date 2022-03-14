@@ -68,7 +68,8 @@ document.addEventListener('dblclick', function (e) {
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
-  window.moveTo(0, 142);
+  window.scrollTo(0, 0);
+  // window.moveTo(0, 142);
   console.log(window);
   // currentFocus();
   createGameInstruction();
@@ -92,8 +93,8 @@ function loadTasks() {
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
-  createHistoryTable();
-  document.getElementById('tableHeaderRow').classList.remove('hidden');
+  // createHistoryTable();
+  // document.getElementById('tableHeaderRow').classList.remove('hidden');
 
   // focusCurrentTile();
 
@@ -1277,7 +1278,11 @@ function createHistoryTable() {
     </tr>
   `
   historyTableStyle();
-  document.getElementById('historyTable').scrollTop = 0;
+  // document.getElementById('historyTable').scrollTop = 0;
+  // document.getElementById('historyTable').scrollTop = 0;
+  // document.querySelector('table').scrollTop = 0;
+  // document.getElementById('historyTable').scrollTo(0,0);
+  // document.getElementById('historyData').scrollTo(0,0);
   document.getElementById('tableHeaderRow').classList.remove('hidden');
   // console.trace();
 }
@@ -1303,7 +1308,7 @@ function sortHistoryTable(sortColumn) {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
-      <th scope="row">${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
+      <th scope="row" id=${`sort${i}`}>${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
         <th scope="row" class='history-board-link' id='${sortedHistory[i].word}' onclick='createHistoryBoard(event)'>View</th>
@@ -1312,7 +1317,7 @@ function sortHistoryTable(sortColumn) {
     `
   }
   historyTableStyle();
-  document.getElementById('historyTable').scrollTop = 0;
+  document.getElementById('sort0').scrollIntoView();
   document.getElementById('tableHeaderRow').classList.remove('hidden');
 }
 
