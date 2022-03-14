@@ -1167,7 +1167,7 @@ function toggleDarkMode(storageDarkValue) {
     darkModeIconList[i].classList.toggle('darkmode-svg-toggle--white');
   }
   // focusCurrentTile();
-  createHistoryTable();
+  // createHistoryTable();
 }
 
 function setColorContrast() {
@@ -1369,7 +1369,6 @@ function createHistoryBoard(event) {
               name='selection'
               value='${historyBoardInput[x] ? historyBoardInput[x] : ''}'
               size='1'
-              disabled='disabled'
               data-status='start'
               style='text-transform:uppercase'>
     `;

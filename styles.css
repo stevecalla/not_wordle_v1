@@ -693,7 +693,7 @@ th, td {
 
 input[id^='idh'] {
   /* margin-right: 0.0rem; */
-  color: white;
+  /* color: white; */
 }
 
 .history-board-link {
