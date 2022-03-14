@@ -200,22 +200,18 @@ input[id^='idh'] {
 
 input[data-status='noMatch'] {
   color: white;
-  /* color: black; */
-  background-color: #787C7E;
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='match'] {
   color: white;
-  /* color: black; */
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='exactMatch'] {
   color: white;
-  /* color: black; */
   pointer-events: none;
   cursor: not-allowed;
 }
@@ -229,11 +225,6 @@ input[type=text][disabled][data-status='gameOver'] {
   width: 3.5rem;
   margin-right: 0.3rem;
   margin-bottom: 0.3rem;
-}
-
-input[id^='idh'] {
-  opacity: 1;
-  filter: grayscale(0);
 }
 
 input[type=text][data-status='start'] {

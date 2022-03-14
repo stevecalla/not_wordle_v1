@@ -91,6 +91,7 @@ function loadTasks() {
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
+  // createHistoryTable();
 
 
   // focusCurrentTile();
@@ -1374,10 +1375,13 @@ function createHistoryBoard(event) {
   for (let i = 0; i < 30; i++) {
     if (historyBoardInput[i] === wordPlayed[i % 5]) {
       document.getElementById('idh' + i).classList.add('contrast-toggle--exactMatch');
+      document.getElementById('idh' + i).setAttribute('data-status', 'exactMatch');
     } else if (wordPlayed.includes(historyBoardInput[i])) {
       document.getElementById('idh' + i).classList.add('contrast-toggle--match');
+      document.getElementById('idh' + i).setAttribute('data-status', 'match');
     } else {
       document.getElementById('idh' + i).classList.add('contrast-toggle--noMatch');
+      document.getElementById('idh' + i).setAttribute('data-status', 'noMatch');
     }
     // console.log(i % 5, historyBoardInput[i], wordPlayed[i % 5], document.getElementById('idh' + i).classList.value);
   }

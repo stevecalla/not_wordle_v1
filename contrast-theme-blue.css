@@ -27,14 +27,17 @@
 
 .contrast-toggle--noMatch {
   background-color: #787C7E;
+  color: white;
 }
 
 .contrast-toggle--match {
   background-color: #f5793a;
+  columns: white;
 }
 
 .contrast-toggle--exactMatch {
   background-color: #85c0f9;
+  color: white;
 }
 
 .contrast-toggle {
