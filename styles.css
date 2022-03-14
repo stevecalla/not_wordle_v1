@@ -195,23 +195,23 @@ input[id^='idh'] {
   border: thin solid black;
   border-radius: 0px;
   z-index: 4;
-  color: black;
+  /* color: black; */
 }
 
 input[data-status='noMatch'] {
-  color: white;
+  /* color: white; */
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='match'] {
-  color: white;
+  /* color: white; */
   pointer-events: none;
   cursor: not-allowed;
 }
 
 input[data-status='exactMatch'] {
-  color: white;
+  /* color: white; */
   pointer-events: none;
   cursor: not-allowed;
 }

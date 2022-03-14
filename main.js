@@ -187,6 +187,7 @@ function hideInstructions() {
   // document.getElementById('id0').blur();
   // focusCurrentTile();
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('tableHeaderRow').classList.add('hidden');
 }
 
 // SECTION CREATE SOLUTION
@@ -319,9 +320,9 @@ function inputText(event) {
   keyCode = event.keyCode;
   // console.log(event.key, event.value, event);
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
-    let test2 = allInput.length;
+    // let test2 = allInput.length;
     // console.log(test2);
-    let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
+    // let test = 'length=' + test2 + ', a= id' + allInput.length + ', b1 =' + test2 + ', b=' + allInput[0] + ', c=' + key;
     // console.log(test)
     // window.alert(test);
     // window.alert('move update on screen out of the if statement');
@@ -599,7 +600,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
   setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));   
   createGameStatsMenu(); 
   resetCurrentInput();
-  createHistoryTable();
+  // createHistoryTable();
 }
 
 function resetCurrentInput() {
@@ -1177,6 +1178,8 @@ function setColorContrast() {
       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--exactMatch');
     } else if (solution.includes(allInput[startRowTile + i])) {
       document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--match');
+    } else {
+      document.getElementById('id' + (startRowTile + i)).classList.add('contrast-toggle--noMatch');
     }
   }
   // console.trace();
