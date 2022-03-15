@@ -68,7 +68,8 @@ document.addEventListener('dblclick', function (e) {
 //functions and event handlers go here 👇
 // SECTION LOAD TASKS
 function loadTasks() {
-  window.scrollTo(0, 0);
+  document.getElementById('header').scrollIntoView({behavior: "auto", block: "end", inline: "nearest"});
+  // window.scrollTo(0, 0);
   // window.moveTo(0, 142);
   console.log(window);
   // currentFocus();
@@ -177,9 +178,11 @@ function populateInstructionTiles() {
 function hideInstructions() {
   // document.getElementById('instructionWrapper').innerHTML = ``;
   document.getElementById('instructionWrapper').classList.toggle('hidden');
+
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  } //todo disabled //section
+
   // document.querySelector('.input-wrapper').classList.remove('hidden');
   // document.querySelector('.keyboard-wrapper').classList.remove('hidden');
 
@@ -244,22 +247,6 @@ function previousSolution(randomNumber, solution) {
 
 // SECTION CREATE GAME TILES
 function createGameTiles() {
-  // for (let i = 0; i < 30; i++) {
-  //   inputTilesRow1.innerHTML +=
-  //   `   
-  //     <div>
-  //       <input  type='text' 
-  //               id=${`id${i}`}
-  //               maxlength='1'
-  //               name='selection'
-  //               value=''
-  //               size='1'
-  //               disabled='disabled'
-  //               data-status='start'
-  //               style='text-transform:uppercase' >
-  //     </div>
-  //   `;
-  // }
   for (let i = 0; i < 30; i++) {
     inputTilesRow1.innerHTML +=
     `   
@@ -290,7 +277,7 @@ function createOnscreenKeyboard() {
         class='keyboard-button' 
         id='keyboard${[i]}' 
         type='button' 
-        value=${qwertyKeys[i]} 
+        value=${qwertyKeys[i]}
         onClick=inputText(this)>
         ${qwertyKeys[i]}
       </button>
@@ -871,14 +858,14 @@ function hamburgerMenuShowHide() {
 
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  } //todo disabled //section
   
 }
 
 function statsMenuShowHide() { 
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  }  //todo disabled //section
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('solution').classList.add('hidden');
   document.getElementById('definition').classList.add('hidden');
@@ -892,9 +879,9 @@ function statsMenuShowHide() {
   document.getElementById('copyNotification').classList.add('hidden');
   
   document.getElementById('createGameStatsMenu').classList.toggle('hidden');
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  // for (let i = 0; i < 30; i++) {
+  //   document.getElementById('id' + (i)).removeAttribute('disabled');
+  // } //todo disabled //section
   // console.trace();
   createGameStatsMenu();
 }
@@ -975,7 +962,7 @@ function copyGameBoardButton() {
 
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  } //todo disabled //section
 
 
   copyToClipboard('body');
@@ -1109,9 +1096,9 @@ function displayGameHistory() {
   document.getElementById('definition').classList.add('hidden');
   document.getElementById('createGameStatsMenu').classList.add('hidden');
 
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
+  // for (let i = 0; i < 30; i++) {
+  //   document.getElementById('id' + (i)).removeAttribute('disabled');
+  // } //todo disabled //section
 
   document.getElementById('toggleInstructionsOffIcon').classList.remove('hidden');
   document.getElementById('toggleInstructionsOnIcon').classList.add('hidden');
@@ -1282,6 +1269,10 @@ function createHistoryTable() {
   `
   historyTableStyle();
   document.getElementById('tableHeaderRow').classList.remove('hidden');
+
+  for (let x = 0; x < 30; x++) {
+    document.getElementById('id' + (x)).setAttribute('disabled', 'disabled');
+  }
 }
 
 function sortHistoryTable(sortColumn) {
@@ -1392,14 +1383,14 @@ function createHistoryBoard(event) {
   document.getElementById('historyBoardWrapper').classList.remove('hidden');
   document.getElementById('historyTable').classList.add('hidden');
   document.getElementById('instructionWrapper').classList.add('hidden');
-
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  }
 }
 
 function hideHistoryBoard() {
   document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('historyTable').classList.remove('hidden') : document.getElementById('historyTable').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('tableHeaderRow').classList.add('hidden') : document.getElementById('tableHeaderRow').classList.remove('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
 }
