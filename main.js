@@ -221,6 +221,11 @@ function hideInstructions() {
   // focusCurrentTile();
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('tableHeaderRow').classList.add('hidden');
+
+  document.getElementById('historyBoardWrapper').classList.add('hidden');
+  document.getElementById('historyTable').classList.add('hidden');
+  document.getElementById('tableHeaderRow').classList.add('hidden');
+
 }
 
 // SECTION CREATE SOLUTION
@@ -897,6 +902,9 @@ function hamburgerMenuShowHide() {
     document.getElementById('id' + (i)).removeAttribute('disabled');
   } //todo disabled //section
   
+  document.getElementById('historyBoardWrapper').classList.add('hidden');
+  document.getElementById('historyTable').classList.add('hidden');
+  document.getElementById('tableHeaderRow').classList.add('hidden');
 }
 
 function statsMenuShowHide() { 
