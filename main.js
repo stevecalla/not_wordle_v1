@@ -104,17 +104,17 @@ function loadTasks() {
 
     for (let i = 0; i < localStats.wordPlayed.length; i++) {
       gameStats.wordPlayed.push({
-        'orderPlayed': localStats.wordPlayed[i].orderPlayed || i,
-        'solutionNumber': localStats.wordPlayed[i].solutionNumber || undefined,
-        'solution': localStats.wordPlayed[i].solution || undefined,
-        'word': localStats.wordPlayed[i].word || undefined,
-        'datePlayed': localStats.wordPlayed[i].datePlayed || undefined,
+        'orderPlayed': localStats.wordPlayed[i].orderPlayed ?? i,
+        'solutionNumber': localStats.wordPlayed[i].solutionNumber ?? 'data missing',
+        'solution': localStats.wordPlayed[i].solution ?? 'data mising',
+        'word': localStats.wordPlayed[i].word ?? 'data mising',
+        'datePlayed': localStats.wordPlayed[i].datePlayed ?? 'data mising',
         // 'datePlayedShort': localStats.wordPlayed[i].datePlayedShort || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
         'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
-        'selectedCount': localStats.wordPlayed[i].selectedCount || undefined,
-        'playedCount': localStats.wordPlayed[i].playedCount || undefined,
-        'winCount': localStats.wordPlayed[i].winCount || 0,
-        'boardInput': localStats.wordPlayed[i].boardInput || undefined,
+        'selectedCount': localStats.wordPlayed[i].selectedCount ?? 'data missing',
+        'playedCount': localStats.wordPlayed[i].playedCount ?? 'data missing',
+        'winCount': localStats.wordPlayed[i].winCount ?? 0,
+        'boardInput': localStats.wordPlayed[i].boardInput ?? 'data missing',
       })
     }
   }
