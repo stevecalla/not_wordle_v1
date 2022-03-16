@@ -125,7 +125,7 @@ function loadTasks() {
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
-  // createHistoryTable();
+  createHistoryTable();
   // document.getElementById('tableHeaderRow').classList.remove('hidden');
   // focusCurrentTile();
   // let currentElement = document.getElementById('id0');
@@ -1110,13 +1110,18 @@ function copyToClipboard(element) {
   }
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.add('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.add('hidden') : null;
-  document.getElementById('historyTable') ? document.getElementById('historyTable').classList.add('hidden') : null;
+  element !== 'historyTable' ? document.getElementById('historyTable').classList.add('hidden') : null;
+  document.getElementById('historyTable') ? document.getElementById('tableHeaderRow').classList.add('hidden') : null;
   document.execCommand('copy');
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.remove('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.remove('hidden') : null;
   // document.getElementById('statsButtons').classList.remove('hidden');
   // document.getElementById('clickToHideX').classList.remove('hidden');
+
+
   window.getSelection().removeAllRanges();
+
+
   // document.getElementById("btn").value="Copied";
 
   // document.getElementById('copyNotification').innerText = 'Screen Capture Copied To Clipboard';
@@ -1309,7 +1314,7 @@ function createHistoryTable() {
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
       <th></th>
-      <th></th>
+      <th><button onclick="copyToClipboard('historyTable')">Copy</button></th>
     </tr>
   `
   historyTableStyle();
