@@ -594,6 +594,7 @@ input[type=text][data-status='start'] {
 /*-------- HISTORY TABLE ---------------*/
 .history-table {
   display: flex;
+  /* display: block; */
   /* justify-content: center; */
   /* height: 375px; */
   /* overflow: auto; */
@@ -606,6 +607,7 @@ input[type=text][data-status='start'] {
   align-items: center;
   flex-direction: column;
   table-layout: fixed;
+  align-items: baseline;
 }
 
 .table-header-row {
@@ -683,7 +685,7 @@ th, td {
   border: 1px solid black;
   padding:4px 6px;
   text-align: center;
-  font-size: 15px;
+  font-size: 12px;
 }
 
 .history-board-wrapper {
@@ -820,6 +822,7 @@ input[id^='idh'] {
   table {
     width: 265px;
     width: 280px;
+    width: 319px;
   }
 
   .table-header-row {
