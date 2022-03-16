@@ -1328,7 +1328,7 @@ function sortHistoryTable(sortColumn) {
       // names must be equal
       return 0;
     })
-    alert('testing date sort')
+    // alert('testing date sort')
   } else {
     sortedHistory = [...wordPlayedHistory].sort(function(a, b) {
       if (a[sortColumn] < b[sortColumn]) {
