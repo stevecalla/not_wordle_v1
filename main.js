@@ -69,40 +69,67 @@ document.addEventListener('dblclick', function (e) {
 // SECTION LOAD TASKS
 function loadTasks() {
   document.getElementById('header').scrollIntoView({behavior: "auto", block: "end", inline: "nearest"});
-  // window.scrollTo(0, 0);
-  // window.moveTo(0, 142);
-  console.log(window);
-  // currentFocus();
   createGameInstruction();
-  // createGameTiles();
   createOnscreenKeyboard();
   createHamburgerMenu();
   
   // console.log('0=', gameStats, localStorage.getItem('gameStats'));
-  
+  console.log('0=', gameStats);
+
   if (localStorage.getItem('gameStats') === null) {
-    // console.log('1');
+    console.log('1');
     localStorage.setItem('gameStats', JSON.stringify(gameStats));
   } else {
     // console.log('2 localstorage', gameStats, localStorage.getItem('gameStats'));
-    gameStats = JSON.parse(localStorage.getItem('gameStats'));
+
+    // gameStats = JSON.parse(localStorage.getItem('gameStats'));
     console.log('b=', gameStats)
+
+    // console.log('2');
+    let localStats = JSON.parse(localStorage.getItem('gameStats'));
+    console.log('localStats=', localStats, localStats.wordPlayed.length);
+    // console.log('gameStats=', gameStats);
+
+    gameStats.gameCount = localStats.gameCount === localStats.wordPlayed.length + 1 ? localStats.gameCount : localStats.wordPlayed.length + 1;
+    gameStats.winCount = localStats.winCount
+    gameStats.winPercent = localStats.winPercent
+    gameStats.darkMode = localStats.darkMode
+    gameStats.contrastMode = localStats.contrastMode
+    gameStats.row1 = localStats.row1
+    gameStats.row2 = localStats.row2
+    gameStats.row3 = localStats.row3
+    gameStats.row4 = localStats.row4
+    gameStats.row5 = localStats.row5
+    gameStats.row6 = localStats.row6
+
+    for (let i = 0; i < localStats.wordPlayed.length; i++) {
+      gameStats.wordPlayed.push({
+        'orderPlayed': localStats.wordPlayed[i].orderPlayed || i,
+        'solutionNumber': localStats.wordPlayed[i].solutionNumber || undefined,
+        'solution': localStats.wordPlayed[i].solution || undefined,
+        'word': localStats.wordPlayed[i].word || undefined,
+        'datePlayed': localStats.wordPlayed[i].datePlayed || undefined,
+        'datePlayedShort': localStats.wordPlayed[i].datePlayedShort || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        'selectedCount': localStats.wordPlayed[i].selectedCount || undefined,
+        'playedCount': localStats.wordPlayed[i].playedCount || undefined,
+        'winCount': localStats.wordPlayed[i].winCount || 0,
+        'boardInput': localStats.wordPlayed[i].boardInput || undefined,
+      })
+    }
   }
   
   createGameSolution();
+  // console.log('1=', gameStats);
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
   // createHistoryTable();
   // document.getElementById('tableHeaderRow').classList.remove('hidden');
-
   // focusCurrentTile();
-
   // let currentElement = document.getElementById('id0');
   // document.activeElement = currentElement;
   // document.getElementById('id0').focus();
-
   // createGameStatsMenu();
 }
 
@@ -204,11 +231,19 @@ function createGameSolution() {
   // console.log(wordList.length);
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
+let dateString = Date();
+let date = new Date(dateString).toLocaleDateString('en-US');
+let time = new Date(dateString).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+let timeZone = /.*\(([^)]*)\)/.exec(dateString)[1].match(/[A-Z]/g).join('');
+let dateShort = date + ' ' + time + ' ' + timeZone;
+let dateOnly = date;
+// console.log(dateString, dateShort);
+
   if (gameStats.wordPlayed.length >= 1) {
-    previousSolution(randomNumber, solution);
+    previousSolution(randomNumber, solution, dateString, dateOnly);
   } else {
     // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
-    gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
+    gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
     gameStats.wordPlayed[0].selectedCount ++;
     gameStats.wordPlayed[0].playedCount ++;
     setLocalStorage('wordPlayed');
@@ -219,9 +254,10 @@ function createGameSolution() {
   // formatSolution();
 }
 
-function previousSolution(randomNumber, solution) {
+function previousSolution(randomNumber, solution, dateString, dateOnly) {
 
-  gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
+  gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
+  // gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
   // console.log(gameStats.wordPlayed.length);
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
     // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
