@@ -109,7 +109,8 @@ function loadTasks() {
         'solution': localStats.wordPlayed[i].solution || undefined,
         'word': localStats.wordPlayed[i].word || undefined,
         'datePlayed': localStats.wordPlayed[i].datePlayed || undefined,
-        'datePlayedShort': localStats.wordPlayed[i].datePlayedShort || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        // 'datePlayedShort': localStats.wordPlayed[i].datePlayedShort || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
         'selectedCount': localStats.wordPlayed[i].selectedCount || undefined,
         'playedCount': localStats.wordPlayed[i].playedCount || undefined,
         'winCount': localStats.wordPlayed[i].winCount || 0,
@@ -232,8 +233,8 @@ function createGameSolution() {
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
 let dateString = Date();
-let date = new Date(dateString).toLocaleDateString('en-US');
-let time = new Date(dateString).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit' });
+let date = new Date(dateString).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'});
+let time = new Date(dateString).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit'});
 let timeZone = /.*\(([^)]*)\)/.exec(dateString)[1].match(/[A-Z]/g).join('');
 let dateShort = date + ' ' + time + ' ' + timeZone;
 let dateOnly = date;

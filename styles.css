@@ -820,8 +820,8 @@ input[id^='idh'] {
   }
 
   table {
-    width: 265px;
-    width: 280px;
+    /* width: 265px;
+    width: 280px; */
     width: 319px;
   }
 
