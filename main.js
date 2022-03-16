@@ -1315,16 +1315,31 @@ function createHistoryTable() {
 function sortHistoryTable(sortColumn) {
   console.log(sortColumn);
   let wordPlayedHistory = gameStats.wordPlayed;
-  let sortedHistory = [...wordPlayedHistory].sort(function(a, b) {
-    if (a[sortColumn] < b[sortColumn]) {
-      return -1;
-    }
-    if (a[sortColumn] > b[sortColumn]) {
-      return 1;
-    }
-    // names must be equal
-    return 0;
-  })
+  let sortedHistory = [];
+
+  if (sortColumn === 'datePlayed') {
+    sortedHistory = [...wordPlayedHistory].sort(function(a, b) {
+      if (new Date(a[sortColumn]) < new Date(b[sortColumn])) {
+        return -1;
+      }
+      if (new Date(a[sortColumn]) > new Date(b[sortColumn])) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    })
+  } else {
+    sortedHistory = [...wordPlayedHistory].sort(function(a, b) {
+      if (a[sortColumn] < b[sortColumn]) {
+        return -1;
+      }
+      if (a[sortColumn] > b[sortColumn]) {
+        return 1;
+      }
+      // names must be equal
+      return 0;
+    })
+  }
 
   sortColumn === 'winCount' || sortColumn === 'playedCount' ? sortedHistory.reverse() : sortedHistory;
 
