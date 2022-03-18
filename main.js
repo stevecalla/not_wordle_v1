@@ -1074,38 +1074,38 @@ function copyGameBoardButton() {
   document.querySelector('.spacer2').classList.remove('hidden');
 }
 
-function copyHistoryTableButton(element) {
-  document.querySelector('.spacer1').classList.add('hidden');
-  document.querySelector('.spacer2').classList.add('hidden');
+// function copyHistoryTableButton(element) {
+//   document.querySelector('.spacer1').classList.add('hidden');
+//   document.querySelector('.spacer2').classList.add('hidden');
 
-  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
-  document.getElementById('solution').classList.add('hidden');
-  document.getElementById('definition').classList.add('hidden');
-  document.getElementById('inputTilesRow1').classList.add('hidden');
-  document.getElementById('instructionWrapper').classList.add('hidden');
-  document.getElementById('confettiWrapper').classList.add('hidden');
-  document.getElementById('createGameStatsMenu').classList.add('hidden');
-  document.getElementById('copyNotification').classList.add('hidden');
-  document.getElementById('tableHeaderRow').classList.add('hidden');
-  document.getElementById('excelButton').classList.add('hidden');
-  document.getElementById('historyButton').classList.add('hidden');
-  document.getElementById('keyboardWrapper').classList.add('hidden');
+//   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+//   document.getElementById('solution').classList.add('hidden');
+//   document.getElementById('definition').classList.add('hidden');
+//   document.getElementById('inputTilesRow1').classList.add('hidden');
+//   document.getElementById('instructionWrapper').classList.add('hidden');
+//   document.getElementById('confettiWrapper').classList.add('hidden');
+//   document.getElementById('createGameStatsMenu').classList.add('hidden');
+//   document.getElementById('copyNotification').classList.add('hidden');
+//   document.getElementById('tableHeaderRow').classList.add('hidden');
+//   document.getElementById('excelButton').classList.add('hidden');
+//   document.getElementById('historyButton').classList.add('hidden');
+//   document.getElementById('keyboardWrapper').classList.add('hidden');
 
-  copyToClipboard(element);
+//   copyToClipboard(element);
 
-  document.getElementById('header').classList.remove('hidden');
-  document.querySelector('.spacer1').classList.remove('hidden');
-  document.querySelector('.spacer2').classList.remove('hidden');
-  document.getElementById('excelButton').classList.remove('hidden');
-  document.getElementById('historyButton').classList.remove('hidden');
-  document.getElementById('keyboardWrapper').classList.remove('hidden');
-  document.getElementById('tableHeaderRow').classList.remove('hidden');
-  document.getElementById('inputTilesRow1').classList.add('hidden');
+//   document.getElementById('header').classList.remove('hidden');
+//   document.querySelector('.spacer1').classList.remove('hidden');
+//   document.querySelector('.spacer2').classList.remove('hidden');
+//   document.getElementById('excelButton').classList.remove('hidden');
+//   document.getElementById('historyButton').classList.remove('hidden');
+//   document.getElementById('keyboardWrapper').classList.remove('hidden');
+//   document.getElementById('tableHeaderRow').classList.remove('hidden');
+//   document.getElementById('inputTilesRow1').classList.add('hidden');
 
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  } //todo disabled //section
-}
+//   for (let i = 0; i < 30; i++) {
+//     document.getElementById('id' + (i)).removeAttribute('disabled');
+//   } //todo disabled //section
+// }
 
 function copyToClipboard(element) {
   let range, selection;
@@ -1113,7 +1113,7 @@ function copyToClipboard(element) {
   console.log(element, element === 'historyTable');
 
   // element === 'historyTable' ? element = 'body' : element;
-  alert('history table copy')
+  alert('history table copy 2')
 
   let referenceNode = document.getElementById(element);
   
@@ -1335,7 +1335,7 @@ function createHistoryTable() {
       <th>Total</th>
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
-      <th><button id='excelButton' onclick="copyHistoryTableButton('historyTable')">Excel</button></th>
+      <th><button id='historyButton' onclick="exportTableToExcel('tblData')">Excel</button></th>
       <th><button id='historyButton' onclick="copyToClipboard('historyTable')">Copy</button></th>
     </tr>
   `
@@ -1348,6 +1348,7 @@ function createHistoryTable() {
   }
 }
 
+{/* <th><button id='excelButton' onclick="copyHistoryTableButton('historyTable')">Excel</button></th> */}
 {/* <th><button id='historyButton' onclick="exportTableToExcel('tblData')">Excel</button></th> */}
 
 function sortHistoryTable(sortColumn) {
@@ -1486,7 +1487,7 @@ function hideHistoryBoard() {
   }
 }
 
-//SECTION
+//SECTION EXPORT TO EXCEL
 
 // var exportTableToExcel = (function() {
 //   var uri = 'data:application/vnd.ms-excel;base64,'
