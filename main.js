@@ -979,47 +979,6 @@ function definitionButton() {
   // focusCurrentTile();
 } 
 
-function copyGameBoardButton() {
-  // let currentRow = Math.floor(allInput.length / 5);
-  // let greenYellowBoard = `${currentRow}/6\n${currentEmojiBoard}`;
-  // let blueOrangeBoard = `${currentRow}/6\n${currentEmojiBoard2}`;
-  // const contrastModeCSS = document.querySelector("#contrastMode-link");
-  // if (currentRow != 0) {
-  //   try {
-  //     let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
-  //     navigator.clipboard.writeText(gameBoard).then(()=>{alert(`"Copied to clipboard!"\n${gameBoard}`)});
-  //   } catch (err) {
-  //     console.error("Share failed:", err.message);
-  //   }
-  // }
-
-  // statsMenuShowHide();
-
-  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
-  document.getElementById('solution').classList.add('hidden');
-  document.getElementById('definition').classList.add('hidden');
-  document.getElementById('createGameStatsMenu').classList.add('hidden');
-  document.getElementById('instructionWrapper').classList.add('hidden');
-  document.getElementById('confettiWrapper').classList.add('hidden');
-  document.querySelector('.spacer1').classList.add('hidden');
-  document.querySelector('.spacer2').classList.add('hidden');
-  // document.getElementById('copyNotification').classList.add('hidden');
-
-  for (let i = 0; i < 30; i++) {
-    document.getElementById('id' + (i)).removeAttribute('disabled');
-  } //todo disabled //section
-
-
-  copyToClipboard('body');
-
-
-  document.querySelector('.spacer1').classList.remove('hidden');
-  document.querySelector('.spacer2').classList.remove('hidden');
-
-  // copyToClipboard2();
-  // focusCurrentTile();
-}
-
 function createGameStatsMenu() {
   let percentage = Math.round(gameStats.winPercent * 100) ? Math.round(gameStats.winPercent * 100) : '0';
   // let currentRow = Math.floor(allInput.length / 5);
@@ -1091,10 +1050,74 @@ function createGameStatsMenu() {
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
+function copyGameBoardButton() {
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  document.getElementById('createGameStatsMenu').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
+  document.querySelector('.spacer1').classList.add('hidden');
+  document.querySelector('.spacer2').classList.add('hidden');
+  // document.getElementById('copyNotification').classList.add('hidden');
+  document.getElementById('tableHeaderRow').classList.add('hidden');
+  document.getElementById('historyTable').classList.add('hidden');
+  // document.getElementById('historyButton').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  } //todo disabled //section
+
+  copyToClipboard('body');
+
+  document.querySelector('.spacer1').classList.remove('hidden');
+  document.querySelector('.spacer2').classList.remove('hidden');
+}
+
+function copyHistoryTableButton(element) {
+  document.querySelector('.spacer1').classList.add('hidden');
+  document.querySelector('.spacer2').classList.add('hidden');
+
+  document.getElementById('hamburgerPopupMenu').classList.add('hidden');
+  document.getElementById('solution').classList.add('hidden');
+  document.getElementById('definition').classList.add('hidden');
+  document.getElementById('inputTilesRow1').classList.add('hidden');
+  document.getElementById('instructionWrapper').classList.add('hidden');
+  document.getElementById('confettiWrapper').classList.add('hidden');
+  document.getElementById('createGameStatsMenu').classList.add('hidden');
+  document.getElementById('copyNotification').classList.add('hidden');
+  document.getElementById('tableHeaderRow').classList.add('hidden');
+  document.getElementById('excelButton').classList.add('hidden');
+  document.getElementById('historyButton').classList.add('hidden');
+  document.getElementById('keyboardWrapper').classList.add('hidden');
+
+  copyToClipboard(element);
+
+  document.getElementById('header').classList.remove('hidden');
+  document.querySelector('.spacer1').classList.remove('hidden');
+  document.querySelector('.spacer2').classList.remove('hidden');
+  document.getElementById('excelButton').classList.remove('hidden');
+  document.getElementById('historyButton').classList.remove('hidden');
+  document.getElementById('keyboardWrapper').classList.remove('hidden');
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
+  document.getElementById('inputTilesRow1').classList.add('hidden');
+
+  for (let i = 0; i < 30; i++) {
+    document.getElementById('id' + (i)).removeAttribute('disabled');
+  } //todo disabled //section
+}
+
 function copyToClipboard(element) {
   let range, selection;
+
+  console.log(element, element === 'historyTable');
+
+  // element === 'historyTable' ? element = 'body' : element;
+
   let referenceNode = document.getElementById(element);
-  console.log(referenceNode);
+  
+  console.log(element, referenceNode);
+
 
   if (document.body.createTextRange) {
     console.log('1=', document.body.createTextRange);
@@ -1110,13 +1133,9 @@ function copyToClipboard(element) {
   }
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.add('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.add('hidden') : null;
-  element !== 'historyTable' ? document.getElementById('historyTable').classList.add('hidden') : null;
-  document.getElementById('historyTable') ? document.getElementById('tableHeaderRow').classList.add('hidden') : null;
-  element === 'historyTable' ? document.getElementById('historyButton').classList.add('hidden') : null;
   document.execCommand('copy');
   document.getElementById('statsButtons') ? document.getElementById('statsButtons').classList.remove('hidden') : null;
   document.getElementById('clickToHideX') ? document.getElementById('clickToHideX').classList.remove('hidden') : null;
-  element === 'historyTable' ? document.getElementById('historyButton').classList.remove('hidden') : null;
   // document.getElementById('statsButtons').classList.remove('hidden');
   // document.getElementById('clickToHideX').classList.remove('hidden');
 
@@ -1273,7 +1292,7 @@ function focusCurrentTile() {
 function createHistoryTable() {
   document.getElementById('historyTable').innerHTML =
   `
-    <table>
+    <table id='testExport'>
       <thead class='history-header' id='historyHeader'></thead>
       <tbody class='history-data' id='historyData'></tbody>
       <tfoot class='history-footer' id='historyFooter'></tfoot>
@@ -1315,17 +1334,20 @@ function createHistoryTable() {
       <th>Total</th>
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
-      <th></th>
+      <th><button id='excelButton' onclick="copyHistoryTableButton('historyTable')">Excel</button></th>
       <th><button id='historyButton' onclick="copyToClipboard('historyTable')">Copy</button></th>
     </tr>
   `
   historyTableStyle();
   document.getElementById('tableHeaderRow').classList.remove('hidden');
+  document.getElementById('inputTilesRow1').classList.add('hidden');
 
   for (let x = 0; x < 30; x++) {
     document.getElementById('id' + (x)).setAttribute('disabled', 'disabled');
   }
 }
+
+{/* <th><button id='historyButton' onclick="exportTableToExcel('tblData')">Excel</button></th> */}
 
 function sortHistoryTable(sortColumn) {
   console.log(sortColumn);
@@ -1460,5 +1482,55 @@ function hideHistoryBoard() {
 
   for (let i = 0; i < 30; i++) {
     document.getElementById('id' + (i)).removeAttribute('disabled');
+  }
+}
+
+//SECTION
+
+// var exportTableToExcel = (function() {
+//   var uri = 'data:application/vnd.ms-excel;base64,'
+//     , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><?xml version="1.0" encoding="UTF-8" standalone="yes"?><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
+//     , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
+//     , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) };
+//   return function(table, name) {
+//       console.log(table, name);
+//       // if (!table.nodeType) 
+//       table = document.getElementById('historyTable');
+//       var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
+//     window.location.href = uri + base64(format(template, ctx));
+//   };
+// })();
+
+function exportTableToExcel(tableID, filename = ''){
+  var downloadLink;
+  var dataType = 'application/vnd.ms-excel';
+  var tableSelect = document.getElementById(tableID);
+  console.log(tableSelect);
+  // var tableHTML2 = tableSelect.outerHTML;
+  var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
+  console.log(tableHTML)
+  
+  // Specify file name
+  filename = filename?filename+'.xls':'excel_data.xls';
+  
+  // Create download link element
+  downloadLink = document.createElement("a");
+  
+  document.body.appendChild(downloadLink);
+  
+  if(navigator.msSaveOrOpenBlob){
+      var blob = new Blob(['\ufeff', tableHTML], {
+          type: dataType
+      });
+      navigator.msSaveOrOpenBlob( blob, filename);
+  }else{
+      // Create a link to the file
+      downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
+  
+      // Setting the file name
+      downloadLink.download = filename;
+      
+      //triggering the function
+      downloadLink.click();
   }
 }
