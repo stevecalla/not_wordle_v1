@@ -1303,12 +1303,12 @@ function createHistoryTable() {
   document.getElementById('historyHeader').innerHTML =
   `
     <tr>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('orderPlayed')">Order</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('word')">Word</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('playedCount')">Played</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('winCount')">Win/%</th>
-      <th class='table-header' rowspan="2">Game Board</th>
-      <th class='table-header' rowspan="2" onclick="sortHistoryTable('datePlayed')">Date</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('orderPlayed')">Order</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('word')">Word</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('playedCount')">Played</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('winCount')">Win/%</th>
+      <th class='table-header' rowspan="1">Game Board</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('datePlayed')">Date</th>
   </tr>
   `
   document.getElementById('historyData').innerHTML = '';
@@ -1316,12 +1316,12 @@ function createHistoryTable() {
     document.getElementById('historyData').innerHTML +=
     `
       <tr>
-        <th scope="row">${gameStats.wordPlayed[i].orderPlayed}</th>
-        <th scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</th>
+        <td scope="row">${gameStats.wordPlayed[i].orderPlayed}</td>
+        <td scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</td>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
-        <th scope="row">${gameStats.wordPlayed[i].winCount}</th>
-        <th scope="row" class='history-board-link' id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>View</th>
-        <th>${gameStats.wordPlayed[i].datePlayedShort}</th>
+        <td scope="row">${gameStats.wordPlayed[i].winCount}</td>
+        <td scope="row" class='history-board-link' id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>View</td>
+        <td>${gameStats.wordPlayed[i].datePlayedShort}</td>
       </tr>
     `
   }
@@ -1335,7 +1335,7 @@ function createHistoryTable() {
       <th>Total</th>
       <th>${gameStats.gameCount}</th>
       <th>${winCountPercent}</th>
-      <th><button id='historyButton' onclick="exportTableToExcel('tblData')">Excel</button></th>
+      <th><button id='historyButton' onclick="exportTableToExcel('historyTable')">Excel</button></th>
       <th><button id='historyButton' onclick="copyToClipboard('historyTable')">Copy</button></th>
     </tr>
   `
@@ -1488,35 +1488,22 @@ function hideHistoryBoard() {
 }
 
 //SECTION EXPORT TO EXCEL
-
-// var exportTableToExcel = (function() {
-//   var uri = 'data:application/vnd.ms-excel;base64,'
-//     , template = '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:x="urn:schemas-microsoft-com:office:excel" xmlns="http://www.w3.org/TR/REC-html40"><head><!--[if gte mso 9]><?xml version="1.0" encoding="UTF-8" standalone="yes"?><x:ExcelWorkbook><x:ExcelWorksheets><x:ExcelWorksheet><x:Name>{worksheet}</x:Name><x:WorksheetOptions><x:DisplayGridlines/></x:WorksheetOptions></x:ExcelWorksheet></x:ExcelWorksheets></x:ExcelWorkbook></xml><![endif]--></head><body><table>{table}</table></body></html>'
-//     , base64 = function(s) { return window.btoa(unescape(encodeURIComponent(s))) }
-//     , format = function(s, c) { return s.replace(/{(\w+)}/g, function(m, p) { return c[p]; }) };
-//   return function(table, name) {
-//       console.log(table, name);
-//       // if (!table.nodeType) 
-//       table = document.getElementById('historyTable');
-//       var ctx = { worksheet: name || 'Worksheet', table: table.innerHTML };
-//     window.location.href = uri + base64(format(template, ctx));
-//   };
-// })();
-
-function exportTableToExcel(tableID, filename = ''){
+function exportTableToExcel(tableID, filename = '') {
   var downloadLink;
   var dataType = 'application/vnd.ms-excel';
+  // var dataType = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
   var tableSelect = document.getElementById(tableID);
-  console.log(tableSelect);
-  // var tableHTML2 = tableSelect.outerHTML;
+  // console.log(tableSelect);
   var tableHTML = tableSelect.outerHTML.replace(/ /g, '%20');
-  console.log(tableHTML)
+  // console.log(tableHTML)
   
   // Specify file name
-  filename = filename?filename+'.xls':'excel_data.xls';
+  filename = filename ? filename+'.xls' : 'excel_data.xls';
+  // filename = filename ? filename+'.xls' : 'excel_data.xls';
   
   // Create download link element
   downloadLink = document.createElement("a");
+  console.log(downloadLink);
   
   document.body.appendChild(downloadLink);
   
@@ -1524,8 +1511,8 @@ function exportTableToExcel(tableID, filename = ''){
       var blob = new Blob(['\ufeff', tableHTML], {
           type: dataType
       });
-      navigator.msSaveOrOpenBlob( blob, filename);
-  }else{
+      navigator.msSaveOrOpenBlob(blob, filename);
+  } else {
       // Create a link to the file
       downloadLink.href = 'data:' + dataType + ', ' + tableHTML;
   
