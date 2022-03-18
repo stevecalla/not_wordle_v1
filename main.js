@@ -1113,6 +1113,7 @@ function copyToClipboard(element) {
   console.log(element, element === 'historyTable');
 
   // element === 'historyTable' ? element = 'body' : element;
+  alert('history table copy')
 
   let referenceNode = document.getElementById(element);
   
