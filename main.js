@@ -104,7 +104,7 @@ function loadTasks() {
 
     for (let i = 0; i < localStats.wordPlayed.length; i++) {
       gameStats.wordPlayed.push({
-        'orderPlayed': localStats.wordPlayed[i].orderPlayed ?? i,
+        'orderPlayed': i + 1 ?? localStats.wordPlayed[i].orderPlayed,
         'solutionNumber': localStats.wordPlayed[i].solutionNumber ?? 'data missing',
         'solution': localStats.wordPlayed[i].solution ?? 'data mising',
         'word': localStats.wordPlayed[i].word ?? 'data mising',
@@ -115,6 +115,7 @@ function loadTasks() {
         'playedCount': localStats.wordPlayed[i].playedCount ?? 'data missing',
         'winCount': localStats.wordPlayed[i].winCount ?? 0,
         'boardInput': localStats.wordPlayed[i].boardInput ?? 'data missing',
+        'rowSolved': localStats.wordPlayed[i].winCount >= 1 ? Math.floor(localStats.wordPlayed[i].boardInput.length / 5) : 0,
       })
     }
   }
@@ -249,7 +250,7 @@ let dateOnly = date;
     previousSolution(randomNumber, solution, dateString, dateOnly);
   } else {
     // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
-    gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': []});
+    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
     gameStats.wordPlayed[0].selectedCount ++;
     gameStats.wordPlayed[0].playedCount ++;
     setLocalStorage('wordPlayed');
@@ -262,7 +263,7 @@ let dateOnly = date;
 
 function previousSolution(randomNumber, solution, dateString, dateOnly) {
 
-  gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
+  gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
   // gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
   // console.log(gameStats.wordPlayed.length);
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
@@ -398,6 +399,7 @@ function createInputString(key) {
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
     if (gameStats.wordPlayed[i].word === solution.join('')) {
       gameStats.wordPlayed[i].boardInput = allInput;
+      // gameStats.wordPlayed[i].rowSolved = Math.floor(gameStats.wordPlayed[i].boardInput.length / 5);
       setLocalStorage('wordPlayed');
     }
   }
@@ -492,6 +494,7 @@ function deleteInputText() {
     for (let i = 0; i < gameStats.wordPlayed.length; i++) {
       if (gameStats.wordPlayed[i].word === solution.join('')) {
         gameStats.wordPlayed[i].boardInput = allInput;
+        // gameStats.wordPlayed[i].rowSolved = Math.floor(gameStats.wordPlayed[i].boardInput.length / 5);
         setLocalStorage('wordPlayed');
       }
     }
@@ -611,6 +614,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
       if (gameStats.wordPlayed[i].word === solution.join('')) {
         // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
         gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
+        gameStats.wordPlayed[i].rowSolved = Math.floor(gameStats.wordPlayed[i].boardInput.length / 5);
         setLocalStorage('wordPlayed'); 
         // gameStats.wordPlayed[i].boardInput = allInput;
         // setLocalStorage('wordPlayed');
