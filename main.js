@@ -1015,6 +1015,7 @@ function createGameStatsMenu() {
     <div class='current-stats' id='currentStats'>
       <div class='gameBoard-wrapper' id='gameBoardWrapper'>
         <p class='current-game-text'>Game Board</p>
+        <p class='current-game-text'>#${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].solutionNumber}, ${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].rowSolved}/6</p>
         ${gameBoard}
       </div>
       <div class='spacer'></div>
@@ -1448,7 +1449,7 @@ function historyTableStyle() {
 function createHistoryBoard(event) {
   // console.log(event.target.id, event.target, event);
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
-    console.log(gameStats.wordPlayed[i].word === event.target.id, gameStats.wordPlayed[i].word, event.target.id)
+    // console.log(gameStats.wordPlayed[i].word === event.target.id, gameStats.wordPlayed[i].word, event.target.id)
     if (gameStats.wordPlayed[i].word === event.target.id) {
       historyBoardInput = gameStats.wordPlayed[i].boardInput;
       wordPlayed = event.target.id;
@@ -1535,14 +1536,14 @@ function exportTableToExcel(tableID, filename = '') {
   }
 }
 
-function testReturn() {
-  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
-  return randomNumber;
-}
+// function testReturn() {
+//   let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+//   return randomNumber;
+// }
 
-function testReturn2() {
-  let a = testReturn();
-  console.log(a);
-}
+// function testReturn2() {
+//   let a = testReturn();
+//   console.log(a);
+// }
 
-testReturn2();
+// testReturn2();
