@@ -126,8 +126,9 @@ function loadTasks() {
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
-  createHistoryTable();
-  document.getElementById('tableHeaderRow').classList.remove('hidden');
+  // createHistoryTable();
+  // document.getElementById('tableHeaderRow').classList.remove('hidden');
+
   // focusCurrentTile();
   // let currentElement = document.getElementById('id0');
   // document.activeElement = currentElement;
