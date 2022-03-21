@@ -23,12 +23,12 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode': false,
   'contrastMode': false,
-  'row1': 0,
-  'row2': 0,
-  'row3': 0,
-  'row4': 0,
-  'row5': 0,
-  'row6': 0,
+  // 'row1': 0,
+  // 'row2': 0,
+  // 'row3': 0,
+  // 'row4': 0,
+  // 'row5': 0,
+  // 'row6': 0,
   'allInput': [], //todo code add allInput array
   'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
   'maxWins': 0, //todo code create array of win streak and take max
@@ -125,6 +125,8 @@ function loadTasks() {
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
+
+  // createRowStats2();
 
   // createHistoryTable();
   // document.getElementById('tableHeaderRow').classList.remove('hidden');
@@ -511,14 +513,16 @@ function evaluateString(event) {
 function determineCurrentRow() {
   let startRowTile = ((allInput.length - 1) * 1 - 4);
   let endRowTile = (startRowTile + 4); //FIX delete endrow variable
-  let currentRow = ((allInput.length) / 5);
+  // let currentRow = ((allInput.length) / 5); //todo remove row stats global variable
   // if ((startRowTile + 5) < 29) {
   //   document.getElementById('id' + (startRowTile + 5)).focus();
   // } //todo
-  assignMatchStatus(startRowTile, endRowTile, currentRow);
+  // assignMatchStatus(startRowTile, endRowTile, currentRow);
+  assignMatchStatus(startRowTile, endRowTile); //todo remove row stats global variable
 }
 
-function assignMatchStatus(startRowTile, endRowTile, currentRow) {
+// function assignMatchStatus(startRowTile, endRowTile, currentRow) {
+function assignMatchStatus(startRowTile, endRowTile) { //todo remove row stats global variable
   let dataStatus = [];
   for (let i = 0; i < 5; i++) {
     if (allInput[startRowTile + i] === solution[i]) {
@@ -534,7 +538,8 @@ function assignMatchStatus(startRowTile, endRowTile, currentRow) {
     // console.log('status=', i, startRowTile, startRowTile + 5, currentInput[i], solution[i], document.getElementById('id' + (startRowTile + i)).dataset.status)
   }
   updateOnscreenKeyboard();
-  determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow);
+  // determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow);
+  determineWinStatus(startRowTile, endRowTile, dataStatus); //todo remove row stats global variable
 }
 
 function updateOnscreenKeyboard() {
@@ -586,10 +591,11 @@ function updateOnscreenKeyboardOnInput(key) {
   // focusCurrentTile();
 }
 
-function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
+// function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) { //todo remove row stats global variable
+function determineWinStatus(startRowTile, endRowTile, dataStatus) { //todo remove row stats global variable
   let winningCondition = !dataStatus.includes('match') && !dataStatus.includes('noMatch');
   let gameOverCondition = startRowTile + 4 === 29;
-  let currentRow2 = `row${currentRow}`;
+  // let currentRow2 = `row${currentRow}`; //todo remove row stats global variable
 
   if (winningCondition) {
     //TODO POPUP BOX WITH WINNER AND INFO... GAME BOARD
@@ -606,7 +612,7 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus, currentRow) {
     } else {
       // console.trace();
       setLocalStorage('winCount', (gameStats.winCount + 1));
-      setLocalStorage(currentRow2, (gameStats[currentRow2] + 1));
+      // setLocalStorage(currentRow2, (gameStats[currentRow2] + 1)); //todo remove row stats global variable
       setLocalStorage('winStreak', gameStats.winStreak + 1); 
       setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
     }
@@ -1040,10 +1046,27 @@ function createGameStatsMenu() {
     </div>
   `;
 
+  // for (let i = 1; i < 7; i++) {
+  //   let rowWinCount = `${gameStats['row' + i]}`
+  //   let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
+  //   let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`;
+  //   document.getElementById('progressBarWrapper').innerHTML += `
+  //     <p class='row-number'>${i}</p>
+  //     <div class='bar-wrapper'>
+  //       <div class='progress-bar2' style='width: ${rowWidth}px'>${rowWinCount}</div>
+  //     </div>
+  //     <p class='win-percent'>${rowWinPercent}</p> 
+  //   `
+  // }
+
+  let rowStats = createRowStats2();
+  // console.log(rowStats);
+
   for (let i = 1; i < 7; i++) {
-    let rowWinCount = `${gameStats['row' + i]}`
-    let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
-    let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`;
+    console.log(rowStats['row' + i]);
+    let rowWinCount = rowStats['row' + i];
+    let rowWidth = Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) ? Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) : 15;
+    let rowWinPercent = `${rowStats['row' + i] / rowStats.winCount ? Math.round((rowStats['row' + i] / rowStats.winCount) * 100) : '0'}%`;
     document.getElementById('progressBarWrapper').innerHTML += `
       <p class='row-number'>${i}</p>
       <div class='bar-wrapper'>
@@ -1051,9 +1074,26 @@ function createGameStatsMenu() {
       </div>
       <p class='win-percent'>${rowWinPercent}</p> 
     `
-  };
+  }
+
   // console.trace();
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
+}
+
+function createRowStats2() {
+  let rowStats = {'incompleteGame': 0, 'row1': 0, 'row2': 0, 'row3': 0, 'row4': 0, 'row5': 0, 'row6': 0, 'winCount': 0};
+  for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    gameStats.wordPlayed[i].rowSolved === 0 && (rowStats.incompleteGame ++);
+    gameStats.wordPlayed[i].rowSolved === 1 && (rowStats.row1 ++);
+    gameStats.wordPlayed[i].rowSolved === 2 && (rowStats.row2 ++);
+    gameStats.wordPlayed[i].rowSolved === 3 && (rowStats.row3 ++);
+    gameStats.wordPlayed[i].rowSolved === 4 && (rowStats.row4 ++);
+    gameStats.wordPlayed[i].rowSolved === 5 && (rowStats.row5 ++);
+    gameStats.wordPlayed[i].rowSolved === 6 && (rowStats.row6 ++);
+    gameStats.wordPlayed[i].rowSolved !== 0 && (rowStats.winCount ++);
+  }
+  // console.log(testObject2);
+  return rowStats;
 }
 
 function copyGameBoardButton() {
@@ -1536,6 +1576,8 @@ function exportTableToExcel(tableID, filename = '') {
   }
 }
 
+//SECTION TESTING FUNCTIONS
+
 // function testReturn() {
 //   let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
 //   return randomNumber;
@@ -1547,3 +1589,39 @@ function exportTableToExcel(tableID, filename = '') {
 // }
 
 // testReturn2();
+
+const array1 = [1, 4, 9, 16];
+// pass a function to map
+const map1 = array1.map(x => x * 2);
+// console.log(map1);
+// expected output: Array [2, 8, 18, 32]
+
+const kvArray = [
+  { key: 0, value: 10 },
+  { key: 0, value: 20 },
+  { key: 0, value: 30 },
+  { key: 2, value: 20 },
+  { key: 1, value: 10 },
+  { key: 2, value: 20 },
+  { key: 3, value: 30 },
+  { key: 2, value: 20 },
+];
+const reformattedArray = kvArray.map(({ key, value}) => ({ [key]: value }));
+// reformattedArray is now [{1: 10}, {2: 20}, {3: 30}],
+// kvArray is still:
+// [{key: 1, value: 10},
+//  {key: 2, value: 20},
+//  {key: 3, value: 30}]
+
+function constructRowStats() {
+  let testObject = {'incompleteGame': 0, 'row1': 0, 'row2': 0, 'row3': 0, 'row4': 0, 'row5': 0, 'row6': 0};
+  for (let i = 0; i < kvArray.length; i++) {
+    kvArray[i].key === 0 && (testObject.incompleteGame ++);
+    kvArray[i].key === 1 && (testObject.row1 ++);
+    kvArray[i].key === 2 && (testObject.row2 ++);
+    kvArray[i].key === 3 && (testObject.row3 ++);
+  }
+  console.log(testObject);
+}
+// constructRowStats();
+
