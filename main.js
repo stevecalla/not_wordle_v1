@@ -23,15 +23,15 @@ let gameStats = {
   'winPercent': 0, 
   'darkMode': false,
   'contrastMode': false,
+  'allInput': [], //todo code add allInput array
+  'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
+  'maxWins': 0, //todo code create array of win streak and take max
   // 'row1': 0,
   // 'row2': 0,
   // 'row3': 0,
   // 'row4': 0,
   // 'row5': 0,
   // 'row6': 0,
-  'allInput': [], //todo code add allInput array
-  'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
-  'maxWins': 0, //todo code create array of win streak and take max
   'wordPlayed': [], //todo DONE; todo update wincount if played
 }
 
@@ -91,16 +91,19 @@ function loadTasks() {
     // console.log('gameStats=', gameStats);
 
     gameStats.gameCount = localStats.gameCount === localStats.wordPlayed.length + 1 ? localStats.gameCount : localStats.wordPlayed.length + 1;
-    gameStats.winCount = localStats.winCount
-    gameStats.winPercent = localStats.winPercent
-    gameStats.darkMode = localStats.darkMode
-    gameStats.contrastMode = localStats.contrastMode
-    gameStats.row1 = localStats.row1
-    gameStats.row2 = localStats.row2
-    gameStats.row3 = localStats.row3
-    gameStats.row4 = localStats.row4
-    gameStats.row5 = localStats.row5
-    gameStats.row6 = localStats.row6
+    gameStats.winCount = localStats.winCount;
+    gameStats.winPercent = localStats.winPercent;
+    gameStats.darkMode = localStats.darkMode;
+    gameStats.contrastMode = localStats.contrastMode;
+    // gameStats.allInput = localStats.allInput;
+    gameStats.winStreak = localStats.winStreak;
+    gameStats.maxWins = localStats.maxWins;
+    // gameStats.row1 = localStats.row1
+    // gameStats.row2 = localStats.row2
+    // gameStats.row3 = localStats.row3
+    // gameStats.row4 = localStats.row4
+    // gameStats.row5 = localStats.row5
+    // gameStats.row6 = localStats.row6
 
     for (let i = 0; i < localStats.wordPlayed.length; i++) {
       gameStats.wordPlayed.push({
@@ -1059,11 +1062,11 @@ function createGameStatsMenu() {
   //   `
   // }
 
-  let rowStats = createRowStats2();
+  let rowStats = createRowStats();
   // console.log(rowStats);
 
   for (let i = 1; i < 7; i++) {
-    console.log(rowStats['row' + i]);
+    // console.log(rowStats['row' + i]);
     let rowWinCount = rowStats['row' + i];
     let rowWidth = Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) ? Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) : 15;
     let rowWinPercent = `${rowStats['row' + i] / rowStats.winCount ? Math.round((rowStats['row' + i] / rowStats.winCount) * 100) : '0'}%`;
@@ -1080,7 +1083,7 @@ function createGameStatsMenu() {
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
 
-function createRowStats2() {
+function createRowStats() {
   let rowStats = {'incompleteGame': 0, 'row1': 0, 'row2': 0, 'row3': 0, 'row4': 0, 'row5': 0, 'row6': 0, 'winCount': 0};
   for (let i = 0; i < gameStats.wordPlayed.length; i++) {
     gameStats.wordPlayed[i].rowSolved === 0 && (rowStats.incompleteGame ++);
@@ -1590,38 +1593,38 @@ function exportTableToExcel(tableID, filename = '') {
 
 // testReturn2();
 
-const array1 = [1, 4, 9, 16];
+// const array1 = [1, 4, 9, 16];
 // pass a function to map
-const map1 = array1.map(x => x * 2);
+// const map1 = array1.map(x => x * 2);
 // console.log(map1);
 // expected output: Array [2, 8, 18, 32]
 
-const kvArray = [
-  { key: 0, value: 10 },
-  { key: 0, value: 20 },
-  { key: 0, value: 30 },
-  { key: 2, value: 20 },
-  { key: 1, value: 10 },
-  { key: 2, value: 20 },
-  { key: 3, value: 30 },
-  { key: 2, value: 20 },
-];
-const reformattedArray = kvArray.map(({ key, value}) => ({ [key]: value }));
+// const kvArray = [
+//   { key: 0, value: 10 },
+//   { key: 0, value: 20 },
+//   { key: 0, value: 30 },
+//   { key: 2, value: 20 },
+//   { key: 1, value: 10 },
+//   { key: 2, value: 20 },
+//   { key: 3, value: 30 },
+//   { key: 2, value: 20 },
+// ];
+// const reformattedArray = kvArray.map(({ key, value}) => ({ [key]: value }));
 // reformattedArray is now [{1: 10}, {2: 20}, {3: 30}],
 // kvArray is still:
 // [{key: 1, value: 10},
 //  {key: 2, value: 20},
 //  {key: 3, value: 30}]
 
-function constructRowStats() {
-  let testObject = {'incompleteGame': 0, 'row1': 0, 'row2': 0, 'row3': 0, 'row4': 0, 'row5': 0, 'row6': 0};
-  for (let i = 0; i < kvArray.length; i++) {
-    kvArray[i].key === 0 && (testObject.incompleteGame ++);
-    kvArray[i].key === 1 && (testObject.row1 ++);
-    kvArray[i].key === 2 && (testObject.row2 ++);
-    kvArray[i].key === 3 && (testObject.row3 ++);
-  }
-  console.log(testObject);
-}
+// function constructRowStats() {
+//   let testObject = {'incompleteGame': 0, 'row1': 0, 'row2': 0, 'row3': 0, 'row4': 0, 'row5': 0, 'row6': 0};
+//   for (let i = 0; i < kvArray.length; i++) {
+//     kvArray[i].key === 0 && (testObject.incompleteGame ++);
+//     kvArray[i].key === 1 && (testObject.row1 ++);
+//     kvArray[i].key === 2 && (testObject.row2 ++);
+//     kvArray[i].key === 3 && (testObject.row3 ++);
+//   }
+//   console.log(testObject);
+// }
 // constructRowStats();
 
