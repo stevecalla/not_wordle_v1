@@ -1507,10 +1507,8 @@ function exportTableToExcel(tableID, filename = '') {
   
   document.body.appendChild(downloadLink);
   
-  if(navigator.msSaveOrOpenBlob){
-      var blob = new Blob(['\ufeff', tableHTML], {
-          type: dataType
-      });
+  if (navigator.msSaveOrOpenBlob) {
+      var blob = new Blob(['\ufeff', tableHTML], { type: dataType });
       navigator.msSaveOrOpenBlob(blob, filename);
   } else {
       // Create a link to the file
@@ -1523,3 +1521,15 @@ function exportTableToExcel(tableID, filename = '') {
       downloadLink.click();
   }
 }
+
+function testReturn() {
+  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+  return randomNumber;
+}
+
+function testReturn2() {
+  let a = testReturn();
+  console.log(a);
+}
+
+testReturn2();
