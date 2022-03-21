@@ -126,8 +126,8 @@ function loadTasks() {
   toggleContrastMode(gameStats.contrastMode);
   createGameTiles();
 
-  // createHistoryTable();
-  // document.getElementById('tableHeaderRow').classList.remove('hidden');
+  createHistoryTable();
+  document.getElementById('tableHeaderRow').classList.remove('hidden');
   // focusCurrentTile();
   // let currentElement = document.getElementById('id0');
   // document.activeElement = currentElement;
@@ -1311,8 +1311,10 @@ function createHistoryTable() {
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('word')">Word</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('playedCount')">Played</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('winCount')">Win/%</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('rowSolved')">Row Solved</th>
       <th class='table-header' rowspan="1">Game Board</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('datePlayed')">Date</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('solutionNumber')">Number</th>
   </tr>
   `
   document.getElementById('historyData').innerHTML = '';
@@ -1324,8 +1326,10 @@ function createHistoryTable() {
         <td scope="row">${gameStats.wordPlayed[i].word[0] + gameStats.wordPlayed[i].word.slice(1).toLowerCase()}</td>
         <td scope="row">${gameStats.wordPlayed[i].playedCount}</td>
         <td scope="row">${gameStats.wordPlayed[i].winCount}</td>
+        <td>${gameStats.wordPlayed[i].rowSolved}</td>
         <td scope="row" class='history-board-link' id='${gameStats.wordPlayed[i].word}' onclick='createHistoryBoard(event)'>View</td>
         <td>${gameStats.wordPlayed[i].datePlayedShort}</td>
+        <td>${gameStats.wordPlayed[i].solutionNumber}</td>
       </tr>
     `
   }
@@ -1341,6 +1345,8 @@ function createHistoryTable() {
       <th>${winCountPercent}</th>
       <th><button id='historyButton' onclick="exportTableToExcel('historyTable')">Excel</button></th>
       <th><button id='historyButton' onclick="copyToClipboard('historyTable')">Copy</button></th>
+      <th></th>
+      <th></th>
     </tr>
   `
   historyTableStyle();
@@ -1385,7 +1391,7 @@ function sortHistoryTable(sortColumn) {
     })
   }
 
-  sortColumn === 'winCount' || sortColumn === 'playedCount' ? sortedHistory.reverse() : sortedHistory;
+  sortColumn === 'winCount' || sortColumn === 'playedCount' || sortColumn === 'rowSolved' ? sortedHistory.reverse() : sortedHistory;
 
   document.getElementById('historyData').innerHTML = '';
   for (let i = 0; i < sortedHistory.length; i++) {
@@ -1396,8 +1402,10 @@ function sortHistoryTable(sortColumn) {
         <th scope="row" id=${`sort${i}`}>${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
         <td scope="row">${sortedHistory[i].playedCount}</td>
         <th scope="row">${sortedHistory[i].winCount}</th>
+        <td>${sortedHistory[i].rowSolved}</td>
         <th scope="row" class='history-board-link' id='${sortedHistory[i].word}' onclick='createHistoryBoard(event)'>View</th>
         <th>${sortedHistory[i].datePlayedShort}</th>
+        <td>${sortedHistory[i].solutionNumber}</td>
       </tr>
     `
   }
