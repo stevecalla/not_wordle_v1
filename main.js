@@ -224,9 +224,9 @@ function hideInstructions() {
 
 // SECTION CREATE SOLUTION
 function getRandomNumber() {
-  let randomWord = Math.floor(Math.floor(Math.random() * wordList.length));
+  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
   // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
-  return randomWord;
+  return randomNumber;
 }
 
 function getCurrentDate() {
@@ -241,15 +241,18 @@ function getCurrentDate() {
 }
 
 function createGameSolution() {
-  let getDate = getCurrentDate();
   let randomNumber = getRandomNumber();
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log('solution=', solution, 'random=', randomNumber);
+  createWordPlayedData(randomNumber, solution);
+}
 
+function createWordPlayedData(randomNumber, solution) {
+  let getDate = getCurrentDate();
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
-
   if (gameStats.wordPlayed.length >= 1) {
-    previousSolution(randomNumber, solution, getDate.dateString, getDate.dateOnly);
+    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
+    previousSolution(randomNumber, solution);
   } else {
     gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
     gameStats.wordPlayed[0].selectedCount ++;
@@ -258,22 +261,20 @@ function createGameSolution() {
   }
 }
 
-function previousSolution(randomNumber, solution, dateString, dateOnly) {
-
-  gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
-  // gameStats.wordPlayed.push({'orderPlayed': gameStats.gameCount, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'datePlayedShort': new Date().toLocaleDateString('en-US'), 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': []});
-  // console.log(gameStats.wordPlayed.length);
+function previousSolution(randomNumber, solution) {
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
-    // let evaluation = (gameStats.wordPlayed.length > 1 && randomNumber === gameStats.wordPlayed[i].solutionNumber) ? 'played before' : 'not played before';
-    let evaluation = (gameStats.wordPlayed.length > 1 && solution.join('') === gameStats.wordPlayed[i].word) ? 'played before' : 'not played before';
-    // console.log(randomNumber, gameStats.wordPlayed[i].solutionNumber, evaluation, gameStats.wordPlayed[i].selectedCount, gameStats.wordPlayed[i].selectedCount % 3); 
-    if (evaluation === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 !== 0) {
+    let evaluationPlayedBefore = (gameStats.wordPlayed.length > 1 && solution.join('') === gameStats.wordPlayed[i].word) ? 'played before' : 'not played before';
+    let evaluationSelectedCountThreeTimes = gameStats.wordPlayed[i].selectedCount % 3 === 0
+    console.log(randomNumber, gameStats.wordPlayed[i].solutionNumber, evaluationPlayedBefore, gameStats.wordPlayed[i].selectedCount, gameStats.wordPlayed[i].selectedCount % 3); 
+    // if (evaluationPlayedBefore === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 !== 0) { 
+    if (evaluationPlayedBefore === 'played before' && !evaluationSelectedCountThreeTimes) {
       gameStats.wordPlayed[i].selectedCount ++;
       gameStats.wordPlayed.pop();
       setLocalStorage('wordPlayed');
       createGameSolution();
       return;
-    } else if (evaluation === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 === 0) {
+    // } else if (evaluationPlayedBefore === 'played before' && gameStats.wordPlayed[i].selectedCount % 3 === 0) {
+    } else if (evaluationPlayedBefore === 'played before' && evaluationSelectedCountThreeTimes) {
       gameStats.wordPlayed[i].selectedCount ++;
       gameStats.wordPlayed[i].playedCount ++;
       gameStats.wordPlayed.pop();
