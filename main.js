@@ -1377,7 +1377,8 @@ function createHistoryTable() {
       </tr>
     `
   }
-  let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
+  // let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
+  let winPercent = calculateWinPercentage();
   let winCount = gameStats.winCount;
   let winCountPercent = winCount + '/' + winPercent;
   document.getElementById('historyFooter').innerHTML =
