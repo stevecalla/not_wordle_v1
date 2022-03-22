@@ -90,7 +90,7 @@ function loadTasks() {
     console.log('localStats=', localStats, localStats.wordPlayed.length);
     // console.log('gameStats=', gameStats);
 
-    gameStats.gameCount = localStats.gameCount === localStats.wordPlayed.length + 1 ? localStats.gameCount : localStats.wordPlayed.length + 1;
+    gameStats.gameCount = localStats.wordPlayed.length; //todo change to reduce of wordPlayed.playedCount
     gameStats.winCount = localStats.winCount;
     gameStats.winPercent = localStats.winPercent;
     gameStats.darkMode = localStats.darkMode;
@@ -98,12 +98,6 @@ function loadTasks() {
     // gameStats.allInput = localStats.allInput;
     gameStats.winStreak = localStats.winStreak;
     gameStats.maxWins = localStats.maxWins;
-    // gameStats.row1 = localStats.row1
-    // gameStats.row2 = localStats.row2
-    // gameStats.row3 = localStats.row3
-    // gameStats.row4 = localStats.row4
-    // gameStats.row5 = localStats.row5
-    // gameStats.row6 = localStats.row6
 
     for (let i = 0; i < localStats.wordPlayed.length; i++) {
       gameStats.wordPlayed.push({
