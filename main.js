@@ -20,7 +20,7 @@ let displayDefinition = 'Sorry, I could not find the definition';
 let gameStats = {
   'gameCount':0, 
   'winCount': 0, 
-  'winPercent': 0, 
+  'winPercent': '', 
   'darkMode': false,
   'contrastMode': false,
   'allInput': [], //todo code add allInput array
@@ -637,11 +637,17 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) { //todo remov
   } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
-  }  
-  setLocalStorage('winPercent', (gameStats.winCount / gameStats.gameCount));   
+  } 
+  let percentage = calculateWinPercentage();
+  setLocalStorage('winPercent', percentage);    
   createGameStatsMenu(); 
   resetCurrentInput();
   // createHistoryTable();
+}
+
+function calculateWinPercentage() {
+  let percentage = Math.round(gameStats.winCount / gameStats.gameCount * 100) ? Math.round(gameStats.winCount / gameStats.gameCount * 100).toFixed(0) + '%' : '0%';
+  return percentage;
 }
 
 function resetCurrentInput() {
@@ -993,8 +999,7 @@ function definitionButton() {
 } 
 
 function createGameStatsMenu() {
-  let percentage = Math.round(gameStats.winPercent * 100) ? Math.round(gameStats.winPercent * 100) : '0';
-  // let currentRow = Math.floor(allInput.length / 5);
+  let percentage = calculateWinPercentage();
   let greenYellowBoard = `${currentEmojiBoard}`;
   let blueOrangeBoard = `${currentEmojiBoard2}`;
   const contrastModeCSS = document.querySelector("#contrastMode-link");
@@ -1013,7 +1018,7 @@ function createGameStatsMenu() {
       </div>
       <div class='stat-description'>
         <p class=''>Win%</p>
-        <p class=''>${percentage}%</p>
+        <p class=''>${percentage}</p>
       </div>
     </div>
     <div class='win-stats-wrapper'>
