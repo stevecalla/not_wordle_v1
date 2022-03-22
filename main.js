@@ -1536,6 +1536,7 @@ function createHistoryBoard(event) {
 }
 
 function hideHistoryBoard() {
+  document.getElementById('inputTilesRow1').classList.remove('hidden');
   document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('historyTable').classList.remove('hidden') : document.getElementById('historyTable').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('tableHeaderRow').classList.add('hidden') : document.getElementById('tableHeaderRow').classList.remove('hidden');
