@@ -89,14 +89,15 @@ function loadTasks() {
     gameStats.maxWins = localStats.maxWins;
 
     for (let i = 0; i < localStats.wordPlayed.length; i++) {
+      // console.log(localStats.wordPlayed[i].datePlayed === 'tbd');
       gameStats.wordPlayed.push({
         'orderPlayed': i + 1 ?? localStats.wordPlayed[i].orderPlayed,
         'solutionNumber': localStats.wordPlayed[i].solutionNumber ?? 'data missing',
-        'solution': localStats.wordPlayed[i].solution ?? 'data mising',
-        'word': localStats.wordPlayed[i].word ?? 'data mising',
-        'datePlayed': localStats.wordPlayed[i].datePlayed ?? 'data mising',
-        // 'datePlayedShort': localStats.wordPlayed[i].datePlayedShort || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
-        'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        'solution': localStats.wordPlayed[i].solution ?? 'data missing',
+        'word': localStats.wordPlayed[i].word ?? 'data missing',
+        'datePlayed': localStats.wordPlayed[i].datePlayed ?? 'data missing',
+        // 'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) ?? 'data missing',
         'selectedCount': localStats.wordPlayed[i].selectedCount ?? 'data missing',
         'playedCount': localStats.wordPlayed[i].playedCount ?? 'data missing',
         'winCount': localStats.wordPlayed[i].winCount ?? 0,
@@ -228,36 +229,33 @@ function getRandomNumber() {
   return randomWord;
 }
 
+function getCurrentDate() {
+  let dateString = Date();
+  let date = new Date(dateString).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}); //'2/22/22'
+  let time = new Date(dateString).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit'}); //'7:38' or '15:50'
+  let timeZone = /.*\(([^)]*)\)/.exec(dateString)[1].match(/[A-Z]/g).join(''); //'MDT'
+  let dateShort = date + ' ' + time + ' ' + timeZone; // '2/22/22 7:38 MDT' or '3/22/22 15:51 MDT'
+  let dateOnly = date; //'2/22/22'
+  // console.log(dateString, dateShort);
+  return {'dateString': dateString, 'date': date, 'time': time, 'timeZone': timeZone, 'dateShort': dateShort, 'dateOnly': dateOnly};
+}
+
 function createGameSolution() {
-  // let randomWord = Math.floor(Math.floor(Math.random() * wordList.length));
-  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
-  let randomWord = getRandomNumber();
-  solution = Array.from(wordList[randomWord].toUpperCase());
-  console.log(solution, 'random=', randomWord);
-  // console.log(wordList.length);
+  let getDate = getCurrentDate();
+  let randomNumber = getRandomNumber();
+  solution = Array.from(wordList[randomNumber].toUpperCase());
+  console.log('solution=', solution, 'random=', randomNumber);
+
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
-let dateString = Date();
-let date = new Date(dateString).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'});
-let time = new Date(dateString).toLocaleTimeString('en-US', { hour12: false, hour: '2-digit', minute: '2-digit'});
-let timeZone = /.*\(([^)]*)\)/.exec(dateString)[1].match(/[A-Z]/g).join('');
-let dateShort = date + ' ' + time + ' ' + timeZone;
-let dateOnly = date;
-// console.log(dateString, dateShort);
-
   if (gameStats.wordPlayed.length >= 1) {
-    previousSolution(randomWord, solution, dateString, dateOnly);
+    previousSolution(randomNumber, solution, getDate.dateString, getDate.dateOnly);
   } else {
-    // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
-    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
+    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
     gameStats.wordPlayed[0].selectedCount ++;
     gameStats.wordPlayed[0].playedCount ++;
     setLocalStorage('wordPlayed');
   }
-
-  // console.log('hello')
-  // setLocalStorage('wordPlayed', randomNumber, solution);
-  // formatSolution();
 }
 
 function previousSolution(randomNumber, solution, dateString, dateOnly) {
