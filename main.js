@@ -1,11 +1,6 @@
 //query selector variables go here 👇
 var displaySolution = document.querySelector('#solution');
 var inputTilesRow1 = document.querySelector('#inputTilesRow1');
-// var inputTilesRow2 = document.querySelector('#inputTilesRow2');
-// var inputTilesRow3 = document.querySelector('#inputTilesRow3');
-// var inputTilesRow4 = document.querySelector('#inputTilesRow4');
-// var inputTilesRow5 = document.querySelector('#inputTilesRow5');
-// var inputTilesRow6 = document.querySelector('#inputTilesRow6');
 
 //global variables go here 👇
 var currentInput = [];
@@ -26,12 +21,6 @@ let gameStats = {
   'allInput': [], //todo code add allInput array
   'winStreak': 0, //todo code add count of 1 for each consecutive win... so if prior value !== 0 then get prior value plus 1; if lose = 0
   'maxWins': 0, //todo code create array of win streak and take max
-  // 'row1': 0,
-  // 'row2': 0,
-  // 'row3': 0,
-  // 'row4': 0,
-  // 'row5': 0,
-  // 'row6': 0,
   'wordPlayed': [], //todo DONE; todo update wincount if played
 }
 
@@ -208,11 +197,12 @@ function hideInstructions() {
   // document.getElementById('instructionWrapper').innerHTML = ``;
   document.getElementById('instructionWrapper').classList.toggle('hidden');
 
-  if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
-    for (let i = 0; i < 30; i++) {
-      document.getElementById('id' + (i)).removeAttribute('disabled');
-    }  //todo disabled //section
-  }
+  allowInputCurrentGame();
+  // if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
+  //   for (let i = 0; i < 30; i++) {
+  //     document.getElementById('id' + (i)).removeAttribute('disabled');
+  //   }  //todo disabled //section
+  // }
 
   // document.querySelector('.input-wrapper').classList.remove('hidden');
   // document.querySelector('.keyboard-wrapper').classList.remove('hidden');
@@ -914,11 +904,12 @@ function hamburgerMenuShowHide() {
 
   document.getElementById('confettiWrapper').classList.add('hidden');
 
-  if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
-    for (let i = 0; i < 30; i++) {
-      document.getElementById('id' + (i)).removeAttribute('disabled');
-    }  //todo disabled //section
-  }
+  allowInputCurrentGame();
+  // if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
+  //   for (let i = 0; i < 30; i++) {
+  //     document.getElementById('id' + (i)).removeAttribute('disabled');
+  //   }  //todo disabled //section
+  // }
   
   document.getElementById('historyBoardWrapper').classList.add('hidden');
   document.getElementById('historyTable').classList.add('hidden');
@@ -926,11 +917,12 @@ function hamburgerMenuShowHide() {
 }
 
 function statsMenuShowHide() { 
-  if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
-    for (let i = 0; i < 30; i++) {
-      document.getElementById('id' + (i)).removeAttribute('disabled');
-    }  //todo disabled //section
-  }
+  allowInputCurrentGame();
+  // if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
+  //   for (let i = 0; i < 30; i++) {
+  //     document.getElementById('id' + (i)).removeAttribute('disabled');
+  //   }  //todo disabled //section
+  // }
 
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   document.getElementById('solution').classList.add('hidden');
@@ -1117,11 +1109,12 @@ function copyGameBoardButton() {
   document.getElementById('historyTable').classList.add('hidden');
   // document.getElementById('historyButton').classList.add('hidden');
 
-  if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
-    for (let i = 0; i < 30; i++) {
-      document.getElementById('id' + (i)).removeAttribute('disabled');
-    }  //todo disabled //section
-  }
+  allowInputCurrentGame();
+  // if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
+  //   for (let i = 0; i < 30; i++) {
+  //     document.getElementById('id' + (i)).removeAttribute('disabled');
+  //   }  //todo disabled //section
+  // }
 
   copyToClipboard('body');
 
@@ -1546,12 +1539,30 @@ function hideHistoryBoard() {
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('historyTable').classList.remove('hidden') : document.getElementById('historyTable').classList.add('hidden');
   document.getElementById('historyTable').classList.contains('hidden') ? document.getElementById('tableHeaderRow').classList.add('hidden') : document.getElementById('tableHeaderRow').classList.remove('hidden');
 
-  if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
-    for (let i = 0; i < 30; i++) {
-      document.getElementById('id' + (i)).removeAttribute('disabled');
-    }  //todo disabled //section
-  }
+  allowInputCurrentGame();
+  // for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+  //   if (gameStats.wordPlayed[i].word === solution.join('') && gameStats.wordPlayed[i].winCount === 0) {
+  //     for (let i = 0; i < 30; i++) {
+  //       document.getElementById('id' + (i)).removeAttribute('disabled');
+  //     }  //todo disabled //section
+  //   }
+  // }
 
+  // if (gameStats.wordPlayed[gameStats.wordPlayed.length - 1].winCount === 0) {
+  //   for (let i = 0; i < 30; i++) {
+  //     document.getElementById('id' + (i)).removeAttribute('disabled');
+  //   }  //todo disabled //section
+  // }
+}
+
+function allowInputCurrentGame() {
+  for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    if (gameStats.wordPlayed[i].word === solution.join('') && gameStats.wordPlayed[i].winCount === 0) {
+      for (let i = 0; i < 30; i++) {
+        document.getElementById('id' + (i)).removeAttribute('disabled');
+      }  //todo disabled //section
+    }
+  }
 }
 
 //SECTION EXPORT TO EXCEL
