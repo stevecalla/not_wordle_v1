@@ -222,11 +222,18 @@ function hideInstructions() {
 }
 
 // SECTION CREATE SOLUTION
-function createGameSolution() {
-  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+function getRandomNumber() {
+  let randomWord = Math.floor(Math.floor(Math.random() * wordList.length));
   // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
-  solution = Array.from(wordList[randomNumber].toUpperCase());
-  console.log(solution, 'random=', randomNumber);
+  return randomWord;
+}
+
+function createGameSolution() {
+  // let randomWord = Math.floor(Math.floor(Math.random() * wordList.length));
+  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
+  let randomWord = getRandomNumber();
+  solution = Array.from(wordList[randomWord].toUpperCase());
+  console.log(solution, 'random=', randomWord);
   // console.log(wordList.length);
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
@@ -239,7 +246,7 @@ let dateOnly = date;
 // console.log(dateString, dateShort);
 
   if (gameStats.wordPlayed.length >= 1) {
-    previousSolution(randomNumber, solution, dateString, dateOnly);
+    previousSolution(randomWord, solution, dateString, dateOnly);
   } else {
     // gameStats.wordPlayed.push({'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': Date(), 'selectedCount': 0, 'playedCount': 0, 'winCount': 0});
     gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': dateString, 'datePlayedShort': dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
