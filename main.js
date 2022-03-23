@@ -224,8 +224,8 @@ function hideInstructions() {
 
 // SECTION CREATE SOLUTION
 function getRandomNumber() {
-  // let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
-  let randomNumber = Math.floor(Math.floor(Math.random() * 10));
+  let randomNumber = Math.floor(Math.floor(Math.random() * wordList.length));
+  // let randomNumber = Math.floor(Math.floor(Math.random() * 10));
   return randomNumber;
 }
 
