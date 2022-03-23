@@ -251,21 +251,28 @@ function createWordPlayedData(randomNumber, solution) {
   let getDate = getCurrentDate();
   // setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
-  if (gameStats.wordPlayed.length >= 1) {
-    console.log('1')
-    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
-    previousSolution(randomNumber, solution);
-  } else {
-    console.log('2')
-    gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
-    setLocalStorage('gameCount', gameStats.gameCount + 1); 
-    gameStats.wordPlayed[0].selectedCount ++;
-    gameStats.wordPlayed[0].playedCount ++;
-    setLocalStorage('wordPlayed');
-  }
+
+  gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
+  previousSolution(randomNumber, solution);
+
+  // if (gameStats.wordPlayed.length >= 1) {
+  //   console.log('1')
+    // gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 1, 'playedCount': 1, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
+    // previousSolution(randomNumber, solution);
+  // } else {
+  //   console.log('2')
+    // gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
+    // gameStats.wordPlayed[0].selectedCount ++;
+    // gameStats.wordPlayed[0].playedCount ++;
+
+    // setLocalStorage('gameCount', gameStats.gameCount + 1); 
+    // setLocalStorage('wordPlayed');
+  // }
 }
 
 function previousSolution(randomNumber, solution) {
+  console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
+
   for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
     let evaluationPlayedBefore = (gameStats.wordPlayed.length > 1 && solution.join('') === gameStats.wordPlayed[i].word) ? 'played before' : 'not played before';
     let evaluationSelectedCountThreeTimes = gameStats.wordPlayed[i].selectedCount % 3 === 0;
