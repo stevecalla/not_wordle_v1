@@ -273,15 +273,15 @@ function createWordPlayedData(randomNumber, solution) {
 function previousSolution(randomNumber, solution) {
   console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
 
-  let currentSolutionIndex = gameStats.wordPlayed.findIndex(element => element.word === solution.join('')); //find index
-  let currentLength = gameStats.wordPlayed.length - 1; //determine current length
-  let playedBefore = currentSolutionIndex !== currentLength; //true || false; when true select another solution
-  let evaluationSelectedCountThreeTimes2 = gameStats.wordPlayed[currentSolutionIndex].selectedCount % 3 === 0; //true || false; when false find another solution
-  console.log('index=', currentSolutionIndex, 'length=', currentLength, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes2, 'module3=', gameStats.wordPlayed[currentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[currentSolutionIndex].selectedCount);
+  let findCurrentSolutionIndex = gameStats.wordPlayed.findIndex(element => element.word === solution.join('')); //find index
+  let currentLengthIndex = gameStats.wordPlayed.length - 1; //determine current length //todo redefine
+  let playedBefore = findCurrentSolutionIndex !== currentLengthIndex; //true || false; when true select another solution
+  let evaluationSelectedCountThreeTimes2 = gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3 === 0; //true || false; when false find another solution
+  console.log('index=', findCurrentSolutionIndex, 'length=', currentLengthIndex, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes2, 'module3=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount);
 
   if (playedBefore && !evaluationSelectedCountThreeTimes2) {
     console.log('3')
-    gameStats.wordPlayed[currentSolutionIndex].selectedCount ++;
+    gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount ++;
     gameStats.wordPlayed.pop();
     setLocalStorage('wordPlayed');
     createGameSolution();
@@ -324,8 +324,8 @@ function previousSolution(randomNumber, solution) {
   //   }
   // }
   
-  gameStats.wordPlayed[currentSolutionIndex].selectedCount ++;
-  gameStats.wordPlayed[currentSolutionIndex].playedCount ++;
+  gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount ++;
+  gameStats.wordPlayed[findCurrentSolutionIndex].playedCount ++;
 
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
   setLocalStorage('wordPlayed');
