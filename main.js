@@ -64,49 +64,7 @@ function loadTasks() {
   
   // console.log('0=', gameStats, localStorage.getItem('gameStats'));
   console.log('0=', gameStats);
-
-  if (localStorage.getItem('gameStats') === null) {
-    // console.log('1');
-    localStorage.setItem('gameStats', JSON.stringify(gameStats));
-  } else {
-    // console.log('2 localstorage', gameStats, localStorage.getItem('gameStats'));
-
-    // gameStats = JSON.parse(localStorage.getItem('gameStats'));
-    console.log('b=', gameStats)
-
-    // console.log('2');
-    let localStats = JSON.parse(localStorage.getItem('gameStats'));
-    console.log('localStats=', localStats, localStats.wordPlayed.length);
-    // console.log('gameStats=', gameStats);
-
-    gameStats.gameCount = localStats.gameCount; //todo change to reduce of wordPlayed.playedCount
-    gameStats.winCount = localStats.winCount;
-    gameStats.winPercent = localStats.winPercent;
-    gameStats.darkMode = localStats.darkMode;
-    gameStats.contrastMode = localStats.contrastMode;
-    // gameStats.allInput = localStats.allInput;
-    gameStats.winStreak = localStats.winStreak;
-    gameStats.maxWins = localStats.maxWins;
-
-    for (let i = 0; i < localStats.wordPlayed.length; i++) {
-      // console.log(localStats.wordPlayed[i].datePlayed === 'tbd');
-      gameStats.wordPlayed.push({
-        'orderPlayed': i + 1 ?? localStats.wordPlayed[i].orderPlayed,
-        'solutionNumber': localStats.wordPlayed[i].solutionNumber ?? 'data missing',
-        'solution': localStats.wordPlayed[i].solution ?? 'data missing',
-        'word': localStats.wordPlayed[i].word ?? 'data missing',
-        'datePlayed': localStats.wordPlayed[i].datePlayed ?? 'data missing',
-        // 'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
-        'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) ?? 'data missing',
-        'selectedCount': localStats.wordPlayed[i].selectedCount ?? 'data missing',
-        'playedCount': localStats.wordPlayed[i].playedCount ?? 'data missing',
-        'winCount': localStats.wordPlayed[i].winCount ?? 0,
-        'boardInput': localStats.wordPlayed[i].boardInput ?? 'data missing',
-        'rowSolved': localStats.wordPlayed[i].winCount >= 1 ? Math.floor(localStats.wordPlayed[i].boardInput.length / 5) : 0,
-      })
-    }
-  }
-  
+  populateGameStatsFromLocalStorage();
   createGameSolution();
   // console.log('1=', gameStats);
   toggleDarkMode(gameStats.darkMode);
@@ -251,7 +209,6 @@ function createWordPlayedData(randomNumber, solution) {
   let getDate = getCurrentDate();
   // setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
-
   gameStats.wordPlayed.push({'orderPlayed': gameStats.wordPlayed.length + 1, 'solutionNumber': randomNumber, 'solution': solution, 'word': solution.join(''), 'datePlayed': getDate.dateString, 'datePlayedShort': getDate.dateOnly, 'selectedCount': 0, 'playedCount': 0, 'winCount': 0, 'boardInput': [], 'rowSolved': 0});
   previousSolution(randomNumber, solution);
 
@@ -275,18 +232,18 @@ function previousSolution(randomNumber, solution) {
 
   let findCurrentSolutionIndex = gameStats.wordPlayed.findIndex(element => element.word === solution.join('')); //find index
   let currentLengthIndex = gameStats.wordPlayed.length - 1; //determine current length //todo redefine
-  let playedBefore = findCurrentSolutionIndex !== currentLengthIndex; //true || false; when true select another solution
-  let evaluationSelectedCountThreeTimes2 = gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3 === 0; //true || false; when false find another solution
-  console.log('index=', findCurrentSolutionIndex, 'length=', currentLengthIndex, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes2, 'module3=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount);
+  let playedBefore = findCurrentSolutionIndex !== currentLengthIndex; //true || false; when true remove last element from array and determine if okay to play again
+  let evaluationSelectedCountThreeTimes = gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3 === 0; //true || false; when false find another solution
+  console.log('index=', findCurrentSolutionIndex, 'length=', currentLengthIndex, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes, 'module3=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount);
 
-  if (playedBefore && !evaluationSelectedCountThreeTimes2) {
+  if (playedBefore && !evaluationSelectedCountThreeTimes) {
     console.log('3')
     gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount ++;
     gameStats.wordPlayed.pop();
     setLocalStorage('wordPlayed');
     createGameSolution();
     return;
-  } else if (playedBefore && evaluationSelectedCountThreeTimes2) {
+  } else if (playedBefore && evaluationSelectedCountThreeTimes) {
     console.log('4')
     // setLocalStorage('gameCount', gameStats.gameCount + 1); 
     // gameStats.wordPlayed[currentSolutionIndex].selectedCount ++;
@@ -326,10 +283,55 @@ function previousSolution(randomNumber, solution) {
   
   gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount ++;
   gameStats.wordPlayed[findCurrentSolutionIndex].playedCount ++;
-
   setLocalStorage('gameCount', gameStats.gameCount + 1); 
   setLocalStorage('wordPlayed');
   // console.log('set')
+}
+
+//SECTION POPULATE FROM LOCAL STORAGE ON LOAD
+
+function populateGameStatsFromLocalStorage() {
+  if (localStorage.getItem('gameStats') === null) {
+    // console.log('1');
+    localStorage.setItem('gameStats', JSON.stringify(gameStats));
+  } else {
+    // console.log('2 localstorage', gameStats, localStorage.getItem('gameStats'));
+
+    // gameStats = JSON.parse(localStorage.getItem('gameStats'));
+    console.log('b=', gameStats)
+
+    // console.log('2');
+    let localStats = JSON.parse(localStorage.getItem('gameStats'));
+    console.log('localStats=', localStats, localStats.wordPlayed.length);
+    // console.log('gameStats=', gameStats);
+
+    gameStats.gameCount = localStats.gameCount; //todo change to reduce of wordPlayed.playedCount
+    gameStats.winCount = localStats.winCount;
+    gameStats.winPercent = localStats.winPercent;
+    gameStats.darkMode = localStats.darkMode;
+    gameStats.contrastMode = localStats.contrastMode;
+    // gameStats.allInput = localStats.allInput;
+    gameStats.winStreak = localStats.winStreak;
+    gameStats.maxWins = localStats.maxWins;
+
+    for (let i = 0; i < localStats.wordPlayed.length; i++) {
+      // console.log(localStats.wordPlayed[i].datePlayed === 'tbd');
+      gameStats.wordPlayed.push({
+        'orderPlayed': i + 1 ?? localStats.wordPlayed[i].orderPlayed,
+        'solutionNumber': localStats.wordPlayed[i].solutionNumber ?? 'data missing',
+        'solution': localStats.wordPlayed[i].solution ?? 'data missing',
+        'word': localStats.wordPlayed[i].word ?? 'data missing',
+        'datePlayed': localStats.wordPlayed[i].datePlayed ?? 'data missing',
+        // 'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) || new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US'),
+        'datePlayedShort': new Date(localStats.wordPlayed[i].datePlayed).toLocaleDateString('en-US', {month: 'numeric', day: 'numeric', year: '2-digit'}) ?? 'data missing',
+        'selectedCount': localStats.wordPlayed[i].selectedCount ?? 'data missing',
+        'playedCount': localStats.wordPlayed[i].playedCount ?? 'data missing',
+        'winCount': localStats.wordPlayed[i].winCount ?? 0,
+        'boardInput': localStats.wordPlayed[i].boardInput ?? 'data missing',
+        'rowSolved': localStats.wordPlayed[i].winCount >= 1 ? Math.floor(localStats.wordPlayed[i].boardInput.length / 5) : 0,
+      });
+    }
+  }
 }
 
 // SECTION CREATE GAME TILES
