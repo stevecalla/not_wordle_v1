@@ -65,7 +65,12 @@ function loadTasks() {
   // console.log('0=', gameStats, localStorage.getItem('gameStats'));
   console.log('0=', gameStats);
   populateGameStatsFromLocalStorage();
+
+  reduceGameCount();
+
   createGameSolution();
+
+  reduceGameCount();
   // console.log('1=', gameStats);
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
@@ -1703,3 +1708,46 @@ function exportTableToExcel(tableID, filename = '') {
 // }
 // constructRowStats();
 
+function reduceGameCount() {
+  // console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
+
+  // let initialValue = 0;
+  // let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => {
+  //   console.log('reduce=', previousValue, currentValue);
+  //   previousValue + currentValue.playedCount, initialValue
+  // });
+  // console.log('gameCount=', gameCount);
+
+  let initialValue = 0;
+  let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
+    previousValue + currentValue.playedCount, initialValue
+  );
+  // console.log('gameCount=', gameCount);
+
+  let initialValue2 = 0;
+  let winCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
+    previousValue + currentValue.winCount, initialValue2
+  );
+  console.log('gameCount=', gameCount, 'winCount=', winCount);
+
+  // let initialValue = 0
+  // let sum = [{x: 1}, {x: 2}, {x: 3}].reduce((previousValue, currentValue) =>
+  //   previousValue + currentValue.x
+  //   , initialValue
+  // );
+  // console.log(sum) // logs 6
+}
+
+// reduceGameCount();
+
+// const array1 = [1, 2, 3, 4];
+
+// // 0 + 1 + 2 + 3 + 4
+// const initialValue = 0;
+// const sumWithInitial = array1.reduce(
+//   (previousValue, currentValue) => previousValue + currentValue,
+//   initialValue
+// );
+
+// console.log(sumWithInitial);
+// expected output: 10
