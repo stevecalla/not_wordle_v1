@@ -13,7 +13,7 @@ let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
 let gameStats = {
-  'gameCount':0, 
+  'gameCount': 0, //calc using calcGameCount reduce function 
   'winCount': 0, 
   'winPercent': '', 
   'darkMode': false,
@@ -63,14 +63,15 @@ function loadTasks() {
   createHamburgerMenu();
   
   // console.log('0=', gameStats, localStorage.getItem('gameStats'));
-  console.log('0=', gameStats);
+  // console.log('0=', gameStats);
   populateGameStatsFromLocalStorage();
 
-  reduceGameCount();
+  // reduceGameCount();
 
   createGameSolution();
 
-  reduceGameCount();
+  // reduceGameCount();
+
   // console.log('1=', gameStats);
   toggleDarkMode(gameStats.darkMode);
   toggleContrastMode(gameStats.contrastMode);
@@ -233,13 +234,13 @@ function createWordPlayedData(randomNumber, solution) {
 }
 
 function previousSolution(randomNumber, solution) {
-  console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
+  // console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
   let findCurrentSolutionIndex = gameStats.wordPlayed.findIndex(element => element.word === solution.join('')); //find index
   let currentLengthIndex = gameStats.wordPlayed.length - 1; //determine current length; "- 1" to match with findCurrentSolutionIndex starting at 0 //todo redefine
   let playedBefore = findCurrentSolutionIndex !== currentLengthIndex; //true || false; when true remove last element from array and determine if okay to play again
   let evaluationSelectedCountThreeTimes = gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3 === 0; //true || false; when false find another solution
 
-  console.log('index=', findCurrentSolutionIndex, 'length=', currentLengthIndex, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes, 'module3=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount);
+  // console.log('index=', findCurrentSolutionIndex, 'length=', currentLengthIndex, 'playedBefore=', playedBefore, 'selectedThree=', evaluationSelectedCountThreeTimes, 'module3=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount % 3, 'selectedCount=', gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount);
 
   if (playedBefore && !evaluationSelectedCountThreeTimes) {
     console.log('3')
@@ -259,7 +260,8 @@ function previousSolution(randomNumber, solution) {
   }
   gameStats.wordPlayed[findCurrentSolutionIndex].selectedCount ++;
   gameStats.wordPlayed[findCurrentSolutionIndex].playedCount ++;
-  setLocalStorage('gameCount', gameStats.gameCount + 1); 
+  // setLocalStorage('gameCount', gameStats.gameCount + 1);
+  setLocalStorage('gameCount', calcGameCount());
   setLocalStorage('wordPlayed');
 
   // for (let i = 0; i < gameStats.wordPlayed.length - 1; i++) {
@@ -302,11 +304,11 @@ function populateGameStatsFromLocalStorage() {
     // console.log('2 localstorage', gameStats, localStorage.getItem('gameStats'));
 
     // gameStats = JSON.parse(localStorage.getItem('gameStats'));
-    console.log('b=', gameStats)
+    // console.log('b=', gameStats)
 
     // console.log('2');
     let localStats = JSON.parse(localStorage.getItem('gameStats'));
-    console.log('localStats=', localStats, localStats.wordPlayed.length);
+    // console.log('localStats=', localStats, localStats.wordPxlayed.length);
     // console.log('gameStats=', gameStats);
 
     gameStats.gameCount = localStats.gameCount; //todo change to reduce of wordPlayed.playedCount
@@ -679,7 +681,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) { //todo remov
   } else if (gameOverCondition) {
     //TODO POPUP BOX WITH PLAY AGAIN, WINNING WORD, DEFINITION... GAME BOARD
     document.getElementById('id29').blur();
-    setLocalStorage('gameCount', gameStats.gameCount + 1);
+    // setLocalStorage('gameCount', gameStats.gameCount + 1);
+    setLocalStorage('gameCount', calcGameCount());
     setLocalStorage('winStreak', 0); 
     getWebsterDictionaryAPI();
   } else {
@@ -1133,6 +1136,7 @@ function createGameStatsMenu() {
     `
   }
 
+  // <p class=''>${gameStats.gameCount}</p>
   // console.trace();
   // document.getElementById('hamburgerPopupMenu').classList.toggle('hidden');
 }
@@ -1412,7 +1416,7 @@ function createHistoryTable() {
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('orderPlayed')">Order</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('word')">Word</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('playedCount')">Played</th>
-      <th class='table-header' rowspan="1" onclick="sortHistoryTable('winCount')">Win/%</th>
+      <th class='table-header' rowspan="1" onclick="sortHistoryTable('winCount')">Win / Win%</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('rowSolved')">Row Solved</th>
       <th class='table-header' rowspan="1">Game Board</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('datePlayed')">Date</th>
@@ -1461,6 +1465,7 @@ function createHistoryTable() {
   }
 }
 
+{/* <th>${gameStats.gameCount}</th> */}
 {/* <th><button id='excelButton' onclick="copyHistoryTableButton('historyTable')">Excel</button></th> */}
 {/* <th><button id='historyButton' onclick="exportTableToExcel('tblData')">Excel</button></th> */}
 
@@ -1708,27 +1713,33 @@ function exportTableToExcel(tableID, filename = '') {
 // }
 // constructRowStats();
 
-function reduceGameCount() {
+function calcGameCount() {
   // console.log('findIndex=', gameStats.wordPlayed.findIndex(element => element.word === solution.join('')));
 
-  // let initialValue = 0;
-  // let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => {
-  //   console.log('reduce=', previousValue, currentValue);
-  //   previousValue + currentValue.playedCount, initialValue
-  // });
-  // console.log('gameCount=', gameCount);
-
   let initialValue = 0;
-  let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
-    previousValue + currentValue.playedCount, initialValue
-  );
-  // console.log('gameCount=', gameCount);
+  let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue, index, array) => {
+    // console.log('The value of previous: ', previousValue, 'The value of current: ', currentValue.playedCount, 'index=', index, 'array=', array);
+    console.log('The value of previous: ', previousValue, 'The value of current: ', currentValue.playedCount, 'index=', index);
+    return previousValue + currentValue.playedCount
+  }, initialValue);
+  console.log('gameCount=', gameCount);
+  return gameCount;
+  
+  // localStorage.setItem('gameCount', 30)
+  // setLocalStorage('gameCount', gameCount); 
+  // setLocalStorage('gameCount', gameStats.gameCount + 1); 
 
-  let initialValue2 = 0;
-  let winCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
-    previousValue + currentValue.winCount, initialValue2
-  );
-  console.log('gameCount=', gameCount, 'winCount=', winCount);
+  // let initialValue = 0;
+  // let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
+  //   previousValue + currentValue.playedCount, initialValue
+  // );
+  // // console.log('gameCount=', gameCount);
+
+  // let initialValue2 = 0;
+  // let winCount = gameStats.wordPlayed.reduce((previousValue, currentValue) => 
+  //   previousValue + currentValue.winCount, initialValue2
+  // );
+  // console.log('gameCount=', gameCount, 'winCount=', winCount);
 
   // let initialValue = 0
   // let sum = [{x: 1}, {x: 2}, {x: 3}].reduce((previousValue, currentValue) =>
@@ -1736,6 +1747,24 @@ function reduceGameCount() {
   //   , initialValue
   // );
   // console.log(sum) // logs 6
+
+  // let initialValue = 0
+  // let sum = [{x: 1}, {x: 2}, {x: 3}].reduce((previousValue, currentValue) => {
+  //   console.log('The value of previous: ', previousValue);
+  //   console.log('The value of current: ', currentValue);
+  //   return previousValue + currentValue.x
+  // }, 0);
+  // console.log(sum); // logs 6
+
+
+  // const newNumbers = [1, 3, 5, 7];
+  // const newSum = newNumbers.reduce((x, y) => {
+  //   console.log('The value of x: ', x);
+  //   console.log('The value of y: ', y);
+  //   return x + y;
+  // }, 10);
+
+  // console.log(newSum);
 }
 
 // reduceGameCount();
