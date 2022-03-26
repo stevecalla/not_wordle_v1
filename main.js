@@ -656,26 +656,43 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) { //todo remov
       document.getElementById('id' + (i)).blur();
     }
     if (gameStats.winCount === null) {
-      setLocalStorage('winCount', 1);
+      // setLocalStorage('winCount', 1);
       setLocalStorage('winStreak', 1); 
     } else {
       // console.trace();
-      setLocalStorage('winCount', (gameStats.winCount + 1));
+
+      // setLocalStorage('winCount', (gameStats.winCount + 1)); //todo win count
+      // let rowStats = createRowStats();
+      // console.log(rowStats, rowStats.winCount);
+      // setLocalStorage('winCount', rowStats.winCount);
+
       // setLocalStorage(currentRow2, (gameStats[currentRow2] + 1)); //todo remove row stats global variable
       setLocalStorage('winStreak', gameStats.winStreak + 1); 
       setLocalStorage('maxWins', gameStats.winStreak < gameStats.maxWins ? gameStats.maxWins : gameStats.winStreak); 
     }
-    for (let i = 0; i < gameStats.wordPlayed.length; i++) {
-      // console.log(gameStats.wordPlayed[i].word === solution.join(''))
-      if (gameStats.wordPlayed[i].word === solution.join('')) {
-        // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
-        gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
-        gameStats.wordPlayed[i].rowSolved = Math.floor(gameStats.wordPlayed[i].boardInput.length / 5);
-        setLocalStorage('wordPlayed'); 
-        // gameStats.wordPlayed[i].boardInput = allInput;
-        // setLocalStorage('wordPlayed');
-      }
-    }
+
+    // for (let i = 0; i < gameStats.wordPlayed.length; i++) {
+    //   // console.log(gameStats.wordPlayed[i].word === solution.join(''))
+    //   if (gameStats.wordPlayed[i].word === solution.join('')) {
+    //     // setLocalStorage('winCount', gameStats.wordPlayed[i].winCount + 1);
+    //     gameStats.wordPlayed[i].winCount = gameStats.wordPlayed[i].winCount + 1;
+    //     gameStats.wordPlayed[i].rowSolved = Math.floor(gameStats.wordPlayed[i].boardInput.length / 5);
+    //     setLocalStorage('wordPlayed'); 
+
+    //     let rowStats = createRowStats();
+    //     console.log(rowStats, rowStats.winCount);
+    //     setLocalStorage('winCount', rowStats.winCount);
+    //   }
+    // }
+
+    let findCurrentSolutionIndex = gameStats.wordPlayed.findIndex(element => element.word === solution.join('')); //find index
+    gameStats.wordPlayed[findCurrentSolutionIndex].winCount = gameStats.wordPlayed[findCurrentSolutionIndex].winCount + 1;
+    gameStats.wordPlayed[findCurrentSolutionIndex].rowSolved = Math.floor(gameStats.wordPlayed[findCurrentSolutionIndex].boardInput.length / 5);
+    setLocalStorage('wordPlayed'); 
+    let rowStats = createRowStats();
+    console.log(rowStats, rowStats.winCount);
+    setLocalStorage('winCount', rowStats.winCount);
+
     document.getElementById('id29').blur();
     createConfetti();
   } else if (gameOverCondition) {
@@ -688,7 +705,8 @@ function determineWinStatus(startRowTile, endRowTile, dataStatus) { //todo remov
   } else {
         //TODO KEEP PLAYING ANIMATION
         console.log('keep playing')
-  } 
+  }
+
   let percentage = calculateWinPercentage();
   setLocalStorage('winPercent', percentage);    
   createGameStatsMenu(); 
@@ -1441,8 +1459,8 @@ function createHistoryTable() {
   }
   // let winPercent = `${gameStats.winPercent ? Math.round((gameStats.winPercent) * 100) : '0'}%`;
   let winPercent = calculateWinPercentage();
-  let winCount = gameStats.winCount;
-  let winCountPercent = winCount + '/' + winPercent;
+  // let winCount = gameStats.winCount;
+  let winCountPercent = gameStats.winCount + '/' + winPercent;
   document.getElementById('historyFooter').innerHTML =
   `
     <tr>
