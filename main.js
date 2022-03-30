@@ -206,6 +206,9 @@ function getCurrentDate() {
 
 function createGameSolution() {
   let randomNumber = getRandomNumber();
+  // console.log([getRandomNumber()]);
+  // test = [wordList[randomNumber].toUpperCase()];
+  // console.log(test)
   solution = Array.from(wordList[randomNumber].toUpperCase());
   console.log('solution=', solution, 'random=', randomNumber);
   createWordPlayedData(randomNumber, solution);
@@ -778,33 +781,40 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 }
 
 // SECTION API CODE
-getWebsterDictionaryAPI = () => {
+getWebsterDictionaryAPI = async () => {
   //FIX HIDE API KEYS!!
   console.log('api#1=', elementaryDefinition === 'Placeholder', 'api#2', collegeDefinition === 'Placeholder')
   if (elementaryDefinition === 'Placeholder' && collegeDefinition === 'Placeholder') {
-    fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
+    await fetch(`https://node-api-relay2.glitch.me/definition-elementary/${solution.join('')}`)
+    // fetch(elementary_url)
         .then((response) => response.json())
         .then(function (definition) {
           elementaryDefinition = definition[0].shortdef[0];
           console.log('api run 1');
           })
         .catch(err => {
-          console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
+          console.error('API #1 failed:', 'message:', err.message, 'stack:', err.stack);
         })  
-    fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-        .then((response) => response.json())
-        .then(function (definition) {
-          collegeDefinition = definition[0].shortdef[0];
-          // console.log(definition[0].hwi.prs[0].sound.audio);
-          console.log('api run 2');
-          })
-        .catch(err => {
-          console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
-        }) 
+    // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+    setTimeout(() => {
+      fetch(`https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`)
+          .then((response) => response.json())
+          .then(function (definition) {
+            collegeDefinition = definition[0].shortdef[0];
+            // console.log(definition[0].hwi.prs[0].sound.audio);
+            console.log('api run 2');
+            })
+          .catch(err => {
+            console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
+          }) 
+    }, 1000);
   }
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition)
-  }, 1000);
+  }, 2000);
+
+  // displayDefintion(elementaryDefinition, collegeDefinition)
 }
 
 function displayDefintion(elementaryDefinition, collegeDefinition) {
@@ -1737,10 +1747,10 @@ function calcGameCount() {
   let initialValue = 0;
   let gameCount = gameStats.wordPlayed.reduce((previousValue, currentValue, index, array) => {
     // console.log('The value of previous: ', previousValue, 'The value of current: ', currentValue.playedCount, 'index=', index, 'array=', array);
-    console.log('The value of previous: ', previousValue, 'The value of current: ', currentValue.playedCount, 'index=', index);
+    // console.log('The value of previous: ', previousValue, 'The value of current: ', currentValue.playedCount, 'index=', index);
     return previousValue + currentValue.playedCount
   }, initialValue);
-  console.log('gameCount=', gameCount);
+  // console.log('gameCount=', gameCount);
   return gameCount;
   
   // localStorage.setItem('gameCount', 30)
