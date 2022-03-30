@@ -782,11 +782,22 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 
 // SECTION API CODE
 getWebsterDictionaryAPI = async () => {
+  let urlElementary = '';
+  let urlCollege = '';
+  if (document.location.origin === "file://") {
+    urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
+    urlCollege = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`;
+  } else {
+    urlElementary = `https://node-api-relay2.glitch.me/definition-elementary/${solution.join('')}`;
+    urlCollege = `https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`;
+  }
+
   //FIX HIDE API KEYS!!
   console.log('api#1=', elementaryDefinition === 'Placeholder', 'api#2', collegeDefinition === 'Placeholder')
   if (elementaryDefinition === 'Placeholder' && collegeDefinition === 'Placeholder') {
     // fetch(`https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`) //elementary dictionary
-    await fetch(`https://node-api-relay2.glitch.me/definition-elementary/${solution.join('')}`)
+    // await fetch(`https://node-api-relay2.glitch.me/definition-elementary/${solution.join('')}`)
+    await fetch (urlElementary)
     // fetch(elementary_url)
         .then((response) => response.json())
         .then(function (definition) {
@@ -796,9 +807,10 @@ getWebsterDictionaryAPI = async () => {
         .catch(err => {
           console.error('API #1 failed:', 'message:', err.message, 'stack:', err.stack);
         })  
-    // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
+        // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
     setTimeout(() => {
-      fetch(`https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`)
+      // fetch(`https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`)
+      fetch (urlCollege)
           .then((response) => response.json())
           .then(function (definition) {
             collegeDefinition = definition[0].shortdef[0];
