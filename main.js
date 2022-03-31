@@ -782,14 +782,19 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 
 // SECTION API CODE
 getWebsterDictionaryAPI = async () => {
+  let word = solution.join('').toLowerCase();
+  console.log(word);
   let urlElementary = '';
   let urlCollege = '';
   if (document.location.origin === "file://") {
-    urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${solution}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
-    urlCollege = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`;
+    urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
+    urlCollege = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`;
+    // urlWordnik = `https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`
+    urlWordnik = `https://api.wordnik.com/v4/word.json/${word}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`
   } else {
-    urlElementary = `https://node-api-relay2.glitch.me/definition-elementary/${solution.join('')}`;
-    urlCollege = `https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`;
+    urlElementary = `https://node-api-relay-v3.glitch.me/definition-elementary/${word}`;
+    urlCollege = `https://node-api-relay-v3.glitch.me/definition-college/${word}`;
+    urlWordnik = `https://node-api-relay-v3.glitch.me/definition-wordnik/${word}`;
   }
 
   //FIX HIDE API KEYS!!
@@ -821,6 +826,22 @@ getWebsterDictionaryAPI = async () => {
             console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
           }) 
     }, 1000);
+
+    setTimeout(() => {
+      // fetch (`https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`)
+      fetch (urlWordnik)
+          .then((response) => response.json())
+          .then(function (definition) {
+            console.log(definition);
+            // collegeDefinition = definition[0].shortdef[0];
+            // console.log(definition[0].hwi.prs[0].sound.audio);
+            console.log('api run 3');
+            })
+          .catch(err => {
+            console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
+          })          
+    }, 3000); 
+
   }
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition)
