@@ -790,7 +790,9 @@ getWebsterDictionaryAPI = async () => {
     urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
     urlCollege = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`;
     // urlWordnik = `https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`
-    urlWordnik = `https://api.wordnik.com/v4/word.json/${word}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`
+    // urlWordnik = `https://api.wordnik.com/v4/word.json/${word}/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`;
+    // urlWordnik = `https://api.wordnik.com/v4/word.json/hello/audio?useCanonical=false&limit=50&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`;
+    urlWordnik = `https://api.wordnik.com/v4/word.json/${word}/audio?useCanonical=false&limit=50&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`;
   } else {
     urlElementary = `https://node-api-relay-v3.glitch.me/definition-elementary/${word}`;
     urlCollege = `https://node-api-relay-v3.glitch.me/definition-college/${word}`;
