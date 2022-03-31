@@ -783,6 +783,7 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 // SECTION API CODE
 getWebsterDictionaryAPI = async () => {
   let word = solution.join('').toLowerCase();
+  let wordAudio = '';
   console.log(word);
   let urlElementary = '';
   let urlCollege = '';
@@ -834,8 +835,9 @@ getWebsterDictionaryAPI = async () => {
       fetch (urlWordnik)
           .then((response) => response.json())
           .then(function (definition) {
-            console.log(definition);
-            // collegeDefinition = definition[0].shortdef[0];
+            console.log('#1=', definition[0].fileUrl);
+            wordAudio = definition[0].fileUrl;
+            console.log('#2', wordAudio)
             // console.log(definition[0].hwi.prs[0].sound.audio);
             console.log('api run 3');
             })
@@ -846,8 +848,9 @@ getWebsterDictionaryAPI = async () => {
 
   }
   setTimeout(() => { 
-    displayDefintion(elementaryDefinition, collegeDefinition)
-  }, 2000);
+    displayDefintion(elementaryDefinition, collegeDefinition);
+    populateAudio(wordAudio);
+  }, 4000);
 
   // displayDefintion(elementaryDefinition, collegeDefinition)
 }
@@ -882,7 +885,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
       console.error('Share failed:', err.message);
     }
   }
-
+  
   document.getElementById('hamburgerPopupMenu').classList.add('hidden');
   // document.getElementById('solution').classList.add('hidden');
   // document.getElementById('definition').classList.add('hidden');
@@ -930,6 +933,15 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   // console.log('elementary=', definition[0].hwi.prs[0].sound.audio);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/pajama02.mp3`);
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
+}
+
+function populateAudio(wordAudio) {
+  console.log('audio', wordAudio);
+  let audioElement = document.querySelector('audio')
+  // audioElement.setAttribute('src', 'https://audio.wordnik.com/10989.mp3?Expires=1648692105&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=LVv8gcLj3hw7kXGPPacNS7vNM-OyBUNO-HywJ1uNY2nksLAPBjSgWqtZO~V6OsnV59XD8wswl9m3VVBlZYqjFcD6z6Ntji4d5HLG4RC8bDWNV6YbtT9CnfbICeW4g-RaYFVWuyPauXsdnmV1ZIkxJZxCUw4qX0mdBWqgpiKbpNDVJz91xrxIXE75JwdjBGuOOddnYLZVbPwnHeIdHaJWJR0-4K5XhG-in51ZUjeR419l0aArr3ep8Xd2d0Y7NSG0nbc0wO8F-KEeny5XqbYO3MHEqEQT~VgAMDXXaRkpXU04EAT624BTITekv6J1bZ9lgrD0wZaiad8b6VNhwRPtqQ__');
+  audioElement.setAttribute('src', `${wordAudio}`);
+
+  // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
 }
 
 // SECTION BUTTONS
