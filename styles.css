@@ -62,7 +62,8 @@ body {
 .definition {
   width: 250px;
   padding: 0.5rem;
-  margin-top: 75px;
+  /* margin-top: 75px; */
+  margin-top: 100px;
 }
 
 audio {

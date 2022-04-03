@@ -869,17 +869,17 @@ function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
   } else {
     displayDefinition = 'Sorry, I could not find the definition';
   }
-  // document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
+  document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
 
-  document.querySelector('#definition').innerHTML = `
-    Definition: ${displayDefinition}
-    <audio 
-      controls="" 
-      name="media">
-      <src=""
-      type="audio/mpeg">
-    </audio>    
-  `;
+  // document.querySelector('#definition').innerHTML = `
+  //   Definition: ${displayDefinition}
+  //   <audio 
+  //     controls="" 
+  //     name="media">
+  //     <src=""
+  //     type="audio/mpeg">
+  //   </audio>    
+  // `;
 
   // autoplay=""
 
@@ -895,6 +895,20 @@ function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
 //     type="audio/mpeg">
 //   </audio>    
 // `;
+
+displaySolution.innerHTML = `
+  ${solution.join('')}
+  <media-controller audio>
+    <audio
+      slot="media"
+      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
+    ></audio>
+    <media-control-bar>
+      <media-play-button></media-play-button>
+      <media-time-display show-duration></media-time-display>
+    </media-control-bar>
+  </media-controller>
+`;
 
 
   document.getElementById('solution').classList.toggle('hidden');
