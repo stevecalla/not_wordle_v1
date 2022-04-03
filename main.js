@@ -12,6 +12,7 @@ var currentEmojiBoard2 = "";
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, I could not find the definition';
+let audioPronounciation = 'Sorry, I could not find the definition';
 let gameStats = {
   'gameCount': 0, //calc using calcGameCount reduce function 
   'winCount': 0, 
@@ -783,10 +784,11 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 // SECTION API CODE
 getWebsterDictionaryAPI = async () => {
   let word = solution.join('').toLowerCase();
-  let wordAudio = '';
+  // let wordAudio = '';
   console.log(word);
   let urlElementary = '';
   let urlCollege = '';
+  // let audioPronounciation = '';
   if (document.location.origin === "file://") {
     urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
     urlCollege = `https://www.dictionaryapi.com/api/v3/references/collegiate/json/${word}?key=d6ad76fd-5324-4925-834b-17a06efafce6`;
@@ -797,7 +799,7 @@ getWebsterDictionaryAPI = async () => {
   } else {
     urlElementary = `https://node-api-relay-v3.glitch.me/definition-elementary/${word}`;
     urlCollege = `https://node-api-relay-v3.glitch.me/definition-college/${word}`;
-    urlWordnik = `https://node-api-relay-v3.glitch.me/definition-wordnik/${word}`;
+    urlWordnik = `https://node-api-relay-v3.glitch.me/audio-wordnik/${word}`;
   }
 
   //FIX HIDE API KEYS!!
@@ -835,9 +837,10 @@ getWebsterDictionaryAPI = async () => {
       fetch (urlWordnik)
           .then((response) => response.json())
           .then(function (definition) {
+            console.log(definition);
             console.log('#1=', definition[0].fileUrl);
-            wordAudio = definition[0].fileUrl;
-            console.log('#2', wordAudio)
+            audioPronounciation = definition[0].fileUrl;
+            console.log('#2', audioPronounciation)
             // console.log(definition[0].hwi.prs[0].sound.audio);
             console.log('api run 3');
             })
@@ -849,15 +852,16 @@ getWebsterDictionaryAPI = async () => {
   }
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition);
-    populateAudio(wordAudio);
+    populateAudio(audioPronounciation);
   }, 4000);
 
   // displayDefintion(elementaryDefinition, collegeDefinition)
 }
 
-function displayDefintion(elementaryDefinition, collegeDefinition) {
+function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
   console.log('a=', elementaryDefinition) 
   console.log('b=', collegeDefinition) 
+
   if (elementaryDefinition !== 'Placeholder') {
     displayDefinition = elementaryDefinition;
   } else if (collegeDefinition !== 'Placeholder') {
@@ -865,8 +869,34 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   } else {
     displayDefinition = 'Sorry, I could not find the definition';
   }
-  document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
+  // document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
+
+  document.querySelector('#definition').innerHTML = `
+    Definition: ${displayDefinition}
+    <audio 
+      controls="" 
+      name="media">
+      <src=""
+      type="audio/mpeg">
+    </audio>    
+  `;
+
+  // autoplay=""
+
   displaySolution.innerText = solution.join('');
+
+//   displaySolution.innerHTML = `
+//   Definition: ${displayDefinition}
+//   <audio 
+//     controls="" 
+//     autoplay="" 
+//     name="media">
+//     <src=""
+//     type="audio/mpeg">
+//   </audio>    
+// `;
+
+
   document.getElementById('solution').classList.toggle('hidden');
   document.getElementById('definition').classList.toggle('hidden');
   console.log('innerText=', document.querySelector('#definition').innerText);
@@ -935,11 +965,19 @@ function displayDefintion(elementaryDefinition, collegeDefinition) {
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
 }
 
-function populateAudio(wordAudio) {
-  console.log('audio', wordAudio);
+function populateAudio(audioPronounciation) {
+  console.log('audio', audioPronounciation);
+  // if (audioPronounciation !== 'Sorry, I could not find the audio') {
+  //   displayDefinition = elementaryDefinition;
+  // } else if (collegeDefinition !== 'Placeholder') {
+  //   displayDefinition = collegeDefinition;
+  // } else {
+  //   displayDefinition = 'Sorry, I could not find the audio';
+  // }
+
   let audioElement = document.querySelector('audio')
   // audioElement.setAttribute('src', 'https://audio.wordnik.com/10989.mp3?Expires=1648692105&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=LVv8gcLj3hw7kXGPPacNS7vNM-OyBUNO-HywJ1uNY2nksLAPBjSgWqtZO~V6OsnV59XD8wswl9m3VVBlZYqjFcD6z6Ntji4d5HLG4RC8bDWNV6YbtT9CnfbICeW4g-RaYFVWuyPauXsdnmV1ZIkxJZxCUw4qX0mdBWqgpiKbpNDVJz91xrxIXE75JwdjBGuOOddnYLZVbPwnHeIdHaJWJR0-4K5XhG-in51ZUjeR419l0aArr3ep8Xd2d0Y7NSG0nbc0wO8F-KEeny5XqbYO3MHEqEQT~VgAMDXXaRkpXU04EAT624BTITekv6J1bZ9lgrD0wZaiad8b6VNhwRPtqQ__');
-  audioElement.setAttribute('src', `${wordAudio}`);
+  audioElement.setAttribute('src', `${audioPronounciation}`);
 
   // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
 }
