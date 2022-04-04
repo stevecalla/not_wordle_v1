@@ -11,8 +11,8 @@ var currentEmojiBoard = "";
 var currentEmojiBoard2 = "";
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
-let displayDefinition = 'Sorry, I could not find the definition';
-let audioPronounciation = 'Sorry, I could not find the definition';
+let displayDefinition = 'Sorry, definition not available';
+let audioPronounciation = 'Sorry, audio not available';
 let gameStats = {
   'gameCount': 0, //calc using calcGameCount reduce function 
   'winCount': 0, 
@@ -845,6 +845,7 @@ getWebsterDictionaryAPI = async () => {
             console.log('api run 3');
             })
           .catch(err => {
+            audioPronounciation = './assets/pronunce_not_available.mp3';
             console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
           })          
     }, 3000); 
@@ -867,7 +868,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
   } else if (collegeDefinition !== 'Placeholder') {
     displayDefinition = collegeDefinition;
   } else {
-    displayDefinition = 'Sorry, I could not find the definition';
+    displayDefinition = 'Sorry, definition not available';
   }
   document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
 
@@ -901,7 +902,7 @@ displaySolution.innerHTML = `
   <media-controller audio>
     <audio
       slot="media"
-      src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
+      src='./assets/pronunce_not_available.mp3'
     ></audio>
     <media-control-bar>
       <media-play-button></media-play-button>
@@ -909,6 +910,9 @@ displaySolution.innerHTML = `
     </media-control-bar>
   </media-controller>
 `;
+
+// src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
+// src='pronunce_not_available.mp3'
 
 
   document.getElementById('solution').classList.toggle('hidden');
@@ -991,9 +995,12 @@ function populateAudio(audioPronounciation) {
 
   let audioElement = document.querySelector('audio')
   // audioElement.setAttribute('src', 'https://audio.wordnik.com/10989.mp3?Expires=1648692105&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=LVv8gcLj3hw7kXGPPacNS7vNM-OyBUNO-HywJ1uNY2nksLAPBjSgWqtZO~V6OsnV59XD8wswl9m3VVBlZYqjFcD6z6Ntji4d5HLG4RC8bDWNV6YbtT9CnfbICeW4g-RaYFVWuyPauXsdnmV1ZIkxJZxCUw4qX0mdBWqgpiKbpNDVJz91xrxIXE75JwdjBGuOOddnYLZVbPwnHeIdHaJWJR0-4K5XhG-in51ZUjeR419l0aArr3ep8Xd2d0Y7NSG0nbc0wO8F-KEeny5XqbYO3MHEqEQT~VgAMDXXaRkpXU04EAT624BTITekv6J1bZ9lgrD0wZaiad8b6VNhwRPtqQ__');
-  audioElement.setAttribute('src', `${audioPronounciation}`);
+  
+  // audioElement.setAttribute('src', `${audioPronounciation}`);
+  document.querySelector('audio').src = `${audioPronounciation}`;
 
   // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
+
 }
 
 // SECTION BUTTONS
