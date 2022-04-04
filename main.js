@@ -12,7 +12,7 @@ var currentEmojiBoard2 = "";
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, definition not available';
-let audioPronounciation = 'Sorry, audio not available';
+// let audioPronounciation = 'Sorry, audio not available';
 let gameStats = {
   'gameCount': 0, //calc using calcGameCount reduce function 
   'winCount': 0, 
@@ -788,6 +788,8 @@ getWebsterDictionaryAPI = async () => {
   console.log(word);
   let urlElementary = '';
   let urlCollege = '';
+  let audioPronounciation = './assets/pronunce_not_available.mp3';
+
   // let audioPronounciation = '';
   if (document.location.origin === "file://") {
     urlElementary = `https://www.dictionaryapi.com/api/v3/references/sd2/json/${word}?key=8a8c06ea-289c-450d-90f1-cf98924da140`;
@@ -845,7 +847,7 @@ getWebsterDictionaryAPI = async () => {
             console.log('api run 3');
             })
           .catch(err => {
-            audioPronounciation = './assets/pronunce_not_available.mp3';
+            // audioPronounciation = './assets/pronunce_not_available.mp3';
             console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
           })          
     }, 3000); 
@@ -1016,6 +1018,8 @@ function populateAudio(audioPronounciation) {
   // console.log('duration6=', document.querySelector('media-controller'));
 
   // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
+
+  // window.alert(audioPronounciation);
 
 }
 
