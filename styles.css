@@ -59,6 +59,13 @@ body {
   margin-top: 35px;
 }
 
+p.play-button {
+  margin-right: 0px;
+  margin-left: 0px;
+}
+
+
+
 .definition {
   width: 250px;
   padding: 0.5rem;

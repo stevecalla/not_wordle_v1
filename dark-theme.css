@@ -65,3 +65,30 @@ th {
   background-color: transparent;
   color: whitesmoke
 }
+
+p.play-button,
+p.play-button-line {
+  color: white;
+  background-color: black;
+}
+
+.solution,
+.definition {
+  background-color: black;
+  color: white;
+}
+
+/* media-controller, */
+/* media-control-bar, */
+/* media-play-button,
+media-time-display,
+path.icon,
+svg + path.icon,
+::slotted(svg), ::slotted(img)
+{ */
+  /* border: 1px solid white; */
+  /* border-radius: 10px; */
+  /* background-color: white !important; */
+  /* fill: black !important;
+  color: black !important;
+} */

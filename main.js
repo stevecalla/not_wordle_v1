@@ -906,11 +906,15 @@ displaySolution.innerHTML = `
     ></audio>
     <media-control-bar>
       <media-play-button></media-play-button>
-      <media-time-display show-duration></media-time-display>
+      <p class='play-button'>Play</p>
+      <p  class='play-button-line'>|</p>
+      <p class='play-button'>0:02</p>
     </media-control-bar>
   </media-controller>
 `;
 
+{/* <p class='play-button'>0:01</p> */}
+{/* <media-duration-display></media-duration-display> */}
 // src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
 // src='pronunce_not_available.mp3'
 
@@ -998,6 +1002,18 @@ function populateAudio(audioPronounciation) {
   
   // audioElement.setAttribute('src', `${audioPronounciation}`);
   document.querySelector('audio').src = `${audioPronounciation}`;
+
+  // console.log('duration1=', document.querySelector('div'));
+  // console.log('duration2=', document.querySelector('media-controller'));
+  // console.log('duration3=', document.querySelector('media-controller').duration);
+  // console.log('duration4=', document.querySelector('media-controller').getAttribute('media-current-time'));
+  // console.log('duration4a=', document.querySelector('media-current-duration'));
+  // console.log('duration4a=', document.querySelector('#container'));
+
+  // document.querySelector('media-controller').getAttribute('media-current-time') === '0' ? document.querySelector('media-controller').setAttribute('media-current-time', '0:10') : document.querySelector('media-controller').setAttribute('media-current-time', '0:10');
+
+  // console.log('duration5=', document.querySelector('media-controller').getAttribute('media-current-time'));
+  // console.log('duration6=', document.querySelector('media-controller'));
 
   // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
 
