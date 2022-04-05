@@ -856,7 +856,7 @@ getWebsterDictionaryAPI = async () => {
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition);
     populateAudio(audioPronounciation);
-  }, 2000);
+  }, 300);
 
   // displayDefintion(elementaryDefinition, collegeDefinition)
 }
