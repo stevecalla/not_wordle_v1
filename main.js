@@ -820,9 +820,9 @@ getWebsterDictionaryAPI = async () => {
           console.error('API #1 failed:', 'message:', err.message, 'stack:', err.stack);
         })  
         // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-    setTimeout(() => {
+    // setTimeout(() => {
       // fetch(`https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`)
-      fetch (urlCollege)
+    await fetch (urlCollege)
           .then((response) => response.json())
           .then(function (definition) {
             collegeDefinition = definition[0].shortdef[0];
@@ -832,11 +832,11 @@ getWebsterDictionaryAPI = async () => {
           .catch(err => {
             console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
           }) 
-    }, 1000);
+    // }, 1000);
 
-    setTimeout(() => {
+    // setTimeout(() => {
       // fetch (`https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`)
-      fetch (urlWordnik)
+    await fetch (urlWordnik)
           .then((response) => response.json())
           .then(function (definition) {
             console.log(definition);
@@ -850,13 +850,13 @@ getWebsterDictionaryAPI = async () => {
             // audioPronounciation = './assets/pronunce_not_available.mp3';
             console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
           })          
-    }, 3000); 
+    // }, 1000); 
 
   }
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition);
     populateAudio(audioPronounciation);
-  }, 4000);
+  }, 2000);
 
   // displayDefintion(elementaryDefinition, collegeDefinition)
 }
