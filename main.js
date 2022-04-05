@@ -12,7 +12,7 @@ var currentEmojiBoard2 = "";
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, definition not available';
-// let audioPronounciation = 'Sorry, audio not available';
+let audioPronounciation = './assets/pronunce_not_available.mp3';
 let gameStats = {
   'gameCount': 0, //calc using calcGameCount reduce function 
   'winCount': 0, 
@@ -788,7 +788,8 @@ getWebsterDictionaryAPI = async () => {
   console.log(word);
   let urlElementary = '';
   let urlCollege = '';
-  let audioPronounciation = './assets/pronunce_not_available.mp3';
+  // let audioPronounciation = './assets/pronunce_not_available.mp3';
+  // let audioPronounciation = '';
 
   // let audioPronounciation = '';
   if (document.location.origin === "file://") {
@@ -853,6 +854,7 @@ getWebsterDictionaryAPI = async () => {
     // }, 1000); 
 
   }
+
   setTimeout(() => { 
     displayDefintion(elementaryDefinition, collegeDefinition);
     populateAudio(audioPronounciation);
