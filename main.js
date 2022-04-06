@@ -405,7 +405,7 @@ function inputText(event) {
   // console.log(event);
   // console.log(a)
   let key = event.key ? event.key : event.value ? event.value : event;
-  keyCode = event.keyCode;
+  let keyCode = event.keyCode;
   // console.log(event.key, event.value, event);
   if ((event.keyCode >=65 && event.keyCode <=90 || event.value) && currentInput.length !== 5 && allInput.length < 30 && !document.getElementById('id' + allInput.length).disabled) {
     // let test2 = allInput.length;
@@ -782,7 +782,7 @@ function createEmojiBoard(tileEmoji, tileEmoji2) {
 }
 
 // SECTION API CODE
-getWebsterDictionaryAPI = async () => {
+async function getWebsterDictionaryAPI() {
   let word = solution.join('').toLowerCase();
   // let wordAudio = '';
   console.log(word);
