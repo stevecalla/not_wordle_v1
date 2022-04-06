@@ -1237,7 +1237,7 @@ function createGameStatsMenu() {
     <div class='current-stats' id='currentStats'>
       <div class='gameBoard-wrapper' id='gameBoardWrapper'>
         <p class='current-game-text'>Game Board</p>
-        <p class='current-game-text'>#${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].solutionNumber}, ${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].rowSolved}/6</p>
+        <p class='current-game-text'>${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].solutionNumber}, ${gameStats.wordPlayed[gameStats.wordPlayed.length - 1].rowSolved}/6</p>
         ${gameBoard}
       </div>
       <div class='spacer'></div>
