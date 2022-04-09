@@ -12,6 +12,7 @@ var currentEmojiBoard2 = "";
 let elementaryDefinition = 'Placeholder';
 let collegeDefinition = 'Placeholder';
 let displayDefinition = 'Sorry, definition not available';
+let solutionText;
 let audioPronounciation = './assets/pronunce_not_available.mp3';
 let gameStats = {
   'gameCount': 0, //calc using calcGameCount reduce function 
@@ -211,6 +212,7 @@ function createGameSolution() {
   // test = [wordList[randomNumber].toUpperCase()];
   // console.log(test)
   solution = Array.from(wordList[randomNumber].toUpperCase());
+  solutionText = solution.join('');
   console.log('solution=', solution, 'random=', randomNumber);
   createWordPlayedData(randomNumber, solution);
 }
@@ -837,35 +839,39 @@ async function getWebsterDictionaryAPI() {
 
     // setTimeout(() => {
       // fetch (`https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`)
-    await fetch (urlWordnik)
-          .then((response) => response.json())
-          .then(function (definition) {
-            console.log(definition);
-            console.log('#1=', definition[0].fileUrl);
-            audioPronounciation = definition[0].fileUrl;
-            console.log('#2', audioPronounciation)
-            // console.log(definition[0].hwi.prs[0].sound.audio);
-            console.log('api run 3');
-            })
-          .catch(err => {
-            // audioPronounciation = './assets/pronunce_not_available.mp3';
-            console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
-          })          
+    // await fetch (urlWordnik)
+    //       .then((response) => response.json())
+    //       .then(function (definition) {
+    //         console.log(definition);
+    //         console.log('#1=', definition[0].fileUrl);
+    //         audioPronounciation = definition[0].fileUrl;
+    //         console.log('#2', audioPronounciation)
+    //         // console.log(definition[0].hwi.prs[0].sound.audio);
+    //         console.log('api run 3');
+    //         })
+    //       .catch(err => {
+    //         // audioPronounciation = './assets/pronunce_not_available.mp3';
+    //         console.error('API #3 failed:', 'message:', err.message, 'stack:', err.stack);
+    //       })          
     // }, 1000); 
 
   }
 
   setTimeout(() => { 
-    displayDefintion(elementaryDefinition, collegeDefinition);
-    populateAudio(audioPronounciation);
+    displayDefintion(elementaryDefinition, collegeDefinition, word);
+    // populateAudio(audioPronounciation);
+    // textToSpeech(elementaryDefinition);
   }, 300);
 
   // displayDefintion(elementaryDefinition, collegeDefinition)
 }
 
-function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
+function displayDefintion(elementaryDefinition, collegeDefinition, word) {
   console.log('a=', elementaryDefinition) 
   console.log('b=', collegeDefinition) 
+  console.log('c=', word)
+
+  // solutionText = word;
 
   if (elementaryDefinition !== 'Placeholder') {
     displayDefinition = elementaryDefinition;
@@ -874,21 +880,28 @@ function displayDefintion(elementaryDefinition, collegeDefinition, wordAudio) {
   } else {
     displayDefinition = 'Sorry, definition not available';
   }
-  document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
+  // document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
 
-  // document.querySelector('#definition').innerHTML = `
-  //   Definition: ${displayDefinition}
-  //   <audio 
-  //     controls="" 
-  //     name="media">
-  //     <src=""
-  //     type="audio/mpeg">
-  //   </audio>    
-  // `;
+  document.querySelector('#definition').innerHTML = `
+    Definition: ${displayDefinition}
+    <media-controller audio>
+      <audio
+        slot="media"
+        src='./assets/pronunce_not_available.mp3'
+      ></audio>
+      <media-control-bar>
+        <media-play-button></media-play-button>
+        <p class='play-button' onclick='textToSpeech(displayDefinition)'>Play</p>
+        <p class='play-button-line'>|</p>
+        <p class='play-button'>0:02</p>
+      </media-control-bar>
+    </media-controller>
+  `;
+  
 
   // autoplay=""
 
-  displaySolution.innerText = solution.join('');
+  // displaySolution.innerText = solution.join('');
 
 //   displaySolution.innerHTML = `
 //   Definition: ${displayDefinition}
@@ -910,12 +923,23 @@ displaySolution.innerHTML = `
     ></audio>
     <media-control-bar>
       <media-play-button></media-play-button>
-      <p class='play-button'>Play</p>
-      <p  class='play-button-line'>|</p>
+      <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
+      <p class='play-button-line'>|</p>
       <p class='play-button'>0:02</p>
     </media-control-bar>
   </media-controller>
 `;
+
+// displaySolution.innerHTML = `
+//   <media-control-bar>\n
+//     <div>${solution.join('')}</div>
+//     <div>
+//       <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
+//       <p class='play-button-line'>|</p>
+//       <p class='play-button'>0:02</p>
+//     </div>
+// </media-control-bar>
+// `;
 
 {/* <p class='play-button'>0:01</p> */}
 {/* <media-duration-display></media-duration-display> */}
@@ -991,39 +1015,31 @@ displaySolution.innerHTML = `
   // console.log(`https://media.merriam-webster.com/audio/prons/en/us/mp3/p/${definition[0].hwi.prs[0].sound.audio}.mp3`);
 }
 
-function populateAudio(audioPronounciation) {
-  console.log('audio', audioPronounciation);
-  // if (audioPronounciation !== 'Sorry, I could not find the audio') {
-  //   displayDefinition = elementaryDefinition;
-  // } else if (collegeDefinition !== 'Placeholder') {
-  //   displayDefinition = collegeDefinition;
-  // } else {
-  //   displayDefinition = 'Sorry, I could not find the audio';
-  // }
-
-  let audioElement = document.querySelector('audio')
-  // audioElement.setAttribute('src', 'https://audio.wordnik.com/10989.mp3?Expires=1648692105&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=LVv8gcLj3hw7kXGPPacNS7vNM-OyBUNO-HywJ1uNY2nksLAPBjSgWqtZO~V6OsnV59XD8wswl9m3VVBlZYqjFcD6z6Ntji4d5HLG4RC8bDWNV6YbtT9CnfbICeW4g-RaYFVWuyPauXsdnmV1ZIkxJZxCUw4qX0mdBWqgpiKbpNDVJz91xrxIXE75JwdjBGuOOddnYLZVbPwnHeIdHaJWJR0-4K5XhG-in51ZUjeR419l0aArr3ep8Xd2d0Y7NSG0nbc0wO8F-KEeny5XqbYO3MHEqEQT~VgAMDXXaRkpXU04EAT624BTITekv6J1bZ9lgrD0wZaiad8b6VNhwRPtqQ__');
+// function populateAudio(audioPronounciation) {
+//   console.log('audio', audioPronounciation);
+//   let audioElement = document.querySelector('audio')
+//   document.querySelector('audio').src = `${audioPronounciation}`
+// }
   
-  // audioElement.setAttribute('src', `${audioPronounciation}`);
-  document.querySelector('audio').src = `${audioPronounciation}`;
+let speech = new SpeechSynthesisUtterance();
+console.log(speech);
 
-  // console.log('duration1=', document.querySelector('div'));
-  // console.log('duration2=', document.querySelector('media-controller'));
-  // console.log('duration3=', document.querySelector('media-controller').duration);
-  // console.log('duration4=', document.querySelector('media-controller').getAttribute('media-current-time'));
-  // console.log('duration4a=', document.querySelector('media-current-duration'));
-  // console.log('duration4a=', document.querySelector('#container'));
+function textToSpeech(text) {
+  // if(typeof speechSynthesis === 'undefined') {
+  //   return;
+  // }
+  console.log(text, speech);
 
-  // document.querySelector('media-controller').getAttribute('media-current-time') === '0' ? document.querySelector('media-controller').setAttribute('media-current-time', '0:10') : document.querySelector('media-controller').setAttribute('media-current-time', '0:10');
-
-  // console.log('duration5=', document.querySelector('media-controller').getAttribute('media-current-time'));
-  // console.log('duration6=', document.querySelector('media-controller'));
-
-  // let audioElement = document.querySelector('audio').src = `${wordAudio}`;
-
-  // window.alert(audioPronounciation);
-
+  speech.text = text;
+  speech.rate = 1;
+  speech.volume = 1;
+  speech.pitch = 1;
+  // Speak in language
+  // speech.lang='en-US';
+  speech.lang='en-GB';
+  speechSynthesis.speak(speech);
 }
+
 
 // SECTION BUTTONS
 function createHamburgerMenu() {
