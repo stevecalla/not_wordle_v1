@@ -991,6 +991,7 @@ function textToSpeech(text) {
   // speech.lang='en-US';
   speech.lang='en-GB';
   speechSynthesis.speak(speech);
+  console.log(text, speech);
 }
 
 
