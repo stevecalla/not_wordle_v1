@@ -66,17 +66,17 @@ th {
   color: whitesmoke
 }
 
-p.play-button,
+/* p.play-button,
 p.play-button-line {
   color: white;
   background-color: black;
-}
+} */
 
-.solution,
+/* .solution,
 .definition {
   background-color: black;
   color: white;
-}
+} */
 
 /* media-controller, */
 /* media-control-bar, */

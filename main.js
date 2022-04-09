@@ -884,68 +884,21 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
 
   document.querySelector('#definition').innerHTML = `
     Definition: ${displayDefinition}
-    <media-controller audio>
-      <audio
-        slot="media"
-        src='./assets/pronunce_not_available.mp3'
-      ></audio>
-      <media-control-bar>
-        <media-play-button></media-play-button>
-        <p class='play-button' onclick='textToSpeech(displayDefinition)'>Play</p>
-        <p class='play-button-line'>|</p>
-        <p class='play-button'>0:02</p>
-      </media-control-bar>
-    </media-controller>
-  `;
-  
-
-  // autoplay=""
-
-  // displaySolution.innerText = solution.join('');
-
-//   displaySolution.innerHTML = `
-//   Definition: ${displayDefinition}
-//   <audio 
-//     controls="" 
-//     autoplay="" 
-//     name="media">
-//     <src=""
-//     type="audio/mpeg">
-//   </audio>    
-// `;
-
-displaySolution.innerHTML = `
-  ${solution.join('')}
-  <media-controller audio>
-    <audio
-      slot="media"
-      src='./assets/pronunce_not_available.mp3'
-    ></audio>
-    <media-control-bar>
-      <media-play-button></media-play-button>
-      <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
+    <div class="play-sound-wrapper">
+      <p class='play-button' onclick='textToSpeech(displayDefinition)'>Play</p>
       <p class='play-button-line'>|</p>
       <p class='play-button'>0:02</p>
-    </media-control-bar>
-  </media-controller>
-`;
+    </div>
+  `;
 
-// displaySolution.innerHTML = `
-//   <media-control-bar>\n
-//     <div>${solution.join('')}</div>
-//     <div>
-//       <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
-//       <p class='play-button-line'>|</p>
-//       <p class='play-button'>0:02</p>
-//     </div>
-// </media-control-bar>
-// `;
-
-{/* <p class='play-button'>0:01</p> */}
-{/* <media-duration-display></media-duration-display> */}
-// src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3"
-// src='pronunce_not_available.mp3'
-
+  displaySolution.innerHTML = `
+      <div>${solution.join('')}</div>
+      <div class="play-sound-wrapper">
+        <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
+        <p class='play-button-line'>|</p>
+        <p class='play-button'>0:02</p>
+      </div>
+  `;
 
   document.getElementById('solution').classList.toggle('hidden');
   document.getElementById('definition').classList.toggle('hidden');
@@ -1020,11 +973,9 @@ displaySolution.innerHTML = `
 //   let audioElement = document.querySelector('audio')
 //   document.querySelector('audio').src = `${audioPronounciation}`
 // }
-  
-let speech = new SpeechSynthesisUtterance();
-console.log(speech);
 
 function textToSpeech(text) {
+  let speech = new SpeechSynthesisUtterance();
   // if(typeof speechSynthesis === 'undefined') {
   //   return;
   // }

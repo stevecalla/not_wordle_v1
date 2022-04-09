@@ -48,31 +48,14 @@
       <div class='instruction-wrapper' id='instructionWrapper' onClick='hideInstructions()'></div>
       <div class='confetti-lottiplayer-wrapper' id='confettiWrapper'></div>
       <div class='message hidden' id='message'></div>
-      <div class='solution hidden' id='solution'>
-        <!-- Solution -->
-
-        <!-- <media-controller audio> -->
-          <!-- <audio -->
-            <!-- slot="media" -->
-            <!-- src='./assets/pronunce_not_available.mp3' -->
-          <!-- ></audio> -->
-          <!-- <media-control-bar> -->
-            <!-- <media-play-button></media-play-button> -->
-            <!-- <p class='play-button'>Play</p> -->
-            <!-- <p class='play-button-line'>|</p> -->
-            <!-- <media-time-display show-duration></media-time-display> -->
-            <!-- <media-duration-display></media-duration-display> -->
-            <!-- <media-time-range></media-time-range> -->
-            <!-- <media-playback-rate-button></media-playback-rate-button> -->
-            <!-- <media-mute-button></media-mute-button> -->
-            <!-- <media-volume-range></media-volume-range> -->
-          <!-- </media-control-bar> -->
-        <!-- </media-controller> -->
-
-        <!-- src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/858/outfoxing.mp3" -->
-        <!-- <audio controls="" autoplay="" name="media" type="audio/mpeg"></audio> -->
+      <div class='solution' id='solution'>
+        <div>solution</div>
+        <div class="play-sound-wrapper">
+          <p class='play-button' onclick='textToSpeech(solutionText)'>Play</p>
+          <p class='play-button-line'>|</p>
+          <p class='play-button'>0:02</p>
+        </div>
       </div>
-
       <div class='definition hidden' id='definition'></div>
       <div class='gameStats-wrapper hidden' id='createGameStatsMenu'></div>
       <div class='history-table' id='historyTable'></div>
@@ -88,7 +71,7 @@
     <!-- <audio controls="" autoplay="" name="media"><src="" type="audio/mpeg"></audio> -->
     <!-- <audio controls="" autoplay="" name="media"><source src="https://audio.wordnik.com/10989.mp3?Expires=1648692105&Key-Pair-Id=APKAIHXX6B6C37D2VKVA&Signature=LVv8gcLj3hw7kXGPPacNS7vNM-OyBUNO-HywJ1uNY2nksLAPBjSgWqtZO~V6OsnV59XD8wswl9m3VVBlZYqjFcD6z6Ntji4d5HLG4RC8bDWNV6YbtT9CnfbICeW4g-RaYFVWuyPauXsdnmV1ZIkxJZxCUw4qX0mdBWqgpiKbpNDVJz91xrxIXE75JwdjBGuOOddnYLZVbPwnHeIdHaJWJR0-4K5XhG-in51ZUjeR419l0aArr3ep8Xd2d0Y7NSG0nbc0wO8F-KEeny5XqbYO3MHEqEQT~VgAMDXXaRkpXU04EAT624BTITekv6J1bZ9lgrD0wZaiad8b6VNhwRPtqQ__" type="audio/mpeg"></audio> -->
 
-    <script type="module" src="https://unpkg.com/media-chrome@0.5"></script>
+    <!-- <script type="module" src="https://unpkg.com/media-chrome@0.5"></script> -->
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script type="text/javascript" src="confetti.js"></script>
     <script type="text/javascript" src="data.js"></script>
