@@ -66,6 +66,10 @@ th {
   color: whitesmoke
 }
 
+.play-button {
+  fill: black;
+}
+
 /* p.play-button,
 p.play-button-line {
   color: white;

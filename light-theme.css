@@ -29,3 +29,7 @@ a {
   cursor: pointer;
   background: linear-gradient( 90deg, black 50%, white 50% ); 
 }
+
+.play-button {
+  fill: white;
+}
