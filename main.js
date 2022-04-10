@@ -976,7 +976,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
 //   document.querySelector('audio').src = `${audioPronounciation}`
 // }
 
-async function textToSpeech(text) {
+function textToSpeech(text) {
   let speech = new SpeechSynthesisUtterance();
 
   var voices = speechSynthesis.getVoices();
