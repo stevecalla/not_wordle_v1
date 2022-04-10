@@ -976,8 +976,11 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
 //   document.querySelector('audio').src = `${audioPronounciation}`
 // }
 
-function textToSpeech(text) {
+async function textToSpeech(text) {
   let speech = new SpeechSynthesisUtterance();
+
+  var voices = speechSynthesis.getVoices();
+  // let speech = window.speechSynthesis;
   // if(typeof speechSynthesis === 'undefined') {
   //   return;
   // }
@@ -988,9 +991,10 @@ function textToSpeech(text) {
   speech.volume = 1;
   speech.pitch = 1;
   // Speak in language
-  // speech.lang='en-US';
-  speech.lang='en-GB';
+  speech.lang='en-US';
+  // speech.lang='en-GB';
   speechSynthesis.speak(speech);
+
   console.log(text, speech);
 }
 
