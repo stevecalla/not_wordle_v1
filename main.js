@@ -823,9 +823,10 @@ async function getWebsterDictionaryAPI() {
           console.error('API #1 failed:', 'message:', err.message, 'stack:', err.stack);
         })  
         // fetch(`https://www.dictionaryapi.com/api/v3/references/collegiate/json/${solution}?key=d6ad76fd-5324-4925-834b-17a06efafce6`) //college dictionary
-    // setTimeout(() => {
+    setTimeout(() => {
       // fetch(`https://node-api-relay2.glitch.me/definition-college/${solution.join('')}`)
-    await fetch (urlCollege)
+    // await fetch (urlCollege)
+    fetch (urlCollege)
           .then((response) => response.json())
           .then(function (definition) {
             collegeDefinition = definition[0].shortdef[0];
@@ -835,7 +836,7 @@ async function getWebsterDictionaryAPI() {
           .catch(err => {
             console.error('API #2 failed:', 'message:', err.message, 'stack:', err.stack);
           }) 
-    // }, 1000);
+    }, 1000);
 
     // setTimeout(() => {
       // fetch (`https://api.wordnik.com/v4/word.json/hello/definitions?limit=200&includeRelated=false&useCanonical=false&includeTags=false&api_key=yh6m0pne71140ovktya1nw7ufczqyp1q3lwtzp95yqh4j6fvd`)
@@ -979,7 +980,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
 function textToSpeech(text) {
   let speech = new SpeechSynthesisUtterance();
 
-  var voices = speechSynthesis.getVoices();
+  // var voices = speechSynthesis.getVoices();
   // let speech = window.speechSynthesis;
   // if(typeof speechSynthesis === 'undefined') {
   //   return;
