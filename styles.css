@@ -49,9 +49,9 @@ body {
 .definition {
   display: flex;
   flex-direction: column;
-  width: 100px;
+  /* width: 100px; */
   text-align: center;
-  border: solid;
+  border: 1px solid;
   border-color: black;
   border-radius: 5px;
   position: absolute;
@@ -59,6 +59,18 @@ body {
   animation: skew 3s infinite;
   padding: 0.2rem;
   margin-top: 35px;
+}
+
+.solution {
+  height: 50px;
+  width: 150px;
+}
+
+.definition {
+  width: 250px;
+  padding: 0.5rem;
+  /* margin-top: 75px; */
+  margin-top: 100px;
 }
 
 .play-sound-wrapper {
@@ -71,18 +83,15 @@ body {
 .play-button {
   height: 15px;
   width: 15px;
+  height: 25px;
+  width: 25px;
+  /* height: 50px;
+  width: 50px; */
 }
 
 p.play-button-line {
   margin-right: 0px;
   margin-left: 0px;
-}
-
-.definition {
-  width: 250px;
-  padding: 0.5rem;
-  /* margin-top: 75px; */
-  margin-top: 100px;
 }
 
 /* audio {
