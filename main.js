@@ -980,7 +980,17 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
 function textToSpeech(text) {
   let speech = new SpeechSynthesisUtterance();
 
+  let voiceUsed;
   var voices = speechSynthesis.getVoices();
+
+  for (let i = 0; i < voices.length; i++) {
+    if (voices[i].name === 'Alex') {
+      voiceUsed = voices[i]
+    } 
+    // console.log(voices[i], voiceUsed);
+  }
+
+
   // let speech = window.speechSynthesis;
   // if(typeof speechSynthesis === 'undefined') {
   //   return;
@@ -994,10 +1004,12 @@ function textToSpeech(text) {
   // Speak in language
   // speech.lang = 'en-US';
   // speech.lang = 'en-GB';
-  speech.voice = voices[0];
+  // speech.voice = voices[0];
+  speech.voice = voiceUsed;
   speechSynthesis.speak(speech);
 
   console.log(text, speech, voices);
+  // alert(text, speech.voice, speech.text)
 }
 
 // SECTION BUTTONS
