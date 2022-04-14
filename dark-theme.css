@@ -68,8 +68,12 @@ th {
 
 .play-button {
   fill: black;
-  stroke: black;
+  /* stroke: black; */
 }
+
+/* .play-button:hover {
+  stroke: black;
+} */
 
 /* p.play-button,
 p.play-button-line {

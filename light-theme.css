@@ -32,5 +32,9 @@ a {
 
 .play-button {
   fill: white;
-  stroke: white;
+  /* stroke: white; */
 }
+
+/* .play-button:hover {
+  stroke: white;
+} */
