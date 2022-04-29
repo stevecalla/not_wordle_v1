@@ -99,7 +99,7 @@ function createGameInstruction() {
 }
 
 function injectInstructionText() {
-  document.getElementById('instructionWrapper').innerHTML = `
+  document.getElementById('instructionWrapper').innerHTML = String.raw`
     <div class='instx-title'>
       <p class='cloak'>x</p>
       <p class='title'>HOW TO PLAY</p>
@@ -125,7 +125,7 @@ function createIntructionTiles() {
   for (let x = 0; x < 3; x++)
     for (let i = 0; i < 5; i++) {
       document.querySelectorAll('.instrx-wrapper')[x].innerHTML += 
-      `   
+      String.raw`   
         <div>
           <input type="text" 
                   id=${`tile${x}${i}`}
@@ -350,7 +350,7 @@ function populateGameStatsFromLocalStorage() {
 function createGameTiles() {
   for (let i = 0; i < 30; i++) {
     inputTilesRow1.innerHTML +=
-    `   
+    String.raw`   
       <input  type='text' 
               id=${`id${i}`}
               maxlength='1'
@@ -373,7 +373,7 @@ function createOnscreenKeyboard() {
   const qwertyKeys = ['Q','W','E','R','T','Y','U','I','O','P','A','S','D','F','G','H','J','K','L','ENTER','Z','X','C','V','B','N','M','BACK'];
   document.getElementById('keyboardWrapper').innerHTML = '';
   for (let i = 0; i < 28; i++) {
-    document.getElementById('keyboardWrapper').innerHTML += `
+    document.getElementById('keyboardWrapper').innerHTML += String.raw`
       <button 
         class='keyboard-button' 
         id='keyboard${[i]}' 
@@ -883,7 +883,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
   }
   // document.querySelector('#definition').innerText = `Definition: ${displayDefinition}`;
 
-  document.querySelector('#definition').innerHTML = `
+  document.querySelector('#definition').innerHTML = String.raw`
     Definition: ${displayDefinition}
     <div class="play-sound-wrapper">
       <svg class='play-button' onclick='textToSpeech(displayDefinition)' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"><g id="Play"><path d="M46.0136986,31.1054993L25.1973,20.6973c-0.3096008-0.1532993-06777992-0.1387005-0.9727001,0.0438995 C23.9297009,20.9237995,23.75,21.2451,23.75,21.5918007v20.8163986c0,0.3467026,0.1797009,0.6679993,0.4745998,0.8506012 C24.3848,43.3583984,24.5674,43.4081993,24.75,43.4081993c0.1532993,0,0.3057003-0.035099,0.4473-0.1054001l20.8163986-10.4081993 c0.3388023-0.1699982,0.5527-0.5157013,0.5527-0.8945999C46.5663986,31.6210995,46.3525009,31.2754002,46.0136986,31.1054993z M25.75,40.7901001v-17.580101L43.330101,32L25.75,40.7901001z"/><path d="M32,0C14.3268995,0,0,14.3268995,0,32s14.3268995,32,32,32s32-14.3269005,32-32S49.6730995,0,32,0z M32,62 C15.4579,62,2,48.542099,2,32C2,15.4580002,15.4579,2,32,2c16.5419998,0,30,13.4580002,30,30C62,48.542099,48.5419998,62,32,62z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
@@ -893,7 +893,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
     </div>
   `;
 
-  displaySolution.innerHTML = `
+  displaySolution.innerHTML = String.raw`
       <div>${solution.join('')}</div>
       <div class="play-sound-wrapper">
         <svg class='play-button' onclick='textToSpeech(solutionText)' version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"viewBox="0 0 64 64" enable-background="new 0 0 64 64" xml:space="preserve"><g id="Play"><path d="M46.0136986,31.1054993L25.1973,20.6973c-0.3096008-0.1532993-06777992-0.1387005-0.9727001,0.0438995 C23.9297009,20.9237995,23.75,21.2451,23.75,21.5918007v20.8163986c0,0.3467026,0.1797009,0.6679993,0.4745998,0.8506012 C24.3848,43.3583984,24.5674,43.4081993,24.75,43.4081993c0.1532993,0,0.3057003-0.035099,0.4473-0.1054001l20.8163986-10.4081993 c0.3388023-0.1699982,0.5527-0.5157013,0.5527-0.8945999C46.5663986,31.6210995,46.3525009,31.2754002,46.0136986,31.1054993z M25.75,40.7901001v-17.580101L43.330101,32L25.75,40.7901001z"/><path d="M32,0C14.3268995,0,0,14.3268995,0,32s14.3268995,32,32,32s32-14.3269005,32-32S49.6730995,0,32,0z M32,62 C15.4579,62,2,48.542099,2,32C2,15.4580002,15.4579,2,32,2c16.5419998,0,30,13.4580002,30,30C62,48.542099,48.5419998,62,32,62z"/></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g><g></g></svg>
@@ -941,7 +941,7 @@ function displayDefintion(elementaryDefinition, collegeDefinition, word) {
     document.getElementById('definition').classList.add('hidden');
   }, 7000);
 
-  // document.getElementById('instructionWrapper').innerHTML = `
+  // document.getElementById('instructionWrapper').innerHTML = String.raw`
   //   <div class='instx-title'>
   //     <p class='hidden'>x</p>
   //     <p class='title'>GAME SUMMARY</p>
@@ -1017,7 +1017,7 @@ function textToSpeech(text) {
 // SECTION BUTTONS
 function createHamburgerMenu() {
   document.getElementById('hamburgerPopupMenu').innerHTML =
-  `
+  String.raw`
     <div class='click-to-hide-x' onclick='hamburgerMenuShowHide()'>
       <p class='click-to-hide'>x</p>
     </div>
@@ -1202,7 +1202,7 @@ function createGameStatsMenu() {
   let blueOrangeBoard = `${currentEmojiBoard2}`;
   const contrastModeCSS = document.querySelector("#contrastMode-link");
   let gameBoard = contrastModeCSS.getAttribute("href") === "contrast-theme-blue.css" ? blueOrangeBoard : greenYellowBoard;
-  document.getElementById('createGameStatsMenu').innerHTML = `
+  document.getElementById('createGameStatsMenu').innerHTML = String.raw`
     <div class='click-to-hide' id='clickToHideX' onclick='statsMenuShowHide()'>x</div>
     <p class='win-description'>GAME INFORMATION</p>
     <div class='gameStats-menu'>
@@ -1255,7 +1255,7 @@ function createGameStatsMenu() {
   //   let rowWinCount = `${gameStats['row' + i]}`
   //   let rowWidth = Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) ? Math.round((145 * (gameStats['row' + i] / gameStats.winCount))) : 15;
   //   let rowWinPercent = `${gameStats['row' + i] / gameStats.winCount ? Math.round((gameStats['row' + i] / gameStats.winCount) * 100) : '0'}%`;
-  //   document.getElementById('progressBarWrapper').innerHTML += `
+  //   document.getElementById('progressBarWrapper').innerHTML += String.raw`
   //     <p class='row-number'>${i}</p>
   //     <div class='bar-wrapper'>
   //       <div class='progress-bar2' style='width: ${rowWidth}px'>${rowWinCount}</div>
@@ -1272,7 +1272,7 @@ function createGameStatsMenu() {
     let rowWinCount = rowStats['row' + i];
     let rowWidth = Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) ? Math.round((145 * (rowStats['row' + i] / rowStats.winCount))) : 15;
     let rowWinPercent = `${rowStats['row' + i] / rowStats.winCount ? Math.round((rowStats['row' + i] / rowStats.winCount) * 100) : '0'}%`;
-    document.getElementById('progressBarWrapper').innerHTML += `
+    document.getElementById('progressBarWrapper').innerHTML += String.raw`
       <p class='row-number'>${i}</p>
       <div class='bar-wrapper'>
         <div class='progress-bar2' style='width: ${rowWidth}px'>${rowWinCount}</div>
@@ -1556,7 +1556,7 @@ function createHistoryTable() {
   `
 
   document.getElementById('historyHeader').innerHTML =
-  `
+  String.raw`
     <tr>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('orderPlayed')">Order</th>
       <th class='table-header' rowspan="1" onclick="sortHistoryTable('word')">Word</th>
@@ -1589,7 +1589,7 @@ function createHistoryTable() {
   // let winCount = gameStats.winCount;
   let winCountPercent = gameStats.winCount + '/' + winPercent;
   document.getElementById('historyFooter').innerHTML =
-  `
+  String.raw`
     <tr>
       <th></th>
       <th>Total</th>
@@ -1649,7 +1649,7 @@ function sortHistoryTable(sortColumn) {
   document.getElementById('historyData').innerHTML = '';
   for (let i = 0; i < sortedHistory.length; i++) {
     document.getElementById('historyData').innerHTML +=
-    `
+    String.raw`
       <tr>
         <th scope="row">${sortedHistory[i].orderPlayed}</th>
         <th scope="row" id=${`sort${i}`}>${sortedHistory[i].word[0] + sortedHistory[i].word.slice(1).toLowerCase()}</th>
@@ -1711,7 +1711,7 @@ function createHistoryBoard(event) {
   for (let x = 0; x < 30; x++) {
     // console.log('a')
     document.getElementById('historyBoard').innerHTML += 
-    `   
+    String.raw`   
       <input  type='text' 
               id=${`idh${x}`}
               maxlength='1'
