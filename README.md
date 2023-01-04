@@ -4,7 +4,7 @@ A Wordle Clone by [Steve Calla](https://github.com/stevecalla)
 
 ## Overview
 
-I wanted to re-create Wordle after the New York Times purchased it so I could play more frequently, maintain my history, enhanced functionality and develop my coding experience.
+I wanted to re-create Wordle after the New York Times purchased it so I could play more frequently, maintain my history, enhance functionality and develop my coding experience.
 
 ## Resources
 
